@@ -1,0 +1,52 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 162 98% 12%; /* #013e2b (ksc-dark) */
+    
+    --primary: 162 98% 18%; /* #015b40 (ksc-green) */
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 44 66% 46%; /* #c29928 (ksc-gold) */
+    --secondary-foreground: 0 0% 100%;
+    
+    --muted: 165 42% 93%; /* #e6f3f0 (ksc-light) */
+    --muted-foreground: 162 20% 40%;
+    
+    --accent: 165 42% 93%;
+    --accent-foreground: 162 98% 18%;
+    
+    --border: 165 42% 85%;
+    --input: 165 42% 85%;
+    --ring: 162 98% 18%;
+    
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-white text-ksc-dark;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight text-ksc-dark;
+  }
+}
+
+/* Custom Scrollbar for a premium feel */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+::-webkit-scrollbar-thumb {
+  background: #015b40; 
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #013e2b; 
+}

@@ -1,40 +1,42 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Header } from './components/layout/Header';
-import { Footer } from './components/layout/Footer';
-import { FloatingWhatsApp } from './components/common/FloatingWhatsApp';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Header } from "./components/layout/Header";
+import { Footer } from "./components/layout/Footer";
+import { FloatingWhatsApp } from "./components/common/FloatingWhatsApp";
+import { ScrollToTop } from "./components/common/ScrollToTop";
 
-// Pages
-import { Home } from './pages/Home';
-import { About } from './pages/About';
-import { Universities } from './pages/Universities';
-import { Courses } from './pages/Courses';
-import { CourseDetails } from './pages/CourseDetails';
-import { Admissions } from './pages/Admissions';
-import { StudentServices } from './pages/StudentServices';
-import { Gallery } from './pages/Gallery';
-import { Updates } from './pages/Updates';
-import { FAQ } from './pages/FAQ';
-import { Contact } from './pages/Contact';
+import { Home } from "./pages/Home";
+import { About } from "./pages/About";
+import { Founder } from "./pages/Founder";
+import { Chairman } from "./pages/Chairman";
+import { Academic } from "./pages/Academic";
+import { Facilities } from "./pages/Facilities";
+import { Curriculum } from "./pages/Curriculum";
+import { Gallery } from "./pages/Gallery";
+import { ExamUpdate } from "./pages/ExamUpdate";
+import { Contact } from "./pages/Contact";
+import { Admissions } from "./pages/Admissions";
 
 function App() {
   return (
     <Router>
-      <div className="flex flex-col min-h-screen">
+      <ScrollToTop />
+      <div className="flex min-h-screen flex-col">
         <Header />
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
-            <Route path="/universities" element={<Universities />} />
-            <Route path="/courses" element={<Courses />} />
-            <Route path="/courses/:id" element={<CourseDetails />} />
-            <Route path="/admissions" element={<Admissions />} />
-            <Route path="/student-services" element={<StudentServices />} />
+            <Route path="/founder" element={<Founder />} />
+            <Route path="/chairman" element={<Chairman />} />
+            <Route path="/academic" element={<Academic />} />
+            <Route path="/facilities" element={<Facilities />} />
+            <Route path="/curriculum" element={<Curriculum />} />
             <Route path="/gallery" element={<Gallery />} />
-            <Route path="/updates" element={<Updates />} />
-            <Route path="/faq" element={<FAQ />} />
+            <Route path="/exam-update" element={<ExamUpdate />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/admissions" element={<Admissions />} />
+            {/* fallback — unknown paths show the homepage */}
+            <Route path="*" element={<Home />} />
           </Routes>
         </main>
         <Footer />

@@ -33,10 +33,20 @@ export default {
           foreground: "hsl(var(--foreground))",
         },
         ksc: {
-          green: '#015b40',
-          light: '#e6f3f0',
-          dark: '#013e2b',
-          gold: '#c29928',
+          /* KSC brand palette — adjust here to approve/refine
+             green  #0E6B4E  primary (logo green)
+             gold   #C99A2E  secondary accent
+             saffron#E08E23  warm highlight (Tamil Nadu open-university accent)
+             navy   #1E2A44  deep neutral for alternate surfaces */
+          green: '#0E6B4E',
+          'green-mid': '#0A5640',
+          dark: '#063731',
+          deep: '#062B27',
+          mist: '#E9F5F1',
+          gold: '#C99A2E',
+          saffron: '#E08E23',
+          navy: '#1E2A44',
+          ink: '#22303A',
         }
       },
       fontFamily: {

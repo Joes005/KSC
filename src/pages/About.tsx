@@ -1,65 +1,140 @@
-import React from 'react';
-import { SITE_CONFIG } from '../data/config';
-import { Card, CardContent } from '../components/ui/Card';
-import { CheckCircle2 } from 'lucide-react';
+import { Link } from "react-router-dom";
+import { CheckCircle2, CalendarDays, Building2, Users } from "lucide-react";
+import { SITE_CONFIG, ABOUT_PAGE, VISION_MISSION_VALUES } from "../data/site-content";
+import { SectionHeading } from "../components/common/SectionHeading";
+import { Tabs } from "../components/common/Tabs";
 
 export function About() {
   return (
-    <div className="py-12 bg-gray-50 min-h-screen">
-      <div className="container mx-auto px-4 max-w-4xl">
-        <h1 className="text-4xl font-bold mb-8 text-ksc-dark text-center">About {SITE_CONFIG.name}</h1>
-        
-        <div className="space-y-12">
-          {/* Main About */}
-          <section className="bg-white p-8 rounded-2xl shadow-sm border">
-            <h2 className="text-2xl font-semibold mb-4">Welcome to {SITE_CONFIG.shortName}</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
-              {SITE_CONFIG.name} is a dedicated study centre in Karur, committed to providing comprehensive guidance and support for students pursuing distance and online education programmes from recognized universities.
-            </p>
-            <p className="text-muted-foreground leading-relaxed">
-              We bridge the gap between universities and students by offering a local point of contact for admission processes, course information, and academic support throughout their educational journey.
-            </p>
-          </section>
+    <>
+      {/* Page header */}
+      <section className="bg-gradient-to-r from-primary to-ksc-dark py-14 text-white">
+        <div className="container-site">
+          <p className="section-kicker">About Us</p>
+          <h1 className="mt-2 text-3xl font-extrabold sm:text-4xl">About {SITE_CONFIG.name}</h1>
+          <p className="mt-3 max-w-2xl text-white/80">{ABOUT_PAGE.intro}</p>
+        </div>
+      </section>
 
-          {/* Our Approach */}
-          <section>
-            <h2 className="text-2xl font-semibold mb-6 text-center">Our Approach & Support</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {[
-                { title: "Academic Support", desc: "Guidance on selecting the right programme based on your career goals and eligibility." },
-                { title: "Student Support", desc: "Assistance with application forms, fee payments, and university communications." },
-                { title: "Learning Resources", desc: "Access to study materials and reference books for your enrolled programmes." },
-                { title: "Exam Assistance", desc: "Timely updates regarding exam schedules, hall tickets, and result announcements." }
-              ].map((item, i) => (
-                <Card key={i}>
-                  <CardContent className="p-6">
-                    <div className="flex items-start">
-                      <CheckCircle2 className="text-primary mt-1 mr-3 shrink-0" />
-                      <div>
-                        <h3 className="font-semibold text-lg mb-2">{item.title}</h3>
-                        <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+      {/* Long-form copy + facts sidebar */}
+      <section className="bg-white py-16">
+        <div className="container-site grid gap-10 lg:grid-cols-3">
+          <div className="lg:col-span-2">
+            <SectionHeading
+              align="left"
+              kicker="Who We Are"
+              title="Your local bridge to open-university education"
+            />
+            <div className="space-y-5 leading-relaxed text-ksc-ink/90">
+              {ABOUT_PAGE.body.map((para) => (
+                <p key={para.slice(0, 24)}>{para}</p>
               ))}
             </div>
-          </section>
 
-          {/* Physical Center Proof (Placeholder for image) */}
-          <section className="bg-white p-8 rounded-2xl shadow-sm border text-center">
-            <h2 className="text-2xl font-semibold mb-6">Visit Our Centre</h2>
-            <p className="text-muted-foreground mb-8">
-              We welcome students to visit our physical centre in Karur for in-person counseling and support.
-            </p>
-            <div className="aspect-video bg-muted rounded-xl flex items-center justify-center overflow-hidden relative group">
-              <span className="text-muted-foreground font-medium z-10">Physical Centre Photograph</span>
-              {/* Optional: Add actual image path here later */}
-              <div className="absolute inset-0 bg-black/5 group-hover:bg-black/0 transition-colors"></div>
+            <div className="mt-10">
+              <h3 className="text-xl font-bold text-ksc-dark">Membership &amp; Recognition</h3>
+              <ul className="mt-4 space-y-2.5">
+                {ABOUT_PAGE.membership.map((m) => (
+                  <li key={m} className="flex items-start gap-3 text-ksc-ink">
+                    <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-primary" /> {m}
+                  </li>
+                ))}
+              </ul>
             </div>
-          </section>
+          </div>
+
+          {/* Facts sidebar */}
+          <aside className="space-y-5">
+            <div className="card-hover p-6">
+              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-ksc-mist text-primary">
+                <CalendarDays className="h-6 w-6" />
+              </span>
+              <p className="mt-3 text-sm uppercase tracking-wide text-ksc-ink/60">Established</p>
+              <p className="text-lg font-bold text-ksc-dark">{ABOUT_PAGE.establishedYear}</p>
+              {/* TODO: fill the established year in ABOUT_PAGE (src/data/site-content.ts) */}
+            </div>
+            <div className="card-hover p-6">
+              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-ksc-mist text-primary">
+                <Building2 className="h-6 w-6" />
+              </span>
+              <p className="mt-3 text-sm uppercase tracking-wide text-ksc-ink/60">Leadership</p>
+              <p className="text-lg font-bold text-ksc-dark">Founder &amp; Chairman</p>
+              <div className="mt-2 space-y-1 text-sm text-ksc-ink/80">
+                <Link to="/founder">Read Founder Message →</Link>
+                <br />
+                <Link to="/chairman">Read Chairman Message →</Link>
+              </div>
+              {/* TODO: chairman + founder names */}
+            </div>
+            <div className="card-hover p-6">
+              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-ksc-mist text-primary">
+                <Users className="h-6 w-6" />
+              </span>
+              <p className="mt-3 text-sm uppercase tracking-wide text-ksc-ink/60">Students Served</p>
+              <p className="text-lg font-bold text-ksc-dark">5,000+ learners guided</p>
+              {/* TODO: real student figure */}
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      {/* Vision / Mission / Values detail */}
+      <AboutDetail />
+    </>
+  );
+}
+
+function AboutDetail() {
+  const intro = VISION_MISSION_VALUES;
+
+  return (
+    <section className="bg-ksc-mist/60 py-16">
+      <div className="container-site">
+        <SectionHeading kicker="Our Foundation" title="Vision · Mission · Values" />
+        <div className="mx-auto max-w-4xl">
+          <Tabs
+            tabs={[
+              { id: "vision", label: "Vision" },
+              { id: "mission", label: "Mission" },
+              { id: "values", label: "Values" },
+            ]}
+            defaultActive="vision"
+          >
+            {(activeId) => {
+              if (activeId === "vision") {
+                return (
+                  <div className="card-hover p-8">
+                    <p className="text-lg font-medium leading-relaxed text-ksc-dark">{intro.vision}</p>
+                  </div>
+                );
+              }
+              if (activeId === "mission") {
+                return (
+                  <div className="card-hover p-8">
+                    <ul className="space-y-3">
+                      {intro.mission.map((m) => (
+                        <li key={m.slice(0, 20)} className="flex items-start gap-3 text-ksc-ink">
+                          <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-primary" /> {m}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                );
+              }
+              return (
+                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  {intro.values.map((v) => (
+                    <div key={v.title} className="card-hover p-5">
+                      <h4 className="font-bold text-primary">{v.title}</h4>
+                      <p className="mt-1.5 text-sm text-ksc-ink/80">{v.description}</p>
+                    </div>
+                  ))}
+                </div>
+              );
+            }}
+          </Tabs>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

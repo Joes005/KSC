@@ -1,126 +1,238 @@
-import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Phone, MessageCircle, Mail } from 'lucide-react';
-import { SITE_CONFIG } from '../../data/config';
-import { Button } from '../ui/Button';
+import { useEffect, useRef, useState } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { Phone, MessageCircle, Menu, X, ChevronDown } from "lucide-react";
+import { SITE_CONFIG } from "../../data/site-content";
+import { UNIVERSITIES } from "../../data/universities";
+import { Logo } from "../brand/Logo";
+import { cn } from "../../utils/cn";
 
-export function Header() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const location = useLocation();
+interface NavItem {
+  label: string;
+  path?: string;
+  children?: { label: string; path: string }[];
+}
 
-  const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'About', path: '/about' },
-    { name: 'Universities', path: '/universities' },
-    { name: 'Courses', path: '/courses' },
-    { name: 'Admissions', path: '/admissions' },
-    { name: 'Student Services', path: '/student-services' },
-    { name: 'Gallery', path: '/gallery' },
-    { name: 'Updates', path: '/updates' },
-    { name: 'FAQ', path: '/faq' },
-    { name: 'Contact', path: '/contact' },
-  ];
+const NAV_ITEMS: NavItem[] = [
+  { label: "Home", path: "/" },
+  {
+    label: "About",
+    children: [
+      { label: "About Us", path: "/about" },
+      { label: "Founder Message", path: "/founder" },
+      { label: "Chairman Message", path: "/chairman" },
+    ],
+  },
+  { label: "Academic", path: "/academic" },
+  { label: "Facilities", path: "/facilities" },
+  { label: "Curriculum", path: "/curriculum" },
+  { label: "Gallery", path: "/gallery" },
+  {
+    label: "Exam Update",
+    children: [
+      { label: "All Exam Updates", path: "/exam-update" },
+      ...UNIVERSITIES.map((u) => ({ label: `${u.shortName} — Timetable`, path: `/exam-update#${u.id}` })),
+    ],
+  },
+  { label: "Contact", path: "/contact" },
+];
 
-  const isActive = (path: string) => location.pathname === path;
+function DesktopDropdown({ item }: { item: NavItem }) {
+  const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
-      {/* Top Bar */}
-      <div className="bg-primary text-primary-foreground py-2 px-4 text-xs sm:text-sm">
-        <div className="container mx-auto flex flex-col sm:flex-row justify-between items-center">
-          <div className="font-medium mb-2 sm:mb-0">
-            Admissions Open — Academic Year 2026–27
-          </div>
-          <div className="flex items-center space-x-4">
-            <a href={`tel:${SITE_CONFIG.contact.phone}`} className="flex items-center hover:text-ksc-gold transition-colors">
-              <Phone size={14} className="mr-1" /> {SITE_CONFIG.contact.phone}
+    <div
+      className="relative"
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+      onFocus={() => setOpen(true)}
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget)) setOpen(false);
+      }}
+    >
+      <button
+        type="button"
+        aria-haspopup="true"
+        aria-expanded={open}
+        onClick={() => setOpen((v) => !v)}
+        className={cn(
+          "flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition-colors",
+          "text-ksc-ink hover:text-primary hover:bg-ksc-mist",
+          open && "text-primary bg-ksc-mist"
+        )}
+      >
+        {item.label}
+        <ChevronDown className={cn("h-4 w-4 transition-transform", open && "rotate-180")} />
+      </button>
+      {open && (
+        <div className="absolute left-0 top-full z-50 mt-1 min-w-56 rounded-lg border border-ksc-green/15 bg-white p-1.5 shadow-xl">
+          {item.children?.map((child) => (
+            <Link
+              key={child.path}
+              to={child.path}
+              onClick={() => setOpen(false)}
+              className="block rounded-md px-3 py-2 text-sm font-medium text-ksc-ink hover:bg-ksc-mist hover:text-primary"
+            >
+              {child.label}
+            </Link>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+export function Header() {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
+  const headerRef = useRef<HTMLElement>(null);
+
+  /* close the mobile menu on navigation */
+  useEffect(() => {
+    const handleRoute = () => setMobileOpen(false);
+    window.addEventListener("popstate", handleRoute);
+    return () => window.removeEventListener("popstate", handleRoute);
+  }, []);
+
+  const linkClass = ({ isActive }: { isActive: boolean }) =>
+    cn(
+      "rounded-md px-3 py-2 text-sm font-medium transition-colors",
+      isActive ? "text-primary bg-ksc-mist" : "text-ksc-ink hover:text-primary hover:bg-ksc-mist"
+    );
+
+  return (
+    <header ref={headerRef} className="sticky top-0 z-50 w-full border-b border-ksc-green/10 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/75">
+      {/* Top bar */}
+      <div className="bg-primary text-white">
+        <div className="container-site flex flex-col items-center justify-between gap-1.5 py-2 text-xs sm:flex-row sm:text-sm">
+          <span className="font-semibold tracking-wide">{SITE_CONFIG.admissionOpen}</span>
+          <div className="flex items-center gap-4">
+            <a href={`tel:${SITE_CONFIG.contact.phone}`} className="flex items-center gap-1.5 hover:text-ksc-gold">
+              <Phone className="h-3.5 w-3.5" /> {SITE_CONFIG.contact.phone}
             </a>
-            <a href={`https://wa.me/${SITE_CONFIG.contact.whatsapp}`} className="flex items-center hover:text-ksc-gold transition-colors" target="_blank" rel="noopener noreferrer">
-              <MessageCircle size={14} className="mr-1" /> WhatsApp
-            </a>
-            <a href={`mailto:${SITE_CONFIG.contact.email}`} className="flex items-center hover:text-ksc-gold transition-colors hidden md:flex">
-              <Mail size={14} className="mr-1" /> Email Us
+            <a
+              href={`https://wa.me/${SITE_CONFIG.contact.whatsapp}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 hover:text-ksc-gold"
+            >
+              <MessageCircle className="h-3.5 w-3.5" /> WhatsApp
             </a>
           </div>
         </div>
       </div>
 
-      {/* Main Navigation */}
-      <div className="container mx-auto px-4 h-20 flex items-center justify-between">
-        <Link to="/" className="flex items-center space-x-2">
-          {/* We will use a text logo if the image isn't perfect, but let's assume we have the logo or text */}
-          <div className="flex flex-col">
-            <span className="font-bold text-xl md:text-2xl tracking-tight text-primary leading-tight">
-              KARUR STUDY CENTER
+      {/* Main bar */}
+      <div className="container-site flex h-20 items-center justify-between gap-4">
+        <Link to="/" className="flex items-center gap-3" aria-label={`${SITE_CONFIG.name} home`}>
+          <Logo className="h-14 w-14 rounded-full" />
+          <span className="flex flex-col leading-tight">
+            <span className="text-lg font-extrabold tracking-tight text-primary sm:text-xl">
+              {SITE_CONFIG.name}
             </span>
-            <span className="text-xs text-muted-foreground font-medium tracking-widest uppercase">
-              Education & Guidance
+            <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-ksc-gold">
+              {SITE_CONFIG.tagline}
             </span>
-          </div>
+          </span>
         </Link>
 
-        {/* Desktop Nav */}
-        <nav className="hidden lg:flex items-center space-x-1 lg:space-x-4">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              to={link.path}
-              className={`px-3 py-2 text-sm font-medium rounded-md transition-colors hover:text-primary hover:bg-muted ${
-                isActive(link.path) ? 'text-primary bg-muted' : 'text-foreground/80'
-              }`}
-            >
-              {link.name}
-            </Link>
-          ))}
+        {/* Desktop nav */}
+        <nav className="hidden items-center gap-0.5 xl:flex" aria-label="Primary">
+          {NAV_ITEMS.map((item) => {
+            if (item.children) {
+              return <DesktopDropdown key={item.label} item={item} />;
+            }
+            return (
+              <NavLink key={item.label} to={item.path!} end={item.path === "/"} className={linkClass}>
+                {item.label}
+              </NavLink>
+            );
+          })}
         </nav>
 
-        {/* Desktop CTAs */}
-        <div className="hidden lg:flex items-center space-x-3">
-          <Button variant="outline" asChild>
-            <a href={`https://wa.me/${SITE_CONFIG.contact.whatsapp}`} target="_blank" rel="noopener noreferrer">
-              WhatsApp Us
-            </a>
-          </Button>
-          <Button asChild>
-            <Link to="/admissions">Apply Now</Link>
-          </Button>
+        {/* Desktop CTA */}
+        <div className="hidden items-center gap-3 xl:flex">
+          <a
+            href={`tel:${SITE_CONFIG.contact.phone}`}
+            className="hidden items-center gap-2 text-sm font-semibold text-ksc-dark 2xl:flex"
+          >
+            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-ksc-mist text-primary">
+              <Phone className="h-4 w-4" />
+            </span>
+            <span>
+              <span className="block text-[11px] uppercase tracking-wide text-ksc-ink/60">Call us</span>
+              {SITE_CONFIG.contact.phone}
+            </span>
+          </a>
+          <Link to="/admissions" className="btn-gold">
+            Admissions
+          </Link>
         </div>
 
-        {/* Mobile Menu Toggle */}
+        {/* Mobile toggle */}
         <button
-          className="lg:hidden p-2 text-foreground"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="xl:hidden rounded-md p-2 text-ksc-dark hover:bg-ksc-mist"
+          onClick={() => setMobileOpen((v) => !v)}
+          aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          aria-expanded={mobileOpen}
         >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
       </div>
 
-      {/* Mobile Nav */}
-      {isMobileMenuOpen && (
-        <div className="lg:hidden border-t bg-white absolute w-full shadow-lg">
-          <nav className="flex flex-col p-4 space-y-2">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.path}
-                className={`px-4 py-3 text-sm font-medium rounded-md transition-colors ${
-                  isActive(link.path) ? 'text-primary bg-muted' : 'text-foreground/80'
-                }`}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {link.name}
-              </Link>
-            ))}
-            <div className="pt-4 flex flex-col space-y-3">
-              <Button className="w-full" variant="outline" asChild>
-                <a href={`https://wa.me/${SITE_CONFIG.contact.whatsapp}`} target="_blank" rel="noopener noreferrer">
-                  WhatsApp Us
-                </a>
-              </Button>
-              <Button className="w-full" asChild>
-                <Link to="/admissions">Apply Now</Link>
-              </Button>
-            </div>
+      {/* Mobile menu */}
+      {mobileOpen && (
+        <div className="xl:hidden border-t border-ksc-green/10 bg-white">
+          <nav className="container-site flex flex-col py-3" aria-label="Mobile">
+            {NAV_ITEMS.map((item) => {
+              if (item.children) {
+                const expanded = mobileExpanded === item.label;
+                return (
+                  <div key={item.label} className="border-b border-ksc-green/5">
+                    <button
+                      className="flex w-full items-center justify-between px-3 py-3 text-left text-sm font-semibold text-ksc-dark"
+                      onClick={() => setMobileExpanded(expanded ? null : item.label)}
+                      aria-expanded={expanded}
+                    >
+                      {item.label}
+                      <ChevronDown className={cn("h-4 w-4 transition-transform", expanded && "rotate-180")} />
+                    </button>
+{expanded && (
+                      <div className="flex flex-col pb-2">
+                        {item.children.map((child) => (
+                          <Link
+                            key={child.path}
+                            to={child.path}
+                            onClick={() => setMobileOpen(false)}
+                            className="rounded-md px-5 py-2.5 text-sm font-medium text-ksc-ink hover:bg-mist hover:text-primary"
+                          >
+                            {child.label}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+              return (
+                <NavLink
+                  key={item.label}
+                  to={item.path!}
+                  end={item.path === "/"}
+                  onClick={() => setMobileOpen(false)}
+                  className={({ isActive }) =>
+                    cn(
+                      "border-b border-ksc-green/5 px-3 py-3 text-sm font-semibold",
+                      isActive ? "text-primary" : "text-ksc-dark"
+                    )
+                  }
+                >
+                  {item.label}
+                </NavLink>
+              );
+            })}
+            <Link to="/admissions" onClick={() => setMobileOpen(false)} className="btn-gold mt-4 w-full">
+              Admissions
+            </Link>
           </nav>
         </div>
       )}

@@ -4,18 +4,16 @@ import { CURRICULUM } from "../data/site-content";
 import { UNIVERSITIES } from "../data/universities";
 import { SectionHeading } from "../components/common/SectionHeading";
 import { Accordion } from "../components/common/Accordion";
+import { PageHeader } from "../components/common/PageHeader";
 
 export function Curriculum() {
   return (
     <>
       {/* Page header */}
-      <section className="bg-gradient-to-r from-primary to-ksc-dark py-14 text-white">
-        <div className="container-site">
-          <p className="section-kicker">Curriculum &amp; Syllabus</p>
-          <h1 className="mt-2 text-3xl font-extrabold sm:text-4xl">How the curriculum works</h1>
-          <p className="mt-3 max-w-3xl text-white/80">{CURRICULUM.intro}</p>
-        </div>
-      </section>
+      <PageHeader 
+        title="Curriculum & Syllabus" 
+        breadcrumb={[{ label: "Home", to: "/" }, { label: "Curriculum" }]} 
+      />
 
       {/* How it works */}
       <section className="bg-white py-16">

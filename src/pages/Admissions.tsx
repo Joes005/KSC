@@ -38,8 +38,9 @@ export function Admissions() {
   return (
     <>
       {/* Page header */}
-      <section className="bg-gradient-to-r from-primary to-ksc-dark py-14 text-white">
-        <div className="container-site">
+      <section className="gradient-head relative overflow-hidden py-14 text-white">
+        <div className="pointer-events-none absolute -right-16 top-0 h-64 w-64 rounded-full bg-ksc-gold/20 blur-3xl" />
+        <div className="container-site relative">
           <p className="section-kicker">Admissions</p>
           <h1 className="mt-2 text-3xl font-extrabold sm:text-4xl">Admissions — {SITE_CONFIG.admissionYear}</h1>
           <p className="mt-3 max-w-2xl text-white/80">

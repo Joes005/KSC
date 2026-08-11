@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Header } from "./components/layout/Header";
 import { Footer } from "./components/layout/Footer";
-import { FloatingWhatsApp } from "./components/common/FloatingWhatsApp";
+import { StickyActionBar } from "./components/layout/StickyActionBar";
 import { ScrollToTop } from "./components/common/ScrollToTop";
 
 import { Home } from "./pages/Home";
@@ -15,6 +15,7 @@ import { Gallery } from "./pages/Gallery";
 import { ExamUpdate } from "./pages/ExamUpdate";
 import { Contact } from "./pages/Contact";
 import { Admissions } from "./pages/Admissions";
+import { University } from "./pages/University";
 
 function App() {
   return (
@@ -35,12 +36,13 @@ function App() {
             <Route path="/exam-update" element={<ExamUpdate />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/admissions" element={<Admissions />} />
+            <Route path="/university/:id" element={<University />} />
             {/* fallback — unknown paths show the homepage */}
             <Route path="*" element={<Home />} />
           </Routes>
         </main>
         <Footer />
-        <FloatingWhatsApp />
+        <StickyActionBar />
       </div>
     </Router>
   );

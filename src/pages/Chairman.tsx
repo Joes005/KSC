@@ -1,16 +1,15 @@
 import { SITE_CONFIG, CHAIRMAN_MESSAGE } from "../data/site-content";
 import { SectionHeading } from "../components/common/SectionHeading";
+import { PageHeader } from "../components/common/PageHeader";
 
 export function Chairman() {
   return (
     <>
       {/* Page header */}
-      <section className="bg-gradient-to-r from-primary to-ksc-dark py-14 text-white">
-        <div className="container-site">
-          <p className="section-kicker">Chairman Message</p>
-          <h1 className="mt-2 text-3xl font-extrabold sm:text-4xl">A word from our Chairman</h1>
-        </div>
-      </section>
+      <PageHeader 
+        title="Chairman Message" 
+        breadcrumb={[{ label: "Home", to: "/" }, { label: "Chairman Message" }]} 
+      />
 
       <section className="bg-white py-16">
         <div className="container-site grid gap-10 md:grid-cols-3">

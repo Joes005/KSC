@@ -1,10 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
-  GraduationCap,
   ArrowRight,
   CheckCircle2,
-  BookOpen,
   FileDown,
   ClipboardList,
   Wallet,
@@ -28,76 +26,105 @@ import { Tabs } from "../components/common/Tabs";
 import { StatCounter } from "../components/common/StatCounter";
 import { NewsTicker } from "../components/common/NewsTicker";
 import { Button } from "../components/ui/Button";
+import { cn } from "../utils/cn";
 
 /* --------------------------------------------------------------------------- */
 /* HERO                                                                            */
 /* --------------------------------------------------------------------------- */
+const HERO_IMAGES = [
+  "/assets/user-photos/students.png",
+  "/assets/user-photos/branch-exterior.jpg",
+  "/assets/user-photos/distance-student.png",
+];
+
 function Hero() {
+  const [currentImage, setCurrentImage] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % HERO_IMAGES.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-primary via-ksc-green-mid to-ksc-dark text-white">
-      {/* decorative circles */}
-      <div className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full border border-white/10" />
-      <div className="pointer-events-none absolute -bottom-32 -left-24 h-80 w-80 rounded-full border border-white/10" />
-
-      <div className="container-site grid items-center gap-10 py-16 md:grid-cols-2 md:py-24">
-        <div>
-          <span className="inline-flex items-center gap-2 rounded-full border border-ksc-gold/60 bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-ksc-gold">
-            <CalendarDays className="h-4 w-4" />
-            {SITE_CONFIG.admissionOpen}
-          </span>
-          <h1 className="mt-5 text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl">
-            {HERO.headline}
-            <span className="mt-2 block text-2xl font-semibold text-ksc-gold sm:text-3xl">
-              {HERO.subHeadline}
-            </span>
-          </h1>
-          <p className="mt-5 max-w-xl text-base leading-relaxed text-white/85 sm:text-lg">
-            {HERO.description}
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            {HERO.ctas.map((cta) =>
-              cta.primary ? (
-                <Button key={cta.to} size="lg" variant="gold" asChild>
-                  <Link to={cta.to}>
-                    {cta.label} <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-              ) : (
-                <Button key={cta.to} size="lg" variant="outline" className="border-white bg-transparent text-white hover:bg-white/15 hover:text-white" asChild>
-                  <Link to={cta.to}>{cta.label}</Link>
-                </Button>
-              )
-            )}
-          </div>
+    <section className="relative h-[500px] w-full overflow-hidden sm:h-[600px]">
+      {/* Full-width Carousel Background */}
+      {HERO_IMAGES.map((img, idx) => (
+        <div
+          key={img}
+          className={cn(
+            "absolute inset-0 transition-opacity duration-1000",
+            idx === currentImage ? "opacity-100" : "opacity-0"
+          )}
+        >
+          <img src={img} alt="Karur Study Center" className="h-full w-full object-cover" />
         </div>
+      ))}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/50" />
 
-        {/* Admission card mock */}
-        <div className="relative mx-auto w-full max-w-sm">
-          <div className="card-hover border-white/20 bg-white p-6 text-ksc-dark shadow-2xl">
-            <div className="flex items-center gap-3">
-              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
-                <GraduationCap className="h-6 w-6" />
-              </span>
-              <div>
-                <p className="font-bold leading-tight">Admission Guide — 2026</p>
-                <p className="text-xs text-ksc-ink/70">TNOU · Bharathidasan University</p>
-              </div>
-            </div>
-            <ul className="mt-5 space-y-2.5 text-sm">
-              {[
-                "UG · PG · Diploma · Certificate",
-                "Vocational & Short-Term Programmes",
-                "Semester & Non-Semester patterns",
-              ].map((line) => (
-                <li key={line} className="flex items-center gap-2 text-ksc-ink">
-                  <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" /> {line}
-                </li>
-              ))}
-            </ul>
-            <Link to="/academic" className="btn-primary mt-6 w-full">
-              View all programmes
-            </Link>
-          </div>
+      {/* Floating Admissions Sticker */}
+      <div className="absolute right-4 top-24 z-20 md:right-16 md:top-32">
+        <div className="flex h-28 w-28 flex-col items-center justify-center rounded-full bg-ksc-gold border-[5px] border-white shadow-2xl rotate-12 transition-transform hover:scale-110">
+          <span className="text-[10px] font-bold uppercase text-ksc-navy tracking-widest drop-shadow-md">Admissions</span>
+          <span className="text-2xl font-black text-ksc-navy drop-shadow-md">OPEN</span>
+          <span className="text-[10px] font-bold text-ksc-navy/80 drop-shadow-md">{SITE_CONFIG.admissionYear}</span>
+        </div>
+      </div>
+
+      {/* Centered Content */}
+      <div className="container-site relative z-10 flex h-full flex-col items-center justify-center text-center py-16 md:py-24">
+        <span className="inline-flex items-center gap-2 rounded bg-primary px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-white shadow">
+          <CalendarDays className="h-4 w-4" />
+          {SITE_CONFIG.admissionOpen}
+        </span>
+        <h1 className="mt-6 text-3xl font-extrabold leading-tight text-white sm:text-5xl lg:text-6xl">
+          {HERO.headline}
+          <span className="mt-2 block text-2xl font-bold text-ksc-gold sm:text-4xl">
+            {HERO.subHeadline}
+          </span>
+        </h1>
+        <p className="mt-6 max-w-2xl text-base leading-relaxed text-white sm:text-lg font-medium drop-shadow-sm">
+          {HERO.description}
+        </p>
+        <div className="mt-8 flex flex-wrap justify-center gap-4">
+          {HERO.ctas.map((cta) =>
+            cta.primary ? (
+              <Button key={cta.to} size="lg" variant="gold" asChild className="rounded px-8 shadow-xl">
+                <Link to={cta.to}>
+                  {cta.label} <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            ) : (
+              <Button key={cta.to} size="lg" variant="outline" className="rounded border-white text-white hover:bg-white hover:text-ksc-dark px-8 shadow-xl" asChild>
+                <Link to={cta.to}>{cta.label}</Link>
+              </Button>
+            )
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* --------------------------------------------------------------------------- */
+/* AFFILIATIONS STRIP                                                           */
+/* --------------------------------------------------------------------------- */
+function AffiliationsStrip() {
+  return (
+    <section className="bg-white py-6 border-b border-gray-200">
+      <div className="container-site flex flex-wrap justify-center items-center gap-8 md:gap-20">
+        <div className="flex items-center gap-3 grayscale hover:grayscale-0 transition-all opacity-80 hover:opacity-100">
+          <div className="w-12 h-12 rounded-full border-2 border-[#166534] flex items-center justify-center font-bold text-[#166534] text-sm shadow-sm bg-white">UGC</div>
+          <span className="font-bold text-sm text-ksc-dark leading-tight">Approved<br/>Institute</span>
+        </div>
+        <div className="flex items-center gap-3 grayscale hover:grayscale-0 transition-all opacity-80 hover:opacity-100">
+          <div className="w-12 h-12 rounded-full border-2 border-ksc-gold flex items-center justify-center font-bold text-ksc-gold text-[10px] text-center shadow-sm bg-white leading-tight">ISO<br/>9001</div>
+          <span className="font-bold text-sm text-ksc-dark leading-tight">Certified<br/>Center</span>
+        </div>
+        <div className="flex items-center gap-3 grayscale hover:grayscale-0 transition-all opacity-80 hover:opacity-100">
+           <div className="w-12 h-12 rounded-full border-2 border-[#1e40af] flex items-center justify-center font-bold text-[#1e40af] text-sm shadow-sm bg-white">NCTE</div>
+           <span className="font-bold text-sm text-ksc-dark leading-tight">Recognized<br/>Courses</span>
         </div>
       </div>
     </section>
@@ -110,8 +137,20 @@ function Hero() {
 function AboutSnapshot() {
   return (
     <section className="bg-white py-20">
-      <div className="container-site grid items-center gap-10 lg:grid-cols-2">
-        <div>
+      <div className="container-site grid items-center gap-12 lg:grid-cols-2">
+        {/* Image Column */}
+        <div className="relative order-2 lg:order-1 px-4 lg:px-0">
+          <div className="rounded-xl overflow-hidden shadow-2xl border border-gray-100">
+            <img src="/assets/images/about-students.png" alt="Students at Karur Study Center" className="w-full h-auto object-cover aspect-[4/3]" />
+          </div>
+          <div className="absolute -bottom-6 -right-2 md:-right-6 flex h-32 w-32 flex-col items-center justify-center rounded-full bg-gradient-to-br from-ksc-saffron to-ksc-gold border-8 border-white shadow-xl rotate-[-10deg]">
+            <span className="text-3xl font-black text-ksc-dark">15+</span>
+            <span className="text-[10px] font-bold uppercase text-ksc-dark text-center leading-tight mt-1">Years of<br/>Excellence</span>
+          </div>
+        </div>
+
+        {/* Content Column */}
+        <div className="order-1 lg:order-2">
           <SectionHeading
             align="left"
             kicker="About KSC"
@@ -123,25 +162,27 @@ function AboutSnapshot() {
               {para}
             </p>
           ))}
-          <Link to={ABOUT_SNAPSHOT.readMoreLink} className="btn-outline mt-7">
+          <div className="mt-8 grid grid-cols-2 gap-y-4 gap-x-2">
+             <div className="flex items-center gap-3">
+               <CheckCircle2 className="h-5 w-5 text-primary shrink-0" />
+               <span className="text-sm font-bold text-ksc-dark">UG / PG / Diploma</span>
+             </div>
+             <div className="flex items-center gap-3">
+               <CheckCircle2 className="h-5 w-5 text-primary shrink-0" />
+               <span className="text-sm font-bold text-ksc-dark">5000+ Students</span>
+             </div>
+             <div className="flex items-center gap-3">
+               <CheckCircle2 className="h-5 w-5 text-primary shrink-0" />
+               <span className="text-sm font-bold text-ksc-dark">Full Exam Support</span>
+             </div>
+             <div className="flex items-center gap-3">
+               <CheckCircle2 className="h-5 w-5 text-primary shrink-0" />
+               <span className="text-sm font-bold text-ksc-dark">Affordable Fees</span>
+             </div>
+          </div>
+          <Link to={ABOUT_SNAPSHOT.readMoreLink} className="btn-outline mt-8">
             Read More <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
-        </div>
-        <div className="grid grid-cols-2 gap-4">
-          {[
-            { icon: BookOpen, title: "UG / PG / Diploma", desc: "Programmes across TNOU & BDU" },
-            { icon: GraduationCap, title: "5000+ Students", desc: "Guided through admissions (TODO)" },
-            { icon: CheckCircle2, title: "Exam Support", desc: "Hall tickets, timetables & results" },
-            { icon: Wallet, title: "Affordable Path", desc: "Transparent, low-fee guidance" },
-          ].map(({ icon: Icon, title, desc }) => (
-            <div key={title} className="card-hover p-5 text-center">
-              <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-ksc-mist text-primary">
-                <Icon className="h-6 w-6" />
-              </span>
-              <p className="mt-3 font-bold text-ksc-dark">{title}</p>
-              <p className="mt-1 text-xs text-ksc-ink/70">{desc}</p>
-            </div>
-          ))}
         </div>
       </div>
     </section>
@@ -163,9 +204,9 @@ function WhyDistance() {
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {WHY_DISTANCE.map((item, i) => (
             <div key={item.title} className="card-hover relative p-6">
-              <span className="absolute right-5 top-4 text-5xl font-extrabold text-primary/10">
+              <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded bg-primary/10 text-primary font-bold">
                 {String(i + 1).padStart(2, "0")}
-              </span>
+              </div>
               <h3 className="text-lg font-bold text-primary">{item.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-ksc-ink/85">{item.description}</p>
             </div>
@@ -199,11 +240,10 @@ function VisionMissionValues() {
               <button
                 key={t.id}
                 onClick={() => setTab(t.id)}
-                className={`rounded-full px-5 py-2 text-sm font-bold transition-colors ${
-                  tab === t.id
-                    ? "bg-primary text-white"
-                    : "bg-ksc-mist text-ksc-dark hover:bg-primary/10"
-                }`}
+                className={`rounded px-5 py-2 text-sm font-bold border transition-colors ${tab === t.id
+                    ? "bg-primary border-primary text-white"
+                    : "bg-white border-gray-200 text-ksc-dark hover:bg-gray-50"
+                  }`}
               >
                 {t.label}
               </button>
@@ -294,7 +334,7 @@ function UniversityCourses() {
                       <div className="flex items-center justify-between">
                         <h4 className="font-bold text-ksc-dark">{cat.label}</h4>
                         {cat.count !== undefined && (
-                          <span className="rounded-full bg-ksc-gold/15 px-2.5 py-0.5 text-xs font-bold text-ksc-gold">
+                          <span className="rounded bg-ksc-gold/15 px-2.5 py-0.5 text-xs font-bold text-ksc-gold">
                             {cat.count}
                           </span>
                         )}
@@ -368,16 +408,13 @@ function AdmissionSteps() {
           {ADMISSION_STEPS.map((step, i) => {
             const Icon = stepIcons[i] ?? FileDown;
             return (
-              <div key={step.step} className="card-hover relative p-6 text-center">
-                <span className="absolute left-4 top-4 text-4xl font-extrabold text-primary/10">{step.step}</span>
-                <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-primary text-white">
-                  <Icon className="h-7 w-7" />
+              <div key={step.step} className="card-hover relative p-6 text-center border-t-4 border-t-primary">
+                <span className="mx-auto flex h-12 w-12 items-center justify-center rounded bg-primary/10 text-primary">
+                  <Icon className="h-6 w-6" />
                 </span>
-                <h3 className="mt-4 font-bold text-ksc-dark">{step.title}</h3>
+                <div className="mt-4 inline-block text-xs font-bold uppercase tracking-widest text-ksc-gold mb-1">Step {step.step}</div>
+                <h3 className="font-bold text-ksc-dark">{step.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-ksc-ink/80">{step.description}</p>
-                {i < ADMISSION_STEPS.length - 1 && (
-                  <ArrowRight className="absolute -right-3 top-1/2 hidden h-5 w-5 -translate-y-1/2 text-ksc-gold lg:block" />
-                )}
               </div>
             );
           })}
@@ -427,8 +464,10 @@ function Branches() {
 /* --------------------------------------------------------------------------- */
 function CtaBand() {
   return (
-    <section className="bg-gradient-to-r from-primary to-ksc-dark py-16 text-white">
-      <div className="container-site flex flex-col items-center gap-6 text-center md:flex-row md:justify-between md:text-left">
+    <section className="gradient-head relative overflow-hidden py-16 text-white">
+      <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-ksc-gold/20 blur-3xl" />
+      <div className="pointer-events-none absolute -left-10 bottom-0 h-56 w-56 rounded-full bg-ksc-saffron/20 blur-3xl" />
+      <div className="container-site relative flex flex-col items-center gap-6 text-center md:flex-row md:justify-between md:text-left">
         <div>
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-ksc-gold">Ready to begin?</p>
           <h2 className="mt-2 text-3xl font-extrabold">{SITE_CONFIG.admissionOpen}</h2>
@@ -459,6 +498,7 @@ export function Home() {
   return (
     <>
       <Hero />
+      <AffiliationsStrip />
       <NewsTicker items={NEWS_EVENTS} />
       <AboutSnapshot />
       <WhyDistance />

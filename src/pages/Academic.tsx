@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { ExternalLink, Building2, Award, MapPin, Globe } from "lucide-react";
 import { UNIVERSITIES, type University } from "../data/universities";
-import { SITE_CONFIG } from "../data/site-content";
+import { PageHeader } from "../components/common/PageHeader";
 import { Tabs } from "../components/common/Tabs";
-import { ProgrammeTable } from "../components/common/ProgrammeTable";
+import { ProgrammeCards } from "../components/common/ProgrammeCards";
 
 function UniversityProgrammes({ uni }: { uni: University }) {
   return (
@@ -74,7 +74,7 @@ function UniversityProgrammes({ uni }: { uni: University }) {
                           {cat.note}
                         </p>
                       )}
-                      <ProgrammeTable programmes={cat.programmes} />
+                      <ProgrammeCards programmes={cat.programmes} />
                     </>
                   )}
                 </div>
@@ -91,17 +91,10 @@ export function Academic() {
   return (
     <>
       {/* Page header */}
-      <section className="bg-gradient-to-r from-primary to-ksc-dark py-14 text-white">
-        <div className="container-site">
-          <p className="section-kicker">Academic Programmes</p>
-          <h1 className="mt-2 text-3xl font-extrabold sm:text-4xl">Programmes by University</h1>
-          <p className="mt-3 max-w-3xl text-white/80">
-            Browse the full list of UG, PG, Diploma, Certificate, Vocational and Short-Term programmes
-            offered under distance education by our affiliated universities. All data below is for
-            {SITE_CONFIG.admissionYear} admission.
-          </p>
-        </div>
-      </section>
+      <PageHeader 
+        title="Programmes by University" 
+        breadcrumb={[{ label: "Home", to: "/" }, { label: "Academic Programmes" }]} 
+      />
 
       {/* Quick university jump nav */}
       <div className="border-b border-ksc-green/10 bg-white py-4">

@@ -1,20 +1,18 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { FACILITIES } from "../data/facilities";
-import { FACILITIES_INTRO, SITE_CONFIG } from "../data/site-content";
+import { SITE_CONFIG } from "../data/site-content";
 import { SectionHeading } from "../components/common/SectionHeading";
+import { PageHeader } from "../components/common/PageHeader";
 
 export function Facilities() {
   return (
     <>
       {/* Page header */}
-      <section className="bg-gradient-to-r from-primary to-ksc-dark py-14 text-white">
-        <div className="container-site">
-          <p className="section-kicker">Facilities</p>
-          <h1 className="mt-2 text-3xl font-extrabold sm:text-4xl">Facilities &amp; Services at {SITE_CONFIG.shortName}</h1>
-          <p className="mt-3 max-w-2xl text-white/80">{FACILITIES_INTRO}</p>
-        </div>
-      </section>
+      <PageHeader 
+        title={`Facilities & Services at ${SITE_CONFIG.shortName}`} 
+        breadcrumb={[{ label: "Home", to: "/" }, { label: "Facilities" }]} 
+      />
 
       {/* Facilities grid */}
       <section className="bg-white py-16">

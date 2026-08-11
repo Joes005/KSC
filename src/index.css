@@ -1,54 +1,54 @@
-@import "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap";
 @import "tailwindcss";
 @config "../tailwind.config.js";
 
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 163 45% 14%; /* #0A3D2E (ksc-dark ink) */
+    --foreground: 215 60% 12%; /* #0A1A33 (ksc-navy) */
 
     --primary: 163 78% 24%; /* #0E6B4E (ksc-green) */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 42 63% 48%; /* #C99A2E (ksc-gold) */
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 38 92% 55%; /* #EFA725 (ksc-gold / amber) */
+    --secondary-foreground: 215 60% 12%;
 
-    --muted: 160 50% 94%; /* #E9F5F1 (ksc-mist) */
-    --muted-foreground: 163 22% 40%;
+    --muted: 210 25% 96%; /* #F4F6F8 (ksc-mist / clean light gray) */
+    --muted-foreground: 210 12% 38%;
 
-    --accent: 33 79% 51%; /* #E08E23 (ksc-saffron) */
+    --accent: 24 95% 53%; /* #F97316 (ksc-saffron) */
     --accent-foreground: 0 0% 100%;
 
-    --border: 160 40% 86%;
-    --input: 160 40% 86%;
+    --border: 210 20% 90%;
+    --input: 210 20% 90%;
     --ring: 163 78% 24%;
 
     --radius: 0.5rem;
   }
   .dark {
-    --background: 210 30% 10%;
+    --background: 215 40% 8%;
     --foreground: 210 15% 95%;
-    --primary: 162 70% 30%;
+    --primary: 162 60% 32%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 42 40% 30%;
+    --secondary: 38 60% 45%;
     --secondary-foreground: 0 0% 100%;
-    --muted: 210 20% 20%;
+    --muted: 215 25% 16%;
     --muted-foreground: 210 15% 70%;
-    --accent: 33 50% 30%;
+    --accent: 24 60% 45%;
     --accent-foreground: 210 15% 90%;
-    --border: 210 20% 30%;
-    --input: 210 20% 30%;
-    --ring: 162 70% 30%;
+    --border: 215 25% 22%;
+    --input: 215 25% 22%;
+    --ring: 162 60% 32%;
   }
 }
 
 @layer base {
   body {
-    @apply bg-white text-ksc-dark antialiased;
+    @apply bg-white text-ksc-ink antialiased overflow-x-hidden;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-semibold tracking-tight text-ksc-dark;
+    @apply font-heading font-semibold tracking-tight text-ksc-navy;
   }
   ::selection {
     @apply bg-primary text-white;
@@ -65,30 +65,40 @@
   }
 
   .btn {
-    @apply inline-flex items-center justify-center rounded-md px-6 py-3 text-sm font-semibold transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary;
+    @apply inline-flex items-center justify-center rounded-md px-6 py-3 text-sm font-semibold transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary;
   }
   .btn-primary {
-    @apply inline-flex items-center justify-center rounded-md px-6 py-3 text-sm font-semibold transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary bg-primary text-white hover:bg-ksc-green-mid;
+    @apply inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-bold transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary bg-primary text-white hover:bg-ksc-green-mid shadow-soft hover:shadow-lift;
   }
   .btn-gold {
-    @apply inline-flex items-center justify-center rounded-md px-6 py-3 text-sm font-semibold transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary bg-secondary text-white hover:bg-ksc-gold/85;
+    @apply inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-bold transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary bg-ksc-gold text-ksc-navy hover:bg-[#ffc033] shadow-soft hover:shadow-lift;
   }
   .btn-outline {
-    @apply inline-flex items-center justify-center rounded-md px-6 py-3 text-sm font-semibold transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary border border-primary bg-transparent text-primary hover:bg-ksc-mist hover:text-primary;
+    @apply inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary border-2 border-primary bg-transparent text-primary hover:bg-ksc-mist hover:text-primary;
   }
   .btn-white {
-    @apply inline-flex items-center justify-center rounded-md px-6 py-3 text-sm font-semibold transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary bg-white text-primary hover:bg-ksc-mist;
+    @apply inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary bg-white text-primary hover:bg-ksc-mist;
   }
 
   .section-title {
-    @apply text-3xl font-bold tracking-tight text-ksc-dark sm:text-4xl;
+    @apply font-heading text-3xl font-bold tracking-tight text-ksc-navy sm:text-4xl;
   }
   .section-kicker {
-    @apply text-xs font-bold uppercase tracking-[0.2em] text-ksc-gold;
+    @apply text-xs font-bold uppercase tracking-[0.22em] text-ksc-gold;
   }
 
   .card-hover {
-    @apply rounded-xl border border-ksc-green/10 bg-white shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:border-ksc-green/25;
+    @apply rounded-xl border border-gray-200 bg-white shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lift;
+  }
+
+  /* Colorful gradient band used behind section headers */
+  .gradient-head {
+    background: linear-gradient(135deg, #0A1A33 0%, #0E6B4E 55%, #0A5640 100%);
+  }
+
+  /* Colourful rounded icon chip */
+  .icon-chip {
+    @apply flex h-14 w-14 items-center justify-center rounded-2xl text-white shadow-soft;
   }
 
   @keyframes slideUp {
@@ -131,6 +141,6 @@
 
 /* Scrollbar */
 ::-webkit-scrollbar { width: 8px; height: 8px; }
-::-webkit-scrollbar-track { background: #F1F4F3; }
+::-webkit-scrollbar-track { background: #EEF1F4; }
 ::-webkit-scrollbar-thumb { background: #0E6B4E; border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: #063731; }
+::-webkit-scrollbar-thumb:hover { background: #0A1A33; }

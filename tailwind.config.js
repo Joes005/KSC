@@ -33,25 +33,30 @@ export default {
           foreground: "hsl(var(--foreground))",
         },
         ksc: {
-          /* KSC brand palette — adjust here to approve/refine
+          /* KSC brand palette — SET College-inspired but green-branded
              green  #0E6B4E  primary (logo green)
-             gold   #C99A2E  secondary accent
-             saffron#E08E23  warm highlight (Tamil Nadu open-university accent)
-             navy   #1E2A44  deep neutral for alternate surfaces */
+             gold   #EFA725  bright amber accent (SET-style CTAs)
+             saffron#F97316  warm orange highlight
+             navy   #0A1A33  deep navy headings/footer surfaces */
           green: '#0E6B4E',
           'green-mid': '#0A5640',
-          dark: '#063731',
-          deep: '#062B27',
-          mist: '#E9F5F1',
-          gold: '#C99A2E',
-          saffron: '#E08E23',
-          navy: '#1E2A44',
-          ink: '#22303A',
+          dark: '#0A1A33',
+          deep: '#071321',
+          mist: '#F4F6F8',
+          gold: '#EFA725',
+          saffron: '#F97316',
+          navy: '#0A1A33',
+          ink: '#33424E',
         }
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-      }
+        sans: ['Outfit', 'sans-serif'],
+        heading: ['"Space Grotesk"', 'sans-serif'],
+      },
+      boxShadow: {
+        soft: '0 8px 30px rgba(10, 26, 51, 0.08)',
+        lift: '0 16px 40px rgba(10, 26, 51, 0.14)',
+      },
     },
   },
   plugins: [],

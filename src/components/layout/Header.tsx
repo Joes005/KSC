@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { Phone, MessageCircle, Menu, X, ChevronDown } from "lucide-react";
+import { Phone, MessageCircle, Menu, X, ChevronDown, Mail } from "lucide-react";
 import { SITE_CONFIG } from "../../data/site-content";
-import { UNIVERSITIES } from "../../data/universities";
 import { Logo } from "../brand/Logo";
 import { cn } from "../../utils/cn";
 
@@ -29,8 +28,12 @@ const NAV_ITEMS: NavItem[] = [
   {
     label: "Exam Update",
     children: [
-      { label: "All Exam Updates", path: "/exam-update" },
-      ...UNIVERSITIES.map((u) => ({ label: `${u.shortName} — Timetable`, path: `/exam-update#${u.id}` })),
+      { label: "TNOU Time Table & Updates", path: "/exam-update#tnou" },
+      { label: "BDU Hall Ticket Link", path: "/exam-update#bdu" },
+      { label: "BDU UG Exam Time Table", path: "/exam-update#bdu" },
+      { label: "BDU PG Exam Time Table", path: "/exam-update#bdu" },
+      { label: "BDU MBA Exam Time Table", path: "/exam-update#bdu" },
+      { label: "View All Updates", path: "/exam-update" },
     ],
   },
   { label: "Contact", path: "/contact" },
@@ -102,20 +105,40 @@ export function Header() {
   return (
     <header ref={headerRef} className="sticky top-0 z-50 w-full border-b border-ksc-green/10 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/75">
       {/* Top bar */}
-      <div className="bg-primary text-white">
-        <div className="container-site flex flex-col items-center justify-between gap-1.5 py-2 text-xs sm:flex-row sm:text-sm">
-          <span className="font-semibold tracking-wide">{SITE_CONFIG.admissionOpen}</span>
-          <div className="flex items-center gap-4">
-            <a href={`tel:${SITE_CONFIG.contact.phone}`} className="flex items-center gap-1.5 hover:text-ksc-gold">
-              <Phone className="h-3.5 w-3.5" /> {SITE_CONFIG.contact.phone}
+      <div className="bg-ksc-dark text-white/80">
+        <div className="container-site flex flex-col items-center justify-between py-2 text-xs md:flex-row">
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+            <a href={`mailto:${SITE_CONFIG.contact.email}`} className="flex items-center gap-1.5 transition-colors hover:text-white">
+              <Mail className="h-3.5 w-3.5 text-ksc-gold" /> {SITE_CONFIG.contact.email}
+            </a>
+            <a href={`tel:${SITE_CONFIG.contact.phone}`} className="flex items-center gap-1.5 transition-colors hover:text-white">
+              <Phone className="h-3.5 w-3.5 text-ksc-gold" /> {SITE_CONFIG.contact.phone}
             </a>
             <a
               href={`https://wa.me/${SITE_CONFIG.contact.whatsapp}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 hover:text-ksc-gold"
+              className="flex items-center gap-1.5 transition-colors hover:text-white"
             >
-              <MessageCircle className="h-3.5 w-3.5" /> WhatsApp
+              <MessageCircle className="h-3.5 w-3.5 text-ksc-gold" /> WhatsApp
+            </a>
+          </div>
+          <div className="mt-2 flex items-center gap-4 md:mt-0">
+            <span className="hidden font-medium tracking-wide md:block">
+              <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              {SITE_CONFIG.admissionOpen}
+            </span>
+            <Link 
+              to="/admissions" 
+              className="rounded-full bg-white/10 px-4 py-1 text-[11px] font-bold uppercase tracking-wider text-white backdrop-blur-sm transition-all hover:bg-white hover:text-ksc-dark"
+            >
+              Admissions
+            </Link>
+            <a 
+              href="#" 
+              className="rounded-full bg-ksc-gold px-4 py-1 text-[11px] font-bold uppercase tracking-wider text-ksc-dark shadow transition-all hover:bg-white"
+            >
+              Pay Fee Online
             </a>
           </div>
         </div>
@@ -124,9 +147,9 @@ export function Header() {
       {/* Main bar */}
       <div className="container-site flex h-20 items-center justify-between gap-4">
         <Link to="/" className="flex items-center gap-3" aria-label={`${SITE_CONFIG.name} home`}>
-          <Logo className="h-14 w-14 rounded-full" />
+          <Logo className="h-14 w-14 rounded-full ring-2 ring-ksc-gold/40" />
           <span className="flex flex-col leading-tight">
-            <span className="text-lg font-extrabold tracking-tight text-primary sm:text-xl">
+            <span className="font-heading text-lg font-bold tracking-tight text-ksc-navy sm:text-xl">
               {SITE_CONFIG.name}
             </span>
             <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-ksc-gold">

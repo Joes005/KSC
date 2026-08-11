@@ -1,20 +1,18 @@
 import { Link } from "react-router-dom";
 import { CheckCircle2, CalendarDays, Building2, Users } from "lucide-react";
-import { SITE_CONFIG, ABOUT_PAGE, VISION_MISSION_VALUES } from "../data/site-content";
+import { ABOUT_PAGE, VISION_MISSION_VALUES } from "../data/site-content";
 import { SectionHeading } from "../components/common/SectionHeading";
 import { Tabs } from "../components/common/Tabs";
+import { PageHeader } from "../components/common/PageHeader";
 
 export function About() {
   return (
     <>
       {/* Page header */}
-      <section className="bg-gradient-to-r from-primary to-ksc-dark py-14 text-white">
-        <div className="container-site">
-          <p className="section-kicker">About Us</p>
-          <h1 className="mt-2 text-3xl font-extrabold sm:text-4xl">About {SITE_CONFIG.name}</h1>
-          <p className="mt-3 max-w-2xl text-white/80">{ABOUT_PAGE.intro}</p>
-        </div>
-      </section>
+      <PageHeader 
+        title="About Us" 
+        breadcrumb={[{ label: "Home", to: "/" }, { label: "About Us" }]} 
+      />
 
       {/* Long-form copy + facts sidebar */}
       <section className="bg-white py-16">

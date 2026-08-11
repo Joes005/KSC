@@ -1,16 +1,15 @@
 import { SITE_CONFIG, FOUNDER_MESSAGE } from "../data/site-content";
 import { SectionHeading } from "../components/common/SectionHeading";
+import { PageHeader } from "../components/common/PageHeader";
 
 export function Founder() {
   return (
     <>
       {/* Page header */}
-      <section className="bg-gradient-to-r from-primary to-ksc-dark py-14 text-white">
-        <div className="container-site">
-          <p className="section-kicker">Founder Message</p>
-          <h1 className="mt-2 text-3xl font-extrabold sm:text-4xl">A word from our Founder</h1>
-        </div>
-      </section>
+      <PageHeader 
+        title="Founder Message" 
+        breadcrumb={[{ label: "Home", to: "/" }, { label: "Founder Message" }]} 
+      />
 
       <section className="bg-white py-16">
         <div className="container-site grid gap-10 md:grid-cols-3">

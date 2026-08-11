@@ -2,6 +2,7 @@ import { useState } from "react";
 import { X, ZoomIn, Camera } from "lucide-react";
 import { GALLERY } from "../data/gallery";
 import { SITE_CONFIG } from "../data/site-content";
+import { PageHeader } from "../components/common/PageHeader";
 
 export function Gallery() {
   const [lightbox, setLightbox] = useState<number | null>(null);
@@ -9,16 +10,10 @@ export function Gallery() {
   return (
     <>
       {/* Page header */}
-      <section className="bg-gradient-to-r from-primary to-ksc-dark py-14 text-white">
-        <div className="container-site">
-          <p className="section-kicker">Gallery</p>
-          <h1 className="mt-2 text-3xl font-extrabold sm:text-4xl">Inside {SITE_CONFIG.shortName}</h1>
-          <p className="mt-3 max-w-2xl text-white/80">
-            A look inside our study centre — our premises, study materials and the everyday spaces
-            where we support our students.
-          </p>
-        </div>
-      </section>
+      <PageHeader 
+        title={`Inside ${SITE_CONFIG.shortName}`} 
+        breadcrumb={[{ label: "Home", to: "/" }, { label: "Gallery" }]} 
+      />
 
       {/* Photo grid */}
       <section className="bg-white py-16">

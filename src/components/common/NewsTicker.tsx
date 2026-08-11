@@ -17,7 +17,7 @@ export function NewsTicker({ items }: NewsTickerProps) {
   const doubled = [...items, ...items];
 
   return (
-    <div className="relative flex items-stretch overflow-hidden border-y border-ksc-gold/40 bg-gradient-to-r from-primary via-ksc-green-mid to-primary py-3">
+    <div className="relative flex items-stretch overflow-hidden border-y border-ksc-gold/30 bg-gradient-to-r from-ksc-dark via-primary to-ksc-dark py-3">
       <span className="flex shrink-0 items-center gap-2 pl-4 sm:pl-6">
         <span className="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-xs font-bold uppercase tracking-wider text-white">
           <Newspaper className="h-4 w-4" /> News &amp; Events

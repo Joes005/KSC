@@ -41,11 +41,11 @@ export function StatCounter({ value, suffix = "", label, duration = 1500 }: Stat
 
   return (
     <div ref={ref} className="text-center">
-      <p className="text-4xl font-extrabold tracking-tight text-primary sm:text-5xl">
+      <p className="font-heading text-4xl font-bold tracking-tight text-ksc-gold sm:text-5xl">
         {display.toLocaleString("en-IN")}
-        <span className="text-ksc-gold">{suffix}</span>
+        <span className="text-ksc-saffron">{suffix}</span>
       </p>
-      {label && <p className="mt-2 text-sm font-medium uppercase tracking-wide text-ksc-ink/80">{label}</p>}
+      {label && <p className="mt-2 text-sm font-medium uppercase tracking-wide text-white/85">{label}</p>}
     </div>
   );
 }

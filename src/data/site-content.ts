@@ -30,8 +30,8 @@ export const SITE_CONFIG = {
    *   2. set branding.logo.useImage = true                            */
   branding: {
     // TODO: replace with real logo image path
-    logoSource: "/branding/ksc-logo.png",
-    useImage: false,
+    logoSource: "/logo.jpg",
+    useImage: true,
     // TODO: Tamil motto text for the emblem's upper arc (rendered on the
     // SVG when supplied), e.g. "வாழ்க வளமுடன்" — empty until provided
     motto: "",
@@ -54,6 +54,7 @@ export const SITE_CONFIG = {
     instagram: "INSTAGRAM_URL", // TODO
     youtube: "YOUTUBE_URL", // TODO
     twitterX: "X_URL", // TODO
+    maps: "https://www.google.com/maps/search/?api=1&query=Karur%2CTamil%20Nadu", // TODO: point to exact KSC location
   },
 
   /* === STATS COUNTERS (all TODO — placeholder numbers) === */
@@ -163,18 +164,53 @@ export const VISION_MISSION_VALUES = {
 };
 
 /* =========================================================================== */
-/* NEWS & EVENTS STRIP (Home ticker)                                           */
+/* NEWS & EVENTS STRIP (Home ticker + News & Events panel)                    */
 /* =========================================================================== */
 
-export const NEWS_EVENTS = [
-  { text: "Admissions are open for the Academic Year 2026 — TNOU and Bharathidasan University.", type: "admission" },
-  { text: "Last date for admission: 31 July 2026", type: "deadline" }, // TODO: confirm date
-  { text: "TNOU exam time-table released — check the Exam Update page.", type: "exam" },
+export interface NewsEvent {
+  text: string;
+  type: "admission" | "deadline" | "exam" | "event";
+  href?: string;
+  date?: string;
+}
+
+export const NEWS_EVENTS: NewsEvent[] = [
+  {
+    text: "Admissions are open for the Academic Year 2026 — TNOU and Bharathidasan University.",
+    type: "admission",
+    date: "Admissions Open",
+    href: "/admissions",
+  },
+  {
+    text: "Last date for admission: 31 July 2026",
+    type: "deadline",
+    date: "31 July 2026",
+    href: "/admissions",
+  },
+  {
+    text: "TNOU exam time-table released — check the Exam Update page.",
+    type: "exam",
+    date: "Exam Update",
+    href: "/exam-update",
+  },
   {
     text: "BDU semester examinations — hall tickets available on the university portal.",
     type: "exam",
+    date: "Exam Update",
+    href: "/exam-update#bdu",
   },
-] as const;
+];
+
+/* =========================================================================== */
+/* MILESTONES (Home — "Empowering Excellence")                                 */
+/* =========================================================================== */
+
+export const MILESTONES = [
+  { value: "15+", label: "Years of Excellence" },
+  { value: "5000+", label: "Students Guided" },
+  { value: "2", label: "Affiliated Universities" },
+  { value: "100%", label: "Commitment to Support" },
+];
 
 /* =========================================================================== */
 /* ADMISSION PROCESS STEPS                                                     */

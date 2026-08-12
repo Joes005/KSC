@@ -81,26 +81,27 @@ export function ProgrammeCards({ programmes, className }: ProgrammeCardsProps) {
           </button>
         </div>
       ) : (
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {filteredProgrammes.map((p, idx) => (
-            <div key={`${p.name}-${idx}`} className="card-hover flex flex-col justify-between rounded-xl border border-ksc-green/10 bg-white p-5 shadow-sm">
+            <div key={`${p.name}-${idx}`} className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-primary/20">
+              <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-primary to-ksc-gold opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
               <div>
                 <div className="flex items-start justify-between gap-3">
-                  <h3 className="font-bold text-ksc-dark leading-tight">{p.name}</h3>
+                  <h3 className="text-lg font-bold text-ksc-dark leading-tight transition-colors duration-300 group-hover:text-primary">{p.name}</h3>
                 </div>
                 {p.eligibility && (
-                  <p className="mt-3 text-xs text-ksc-ink/80 leading-relaxed border-t border-ksc-green/5 pt-3">
-                    <span className="font-semibold text-ksc-ink block mb-0.5">Eligibility:</span>
+                  <p className="mt-4 text-xs text-ksc-ink/80 leading-relaxed border-t border-gray-100 pt-4">
+                    <span className="font-semibold text-ksc-ink block mb-1">Eligibility:</span>
                     {p.eligibility}
                   </p>
                 )}
               </div>
-              <div className="mt-5 flex flex-wrap items-center gap-2 pt-2 border-t border-ksc-green/5">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-ksc-mist px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-primary">
+              <div className="mt-5 flex flex-wrap items-center gap-2 pt-4 border-t border-gray-100">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-primary shadow-sm">
                   <BookOpen className="h-3 w-3" /> {p.medium}
                 </span>
                 {p.pattern && (
-                  <span className="inline-flex items-center rounded-full bg-ksc-gold/15 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-ksc-gold">
+                  <span className="inline-flex items-center rounded-full bg-ksc-gold/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-ksc-gold shadow-sm border border-ksc-gold/10">
                     {p.pattern}
                   </span>
                 )}

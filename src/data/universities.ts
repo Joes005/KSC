@@ -435,6 +435,28 @@ export const UNIVERSITIES: University[] = [
   },
 
   /* =========================================================================== */
+  /* MANONMANIAM SUNDARANAR UNIVERSITY (MSU)                                     */
+  /* =========================================================================== */
+
+  {
+    id: "msu",
+    name: "Manonmaniam Sundaranar University",
+    shortName: "MSU",
+    academicYear: "2026",
+    pattern: "Semester / Non-Semester",
+    recognition: "State University · UGC-DEB Approved",
+    address: "Tirunelveli, Tamil Nadu",
+    website: "www.msuniv.ac.in",
+    categories: [], // Empty for now until courses are provided
+    exam: {
+      note: "Manonmaniam Sundaranar University publishes exam details on its official distance education portal.",
+      hallTicketUrl: "https://www.msuniv.ac.in/Distance-Education",
+      timetableUrl: "https://www.msuniv.ac.in/Distance-Education",
+      syllabusUrl: "https://www.msuniv.ac.in/Distance-Education",
+    },
+  },
+
+  /* =========================================================================== */
   /* FUTURE UNIVERSITIES — append to this array as & when KSC adds partners.     */
   /* =========================================================================== */
 ];

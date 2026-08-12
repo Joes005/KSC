@@ -49,17 +49,17 @@ export function Tabs({ tabs, defaultActive, onChange, children, className }: Tab
               aria-controls={`panel-${tab.id}`}
               onClick={() => select(tab.id)}
               className={cn(
-                "flex shrink-0 items-center gap-1.5 rounded-full border px-4 py-2 text-sm font-semibold transition-colors",
+                "flex shrink-0 items-center gap-1.5 rounded-full border px-5 py-2.5 text-sm font-semibold transition-all duration-300",
                 isActive
-                  ? "border-primary bg-primary text-white shadow-sm"
-                  : "border-ksc-green/20 bg-white text-ksc-dark hover:border-primary hover:text-primary"
+                  ? "border-primary bg-primary text-white shadow-md ring-4 ring-primary/10"
+                  : "border-gray-200 bg-white text-ksc-dark hover:border-primary/40 hover:bg-primary/5 hover:text-primary hover:-translate-y-0.5 hover:shadow-sm"
               )}
             >
               {tab.label}
               {tab.badge !== undefined && (
                 <span
                   className={cn(
-                    "inline-flex h-5 min-w-5 items-center justify-center rounded-full px-1 text-[11px] font-bold",
+                    "inline-flex h-5 min-w-5 items-center justify-center rounded-full px-1.5 text-[11px] font-bold shadow-sm",
                     isActive ? "bg-white/20 text-white" : "bg-ksc-mist text-primary"
                   )}
                 >

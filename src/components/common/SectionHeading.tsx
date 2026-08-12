@@ -18,25 +18,21 @@ export function SectionHeading({
   return (
     <div
       className={cn(
-        "mb-10 max-w-3xl",
+        "mb-12 max-w-3xl",
         align === "center" ? "mx-auto text-center" : "text-left",
         className
       )}
     >
       {kicker && (
-        <p
-          className={cn(
-            "mb-2 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.22em] text-ksc-gold",
-            align === "center" && "justify-center"
-          )}
-        >
-          <span className="h-0.5 w-6 rounded-full bg-ksc-saffron" />
-          {kicker}
-          <span className="h-0.5 w-6 rounded-full bg-ksc-saffron" />
-        </p>
+        <div className={cn("mb-5 flex", align === "center" && "justify-center")}>
+          <div className="inline-flex items-center gap-2 rounded-full border border-ksc-gold/30 bg-ksc-gold/10 px-4 py-1.5 text-xs font-black uppercase tracking-[0.25em] text-ksc-gold shadow-sm backdrop-blur-sm">
+            <span className="h-1.5 w-1.5 rounded-full bg-ksc-gold animate-pulse" />
+            {kicker}
+          </div>
+        </div>
       )}
-      <h2 className="section-title">{title}</h2>
-      {subtitle && <p className="mt-3 text-ksc-ink/80 leading-relaxed">{subtitle}</p>}
+      <h2 className="section-title tracking-tight">{title}</h2>
+      {subtitle && <p className="mt-4 text-lg text-ksc-ink/70 leading-relaxed font-medium">{subtitle}</p>}
     </div>
   );
 }

@@ -15,7 +15,7 @@ export function Facilities() {
       />
 
       {/* Facilities grid */}
-      <section className="bg-white py-16">
+      <section className="bg-white py-16 sm:py-24">
         <div className="container-site">
           <SectionHeading
             kicker="What We Provide"
@@ -23,13 +23,21 @@ export function Facilities() {
             subtitle="From the day you walk in to the day your degree is conferred, our centre is with you."
           />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {FACILITIES.map(({ icon: Icon, title, description }) => (
-              <div key={title} className="card-hover p-6">
-                <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-                  <Icon className="h-7 w-7" />
-                </span>
-                <h3 className="mt-4 text-lg font-bold text-ksc-dark">{title}</h3>
+            {FACILITIES.map(({ icon: Icon, image, title, description }) => (
+              <div key={title} className="group relative overflow-hidden rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-primary/30">
+                <div className="mb-5 inline-flex h-16 w-16 items-center justify-center overflow-hidden rounded-2xl shadow-inner ring-1 ring-primary/20 transition-all duration-300 group-hover:scale-110 group-hover:shadow-md group-hover:ring-primary/50 bg-primary/10">
+                  {image ? (
+                    <img src={image} alt={title} loading="lazy" className="h-full w-full object-cover" />
+                  ) : (
+                    <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-primary/10 to-primary/5 text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+                      <Icon className="h-7 w-7 stroke-[1.5]" />
+                    </div>
+                  )}
+                </div>
+                <h3 className="text-lg font-bold text-ksc-dark transition-colors duration-300 group-hover:text-primary">{title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-ksc-ink/80">{description}</p>
+                {/* Decorative background glow on hover */}
+                <div className="absolute -right-10 -top-10 -z-10 h-32 w-32 rounded-full bg-primary/5 blur-3xl transition-opacity duration-300 opacity-0 group-hover:opacity-100"></div>
               </div>
             ))}
           </div>
@@ -37,19 +45,19 @@ export function Facilities() {
       </section>
 
       {/* Photo strip */}
-      <section className="bg-ksc-mist/60 py-16">
+      <section className="bg-ksc-mist/60 py-16 sm:py-24">
         <div className="container-site">
           <SectionHeading
             kicker="Inside Our Center"
             title="Walk through Karur Study Center"
             subtitle="Front office, study-material storage, counselling and learning spaces — everything you need is close at hand."
           />
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-4 mt-8">
             {[
-              "/assets/gallery/ksc-01.jpg",
-              "/assets/gallery/ksc-03.jpg",
-              "/assets/gallery/ksc-05.jpg",
-              "/assets/gallery/ksc-10.jpg",
+              "/assets/gallery/ksc-06.jpg",
+              "/assets/gallery/ksc-07.jpg",
+              "/assets/gallery/ksc-09.jpg",
+              "/assets/gallery/ksc-11.jpg",
             ].map((src, i) => (
               <div key={i} className="group overflow-hidden rounded-xl border border-ksc-green/10 bg-white shadow-soft">
                 <div className="aspect-[4/3] overflow-hidden">

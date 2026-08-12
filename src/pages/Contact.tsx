@@ -93,6 +93,14 @@ export function Contact() {
               </div>
             </div>
 
+            <div className="mt-8 overflow-hidden rounded-2xl shadow-lg border border-gray-100">
+              <img 
+                src="/assets/user-photos/branch-exterior.jpg" 
+                alt="Karur Study Centre Branch Exterior" 
+                className="w-full h-48 sm:h-64 object-cover transform hover:scale-105 transition-transform duration-700" 
+              />
+            </div>
+
             {/* Embedded map — TODO: replace placeholder coordinates */}
             <div className="mt-6 overflow-hidden rounded-xl border border-ksc-green/15">
               <iframe

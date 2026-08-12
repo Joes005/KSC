@@ -41,7 +41,7 @@ export const SITE_CONFIG = {
   contact: {
     phone: "PHONE_NUMBER", // TODO: KSC phone number
     whatsapp: "WHATSAPP_NUMBER", // TODO: KSC WhatsApp number (digits only, incl. country code)
-    email: "EMAIL_ADDRESS", // TODO: KSC email id
+    email: "Karurstudycentre1@gmail.com",
     address: "FULL_ADDRESS, KARUR, Tamil Nadu", // TODO: KSC full address
     workingHours: "WORKING_HOURS", // TODO: e.g. "Mon–Sat, 9:30 AM – 6:30 PM"
     // TODO: replace with real Google Maps embed src (https://maps.google.com/maps?q=...&output=embed)
@@ -50,19 +50,21 @@ export const SITE_CONFIG = {
 
   /* === SOCIAL LINKS (all TODO) === */
   socials: {
-    facebook: "FACEBOOK_URL", // TODO
-    instagram: "INSTAGRAM_URL", // TODO
-    youtube: "YOUTUBE_URL", // TODO
+    facebook: "https://www.facebook.com/Karurstudycentre",
+    instagram: "https://www.instagram.com/karur_study_centre",
+    youtube: "https://www.youtube.com/@karurstudycentrecentre1507",
     twitterX: "X_URL", // TODO
     maps: "https://www.google.com/maps/search/?api=1&query=Karur%2CTamil%20Nadu", // TODO: point to exact KSC location
+    website: "https://distanceeducationstudycentre.com/edu",
   },
 
-  /* === STATS COUNTERS (all TODO — placeholder numbers) === */
+  /* === STATS COUNTERS === */
   stats: [
-    { value: 5000, suffix: "+", label: "Students Guided" }, // TODO: real figure
-    { value: 15, suffix: "+", label: "Years of Experience" }, // TODO: real figure
-    { value: 95, suffix: "%", label: "Result Rate" }, // TODO: real figure
-    { value: 3, suffix: "", label: "Affiliated Universities" },
+    { value: 50000, suffix: "+", label: "Graduates" },
+    { value: 26, suffix: "+", label: "Years of Experience" },
+    { value: 100, suffix: "%", label: "Result Rate" },
+    { value: 80, suffix: "+", label: "Lecturers" },
+    { value: 20, suffix: "+", label: "Office Staff" },
   ],
 
   /* === ADMISSION WINDOW === */
@@ -218,10 +220,10 @@ export const NEWS_EVENTS: NewsEvent[] = [
 /* =========================================================================== */
 
 export const MILESTONES = [
-  { value: "15+", label: "Years of Excellence" },
-  { value: "5000+", label: "Students Guided" },
-  { value: "3", label: "Affiliated Universities" },
-  { value: "100%", label: "Commitment to Support" },
+  { value: "26+", label: "Years of Experience" },
+  { value: "50,000+", label: "Graduates" },
+  { value: "4", label: "Affiliated Universities" },
+  { value: "4", label: "Branches" },
 ];
 
 /* =========================================================================== */
@@ -302,7 +304,7 @@ export const FACILITIES_INTRO =
 
 export const ABOUT_PAGE = {
   // TODO: refine long-form copy when KSC provides it
-  establishedYear: "ESTABLISHED_YEAR", // TODO
+  establishedYear: "2001",
   intro:
     "Karur Study Center (KSC) is a distance-education study and admission centre located in Karur, Tamil Nadu. We help learners enrol in recognised open-university and distance-education programmes — guiding them from choosing the right course to receiving their study material and clearing their examinations.",
   body: [
@@ -371,6 +373,7 @@ export const UNIVERSITY_LOGOS = [
   { name: "Tamil Nadu Open University", short: "TNOU", url: "#", image: "" }, // TODO: logo
   { name: "Bharathidasan University", short: "BDU", url: "#", image: "" }, // TODO: logo
   { name: "Alagappa University", short: "ALU", url: "#", image: "" }, // TODO: logo
+  { name: "Manonmaniam Sundaranar University", short: "MSU", url: "#", image: "" }, // TODO: logo
 ];
 
 /* =========================================================================== */
@@ -422,9 +425,10 @@ export const ADMISSIONS_FORM_FIELDS: FormField[] = [
     placeholder: "Select your university…",
     required: true,
     options: [
-      "Tamil Nadu Open University (TNOU)",
-      "Bharathidasan University (BDU)",
       "Alagappa University (ALU) — CDOE",
+      "Bharathidasan University (BDU)",
+      "Tamil Nadu Open University (TNOU)",
+      "Manonmaniam Sundaranar University (MSU)",
     ],
   },
   { name: "course", label: "Course / Programme", type: "text", placeholder: "e.g. B.A. Tamil, M.B.A., B.Com…", required: true },

@@ -99,20 +99,20 @@ export function Admissions() {
                   <span className="text-xs text-ksc-ink/70">CDOE Prospectus — AY 2026 (PDF)</span>
                 </span>
               </a>
-              <a
-                href="/pdf/BDU-New-Sem-Pattern-Courses.pdf"
+              <Link
+                to="/poster/bdu"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="card-hover flex items-center gap-4 p-5"
               >
                 <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                  <Download className="h-6 w-6" />
+                  <BadgeCheck className="h-6 w-6" />
                 </span>
                 <span>
                   <span className="block font-bold text-ksc-dark">Bharathidasan University</span>
-                  <span className="text-xs text-ksc-ink/70">UG & PG Courses — AY 2026-27 (PDF)</span>
+                  <span className="text-xs text-ksc-ink/70">Digital Admission Poster (HQ)</span>
                 </span>
-              </a>
+              </Link>
               <a
                 href="/assets/gallery/tnou-ay2026.jpg"
                 target="_blank"

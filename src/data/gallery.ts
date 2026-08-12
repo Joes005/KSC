@@ -13,52 +13,28 @@ export interface GalleryItem {
 
 export const GALLERY: GalleryItem[] = [
   {
-    id: "ksc-01",
-    src: "/assets/gallery/ksc-01.jpg",
-    alt: "Karur Study Center — reception and front office",
-    caption: "Karur Study Center — Front Office",
-  },
-  {
-    id: "ksc-02",
-    src: "/assets/gallery/ksc-02.jpg",
-    alt: "Study materials and answer-script storage at Karur Study Center",
-    caption: "Study Material & Answer-Script Storage",
-  },
-  {
-    id: "ksc-03",
-    src: "/assets/gallery/ksc-03.jpg",
-    alt: "Students receiving admission guidance at Karur Study Center",
-    caption: "Admission Guidance in Action",
-  },
-  {
-    id: "ksc-04",
-    src: "/assets/gallery/ksc-04.jpg",
-    alt: "Distance education learners at the Karur Study Center",
-    caption: "Learners at the Center",
-  },
-  {
     id: "ksc-05",
     src: "/assets/gallery/ksc-05.jpg",
-    alt: "University study material collection at Karur Study Center",
-    caption: "University Study Materials",
+    alt: "Admission guidance desk at Karur Study Center",
+    caption: "Counselling and Admission Desk",
   },
   {
     id: "ksc-06",
     src: "/assets/gallery/ksc-06.jpg",
-    alt: "Document processing and enrolment desk at Karur Study Center",
-    caption: "Enrolment & Document Processing",
+    alt: "Study materials arranged for student distribution",
+    caption: "Study Material Distribution",
   },
   {
     id: "ksc-07",
     src: "/assets/gallery/ksc-07.jpg",
-    alt: "Counselling session at the Karur Study Center",
-    caption: "One-to-One Counselling",
+    alt: "Students interacting at the centre",
+    caption: "Student Interaction",
   },
   {
     id: "ksc-08",
     src: "/assets/gallery/ksc-08.jpg",
-    alt: "Karur Study Center facilities and learning space",
-    caption: "Learning Space",
+    alt: "Examinations support team",
+    caption: "Exams & Evaluation Team",
   },
   {
     id: "ksc-09",

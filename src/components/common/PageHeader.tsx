@@ -21,15 +21,12 @@ export function PageHeader({ title, breadcrumb }: PageHeaderProps) {
 
       {/* Content */}
       <div className="container-site relative z-10 flex h-full flex-col items-center justify-center text-center">
-        <p className="mb-3 text-xs font-bold uppercase tracking-[0.3em] text-ksc-gold">
-          {breadcrumb[breadcrumb.length - 1]?.label}
-        </p>
-        <h1 className="text-4xl font-bold text-white tracking-tight drop-shadow-md sm:text-5xl lg:text-6xl">
+        <h1 className="mb-8 text-4xl font-extrabold text-white tracking-tight drop-shadow-lg sm:text-5xl lg:text-6xl">
           {title}
         </h1>
 
         {/* Breadcrumb */}
-        <nav className="mt-6 flex items-center justify-center text-sm font-medium text-white/80">
+        <nav className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-6 py-2.5 text-sm font-medium text-white/80 shadow-xl backdrop-blur-md">
           {breadcrumb.map((crumb, idx) => {
             const isLast = idx === breadcrumb.length - 1;
             return (
@@ -39,10 +36,10 @@ export function PageHeader({ title, breadcrumb }: PageHeaderProps) {
                     {crumb.label}
                   </Link>
                 ) : (
-                  <span className={isLast ? "font-bold text-ksc-gold" : ""}>{crumb.label}</span>
+                  <span className={isLast ? "font-bold text-ksc-gold drop-shadow-sm" : ""}>{crumb.label}</span>
                 )}
 
-                {!isLast && <ChevronRight className="mx-2 h-4 w-4 text-white/50" />}
+                {!isLast && <ChevronRight className="mx-2.5 h-4 w-4 text-white/40" />}
               </div>
             );
           })}

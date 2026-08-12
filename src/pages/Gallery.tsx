@@ -44,9 +44,8 @@ export function Gallery() {
           </div>
 
           <p className="mt-8 text-center text-xs text-ksc-ink/50">
-            TODO: live photos coming soon. Drop images into /src/assets/gallery/ and update the list in
-            src/data/gallery.ts (the first two placeholders already map to the shop-front and
-            study-material storage photos).
+            Real photos from the Karur Study Center — walk in during working hours and see our services
+            first-hand.
           </p>
         </div>
       </section>

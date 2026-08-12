@@ -79,11 +79,20 @@ export function Curriculum() {
                       </a>
                     </li>
                   </ul>
-                  <p className="flex items-start gap-2 rounded-lg bg-white p-3 text-xs text-ksc-ink/70">
-                    <Info className="mt-0.5 h-4 w-4 shrink-0 text-ksc-gold" />
-                    {uni.shortName} — TODO: replace the placeholder syllabus URL in src/data/universities.ts
-                    with the exact syllabus PDF / programme page URL.
-                  </p>
+                  {uni.id === "bdu" && (
+                    <p className="flex items-start gap-2 rounded-lg bg-white p-3 text-xs text-ksc-ink/70">
+                      <Info className="mt-0.5 h-4 w-4 shrink-0 text-ksc-gold" />
+                      BDU — course list &amp; eligibility for AY 2026-27 is also available as a PDF in
+                      the Downloads section on the Admissions page.
+                    </p>
+                  )}
+                  {uni.id === "alagappa" && (
+                    <p className="flex items-start gap-2 rounded-lg bg-white p-3 text-xs text-ksc-ink/70">
+                      <Info className="mt-0.5 h-4 w-4 shrink-0 text-ksc-gold" />
+                      ALU — the full CDOE prospectus (programmes, eligibility, syllabus, fee structure)
+                      is available as a PDF in the Downloads section on the Admissions page.
+                    </p>
+                  )}
                 </div>
               ),
             }))}

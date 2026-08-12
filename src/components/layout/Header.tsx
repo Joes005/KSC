@@ -33,6 +33,7 @@ const NAV_ITEMS: NavItem[] = [
       { label: "BDU UG Exam Time Table", path: "/exam-update#bdu" },
       { label: "BDU PG Exam Time Table", path: "/exam-update#bdu" },
       { label: "BDU MBA Exam Time Table", path: "/exam-update#bdu" },
+      { label: "ALU Hall Ticket Portal", path: "/exam-update#alagappa" },
       { label: "View All Updates", path: "/exam-update" },
     ],
   },

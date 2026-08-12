@@ -2,7 +2,7 @@
  * =============================================================================
  * KARUR STUDY CENTER — AFFILIATED UNIVERSITIES & PROGRAMMES
  * =============================================================================
- * TNOU & BDU programme data below is confirmed real data for AY 2026 admission.
+ * TNOU, BDU & ALU programme data below is confirmed real data for AY 2026 admission.
  * More universities (if any) should be appended as new University objects here.
  * "TODO" marks the fields still awaiting real values.
  * =============================================================================
@@ -232,97 +232,211 @@ export const UNIVERSITIES: University[] = [
     academicYear: "2026-27",
     pattern: "Semester Pattern",
     // TODO: confirm the exact recognition line for BDU CDOE
-    recognition: "UGC-DEB approved distance education · Accredited by NAAC", // TODO: verify
-    address: "", // TODO: BDU address (college/university centre in Tiruchirappalli)
-    website: "", // TODO: BDU website
+    recognition: "UGC-DEB approved distance education · Accredited by NAAC",
+    address: "Palkalaiperur, Tiruchirappalli – 620024, Tamil Nadu",
+    website: "www.bdu.ac.in",
     categories: [
       {
         id: "ug",
         label: "UG Courses",
         count: 18,
-        note: "Semester Pattern · General eligibility: Pass in 10+2 (subject-specific core requirements noted per course)",
+        note: "Semester Pattern (AY 2026-27) · General eligibility: Pass in 10+2 with subject-specific core requirements as noted",
         programmes: [
-          { name: "B.A. Tamil", medium: "Tamil", pattern: "Semester", eligibility: "Pass in 10+2" },
-          { name: "B.A. Economics", medium: "Tamil", pattern: "Semester", eligibility: "Pass in 10+2" },
-          { name: "B.A. English", medium: "English", pattern: "Semester", eligibility: "Pass in 10+2" },
-          { name: "B.A. History", medium: "Tamil", pattern: "Semester", eligibility: "Pass in 10+2" },
-          { name: "B.A. Public Administration", medium: "English", pattern: "Semester", eligibility: "Pass in 10+2" },
-          { name: "B.A. Political Science", medium: "English", pattern: "Semester", eligibility: "Pass in 10+2" },
+          { name: "B.A. Tamil", medium: "Tamil", pattern: "Semester", eligibility: "A pass in 10+2 with Tamil as a Language Paper" },
+          { name: "B.A. Economics", medium: "Tamil", pattern: "Semester", eligibility: "A pass in Higher Secondary Examination (10+2)" },
+          { name: "B.A. English", medium: "English", pattern: "Semester", eligibility: "A pass in Higher Secondary Examination (10+2)" },
+          { name: "B.A. History", medium: "Tamil", pattern: "Semester", eligibility: "A pass in Higher Secondary Examination (10+2)" },
+          { name: "B.A. Public Administration", medium: "English", pattern: "Semester", eligibility: "A pass in Higher Secondary Examination (10+2)" },
+          { name: "B.A. Political Science", medium: "English", pattern: "Semester", eligibility: "A pass in Higher Secondary Examination (10+2)" },
           {
             name: "B.B.A.",
             medium: "Tamil / English",
             pattern: "Semester",
             eligibility:
-              "Pass in 10+2 · 20% of seats reserved for vocational-stream candidates · Lateral entry to Year 2 for holders of 3-yr Diploma in Commerce / Modern Office Practice",
+              "A pass in 10+2 with Commerce & Accountancy. 20% of seats reserved for Vocational Stream candidates. Lateral entry (Year 2) for holders of a 3-year Diploma in Commerce / Modern Office Practice.",
           },
           {
             name: "B.Com",
             medium: "Tamil / English",
             pattern: "Semester",
-            eligibility: "Pass in 10+2 (Commerce or related stream preferred)",
+            eligibility:
+              "A pass in 10+2 with Commerce & Accountancy. 20% of seats reserved for Vocational Stream candidates. Lateral entry (Year 2) for holders of a 3-year Diploma in Commerce / Modern Office Practice.",
           },
           {
             name: "B.Com Bank Management",
             medium: "English",
             pattern: "Semester",
-            eligibility: "Pass in 10+2 (Commerce or related stream preferred)",
+            eligibility: "A pass in Higher Secondary Examination (10+2)",
           },
-          { name: "B.Sc. Mathematics", medium: "Tamil / English", pattern: "Semester", eligibility: "10+2 with Mathematics as a core subject" },
-          { name: "B.Sc. Chemistry", medium: "English", pattern: "Semester", eligibility: "10+2 with Chemistry as a core subject" },
-          { name: "B.Sc. Physics", medium: "English", pattern: "Semester", eligibility: "10+2 with Physics as a core subject" },
-          { name: "B.Sc. Botany", medium: "English", pattern: "Semester", eligibility: "10+2 with Biology / Botany as a core subject" },
-          { name: "B.Sc. Zoology", medium: "English", pattern: "Semester", eligibility: "10+2 with Biology / Zoology as a core subject" },
-          { name: "B.Sc. Geography", medium: "English", pattern: "Semester", eligibility: "Pass in 10+2" },
-          { name: "B.Sc. Computer Science", medium: "English", pattern: "Semester", eligibility: "10+2 with Mathematics as a core subject" },
-          { name: "B.Sc. Information Technology", medium: "English", pattern: "Semester", eligibility: "10+2 with Mathematics as a core subject" },
-          { name: "B.C.A.", medium: "English", pattern: "Semester", eligibility: "10+2 with Mathematics as a core subject" },
+          { name: "B.Sc. Mathematics", medium: "Tamil / English", pattern: "Semester", eligibility: "10+2 with Mathematics as one of the core subjects" },
+          { name: "B.Sc. Chemistry", medium: "English", pattern: "Semester", eligibility: "10+2 with Chemistry as one of the core subjects" },
+          { name: "B.Sc. Physics", medium: "English", pattern: "Semester", eligibility: "10+2 with Physics as one of the core subjects" },
+          { name: "B.Sc. Botany", medium: "English", pattern: "Semester", eligibility: "10+2 with Botany or Biology along with Chemistry" },
+          {
+            name: "B.Sc. Zoology",
+            medium: "English",
+            pattern: "Semester",
+            eligibility: "10+2 with Maths, Physics, Chemistry, Biology (OR) Physics, Chemistry, Botany, Zoology (OR) Biology as one of the core subjects",
+          },
+          { name: "B.Sc. Geography", medium: "English", pattern: "Semester", eligibility: "A pass in Higher Secondary Examination (10+2)" },
+          { name: "B.Sc. Computer Science", medium: "English", pattern: "Semester", eligibility: "10+2 with Computer Science or Mathematics as one of the core subjects" },
+          { name: "B.Sc. Information Technology", medium: "English", pattern: "Semester", eligibility: "A pass in Higher Secondary Examination (10+2)" },
+          { name: "B.C.A.", medium: "English", pattern: "Semester", eligibility: "10+2 with Mathematics as one of the core subjects" },
         ],
       },
       {
         id: "pg",
         label: "PG Courses",
         count: 16,
-        note: "Semester Pattern · Eligibility in line with the university's prescribed UG-degree prerequisite",
+        note: "Semester Pattern (AY 2026-27) · Eligibility in line with the university's prescribed UG-degree prerequisite",
         programmes: [
-          { name: "M.A. Economics", medium: "English", pattern: "Semester", eligibility: "Bachelor's degree" },
-          { name: "M.A. English", medium: "English", pattern: "Semester", eligibility: "Bachelor's degree" },
-          { name: "M.A. Tamil", medium: "Tamil", pattern: "Semester", eligibility: "Bachelor's degree" },
-          { name: "M.A. History", medium: "English", pattern: "Semester", eligibility: "Bachelor's degree" },
-          { name: "M.Sc. Mathematics", medium: "English", pattern: "Semester", eligibility: "B.Sc. in Mathematics" },
-          { name: "M.Sc. Chemistry", medium: "English", pattern: "Semester", eligibility: "B.Sc. in Chemistry" },
-          { name: "M.Sc. Physics", medium: "English", pattern: "Semester", eligibility: "B.Sc. in Physics" },
-          { name: "M.Sc. Botany", medium: "English", pattern: "Semester", eligibility: "B.Sc. in Botany" },
-          { name: "M.Sc. Zoology", medium: "English", pattern: "Semester", eligibility: "B.Sc. in Zoology" },
-          { name: "M.Sc. Computer Science", medium: "English", pattern: "Semester", eligibility: "B.Sc. / any science degree" },
-          { name: "M.Sc. Geography", medium: "English", pattern: "Semester", eligibility: "B.Sc. in Geography" },
-          { name: "M.Com", medium: "English", pattern: "Semester", eligibility: "B.Com or related commerce degree" },
-          { name: "M.A. Human Resource Management", medium: "English", pattern: "Semester", eligibility: "Bachelor's degree" },
-          { name: "M.Lib.I.Sc.", medium: "English", pattern: "Semester", eligibility: "Bachelor's degree" },
-          { name: "M.B.A.", medium: "English", pattern: "Semester", eligibility: "Bachelor's degree" },
-          { name: "M.C.A.", medium: "English", pattern: "Semester", eligibility: "BCA / B.Sc. with Mathematics background" },
+          { name: "M.A. Economics", medium: "English", pattern: "Semester", eligibility: "B.A. Economics / Econometrics" },
+          { name: "M.A. English", medium: "English", pattern: "Semester", eligibility: "B.A. English Literature (OR) any UG degree with English as Part-II Language" },
+          { name: "M.A. Tamil", medium: "Tamil", pattern: "Semester", eligibility: "B.A. Tamil / B.Lit / B.A. Applied Tamil / Pulavar Degree (OR) any UG degree with Tamil as Part-I Language" },
+          { name: "M.A. History", medium: "Tamil / English", pattern: "Semester", eligibility: "Any Undergraduate (UG) Degree" },
+          { name: "M.Sc. Mathematics", medium: "English", pattern: "Semester", eligibility: "B.Sc. Mathematics" },
+          { name: "M.Sc. Chemistry", medium: "English", pattern: "Semester", eligibility: "B.Sc. Chemistry" },
+          { name: "M.Sc. Physics", medium: "English", pattern: "Semester", eligibility: "B.Sc. Physics" },
+          { name: "M.Sc. Botany", medium: "English", pattern: "Semester", eligibility: "B.Sc. Botany" },
+          { name: "M.Sc. Zoology", medium: "English", pattern: "Semester", eligibility: "B.Sc. Zoology" },
+          { name: "M.Sc. Computer Science", medium: "English", pattern: "Semester", eligibility: "B.Sc. Computer Science / B.Sc. IT / BCA / Software Development (OR) equivalent degree accepted by the syndicate" },
+          { name: "M.Sc. Geography", medium: "English", pattern: "Semester", eligibility: "B.Sc. Geography" },
+          {
+            name: "M.Com",
+            medium: "English",
+            pattern: "Semester",
+            eligibility: "B.Com / Bank Management / Computer Applications / Financial Management / B.Com (Applied) / Co-operation / BBA",
+          },
+          { name: "M.A. Human Resource Management", medium: "English", pattern: "Semester", eligibility: "Any UG Degree in Arts or Science" },
+          { name: "M.Lib.I.Sc.", medium: "English", pattern: "Semester", eligibility: "B.Lib.I.Sc." },
+          { name: "M.B.A.", medium: "English", pattern: "Semester", eligibility: "A pass in a recognised Bachelor's Degree" },
+          {
+            name: "M.C.A.",
+            medium: "English",
+            pattern: "Semester",
+            eligibility:
+              "BCA / B.Sc. Computer Science / B.Sc. IT / B.E.(CSE) / B.Tech IT (or) any graduation with Mathematics at 10+2 or graduation level (or) B.Com (CA) with Business Mathematics / Statistics as a core subject",
+          },
         ],
       },
     ],
     exam: {
       note: "Bharathidasan University publishes hall tickets and semester time-tables on its official university portal for distance-education learners.",
-      // TODO: swap in real BDU portals/PDFs
-      hallTicketUrl: "https://www.bdu.ac.in/hall-ticket-portal",
-      timetableUrl: "https://www.bdu.ac.in/exam-time-table",
-      syllabusUrl: "https://www.bdu.ac.in/syllabus",
+      hallTicketUrl: "https://bdu.ac.in/cde/ht24w/",
+      timetableUrl: "/pdf/BDU-New-Sem-Pattern-Courses.pdf",
+      syllabusUrl: "https://www.bdu.ac.in",
     },
   },
 
-  /* =======================================================================
-   * FUTURE UNIVERSITIES — append to this array as & when KSC adds partners.
-   * e.g. copy the block below, fill id/name/exam links and programme tables.
-   * =======================================================================
-   * {
-   *   id: "alagappa",
-   *   name: "Alagappa University",
-   *   shortName: "Alagappa",
-   *   ... // TODO: add when affiliation is confirmed
-   * }
-   * ======================================================================= */
+  /* =========================================================================== */
+  /* ALAGAPPA UNIVERSITY (ALU) — CDOE                                            */
+  /* =========================================================================== */
+
+  {
+    id: "alagappa",
+    name: "Alagappa University",
+    shortName: "ALU",
+    academicYear: "2026",
+    pattern: "Semester Pattern",
+    recognition: "State University, Karaikudi · Centre for Distance and Online Education (CDOE) · UGC-DEB approved",
+    address: "Alagappa Nagar, Karaikudi – 630003, Tamil Nadu",
+    website: "www.alagappauniversity.ac.in",
+    categories: [
+      {
+        id: "ug",
+        label: "UG Programmes",
+        count: 7,
+        note: "Duration: 3 Years · A pass in HSC (10+2), or 3-year Diploma, or ITI (2-year programme)",
+        programmes: [
+          { name: "B.A. Tamil", medium: "Tamil", pattern: "Semester", eligibility: "A pass in HSC (10+2) / 3-year Diploma / ITI (2-year programme)" },
+          { name: "B.A. English", medium: "English", pattern: "Semester", eligibility: "A pass in HSC (10+2) / 3-year Diploma / ITI (2-year programme)" },
+          { name: "B.B.A.", medium: "English & Tamil", pattern: "Semester", eligibility: "A pass in HSC (10+2) / 3-year Diploma / ITI (2-year programme)" },
+          { name: "B.Com", medium: "English & Tamil", pattern: "Semester", eligibility: "A pass in HSC (10+2) / 3-year Diploma / ITI (2-year programme)" },
+          { name: "B.Com (Computer Application)", medium: "English", pattern: "Semester", eligibility: "A pass in HSC (10+2) / 3-year Diploma / ITI (2-year programme)" },
+          { name: "B.Sc. Mathematics", medium: "English", pattern: "Semester", eligibility: "A pass in HSC (10+2) / 3-year Diploma with Mathematics" },
+          { name: "B.Sc. Computer Science", medium: "English", pattern: "Semester", eligibility: "A pass in HSC (10+2) / 3-year Diploma with Mathematics" },
+        ],
+      },
+      {
+        id: "pg",
+        label: "PG Programmes",
+        count: 16,
+        note: "Duration: 2 Years · Bachelor Degree from a recognized university (specific prerequisites noted per course)",
+        programmes: [
+          { name: "M.A. Tamil", medium: "Tamil", pattern: "Semester", eligibility: "Bachelor Degree with Tamil as a course" },
+          { name: "M.A. English", medium: "English", pattern: "Semester", eligibility: "Bachelor Degree with English as a course" },
+          { name: "M.A. History", medium: "English & Tamil", pattern: "Semester", eligibility: "Bachelor Degree from a recognized university" },
+          { name: "M.A. Economics", medium: "English & Tamil", pattern: "Semester", eligibility: "Bachelor Degree from a recognized university" },
+          { name: "Master of Social Work (MSW)", medium: "English", pattern: "Semester", eligibility: "Bachelor Degree from a recognized university" },
+          { name: "M.Sc. Mathematics", medium: "English", pattern: "Semester", eligibility: "B.Sc. Mathematics / Applied Mathematics" },
+          { name: "M.Sc. Computer Science", medium: "English", pattern: "Semester", eligibility: "Bachelor Degree with Mathematics at +2 Level" },
+          { name: "M.Sc. Information Technology", medium: "English", pattern: "Semester", eligibility: "Bachelor Degree from a recognized university" },
+          {
+            name: "Master of Computer Applications (MCA)",
+            medium: "English",
+            pattern: "Semester",
+            eligibility:
+              "B.Sc. Mathematics / Statistics / Applied Sciences / Computer Science / IT (OR) B.Sc. Physics / Chemistry / Electronics with Mathematics as ancillary (OR) BCA / B.Com / BBA. Should have studied 10+2+3 pattern with Mathematics / Statistics / Business Mathematics at +2 level.",
+          },
+          { name: "M.Sc. Chemistry", medium: "English", pattern: "Semester", eligibility: "B.Sc. Chemistry" },
+          { name: "M.Sc. Physics", medium: "English", pattern: "Semester", eligibility: "B.Sc. Physics" },
+          { name: "M.Sc. Botany", medium: "English", pattern: "Semester", eligibility: "Bachelor Degree in Botany / Plant Science / Plant Biology / Plant Biotechnology" },
+          {
+            name: "M.Sc. Zoology",
+            medium: "English",
+            pattern: "Semester",
+            eligibility: "Bachelor Degree in Zoology / Animal Science / Life Science with Chemistry / Biochemistry / Microbiology / Botany as an ancillary subject",
+          },
+          {
+            name: "M.Com",
+            medium: "English",
+            pattern: "Semester",
+            eligibility: "Bachelor Degree in Commerce / B.Com(CA) / B.Com(CS) / B.Com(CS & CA) / BCS / BBM / BBA",
+          },
+          { name: "M.B.A.", medium: "English", pattern: "Semester", eligibility: "Bachelor Degree from a recognized university" },
+          { name: "M.Lib.I.Sc.", medium: "English", pattern: "Semester", eligibility: "B.Lib.I.Sc. Degree from a recognized university" },
+        ],
+      },
+      {
+        id: "diploma",
+        label: "Diploma Programmes",
+        count: 4,
+        note: "Duration: 1 Year · Eligibility: 10+2 / 10+3",
+        programmes: [
+          { name: "Montessori Education", medium: "English", pattern: "Non-Semester", eligibility: "10+2 / 10+3" },
+          { name: "Computer Applications", medium: "English", pattern: "Non-Semester", eligibility: "10+2 / 10+3" },
+          { name: "Artificial Intelligence and Machine Learning", medium: "English", pattern: "Non-Semester", eligibility: "10+2 / 10+3 with Mathematics / Statistics / Business Mathematics" },
+          { name: "Cyber Security", medium: "English", pattern: "Non-Semester", eligibility: "10+2 / 10+3 with Mathematics / Statistics / Business Mathematics" },
+        ],
+      },
+      {
+        id: "certificate",
+        label: "Certificate Programmes",
+        count: 8,
+        note: "Duration: 6 Months · Eligibility: 10+2 / 10+3",
+        programmes: [
+          { name: "Library & Information Science", medium: "English", pattern: "Non-Semester", eligibility: "10+2 / 10+3" },
+          { name: "Office Automation", medium: "English", pattern: "Non-Semester", eligibility: "10+2 / 10+3" },
+          { name: "Gender Studies", medium: "English", pattern: "Non-Semester", eligibility: "10+2 / 10+3" },
+          { name: "C Programming", medium: "English", pattern: "Non-Semester", eligibility: "10+2 / 10+3" },
+          { name: "Computer Fundamentals", medium: "English", pattern: "Non-Semester", eligibility: "10+2 / 10+3" },
+          { name: "Web Designing", medium: "English", pattern: "Non-Semester", eligibility: "10+2 / 10+3" },
+          { name: "GST", medium: "English", pattern: "Non-Semester", eligibility: "10+2 / 10+3" },
+          { name: "Astrology", medium: "Tamil", pattern: "Non-Semester", eligibility: "10+2 / 10+3 · Tamil medium only" },
+        ],
+      },
+    ],
+    exam: {
+      note: "Alagappa University publishes hall tickets and exam time-tables on its official MIS/distance student portal for CDOE learners.",
+      hallTicketUrl: "https://mis.alagappauniversity.ac.in/distance/student_main.php",
+      timetableUrl: "/pdf/ALU-CDOE-Prospectus-AY-2026.pdf",
+      syllabusUrl: "https://www.alagappauniversity.ac.in",
+    },
+  },
+
+  /* =========================================================================== */
+  /* FUTURE UNIVERSITIES — append to this array as & when KSC adds partners.     */
+  /* =========================================================================== */
 ];
 
 export const getUniversityBySlug = (slug: string) =>

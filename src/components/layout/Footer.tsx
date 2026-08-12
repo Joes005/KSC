@@ -98,6 +98,7 @@ export function Footer() {
             <ul className="space-y-3 text-sm font-medium text-white/80">
               <li><Link to="/academic#tnou" className="transition-colors hover:text-white hover:underline underline-offset-4">TNOU Courses</Link></li>
               <li><Link to="/academic#bdu" className="transition-colors hover:text-white hover:underline underline-offset-4">BDU Courses</Link></li>
+              <li><Link to="/academic#alagappa" className="transition-colors hover:text-white hover:underline underline-offset-4">ALU (Alagappa) Courses</Link></li>
               <li><Link to="/admissions" className="transition-colors hover:text-white hover:underline underline-offset-4">Admissions {new Date().getFullYear()}</Link></li>
             </ul>
           </div>

@@ -26,7 +26,7 @@ export function ExamUpdate() {
           <SectionHeading
             kicker="Per-University"
             title="Exam resources by university"
-            subtitle="Hall-ticket portals and exam-timetable PDFs are provided by each university. Links below are placeholders — official URLs will be wired in as they are published."
+            subtitle="Hall-ticket portals and exam-timetable PDFs are published by each university. Use the official links below, or download the course/prospectus PDFs from the Downloads section."
           />
           <Accordion
             className="mx-auto max-w-3xl"
@@ -66,8 +66,8 @@ export function ExamUpdate() {
                     </li>
                   </ul>
                   <p className="rounded-lg bg-ksc-gold/10 px-3 py-2 text-xs text-ksc-ink/70">
-                    TODO: swap the placeholder URLs for {uni.shortName} in src/data/universities.ts →
-                    exam.hallTicketUrl / exam.timetableUrl as soon as the official links are published.
+                    Tips: For BDU & ALU, the timetable/prospectus PDFs are also available in the
+                    Downloads section of the Admissions page.
                   </p>
                 </div>
               ),

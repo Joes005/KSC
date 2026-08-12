@@ -62,7 +62,7 @@ export const SITE_CONFIG = {
     { value: 5000, suffix: "+", label: "Students Guided" }, // TODO: real figure
     { value: 15, suffix: "+", label: "Years of Experience" }, // TODO: real figure
     { value: 95, suffix: "%", label: "Result Rate" }, // TODO: real figure
-    { value: 2, suffix: "", label: "Affiliated Universities" }, // TODO: real figure
+    { value: 3, suffix: "", label: "Affiliated Universities" },
   ],
 
   /* === ADMISSION WINDOW === */
@@ -79,7 +79,7 @@ export const HERO = {
   headline: "Karur Study Center",
   subHeadline: "Your trusted study centre for distance education",
   description:
-    "Get expert admission guidance for UG, PG, Diploma and Vocational programmes from Tamil Nadu Open University (TNOU) and Bharathidasan University (BDU) — all from right here in Karur, with continuous support through exams and results.",
+    "Get expert admission guidance for UG, PG, Diploma, Certificate and Vocational programmes from Tamil Nadu Open University (TNOU), Bharathidasan University (BDU) and Alagappa University (ALU) — all from right here in Karur, with continuous support through exams and results.",
   ctas: [
     { label: "Explore Programmes", to: "/academic", primary: true },
     { label: "Apply Now", to: "/admissions", primary: false },
@@ -176,7 +176,7 @@ export interface NewsEvent {
 
 export const NEWS_EVENTS: NewsEvent[] = [
   {
-    text: "Admissions are open for the Academic Year 2026 — TNOU and Bharathidasan University.",
+    text: "Admissions are open for the Academic Year 2026 — TNOU, Bharathidasan University and Alagappa University.",
     type: "admission",
     date: "Admissions Open",
     href: "/admissions",
@@ -199,6 +199,18 @@ export const NEWS_EVENTS: NewsEvent[] = [
     date: "Exam Update",
     href: "/exam-update#bdu",
   },
+  {
+    text: "Alagappa University (CDOE) — July session admissions open for UG, PG, Diploma & Certificate programmes.",
+    type: "admission",
+    date: "ALU Admissions Open",
+    href: "/academic#alagappa",
+  },
+  {
+    text: "Alagappa University — exam hall tickets & time-tables on the official distance MIS portal.",
+    type: "exam",
+    date: "Exam Update",
+    href: "/exam-update#alagappa",
+  },
 ];
 
 /* =========================================================================== */
@@ -208,7 +220,7 @@ export const NEWS_EVENTS: NewsEvent[] = [
 export const MILESTONES = [
   { value: "15+", label: "Years of Excellence" },
   { value: "5000+", label: "Students Guided" },
-  { value: "2", label: "Affiliated Universities" },
+  { value: "3", label: "Affiliated Universities" },
   { value: "100%", label: "Commitment to Support" },
 ];
 
@@ -301,6 +313,7 @@ export const ABOUT_PAGE = {
   membership: [
     "Recognised study-centre partnership with Tamil Nadu Open University",
     "Admission-support relationship with Bharathidasan University",
+    "Admission-support relationship with Alagappa University (CDOE)",
     "UGC-DEB recognised distance-education programmes (as applicable per university)",
   ],
 };
@@ -357,6 +370,7 @@ export const BRANCHES = [
 export const UNIVERSITY_LOGOS = [
   { name: "Tamil Nadu Open University", short: "TNOU", url: "#", image: "" }, // TODO: logo
   { name: "Bharathidasan University", short: "BDU", url: "#", image: "" }, // TODO: logo
+  { name: "Alagappa University", short: "ALU", url: "#", image: "" }, // TODO: logo
 ];
 
 /* =========================================================================== */
@@ -407,7 +421,11 @@ export const ADMISSIONS_FORM_FIELDS: FormField[] = [
     type: "select",
     placeholder: "Select your university…",
     required: true,
-    options: ["Tamil Nadu Open University (TNOU)", "Bharathidasan University (BDU)"],
+    options: [
+      "Tamil Nadu Open University (TNOU)",
+      "Bharathidasan University (BDU)",
+      "Alagappa University (ALU) — CDOE",
+    ],
   },
   { name: "course", label: "Course / Programme", type: "text", placeholder: "e.g. B.A. Tamil, M.B.A., B.Com…", required: true },
 ];

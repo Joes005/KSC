@@ -132,8 +132,9 @@ export function Academic() {
               verify your specific case at the centre.
             </p>
             <p className="mt-3">
-              Looking for something not listed? Contact us — more programmes may be available for the
-              current admission round.
+              Programme lists are refreshed for every admission round — TNOU, Bharathidasan University
+              and Alagappa University all admit through our centre. Looking for something not listed?
+              Contact us — more programmes may be available for the current admission round.
             </p>
             <div className="mt-5">
               <Link to="/admissions" className="btn-gold inline-flex">

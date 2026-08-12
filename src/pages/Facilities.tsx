@@ -33,10 +33,36 @@ export function Facilities() {
               </div>
             ))}
           </div>
-          <p className="mt-8 text-center text-xs text-ksc-ink/50">
-            TODO: facility descriptions in src/data/facilities.ts are generic placeholders — refine with
-            real copy as it becomes available.
-          </p>
+        </div>
+      </section>
+
+      {/* Photo strip */}
+      <section className="bg-ksc-mist/60 py-16">
+        <div className="container-site">
+          <SectionHeading
+            kicker="Inside Our Center"
+            title="Walk through Karur Study Center"
+            subtitle="Front office, study-material storage, counselling and learning spaces — everything you need is close at hand."
+          />
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+            {[
+              "/assets/gallery/ksc-01.jpg",
+              "/assets/gallery/ksc-03.jpg",
+              "/assets/gallery/ksc-05.jpg",
+              "/assets/gallery/ksc-10.jpg",
+            ].map((src, i) => (
+              <div key={i} className="group overflow-hidden rounded-xl border border-ksc-green/10 bg-white shadow-soft">
+                <div className="aspect-[4/3] overflow-hidden">
+                  <img
+                    src={src}
+                    alt="Karur Study Center facilities"
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

@@ -20,6 +20,7 @@ import {
   BRANCHES,
 } from "../data/site-content";
 import { UNIVERSITIES } from "../data/universities";
+import { GALLERY } from "../data/gallery";
 import { FACILITIES } from "../data/facilities";
 import { SectionHeading } from "../components/common/SectionHeading";
 import { Tabs } from "../components/common/Tabs";
@@ -32,9 +33,9 @@ import { cn } from "../utils/cn";
 /* HERO                                                                            */
 /* --------------------------------------------------------------------------- */
 const HERO_IMAGES = [
-  "/assets/user-photos/students.png",
-  "/assets/user-photos/branch-exterior.jpg",
-  "/assets/user-photos/distance-student.png",
+  "/assets/gallery/ksc-09.jpg",
+  "/assets/gallery/ksc-10.jpg",
+  "/assets/gallery/ksc-11.jpg",
 ];
 
 function Hero() {
@@ -141,7 +142,7 @@ function AboutSnapshot() {
         {/* Image Column */}
         <div className="relative order-2 lg:order-1 px-4 lg:px-0">
           <div className="rounded-xl overflow-hidden shadow-2xl border border-gray-100">
-            <img src="/assets/images/about-students.png" alt="Students at Karur Study Center" className="w-full h-auto object-cover aspect-[4/3]" />
+            <img src="/assets/gallery/ksc-02.jpg" alt="Study materials and support at Karur Study Center" className="w-full h-auto object-cover aspect-[4/3]" />
           </div>
           <div className="absolute -bottom-6 -right-2 md:-right-6 flex h-32 w-32 flex-col items-center justify-center rounded-full bg-gradient-to-br from-ksc-saffron to-ksc-gold border-8 border-white shadow-xl rotate-[-10deg]">
             <span className="text-3xl font-black text-ksc-dark">15+</span>
@@ -460,6 +461,46 @@ function Branches() {
 }
 
 /* --------------------------------------------------------------------------- */
+/* PHOTO GALLERY STRIP                                                          */
+/* --------------------------------------------------------------------------- */
+function GalleryStrip() {
+  const previews = GALLERY.slice(0, 6);
+  return (
+    <section className="bg-white py-20">
+      <div className="container-site">
+        <SectionHeading
+          kicker="Life at KSC"
+          title="Take a look inside"
+          subtitle="Real photos from our centre — front office, study materials, counselling and more."
+        />
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
+          {previews.map((item) => (
+            <Link key={item.id} to="/gallery" className="group relative block overflow-hidden rounded-xl">
+              <div className="aspect-[4/3] overflow-hidden">
+                <img
+                  src={item.src}
+                  alt={item.alt}
+                  loading="lazy"
+                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+              </div>
+              <span className="absolute inset-0 flex items-end bg-gradient-to-t from-black/60 via-transparent to-transparent p-3 opacity-0 transition-opacity group-hover:opacity-100">
+                <span className="text-xs font-bold text-white">{item.caption}</span>
+              </span>
+            </Link>
+          ))}
+        </div>
+        <div className="mt-10 text-center">
+          <Link to="/gallery" className="btn-outline">
+            View Full Gallery <ArrowRight className="ml-2 h-4 w-4" />
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* --------------------------------------------------------------------------- */
 /* CTA BAND                                                                     */
 /* --------------------------------------------------------------------------- */
 function CtaBand() {
@@ -507,6 +548,7 @@ export function Home() {
       <UniversityCourses />
       <FacilitiesGrid />
       <AdmissionSteps />
+      <GalleryStrip />
       <Branches />
       <CtaBand />
     </>

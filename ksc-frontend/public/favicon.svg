@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 220 220">
+  <circle cx="110" cy="110" r="104" fill="#0E6B4E"/>
+  <circle cx="110" cy="110" r="88" fill="none" stroke="#C99A2E" stroke-width="6"/>
+  <text x="110" y="126" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="52" font-weight="700" fill="#ffffff" letter-spacing="1">KSC</text>
+  <rect x="52" y="172" width="116" height="6" rx="3" fill="#C99A2E"/>
+</svg>

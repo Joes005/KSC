@@ -36,6 +36,7 @@ export interface University {
   recognition?: string; // UGC-DEB / NAAC accreditation notes
   address?: string;
   website?: string;
+  logo: string;
   categories: ProgrammeCategory[];
   exam: {
     /** Short intro shown on the Exam Update page */
@@ -161,6 +162,7 @@ export const UNIVERSITIES: University[] = [
       "State Open University, Govt. of Tamil Nadu · Approved by UGC-DEB · Accredited NAAC A+",
     address: "No. 577, Anna Salai, Saidapet, Chennai – 600015, Tamil Nadu",
     website: "www.tnou.ac.in",
+    logo: "/logo.jpg", // Replace with actual logo URL
     categories: [
       {
         id: "ug",
@@ -235,6 +237,7 @@ export const UNIVERSITIES: University[] = [
     recognition: "UGC-DEB approved distance education · Accredited by NAAC",
     address: "Palkalaiperur, Tiruchirappalli – 620024, Tamil Nadu",
     website: "www.bdu.ac.in",
+    logo: "/logo.jpg", // Replace with actual logo URL
     categories: [
       {
         id: "ug",
@@ -341,6 +344,7 @@ export const UNIVERSITIES: University[] = [
     recognition: "State University, Karaikudi · Centre for Distance and Online Education (CDOE) · UGC-DEB approved",
     address: "Alagappa Nagar, Karaikudi – 630003, Tamil Nadu",
     website: "www.alagappauniversity.ac.in",
+    logo: "/logo.jpg", // Replace with actual logo URL
     categories: [
       {
         id: "ug",
@@ -447,6 +451,7 @@ export const UNIVERSITIES: University[] = [
     recognition: "State University · UGC-DEB Approved",
     address: "Tirunelveli, Tamil Nadu",
     website: "www.msuniv.ac.in",
+    logo: "/logo.jpg", // Replace with actual logo URL
     categories: [], // Empty for now until courses are provided
     exam: {
       note: "Manonmaniam Sundaranar University publishes exam details on its official distance education portal.",

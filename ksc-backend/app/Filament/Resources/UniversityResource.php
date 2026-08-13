@@ -37,7 +37,9 @@ class UniversityResource extends Resource
                 Forms\Components\Textarea::make('address')
                     ->columnSpanFull(),
                 Forms\Components\TextInput::make('website'),
-                Forms\Components\TextInput::make('logo'),
+                Forms\Components\FileUpload::make('logo')
+                    ->image()
+                    ->directory('logos'),
                 Forms\Components\Textarea::make('exam_note')
                     ->columnSpanFull(),
                 Forms\Components\TextInput::make('exam_hall_ticket_url'),
@@ -62,8 +64,7 @@ class UniversityResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('website')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('logo')
-                    ->searchable(),
+                Tables\Columns\ImageColumn::make('logo'),
                 Tables\Columns\TextColumn::make('exam_hall_ticket_url')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('exam_timetable_url')

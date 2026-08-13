@@ -23,9 +23,9 @@ class ProgrammeCategoryResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('university_id')
-                    ->required()
-                    ->numeric(),
+                Forms\Components\Select::make('university_id')
+                    ->relationship('university', 'name')
+                    ->required(),
                 Forms\Components\TextInput::make('slug')
                     ->required(),
                 Forms\Components\TextInput::make('label')
@@ -40,8 +40,7 @@ class ProgrammeCategoryResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('university_id')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('university.name')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('slug')
                     ->searchable(),

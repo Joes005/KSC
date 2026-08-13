@@ -23,9 +23,9 @@ class ProgrammeResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('programme_category_id')
-                    ->required()
-                    ->numeric(),
+                Forms\Components\Select::make('programme_category_id')
+                    ->relationship('category', 'label')
+                    ->required(),
                 Forms\Components\TextInput::make('name')
                     ->required(),
                 Forms\Components\TextInput::make('medium')
@@ -41,8 +41,7 @@ class ProgrammeResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('programme_category_id')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('category.label')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),

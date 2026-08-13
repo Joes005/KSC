@@ -29,7 +29,8 @@ class FacilityResource extends Resource
                 Forms\Components\Textarea::make('description')
                     ->columnSpanFull(),
                 Forms\Components\FileUpload::make('image_path')
-                    ->image(),
+                    ->image()
+                    ->directory('facilities'),
                 Forms\Components\TextInput::make('icon')
                     ->maxLength(255)
                     ->default(null),

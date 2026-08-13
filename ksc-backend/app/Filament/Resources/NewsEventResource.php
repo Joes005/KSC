@@ -18,6 +18,7 @@ class NewsEventResource extends Resource
     protected static ?string $model = NewsEvent::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Home Page';
 
     public static function form(Form $form): Form
     {

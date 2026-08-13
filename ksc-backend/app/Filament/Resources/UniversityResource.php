@@ -18,6 +18,7 @@ class UniversityResource extends Resource
     protected static ?string $model = University::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Academic Page';
 
     public static function form(Form $form): Form
     {
@@ -96,7 +97,7 @@ class UniversityResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\CategoriesRelationManager::class,
         ];
     }
 

@@ -100,7 +100,7 @@ function AboutDetail() {
   const intro = VISION_MISSION_VALUES;
 
   return (
-    <section className="bg-ksc-mist/60 py-16">
+    <section className="bg-ksc-mist/60 py-10 lg:py-16">
       <div className="container-site">
         <SectionHeading kicker="Our Foundation" title="Vision · Mission · Values" />
         <div className="mx-auto max-w-4xl">

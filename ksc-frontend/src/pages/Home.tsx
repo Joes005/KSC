@@ -77,7 +77,7 @@ function Hero() {
 
   return (
     <section className="relative w-full bg-[#063731] overflow-hidden">
-      <div className="container-site relative z-10 grid min-h-[500px] grid-cols-1 items-center gap-12 py-16 sm:min-h-[600px] lg:grid-cols-2 lg:py-24">
+      <div className="container-site relative z-10 grid min-h-[500px] grid-cols-1 items-center gap-8 lg:gap-12 py-16 sm:min-h-[600px] lg:grid-cols-2 lg:py-24">
 
         {/* Left Column: Details */}
         <div className="flex flex-col items-start text-left order-2 lg:order-1">
@@ -173,7 +173,7 @@ function AffiliationsStrip() {
 function AboutSnapshot() {
   const { data: { about_snapshot: ABOUT_SNAPSHOT } } = useSiteData();
   return (
-    <section className="bg-white py-16 sm:py-24">
+    <section className="bg-white py-12 sm:py-16 lg:py-24">
       <div className="container-site grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
         {/* Image Column */}
         <div className="relative order-2 lg:order-1 px-4 lg:px-0 mx-auto w-full max-w-lg lg:max-w-none">
@@ -236,7 +236,7 @@ function WhyDistance() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section className="bg-ksc-mist/60 py-16 sm:py-24">
+    <section className="bg-ksc-mist/60 py-12 sm:py-16 lg:py-24">
       <div className="container-site">
         <SectionHeading
           kicker="Why Distance Education"
@@ -302,7 +302,7 @@ function VisionMissionValues() {
   const [tab, setTab] = useState<"vision" | "mission" | "values">("vision");
 
   return (
-    <section className="bg-white py-16 sm:py-24">
+    <section className="bg-white py-12 sm:py-16 lg:py-24">
       <div className="container-site">
         <SectionHeading kicker="Our Foundation" title="Vision · Mission · Values" align="center" />
         <div className="mx-auto max-w-4xl">
@@ -368,7 +368,7 @@ function VisionMissionValues() {
 function UniversityStrip() {
   const { data: { universities: UNIVERSITIES } } = useSiteData();
   return (
-    <section className="bg-ksc-mist/60 py-16 sm:py-24 border-t border-ksc-green/10">
+    <section className="bg-ksc-mist/60 py-12 sm:py-16 lg:py-24 border-t border-ksc-green/10">
       <div className="container-site">
         <SectionHeading
           align="center"
@@ -681,7 +681,7 @@ function GalleryStrip() {
 function CtaBand() {
   const { data: { settings: SITE_CONFIG } } = useSiteData();
   return (
-    <section className="gradient-head relative overflow-hidden py-16 text-white">
+    <section className="gradient-head relative overflow-hidden py-10 lg:py-16 text-white">
       <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-ksc-gold/20 blur-3xl" />
       <div className="pointer-events-none absolute -left-10 bottom-0 h-56 w-56 rounded-full bg-ksc-saffron/20 blur-3xl" />
       <div className="container-site relative flex flex-col items-center gap-6 text-center md:flex-row md:justify-between md:text-left">

@@ -79,12 +79,15 @@ function mapNews(list: any[]): NewsEventType[] {
 }
 
 function mapFacilities(list: any[]): Facility[] {
-  return (list ?? []).map((f) => ({
-    icon: String(f.icon ?? ""),
-    image: toAsset(f.image_path) || undefined,
-    title: f.title ?? "",
-    description: f.description ?? "",
-  }) as unknown as Facility);
+  return (list ?? []).map((f) => {
+    const staticFac = FACILITIES.find(sf => sf.title === f.title);
+    return {
+      icon: String(f.icon || staticFac?.icon || ""),
+      image: toAsset(f.image_path) || staticFac?.image || undefined,
+      title: f.title ?? "",
+      description: f.description ?? "",
+    } as unknown as Facility;
+  });
 }
 
 function mapGallery(list: any[]): GalleryItem[] {

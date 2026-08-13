@@ -26,7 +26,7 @@ export function Contact() {
         </div>
       </section>
 
-      <section className="bg-white py-16">
+      <section className="bg-white py-10 lg:py-16">
         <div className="container-site grid gap-10 lg:grid-cols-2">
           {/* Contact details + map */}
           <div>
@@ -83,17 +83,7 @@ export function Contact() {
                 </div>
               </div>
 
-              <div className="card-hover flex items-start gap-4 p-5">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                  <Mail className="h-5 w-5" />
-                </span>
-                <div>
-                  <p className="font-bold text-ksc-dark">Email</p>
-                  <a href={`mailto:${contact.email}`} className="mt-1 block text-sm font-semibold text-primary hover:text-ksc-green-mid">
-                    {contact.email}
-                  </a>
-                </div>
-              </div>
+
             </div>
 
             <div className="mt-8 overflow-hidden rounded-2xl shadow-lg border border-gray-100">

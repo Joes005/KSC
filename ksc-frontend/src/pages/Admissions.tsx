@@ -53,7 +53,7 @@ export function Admissions() {
       </section>
 
       {/* Steps */}
-      <section className="bg-white py-16">
+      <section className="bg-white py-10 lg:py-16">
         <div className="container-site">
           <SectionHeading kicker="How to Apply" title="Your admission journey in four steps" />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -76,7 +76,7 @@ export function Admissions() {
       </section>
 
       {/* Flyer + downloads */}
-      <section className="bg-ksc-mist/60 py-16">
+      <section className="bg-ksc-mist/60 py-10 lg:py-16">
         <div className="container-site grid items-center gap-10 lg:grid-cols-2">
           <div className="order-2 lg:order-1">
             <SectionHeading
@@ -100,20 +100,20 @@ export function Admissions() {
                   <span className="text-xs text-ksc-ink/70">CDOE Prospectus — AY 2026 (PDF)</span>
                 </span>
               </a>
-              <Link
-                to="/poster/bdu"
+              <a
+                href="/pdf/Bharathidasan_University_AY_2026-27_Admission_HD.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="card-hover flex items-center gap-4 p-5"
               >
                 <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                  <BadgeCheck className="h-6 w-6" />
+                  <Download className="h-6 w-6" />
                 </span>
                 <span>
                   <span className="block font-bold text-ksc-dark">Bharathidasan University</span>
-                  <span className="text-xs text-ksc-ink/70">Digital Admission Poster (HQ)</span>
+                  <span className="text-xs text-ksc-ink/70">AY 2026-27 Admission (PDF)</span>
                 </span>
-              </Link>
+              </a>
               <a
                 href="/assets/gallery/tnou-ay2026.jpg"
                 target="_blank"
@@ -148,7 +148,7 @@ export function Admissions() {
       </section>
 
       {/* Eligibility summary */}
-      <section className="bg-ksc-mist/60 py-16">
+      <section className="bg-ksc-mist/60 py-10 lg:py-16">
         <div className="container-site">
           <SectionHeading kicker="Eligibility at a Glance" title="Who can apply" />
           <div className="mx-auto grid max-w-4xl gap-4 sm:grid-cols-2">
@@ -173,7 +173,7 @@ export function Admissions() {
       </section>
 
       {/* Apply form + universities sidebar */}
-      <section className="bg-white py-16">
+      <section className="bg-white py-10 lg:py-16">
         <div className="container-site grid gap-10 lg:grid-cols-3">
           <div className="lg:col-span-2">
             <SectionHeading

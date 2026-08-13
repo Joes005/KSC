@@ -16,7 +16,7 @@ export function Curriculum() {
       />
 
       {/* How it works */}
-      <section className="bg-white py-16">
+      <section className="bg-white py-10 lg:py-16">
         <div className="container-site">
           <SectionHeading kicker="Study Pattern" title="How distance-education courses are structured" />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -36,7 +36,7 @@ export function Curriculum() {
       </section>
 
       {/* Per-university syllabus links */}
-      <section className="bg-ksc-mist/60 py-16">
+      <section className="bg-ksc-mist/60 py-10 lg:py-16">
         <div className="container-site">
           <SectionHeading
             kicker="Official Resources"

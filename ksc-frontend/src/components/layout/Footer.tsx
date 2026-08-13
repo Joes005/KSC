@@ -52,7 +52,7 @@ export function Footer() {
       </div>
 
       {/* Main Footer Links */}
-      <div className="container-site grid grid-cols-1 gap-10 py-16 md:grid-cols-12">
+      <div className="container-site grid grid-cols-1 gap-6 lg:gap-10 py-16 md:grid-cols-12">
         {/* Brand & Contact Col */}
         <div className="md:col-span-5 space-y-6">
           <div className="flex items-center gap-4">

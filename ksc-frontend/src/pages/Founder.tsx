@@ -12,7 +12,7 @@ export function Founder() {
         breadcrumb={[{ label: "Home", to: "/" }, { label: "Founder Message" }]} 
       />
 
-      <section className="bg-white py-16">
+      <section className="bg-white py-10 lg:py-16">
         <div className="container-site grid gap-10 md:grid-cols-3">
           {/* Headshot card */}
           <div className="card-hover p-6 text-center">

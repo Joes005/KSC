@@ -38,7 +38,7 @@ export function Facilities() {
       />
 
       {/* Facilities grid */}
-      <section className="bg-white py-16 sm:py-24">
+      <section className="bg-white py-12 sm:py-16 lg:py-24">
         <div className="container-site">
           <SectionHeading
             kicker="What We Provide"
@@ -71,7 +71,7 @@ export function Facilities() {
       </section>
 
       {/* Photo strip */}
-      <section className="bg-ksc-mist/60 py-16 sm:py-24">
+      <section className="bg-ksc-mist/60 py-12 sm:py-16 lg:py-24">
         <div className="container-site">
           <SectionHeading
             kicker="Inside Our Center"

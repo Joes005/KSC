@@ -1,8 +1,9 @@
-import { SITE_CONFIG, CHAIRMAN_MESSAGE } from "../data/site-content";
+import { useSiteData } from "../services/SiteDataContext";
 import { SectionHeading } from "../components/common/SectionHeading";
 import { PageHeader } from "../components/common/PageHeader";
 
 export function Chairman() {
+  const { data: { settings: SITE_CONFIG, chairman_message: CHAIRMAN_MESSAGE } } = useSiteData();
   return (
     <>
       {/* Page header */}

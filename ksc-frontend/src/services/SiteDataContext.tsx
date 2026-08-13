@@ -1,8 +1,9 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
+import type { ReactNode } from 'react';
 import { fetchSiteData } from './api';
 
 // Static fallbacks for initial type inference
-import { SITE_CONFIG, HERO, WHY_DISTANCE, ABOUT_SNAPSHOT, VISION_MISSION_VALUES, NEWS_EVENTS, ADMISSION_STEPS, BRANCHES } from "../data/site-content";
+import { SITE_CONFIG, HERO, WHY_DISTANCE, ABOUT_SNAPSHOT, VISION_MISSION_VALUES, NEWS_EVENTS, ADMISSION_STEPS, BRANCHES, FOUNDER_MESSAGE, CHAIRMAN_MESSAGE, CURRICULUM } from "../data/site-content";
 import { UNIVERSITIES } from "../data/universities";
 import { GALLERY } from "../data/gallery";
 import { FACILITIES } from "../data/facilities";
@@ -19,6 +20,10 @@ const fallbackData = {
   about_snapshot: ABOUT_SNAPSHOT,
   vision_mission: VISION_MISSION_VALUES,
   admission_steps: ADMISSION_STEPS,
+  founder_message: FOUNDER_MESSAGE,
+  chairman_message: CHAIRMAN_MESSAGE,
+  curriculum: CURRICULUM,
+  pages: {} as Record<string, Record<string, unknown>>,
 };
 
 type SiteDataType = typeof fallbackData;

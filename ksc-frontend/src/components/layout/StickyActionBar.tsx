@@ -1,29 +1,31 @@
 import { MessageCircle, Phone, GraduationCap } from "lucide-react";
-import { SITE_CONFIG } from "../../data/site-content";
+import { useSiteData } from "../../services/SiteDataContext";
 import { cn } from "../../utils/cn";
 
-const ACTIONS = [
-  {
-    href: `https://wa.me/${SITE_CONFIG.contact.whatsapp}`,
-    label: "WhatsApp",
-    className: "bg-[#2dd36f] hover:bg-[#28ba62]", // Light green
-    icon: <MessageCircle className="h-6 w-6" />,
-  },
-  {
-    href: `tel:${SITE_CONFIG.contact.phone}`,
-    label: "Call Us",
-    className: "bg-[#11694f] hover:bg-[#0e5741]", // Dark green
-    icon: <Phone className="h-6 w-6" />,
-  },
-  {
-    href: "/admissions",
-    label: "Admissions",
-    className: "bg-[#d49e35] hover:bg-[#b8892d]", // Golden yellow
-    icon: <GraduationCap className="h-6 w-6" />,
-  },
-];
-
 export function StickyActionBar() {
+  const { data: { settings: SITE_CONFIG } } = useSiteData();
+
+  const ACTIONS = [
+    {
+      href: `https://wa.me/${SITE_CONFIG.contact.whatsapp}`,
+      label: "WhatsApp",
+      className: "bg-[#2dd36f] hover:bg-[#28ba62]", // Light green
+      icon: <MessageCircle className="h-6 w-6" />,
+    },
+    {
+      href: `tel:${SITE_CONFIG.contact.phone}`,
+      label: "Call Us",
+      className: "bg-[#11694f] hover:bg-[#0e5741]", // Dark green
+      icon: <Phone className="h-6 w-6" />,
+    },
+    {
+      href: "/admissions",
+      label: "Admissions",
+      className: "bg-[#d49e35] hover:bg-[#b8892d]", // Golden yellow
+      icon: <GraduationCap className="h-6 w-6" />,
+    },
+  ];
+
   return (
     <div className="fixed right-0 top-1/2 z-50 hidden -translate-y-1/2 flex-col gap-2 sm:flex">
       {ACTIONS.map((action) => (

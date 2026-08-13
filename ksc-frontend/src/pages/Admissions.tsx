@@ -9,8 +9,8 @@ import {
   ArrowRight,
   Download,
 } from "lucide-react";
-import { SITE_CONFIG, ADMISSION_STEPS, ADMISSIONS_FORM_FIELDS } from "../data/site-content";
-import { UNIVERSITIES } from "../data/universities";
+import { ADMISSIONS_FORM_FIELDS } from "../data/site-content";
+import { useSiteData } from "../services/SiteDataContext";
 import { SectionHeading } from "../components/common/SectionHeading";
 import { EnquiryForm } from "../components/common/EnquiryForm";
 
@@ -34,6 +34,7 @@ const ELIGIBILITY_SUMMARY = [
 ];
 
 export function Admissions() {
+  const { data: { settings: SITE_CONFIG, admission_steps: ADMISSION_STEPS, universities: UNIVERSITIES } } = useSiteData();
   const stepIcons = [FileDown, ClipboardList, Wallet, Package];
 
   return (

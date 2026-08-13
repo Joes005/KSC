@@ -1,11 +1,34 @@
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
-import { FACILITIES } from "../data/facilities";
-import { SITE_CONFIG } from "../data/site-content";
+import { ArrowRight, Building2 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import {
+  Wallet,
+  CalendarRange,
+  BookOpen,
+  Library,
+  Headphones,
+  MonitorPlay,
+  MapPinned,
+  MonitorSmartphone,
+} from "lucide-react";
+import { useSiteData } from "../services/SiteDataContext";
 import { SectionHeading } from "../components/common/SectionHeading";
 import { PageHeader } from "../components/common/PageHeader";
 
+const ICON_MAP: Record<string, LucideIcon> = {
+  Wallet,
+  CalendarRange,
+  BookOpen,
+  Library,
+  Headphones,
+  MonitorPlay,
+  MapPinned,
+  MonitorSmartphone,
+  Building2,
+};
+
 export function Facilities() {
+  const { data: { facilities: FACILITIES, settings: SITE_CONFIG } } = useSiteData();
   return (
     <>
       {/* Page header */}
@@ -23,7 +46,9 @@ export function Facilities() {
             subtitle="From the day you walk in to the day your degree is conferred, our centre is with you."
           />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {FACILITIES.map(({ icon: Icon, image, title, description }) => (
+            {FACILITIES.map(({ icon, image, title, description }) => {
+              const Icon = typeof icon === "string" ? ICON_MAP[icon] ?? Building2 : icon;
+              return (
               <div key={title} className="group relative overflow-hidden rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-primary/30">
                 <div className="mb-5 inline-flex h-16 w-16 items-center justify-center overflow-hidden rounded-2xl shadow-inner ring-1 ring-primary/20 transition-all duration-300 group-hover:scale-110 group-hover:shadow-md group-hover:ring-primary/50 bg-primary/10">
                   {image ? (
@@ -39,7 +64,8 @@ export function Facilities() {
                 {/* Decorative background glow on hover */}
                 <div className="absolute -right-10 -top-10 -z-10 h-32 w-32 rounded-full bg-primary/5 blur-3xl transition-opacity duration-300 opacity-0 group-hover:opacity-100"></div>
               </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -79,7 +105,7 @@ export function Facilities() {
         <div className="container-site flex flex-col items-center gap-4 text-center">
           <h2 className="text-2xl font-extrabold text-ksc-dark">Want to see for yourself?</h2>
           <p className="max-w-xl text-ksc-ink/80">
-            Visit our Karur centre during working hours — {SITE_CONFIG.contact.workingHours} — and let our
+            Visit our Karur centre and let our
             counsellors walk you through the admission process.
           </p>
           <Link to="/contact" className="btn-primary">

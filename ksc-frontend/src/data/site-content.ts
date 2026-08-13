@@ -37,13 +37,13 @@ export const SITE_CONFIG = {
     motto: "",
   },
 
-  /* === CONTACT / LOCATION (all TODO until provided) === */
+  /* === CONTACT / LOCATION (from KSC admission posters) === */
   contact: {
-    phone: "PHONE_NUMBER", // TODO: KSC phone number
-    whatsapp: "WHATSAPP_NUMBER", // TODO: KSC WhatsApp number (digits only, incl. country code)
+    phone: "99651 07404", // primary cell number (from poster footer)
+    landline: "04324 236107", // landline (from poster footer)
+    whatsapp: "919965107404", // KSC WhatsApp number (digits only, incl. country code)
     email: "Karurstudycentre1@gmail.com",
-    address: "FULL_ADDRESS, KARUR, Tamil Nadu", // TODO: KSC full address
-    workingHours: "WORKING_HOURS", // TODO: e.g. "Mon–Sat, 9:30 AM – 6:30 PM"
+    address: "M.R.S. Plaza, 3rd Floor, 57-59, J-S-PS Complex, Near Mini Bus Stand, Karur - 1", // from poster footer
     // TODO: replace with real Google Maps embed src (https://maps.google.com/maps?q=...&output=embed)
     mapEmbedUrl: "https://maps.google.com/maps?q=Karur%2CTamil%20Nadu&t=&z=12&ie=UTF8&iwloc=&output=embed",
   },
@@ -122,6 +122,18 @@ export const ABOUT_SNAPSHOT = {
     "Our services are designed for working professionals, homemakers and students from remote areas who want recognised degrees without relocating or abandoning their commitments.",
   ],
   readMoreLink: "/about",
+  body: [
+    "Karur Study Center (KSC) is a dedicated distance-education study and admission centre based in Karur, Tamil Nadu. Since our inception we have been bridging the gap between open universities and students — helping you pick the right programme, submit a correct application, and stay supported through exams and results.",
+    "Our services are designed for working professionals, homemakers and students from remote areas who want recognised degrees without relocating or abandoning their commitments. We are affiliated with Tamil Nadu Open University (TNOU), Bharathidasan University (BDU) and Alagappa University (ALU), and guide learners through every stage of their academic journey.",
+    "From programme counselling and document verification to study-material support, exam updates and result guidance, our team walks with you until you earn your degree. With more than 50,000 learners served, KSC has grown into a trusted name for open and distance education in the region.",
+  ],
+  membership: [
+    "Authorised study centre of Tamil Nadu Open University (TNOU)",
+    "Recognised centre of Bharathidasan University (BDU)",
+    "Partner study centre of Alagappa University (ALU)",
+    "Affiliated with UGC-DEB recognised distance education",
+  ],
+  establishedYear: "2006",
 };
 
 /* =========================================================================== */
@@ -348,19 +360,17 @@ export const CHAIRMAN_MESSAGE = {
 
 export const BRANCHES = [
   {
-    name: "Head Office — Karur",
-    // TODO: real address, phone
-    address: "FULL_ADDRESS, Karur, Tamil Nadu",
-    phone: "PHONE_NUMBER",
-    hours: "WORKING_HOURS",
+    name: "Karur Study Centre",
+    // from KSC admission posters
+    address: "M.R.S. Plaza, 3rd Floor, 57-59, J-S-PS Complex, Near Mini Bus Stand, Karur - 1",
+    phone: "04324 236107 · 99651 07404, 93622 23107",
     isHead: true,
   },
   {
-    name: "Branch Location 2",
-    // TODO: fill when a second location is finalised (or remove this card)
-    address: "TODO: BRANCH_ADDRESS",
-    phone: "PHONE_NUMBER",
-    hours: "WORKING_HOURS",
+    name: "Pace Computer College",
+    // from KSC admission posters (footer)
+    address: "Near Bus Stand, Kangayam - 638 701",
+    phone: "98652 22107, 93622 24107",
     isHead: false,
   },
 ];

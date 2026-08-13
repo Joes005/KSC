@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ExternalLink, Building2, Award, MapPin, Globe } from "lucide-react";
-import { UNIVERSITIES, type University } from "../data/universities";
+import type { University } from "../data/universities";
+import { useSiteData } from "../services/SiteDataContext";
 import { PageHeader } from "../components/common/PageHeader";
 import { Tabs } from "../components/common/Tabs";
 import { ProgrammeCards } from "../components/common/ProgrammeCards";
@@ -88,6 +89,7 @@ function UniversityProgrammes({ uni }: { uni: University }) {
 }
 
 export function Academic() {
+  const { data: { universities: UNIVERSITIES } } = useSiteData();
   return (
     <>
       {/* Page header */}

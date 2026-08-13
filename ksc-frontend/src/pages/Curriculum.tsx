@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import { BookOpen, FileText, ExternalLink, Info } from "lucide-react";
-import { CURRICULUM } from "../data/site-content";
-import { UNIVERSITIES } from "../data/universities";
+import { useSiteData } from "../services/SiteDataContext";
 import { SectionHeading } from "../components/common/SectionHeading";
 import { Accordion } from "../components/common/Accordion";
 import { PageHeader } from "../components/common/PageHeader";
 
 export function Curriculum() {
+  const { data: { curriculum: CURRICULUM, universities: UNIVERSITIES } } = useSiteData();
   return (
     <>
       {/* Page header */}

@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { MapPin, Phone, Mail, MessageCircle } from "lucide-react";
-import { SITE_CONFIG } from "../../data/site-content";
-import { UNIVERSITIES } from "../../data/universities";
+import { useSiteData } from "../../services/SiteDataContext";
 import { Logo } from "../brand/Logo";
 
 /* Brand glyphs inline */
@@ -29,6 +28,7 @@ const TwitterXIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 export function Footer() {
+  const { data: { settings: SITE_CONFIG, universities: UNIVERSITIES } } = useSiteData();
   const { contact, socials } = SITE_CONFIG;
 
   return (

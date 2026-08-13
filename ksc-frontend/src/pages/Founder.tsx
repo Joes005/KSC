@@ -1,8 +1,9 @@
-import { SITE_CONFIG, FOUNDER_MESSAGE } from "../data/site-content";
+import { useSiteData } from "../services/SiteDataContext";
 import { SectionHeading } from "../components/common/SectionHeading";
 import { PageHeader } from "../components/common/PageHeader";
 
 export function Founder() {
+  const { data: { settings: SITE_CONFIG, founder_message: FOUNDER_MESSAGE } } = useSiteData();
   return (
     <>
       {/* Page header */}

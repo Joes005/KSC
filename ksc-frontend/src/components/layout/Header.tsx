@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Phone, MessageCircle, Menu, X, ChevronDown, Mail } from "lucide-react";
-import { SITE_CONFIG } from "../../data/site-content";
+import { useSiteData } from "../../services/SiteDataContext";
 import { Logo } from "../brand/Logo";
 import { cn } from "../../utils/cn";
 
@@ -71,6 +71,7 @@ function DesktopDropdown({ item }: { item: NavItem }) {
 }
 
 export function Header() {
+  const { data: { settings: SITE_CONFIG } } = useSiteData();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const headerRef = useRef<HTMLElement>(null);

@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { X, ZoomIn, Camera } from "lucide-react";
-import { GALLERY } from "../data/gallery";
-import { SITE_CONFIG } from "../data/site-content";
+import { useSiteData } from "../services/SiteDataContext";
 import { PageHeader } from "../components/common/PageHeader";
 
 export function Gallery() {
+  const { data: { gallery_images: GALLERY, settings: SITE_CONFIG } } = useSiteData();
   const [lightbox, setLightbox] = useState<number | null>(null);
 
   return (

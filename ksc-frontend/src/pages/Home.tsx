@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useSiteData } from "../services/SiteDataContext";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
@@ -10,8 +11,18 @@ import {
   CalendarDays,
   MapPin,
   Phone,
-  Clock,
 } from "lucide-react";
+import {
+  CalendarRange,
+  BookOpen,
+  Library,
+  Headphones,
+  MonitorPlay,
+  MapPinned,
+  MonitorSmartphone,
+  Building2,
+} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import {
   SITE_CONFIG,
   HERO,
@@ -35,6 +46,18 @@ import { cn } from "../utils/cn";
 /* --------------------------------------------------------------------------- */
 /* HERO                                                                            */
 /* --------------------------------------------------------------------------- */
+const ICON_MAP: Record<string, LucideIcon> = {
+  Wallet,
+  CalendarRange,
+  BookOpen,
+  Library,
+  Headphones,
+  MonitorPlay,
+  MapPinned,
+  MonitorSmartphone,
+  Building2,
+};
+
 const HERO_IMAGES = [
   "/assets/user-photos/students.png",
   "/assets/gallery/ksc-10.jpg",
@@ -484,7 +507,9 @@ function FacilitiesGrid() {
           subtitle="Admission guidance, study material, exam support — all from your local study centre."
         />
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-3">
-          {FACILITIES.map(({ icon: Icon, image, title, description }) => (
+          {FACILITIES.map(({ icon, image, title, description }) => {
+            const Icon = typeof icon === "string" ? ICON_MAP[icon] ?? Building2 : icon;
+            return (
             <div key={title} className="card-hover p-5 text-center">
               <div className="mx-auto flex h-16 w-16 items-center justify-center overflow-hidden rounded-2xl bg-primary/10 text-primary shadow-sm border border-gray-100 transition-transform duration-300 hover:scale-110">
                 {image ? (
@@ -496,7 +521,8 @@ function FacilitiesGrid() {
               <h4 className="mt-4 font-bold text-ksc-dark">{title}</h4>
               <p className="mt-1.5 text-xs leading-relaxed text-ksc-ink/75">{description}</p>
             </div>
-          ))}
+            );
+          })}
         </div>
         <div className="mt-10 text-center">
           <Link to="/facilities" className="btn-outline">
@@ -571,7 +597,7 @@ function Branches() {
         <SectionHeading
           kicker="Visit Us"
           title="Our Centres"
-          subtitle="Walk in during working hours — our counsellors will help you at every step."
+          subtitle="Visit our centres — our counsellors will help you at every step."
         />
         <div className="grid gap-6 md:grid-cols-2">
           {BRANCHES.map((branch) => (
@@ -598,10 +624,6 @@ function Branches() {
                 <div className="flex items-center gap-3 text-ksc-ink/80">
                   <Phone className="h-4 w-4 shrink-0 text-primary/70" />
                   <p className="text-sm">{branch.phone}</p>
-                </div>
-                <div className="flex items-center gap-3 text-ksc-ink/80">
-                  <Clock className="h-4 w-4 shrink-0 text-primary/70" />
-                  <p className="text-sm">{branch.hours}</p>
                 </div>
               </div>
             </div>

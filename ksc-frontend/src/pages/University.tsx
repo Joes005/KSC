@@ -9,15 +9,15 @@ import {
   ArrowRight,
   GraduationCap,
 } from "lucide-react";
-import { UNIVERSITIES, getUniversityBySlug } from "../data/universities";
-import { SITE_CONFIG } from "../data/site-content";
+import { useSiteData } from "../services/SiteDataContext";
 import { PageHeader } from "../components/common/PageHeader";
 import { Tabs } from "../components/common/Tabs";
 import { ProgrammeCards } from "../components/common/ProgrammeCards";
 
 export function University() {
   const { id } = useParams<{ id: string }>();
-  const uni = getUniversityBySlug(id ?? "");
+  const { data: { universities: UNIVERSITIES, settings: SITE_CONFIG } } = useSiteData();
+  const uni = UNIVERSITIES.find((u) => u.id === id);
 
   if (!uni) {
     return <Navigate to="/academic" replace />;

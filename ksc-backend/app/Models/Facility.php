@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Facility extends Model
 {
-    //
+    protected $fillable = [
+        'title',
+        'description',
+        'image_path',
+        'icon',
+    ];
 }

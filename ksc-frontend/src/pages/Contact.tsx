@@ -1,9 +1,11 @@
-import { MapPin, Phone, Mail, MessageCircle, Clock } from "lucide-react";
-import { SITE_CONFIG, CONTACT_FORM_FIELDS } from "../data/site-content";
+import { MapPin, Phone, Mail, MessageCircle } from "lucide-react";
+import { CONTACT_FORM_FIELDS } from "../data/site-content";
+import { useSiteData } from "../services/SiteDataContext";
 import { SectionHeading } from "../components/common/SectionHeading";
 import { EnquiryForm } from "../components/common/EnquiryForm";
 
 export function Contact() {
+  const { data: { settings: SITE_CONFIG } } = useSiteData();
   const { contact } = SITE_CONFIG;
 
   const waUrl = `https://wa.me/${contact.whatsapp}?text=${encodeURIComponent(
@@ -19,8 +21,7 @@ export function Contact() {
           <p className="section-kicker">Contact Us</p>
           <h1 className="mt-2 text-3xl font-extrabold sm:text-4xl">We're here to help</h1>
           <p className="mt-3 max-w-2xl text-white/80">
-            Visit us in Karur, call, WhatsApp or send an enquiry — our counsellors respond quickly
-            during working hours.
+            Visit us in Karur, call, WhatsApp or send an enquiry — our counsellors respond quickly.
           </p>
         </div>
       </section>
@@ -84,11 +85,13 @@ export function Contact() {
 
               <div className="card-hover flex items-start gap-4 p-5">
                 <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                  <Clock className="h-5 w-5" />
+                  <Mail className="h-5 w-5" />
                 </span>
                 <div>
-                  <p className="font-bold text-ksc-dark">Working hours</p>
-                  <p className="mt-1 text-sm text-ksc-ink/85">{contact.workingHours}</p>
+                  <p className="font-bold text-ksc-dark">Email</p>
+                  <a href={`mailto:${contact.email}`} className="mt-1 block text-sm font-semibold text-primary hover:text-ksc-green-mid">
+                    {contact.email}
+                  </a>
                 </div>
               </div>
             </div>

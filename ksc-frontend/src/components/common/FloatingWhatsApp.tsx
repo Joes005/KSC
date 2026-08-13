@@ -1,7 +1,8 @@
 import { MessageCircle } from "lucide-react";
-import { SITE_CONFIG } from "../../data/site-content";
+import { useSiteData } from "../../services/SiteDataContext";
 
 export function FloatingWhatsApp() {
+  const { data: { settings: SITE_CONFIG } } = useSiteData();
   const message = encodeURIComponent(
     `Hello ${SITE_CONFIG.name}, I would like to know more about the programmes and admission process.`
   );

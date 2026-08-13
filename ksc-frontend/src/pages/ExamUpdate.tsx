@@ -1,10 +1,10 @@
 import { FileText, TicketCheck, ExternalLink, Megaphone } from "lucide-react";
-import { UNIVERSITIES } from "../data/universities";
-import { NEWS_EVENTS } from "../data/site-content";
+import { useSiteData } from "../services/SiteDataContext";
 import { SectionHeading } from "../components/common/SectionHeading";
 import { Accordion } from "../components/common/Accordion";
 
 export function ExamUpdate() {
+  const { data: { universities: UNIVERSITIES, news_events: NEWS_EVENTS } } = useSiteData();
   return (
     <>
       {/* Page header */}

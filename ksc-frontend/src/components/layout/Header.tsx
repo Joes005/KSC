@@ -13,14 +13,7 @@ interface NavItem {
 
 const NAV_ITEMS: NavItem[] = [
   { label: "Home", path: "/" },
-  {
-    label: "About",
-    children: [
-      { label: "About Us", path: "/about" },
-      { label: "Founder Message", path: "/founder" },
-      { label: "Chairman Message", path: "/chairman" },
-    ],
-  },
+  { label: "About", path: "/about" },
   { label: "Academic", path: "/academic" },
   { label: "Contact", path: "/contact" },
 ];

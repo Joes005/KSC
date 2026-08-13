@@ -162,7 +162,7 @@ export const UNIVERSITIES: University[] = [
       "State Open University, Govt. of Tamil Nadu · Approved by UGC-DEB · Accredited NAAC A+",
     address: "No. 577, Anna Salai, Saidapet, Chennai – 600015, Tamil Nadu",
     website: "www.tnou.ac.in",
-    logo: "https://upload.wikimedia.org/wikipedia/en/2/23/Tamil_Nadu_Open_University_Logo.png",
+    logo: "/assets/logo/Tamil_Nadu_Open_University_Logo_HD (2).png",
     categories: [
       {
         id: "ug",
@@ -237,7 +237,7 @@ export const UNIVERSITIES: University[] = [
     recognition: "UGC-DEB approved distance education · Accredited by NAAC",
     address: "Palkalaiperur, Tiruchirappalli – 620024, Tamil Nadu",
     website: "www.bdu.ac.in",
-    logo: "https://upload.wikimedia.org/wikipedia/en/b/b3/Bharathidasan_University_logo.png",
+    logo: "/assets/logo/Bharathidasan_University_Logo_HD (5).png",
     categories: [
       {
         id: "ug",
@@ -344,7 +344,7 @@ export const UNIVERSITIES: University[] = [
     recognition: "State University, Karaikudi · Centre for Distance and Online Education (CDOE) · UGC-DEB approved",
     address: "Alagappa Nagar, Karaikudi – 630003, Tamil Nadu",
     website: "www.alagappauniversity.ac.in",
-    logo: "https://upload.wikimedia.org/wikipedia/en/e/ec/Alagappa_University_logo.png",
+    logo: "/assets/logo/Alagappa_University_Logo_HD.png",
     categories: [
       {
         id: "ug",
@@ -451,7 +451,7 @@ export const UNIVERSITIES: University[] = [
     recognition: "State University · UGC-DEB Approved",
     address: "Tirunelveli, Tamil Nadu",
     website: "www.msuniv.ac.in",
-    logo: "https://upload.wikimedia.org/wikipedia/en/f/f6/Manonmaniam_Sundaranar_University_logo.png",
+    logo: "/assets/logo/Periyar_University_Logo_HD.png",
     categories: [], // Empty for now until courses are provided
     exam: {
       note: "Manonmaniam Sundaranar University publishes exam details on its official distance education portal.",

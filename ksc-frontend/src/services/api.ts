@@ -109,36 +109,45 @@ function mapBranches(list: any[]): typeof BRANCHES {
 }
 
 function mapUniversities(list: any[]): University[] {
-  return (list ?? []).map((u) => ({
-    id: u.slug ?? "",
-    name: u.name ?? "",
-    shortName: u.short_name ?? "",
-    academicYear: u.academic_year ?? "",
-    pattern: u.pattern || undefined,
-    recognition: u.recognition || undefined,
-    address: u.address || undefined,
-    website: u.website || undefined,
-    logo: String(u.logo ?? ""),
-    categories: (u.categories ?? []).map((c: any) => ({
-      id: c.slug ?? "",
-      label: c.label ?? "",
-      count: c.count ?? (c.programmes ?? []).length,
-      note: c.note || undefined,
-      programmes: (c.programmes ?? []).map((p: any) => ({
-        name: p.name ?? "",
-        medium: p.medium ?? "",
-        pattern: p.pattern,
-        duration: p.duration,
-        eligibility: p.eligibility,
+  return (list ?? []).map((u) => {
+    const staticUni = UNIVERSITIES.find((su) => su.id === u.slug);
+    const apiLogo = toAsset(u.logo);
+    // Prefer local images if the API provides empty or wikimedia links
+    const finalLogo = (apiLogo && !apiLogo.includes("wikimedia"))
+      ? apiLogo
+      : (staticUni?.logo || "");
+
+    return {
+      id: u.slug ?? "",
+      name: u.name ?? "",
+      shortName: u.short_name ?? "",
+      academicYear: u.academic_year ?? "",
+      pattern: u.pattern || undefined,
+      recognition: u.recognition || undefined,
+      address: u.address || undefined,
+      website: u.website || undefined,
+      logo: finalLogo,
+      categories: (u.categories ?? []).map((c: any) => ({
+        id: c.slug ?? "",
+        label: c.label ?? "",
+        count: c.count ?? (c.programmes ?? []).length,
+        note: c.note || undefined,
+        programmes: (c.programmes ?? []).map((p: any) => ({
+          name: p.name ?? "",
+          medium: p.medium ?? "",
+          pattern: p.pattern,
+          duration: p.duration,
+          eligibility: p.eligibility,
+        })),
       })),
-    })),
-    exam: {
-      note: u.exam_note || "",
-      hallTicketUrl: u.exam_hall_ticket_url || "",
-      timetableUrl: u.exam_timetable_url || "",
-      syllabusUrl: u.exam_syllabus_url || "",
-    },
-  }));
+      exam: {
+        note: u.exam_note || "",
+        hallTicketUrl: u.exam_hall_ticket_url || "",
+        timetableUrl: u.exam_timetable_url || "",
+        syllabusUrl: u.exam_syllabus_url || "",
+      },
+    };
+  });
 }
 
 /* ------------------------------------------------------------------ */
@@ -146,7 +155,7 @@ function mapUniversities(list: any[]): University[] {
 /* ------------------------------------------------------------------ */
 
 export async function fetchSiteData() {
-  let api: { settings?: FlatSettings; pages?: PageMap; [k: string]: any } = {};
+  let api: { settings?: FlatSettings; pages?: PageMap;[k: string]: any } = {};
 
   try {
     const response = await fetch(`${API_URL}/api/site-data`);

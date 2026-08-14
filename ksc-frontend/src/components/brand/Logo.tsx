@@ -25,7 +25,7 @@ export function Logo({ className = "h-14 w-14" }: LogoProps) {
       <img
         src={branding.logoSource}
         alt={`${SITE_CONFIG.shortName} logo`}
-        className={`rounded-full object-contain ${className}`}
+        className={`object-contain ${className}`}
       />
     );
   }

@@ -332,6 +332,48 @@ class DatabaseSeeder extends Seeder
                     'note' => 'This page links out to the official university syllabus PDFs for reference. If a link is missing or out of date, contact our centre for the latest copy.',
                 ],
             ],
+            'contact' => [
+                'reach_centre' => [
+                    'kicker' => 'Get in Touch',
+                    'title' => 'Reach the centre',
+                    'image' => '/assets/user-photos/branch-exterior.jpg',
+                    'mapEmbedUrl' => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15664.269411986427!2d78.0772274!3d10.9575936!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baa2fa1d5292eb5%3A0x6d8b2d4b9fa37b12!2sKarur%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1700000000000',
+                    'items' => [
+                        ['icon' => 'MapPin', 'title' => 'Visit us', 'value' => 'M.R.S. Plaza, 3rd Floor, 57-59, J-S-PS Complex, Near Mini Bus Stand, Karur - 1', 'link' => null, 'button_label' => null],
+                        ['icon' => 'Phone', 'title' => 'Call us', 'value' => '99651 07404', 'link' => 'tel:9965107404', 'button_label' => null],
+                        ['icon' => 'MessageCircle', 'title' => 'WhatsApp', 'value' => '', 'link' => 'https://wa.me/919965107404?text=Hello%20KARUR%20STUDY%20CENTER%2C%20I%20have%20a%20question%20about%20admissions.', 'button_label' => 'Chat on WhatsApp (919965107404)'],
+                        ['icon' => 'Mail', 'title' => 'Email', 'value' => 'Karurstudycentre1@gmail.com', 'link' => 'mailto:Karurstudycentre1@gmail.com', 'button_label' => null],
+                    ],
+                ],
+                'enquiry_form' => [
+                    'kicker' => 'Send an Enquiry',
+                    'title' => 'Tell us what you\'re looking for',
+                    'subtitle' => 'Fill in the form and we\'ll get back to you with programme options and admission guidance.',
+                    'submitLabel' => 'Send Enquiry',
+                ],
+                'contact_fields' => [
+                    ['name' => 'name', 'label' => 'Full Name', 'type' => 'text', 'placeholder' => 'Your full name', 'required' => true],
+                    ['name' => 'phone', 'label' => 'Phone Number', 'type' => 'tel', 'placeholder' => '10-digit mobile number', 'required' => true],
+                    ['name' => 'email', 'label' => 'Email Address', 'type' => 'email', 'placeholder' => 'you@example.com', 'required' => false],
+                    [
+                        'name' => 'programme',
+                        'label' => 'Programme Interested In',
+                        'type' => 'select',
+                        'placeholder' => 'Select a programme category…',
+                        'required' => true,
+                        'options' => [
+                            'UG (Undergraduate)',
+                            'PG (Postgraduate)',
+                            'Diploma',
+                            'Certificate',
+                            'Vocational / Skill Development',
+                            'Short Term Course',
+                            'Not sure yet — need guidance',
+                        ],
+                    ],
+                    ['name' => 'message', 'label' => 'Message', 'type' => 'textarea', 'placeholder' => 'How can we help you?', 'required' => false],
+                ],
+            ],
         ];
 
         foreach ($pages as $pageSlug => $sections) {

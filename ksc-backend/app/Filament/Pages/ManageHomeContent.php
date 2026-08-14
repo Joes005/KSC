@@ -10,8 +10,8 @@ use Filament\Pages\Page;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\Repeater;
-use Filament\Forms\Components\FileUpload;
 use Filament\Notifications\Notification;
 
 class ManageHomeContent extends Page implements HasForms
@@ -28,11 +28,24 @@ class ManageHomeContent extends Page implements HasForms
     public function mount(): void
     {
         $hero = PageContent::where('page_slug', 'home')->where('section_key', 'hero')->first();
-        $why = PageContent::where('page_slug', 'home')->where('section_key', 'why_distance')->first();
+        $whyDistance = PageContent::where('page_slug', 'home')->where('section_key', 'why_distance')->first();
+        $aboutSnapshot = PageContent::where('page_slug', 'home')->where('section_key', 'about_snapshot')->first();
+        $admissionSteps = PageContent::where('page_slug', 'home')->where('section_key', 'admission_steps')->first();
+
+        $aboutSnapshotContent = $aboutSnapshot ? $aboutSnapshot->content : [];
+        if (isset($aboutSnapshotContent['text']) && is_array($aboutSnapshotContent['text'])) {
+            $formattedText = [];
+            foreach ($aboutSnapshotContent['text'] as $p) {
+                $formattedText[] = is_string($p) ? ['text' => $p] : $p;
+            }
+            $aboutSnapshotContent['text'] = $formattedText;
+        }
 
         $this->form->fill([
-            'hero' => $hero ? json_decode($hero->content, true) : [],
-            'why_distance' => $why ? json_decode($why->content, true) : [],
+            'hero' => $hero ? $hero->content : [],
+            'why_distance' => $whyDistance ? $whyDistance->content : [],
+            'about_snapshot' => $aboutSnapshotContent,
+            'admission_steps' => $admissionSteps ? $admissionSteps->content : [],
         ]);
     }
 
@@ -41,26 +54,53 @@ class ManageHomeContent extends Page implements HasForms
         return $form
             ->schema([
                 Tabs::make('Home Content')->tabs([
-                    Tabs\Tab::make('Hero Slider')
+                    Tabs\Tab::make('Hero Section')
                         ->schema([
-                            Repeater::make('hero.slides')
+                            TextInput::make('hero.headline')->label('Headline')->required(),
+                            TextInput::make('hero.subHeadline')->label('Sub-headline')->required(),
+                            Textarea::make('hero.description')->label('Description')->rows(4)->required()->columnSpanFull(),
+                            Repeater::make('hero.ctas')
+                                ->label('Call-to-Action Buttons')
                                 ->schema([
-                                    FileUpload::make('image')->image()->directory('hero'),
-                                    TextInput::make('title'),
-                                    TextInput::make('highlight'),
-                                    Textarea::make('description'),
+                                    TextInput::make('label')->required(),
+                                    TextInput::make('to')->label('Link (URL or path)')->required(),
+                                    Toggle::make('primary')->label('Is Primary Button?')->inline(false),
                                 ])
+                                ->columns(3)
+                                ->columnSpanFull(),
                         ]),
-                    Tabs\Tab::make('Why Distance')
+                    Tabs\Tab::make('Why Distance Education')
                         ->schema([
-                            TextInput::make('why_distance.title'),
-                            Textarea::make('why_distance.subtitle'),
-                            Repeater::make('why_distance.features')
+                            Repeater::make('why_distance')
+                                ->label('Reasons')
                                 ->schema([
-                                    TextInput::make('icon'),
-                                    TextInput::make('title'),
-                                    Textarea::make('description'),
+                                    TextInput::make('title')->required(),
+                                    Textarea::make('description')->required(),
                                 ])
+                                ->columns(2)
+                                ->columnSpanFull(),
+                        ]),
+                    Tabs\Tab::make('About Snapshot')
+                        ->schema([
+                            TextInput::make('about_snapshot.readMoreLink')->label('Read More Link'),
+                            Repeater::make('about_snapshot.text')
+                                ->label('Summary Paragraphs')
+                                ->schema([
+                                    Textarea::make('text')->label('Paragraph')->required()->rows(3),
+                                ])
+                                ->columnSpanFull(),
+                        ]),
+                    Tabs\Tab::make('Admission Steps')
+                        ->schema([
+                            Repeater::make('admission_steps')
+                                ->label('Steps')
+                                ->schema([
+                                    TextInput::make('step')->label('Step Number (e.g. 01)')->required(),
+                                    TextInput::make('title')->label('Step Title')->required(),
+                                    Textarea::make('description')->label('Description')->required()->columnSpanFull(),
+                                ])
+                                ->columns(2)
+                                ->columnSpanFull(),
                         ]),
                 ])
             ])
@@ -72,16 +112,45 @@ class ManageHomeContent extends Page implements HasForms
         $data = $this->form->getState();
 
         if (isset($data['hero'])) {
+            // Ensure CTAs are saved as a clean list of arrays
+            if (isset($data['hero']['ctas'])) {
+                $data['hero']['ctas'] = array_values($data['hero']['ctas']);
+            }
             PageContent::updateOrCreate(
                 ['page_slug' => 'home', 'section_key' => 'hero'],
-                ['content' => json_encode($data['hero'])]
+                ['content' => $data['hero']]
             );
         }
 
         if (isset($data['why_distance'])) {
+            $content = array_values($data['why_distance']);
             PageContent::updateOrCreate(
                 ['page_slug' => 'home', 'section_key' => 'why_distance'],
-                ['content' => json_encode($data['why_distance'])]
+                ['content' => $content]
+            );
+        }
+
+        if (isset($data['about_snapshot'])) {
+            $text = [];
+            if (isset($data['about_snapshot']['text']) && is_array($data['about_snapshot']['text'])) {
+                foreach ($data['about_snapshot']['text'] as $p) {
+                    if (isset($p['text'])) $text[] = $p['text'];
+                    else $text[] = $p;
+                }
+            }
+            $data['about_snapshot']['text'] = $text;
+
+            PageContent::updateOrCreate(
+                ['page_slug' => 'home', 'section_key' => 'about_snapshot'],
+                ['content' => $data['about_snapshot']]
+            );
+        }
+
+        if (isset($data['admission_steps'])) {
+            $content = array_values($data['admission_steps']);
+            PageContent::updateOrCreate(
+                ['page_slug' => 'home', 'section_key' => 'admission_steps'],
+                ['content' => $content]
             );
         }
 

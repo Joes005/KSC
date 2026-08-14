@@ -16,4 +16,12 @@ class EditProgrammeCategory extends EditRecord
             Actions\DeleteAction::make(),
         ];
     }
+
+    public function getBreadcrumbs(): array
+    {
+        return [
+            \App\Filament\Resources\UniversityResource::getUrl('edit', ['record' => $this->record->university_id]) => 'University',
+            '' => 'Edit Category',
+        ];
+    }
 }

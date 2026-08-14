@@ -36,7 +36,7 @@ export function StickyActionBar() {
           rel={action.href.startsWith("/") ? undefined : "noopener noreferrer"}
           title={action.label}
           className={cn(
-            "flex h-12 w-12 items-center justify-center rounded-l-xl text-white shadow-xl transition-all hover:w-16 hover:-translate-x-1",
+            "flex h-12 w-12 items-center justify-center rounded-l-xl text-foreground shadow-xl transition-all hover:w-16 hover:-translate-x-1",
             action.className
           )}
         >

@@ -11,6 +11,8 @@ use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\TagsInput;
 use Filament\Notifications\Notification;
 
 class ManageAboutContent extends Page implements HasForms
@@ -28,10 +30,23 @@ class ManageAboutContent extends Page implements HasForms
     {
         $founder = PageContent::where('page_slug', 'founder')->where('section_key', 'message')->first();
         $chairman = PageContent::where('page_slug', 'chairman')->where('section_key', 'message')->first();
+        $aboutPage = PageContent::where('page_slug', 'about')->where('section_key', 'about_page')->first();
+        $visionMission = PageContent::where('page_slug', 'home')->where('section_key', 'vision_mission')->first();
+
+        $aboutPageContent = $aboutPage ? $aboutPage->content : [];
+        if (isset($aboutPageContent['body']) && is_array($aboutPageContent['body'])) {
+            $formattedBody = [];
+            foreach ($aboutPageContent['body'] as $p) {
+                $formattedBody[] = is_string($p) ? ['text' => $p] : $p;
+            }
+            $aboutPageContent['body'] = $formattedBody;
+        }
 
         $this->form->fill([
-            'founder' => $founder ? json_decode($founder->content, true) : [],
-            'chairman' => $chairman ? json_decode($chairman->content, true) : [],
+            'founder' => $founder ? $founder->content : [],
+            'chairman' => $chairman ? $chairman->content : [],
+            'about_page' => $aboutPageContent,
+            'vision_mission' => $visionMission ? $visionMission->content : [],
         ]);
     }
 
@@ -58,6 +73,31 @@ class ManageAboutContent extends Page implements HasForms
                             TextInput::make('chairman.name'),
                             TextInput::make('chairman.designation'),
                         ]),
+                    Tabs\Tab::make('About Page Details')
+                        ->schema([
+                            TextInput::make('about_page.establishedYear')->label('Established Year'),
+                            FileUpload::make('about_page.image')->label('Main Image')->image()->directory('about'),
+                            TagsInput::make('about_page.membership')->label('Membership & Recognitions')->columnSpanFull(),
+                            Repeater::make('about_page.body')
+                                ->label('Body Paragraphs')
+                                ->schema([
+                                    Textarea::make('text')->label('Paragraph Text')->required()->rows(3),
+                                ])
+                                ->columnSpanFull(),
+                        ]),
+                    Tabs\Tab::make('Vision, Mission & Values')
+                        ->schema([
+                            Textarea::make('vision_mission.vision')->label('Vision Statement')->columnSpanFull()->rows(3),
+                            TagsInput::make('vision_mission.mission')->label('Mission Points')->columnSpanFull(),
+                            Repeater::make('vision_mission.values')
+                                ->label('Core Values')
+                                ->schema([
+                                    TextInput::make('title')->label('Value Title')->required(),
+                                    Textarea::make('description')->label('Description')->required(),
+                                ])
+                                ->columns(2)
+                                ->columnSpanFull(),
+                        ]),
                 ])
             ])
             ->statePath('data');
@@ -70,14 +110,38 @@ class ManageAboutContent extends Page implements HasForms
         if (isset($data['founder'])) {
             PageContent::updateOrCreate(
                 ['page_slug' => 'founder', 'section_key' => 'message'],
-                ['content' => json_encode($data['founder'])]
+                ['content' => $data['founder']]
             );
         }
 
         if (isset($data['chairman'])) {
             PageContent::updateOrCreate(
                 ['page_slug' => 'chairman', 'section_key' => 'message'],
-                ['content' => json_encode($data['chairman'])]
+                ['content' => $data['chairman']]
+            );
+        }
+
+        if (isset($data['about_page'])) {
+            // Re-format body paragraphs from Repeater associative array to flat string array
+            $body = [];
+            if (isset($data['about_page']['body']) && is_array($data['about_page']['body'])) {
+                foreach ($data['about_page']['body'] as $p) {
+                    if (isset($p['text'])) $body[] = $p['text'];
+                    else $body[] = $p; // In case it was seeded as flat string array initially
+                }
+            }
+            $data['about_page']['body'] = $body;
+
+            PageContent::updateOrCreate(
+                ['page_slug' => 'about', 'section_key' => 'about_page'],
+                ['content' => $data['about_page']]
+            );
+        }
+
+        if (isset($data['vision_mission'])) {
+            PageContent::updateOrCreate(
+                ['page_slug' => 'home', 'section_key' => 'vision_mission'],
+                ['content' => $data['vision_mission']]
             );
         }
 

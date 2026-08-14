@@ -49,9 +49,15 @@ function applySettings<T>(defaults: T, flat: FlatSettings, prefix = "site"): T {
 function toAsset(path?: string | null): string {
   if (!path) return "";
   if (/^https?:\/\//.test(path)) return path;
-  if (path.startsWith("/storage/")) return `${API_URL}${path}`;
-  if (path.startsWith("storage/")) return `${API_URL}/storage/${path.slice("storage/".length)}`;
-  return path;
+  if (path.startsWith("/assets/")) return path;
+  
+  const backendUrl = API_URL || "http://localhost:8000";
+  
+  if (path.startsWith("/storage/")) return `${backendUrl}${path}`;
+  if (path.startsWith("storage/")) return `${backendUrl}/storage/${path.slice("storage/".length)}`;
+  
+  const cleanPath = path.startsWith("/") ? path.slice(1) : path;
+  return `${backendUrl}/storage/${cleanPath}`;
 }
 
 /** Load a JSON section stored under pages[pageKey][sectionKey]. */
@@ -175,6 +181,22 @@ export async function fetchSiteData() {
     : UNIVERSITIES;
 
   const afterAbout = pageSection(pages, "about", "about_page", ABOUT_SNAPSHOT);
+  if (afterAbout?.image) afterAbout.image = toAsset(afterAbout.image);
+
+  const founderMessage = pageSection(pages, "founder", "message", FOUNDER_MESSAGE);
+  if (founderMessage?.image) founderMessage.image = toAsset(founderMessage.image);
+
+  const chairmanMessage = pageSection(pages, "chairman", "message", CHAIRMAN_MESSAGE);
+  if (chairmanMessage?.image) chairmanMessage.image = toAsset(chairmanMessage.image);
+
+  const reachCentre = pageSection(pages, "contact", "reach_centre", {
+    kicker: "Get in Touch",
+    title: "Reach the centre",
+    image: "",
+    items: [],
+    mapEmbedUrl: "",
+  });
+  if (reachCentre?.image) reachCentre.image = toAsset(reachCentre.image);
 
   return {
     settings: applySettings(SITE_CONFIG, flat),
@@ -199,9 +221,19 @@ export async function fetchSiteData() {
     },
     vision_mission: pageSection(pages, "home", "vision_mission", VISION_MISSION_VALUES),
     admission_steps: pageSection(pages, "home", "admission_steps", ADMISSION_STEPS),
-    founder_message: pageSection(pages, "founder", "message", FOUNDER_MESSAGE),
-    chairman_message: pageSection(pages, "chairman", "message", CHAIRMAN_MESSAGE),
+    founder_message: founderMessage,
+    chairman_message: chairmanMessage,
     curriculum: pageSection(pages, "curriculum", "content", CURRICULUM),
+    contact_page: {
+      reach_centre: reachCentre,
+      enquiry_form: pageSection(pages, "contact", "enquiry_form", {
+        kicker: "",
+        title: "",
+        subtitle: "",
+        submitLabel: "",
+      }),
+      contact_fields: pageSection(pages, "contact", "contact_fields", []),
+    },
     pages,
   };
 }

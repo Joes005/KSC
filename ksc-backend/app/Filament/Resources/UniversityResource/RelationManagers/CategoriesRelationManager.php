@@ -53,7 +53,6 @@ class CategoriesRelationManager extends RelationManager
                     ->icon('heroicon-o-academic-cap')
                     ->color('success')
                     ->url(fn ($record) => \App\Filament\Resources\ProgrammeCategoryResource::getUrl('edit', ['record' => $record->id])),
-                Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([

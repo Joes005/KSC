@@ -5,6 +5,7 @@ import { Footer } from "./components/layout/Footer";
 import WhatsAppButton from './components/common/WhatsAppButton';
 import { StickyActionBar } from "./components/layout/StickyActionBar";
 import { ScrollToTop } from "./components/common/ScrollToTop";
+import { ThemeProvider } from './services/ThemeContext';
 
 import { Home } from "./pages/Home";
 import { About } from "./pages/About";
@@ -28,7 +29,7 @@ function AdminRedirect() {
 
 function App() {
   return (
-    <>
+    <ThemeProvider>
       <Router>
         <ScrollToTop />
         <div className="flex min-h-screen flex-col">
@@ -57,7 +58,7 @@ function App() {
         </div>
       </Router>
       <WhatsAppButton />
-    </>
+    </ThemeProvider>
   );
 }
 export default App;

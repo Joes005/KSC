@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { Phone, MessageCircle, Menu, X, ChevronDown, Mail } from "lucide-react";
+import { Phone, MessageCircle, Menu, X, ChevronDown, Mail, Sun, Moon } from "lucide-react";
 import { useSiteData } from "../../services/SiteDataContext";
+import { useTheme } from "../../services/ThemeContext";
 import { Logo } from "../brand/Logo";
 import { cn } from "../../utils/cn";
 
@@ -65,6 +66,7 @@ function DesktopDropdown({ item }: { item: NavItem }) {
 
 export function Header() {
   const { data: { settings: SITE_CONFIG } } = useSiteData();
+  const { theme, setTheme } = useTheme();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const headerRef = useRef<HTMLElement>(null);
@@ -166,6 +168,13 @@ export function Header() {
               {SITE_CONFIG.contact.phone}
             </span>
           </a>
+          <button
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            className="flex h-10 w-10 items-center justify-center rounded-full text-ksc-ink hover:bg-ksc-mist hover:text-primary transition-colors"
+            aria-label="Toggle theme"
+          >
+            {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+          </button>
           <Link to="/admissions" className="btn-gold">
             Admissions
           </Link>
@@ -233,6 +242,13 @@ export function Header() {
                 </NavLink>
               );
             })}
+            <button
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="mt-2 flex w-full items-center justify-center gap-2 rounded-md border border-ksc-green/10 px-3 py-3 text-sm font-semibold text-ksc-dark transition-colors hover:bg-ksc-mist"
+            >
+              {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+              {theme === "dark" ? "Light Mode" : "Dark Mode"}
+            </button>
             <Link to="/admissions" onClick={() => setMobileOpen(false)} className="btn-gold mt-4 w-full">
               Admissions
             </Link>

@@ -38,15 +38,15 @@ export default {
              gold   #EFA725  bright amber accent (SET-style CTAs)
              saffron#F97316  warm orange highlight
              navy   #0A1A33  deep navy headings/footer surfaces */
-          green: '#0E6B4E',
-          'green-mid': '#0A5640',
-          dark: '#0A1A33',
-          deep: '#071321',
-          mist: '#F4F6F8',
-          gold: '#EFA725',
-          saffron: '#F97316',
-          navy: '#0A1A33',
-          ink: '#33424E',
+          green: 'var(--ksc-green)',
+          'green-mid': 'var(--ksc-green-mid)',
+          dark: 'var(--ksc-dark)',
+          deep: 'var(--ksc-deep)',
+          mist: 'var(--ksc-mist)',
+          gold: 'var(--ksc-gold)',
+          saffron: 'var(--ksc-saffron)',
+          navy: 'var(--ksc-navy)',
+          ink: 'var(--ksc-ink)',
         }
       },
       fontFamily: {

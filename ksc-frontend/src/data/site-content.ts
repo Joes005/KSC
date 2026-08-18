@@ -451,3 +451,10 @@ export const ADMISSIONS_FORM_FIELDS: FormField[] = [
   },
   { name: "course", label: "Course / Programme", type: "text", placeholder: "e.g. B.A. Tamil, M.B.A., B.Com…", required: true },
 ];
+
+export const USER_UPDATE_MODAL = {
+  enabled: true,
+  title: "USER UPDATE",
+  message: "Important updates or notifications will be displayed here.",
+  imageUrl: "", // Set an image URL like "/assets/gallery/ksc-01.jpg" to display an image in the modal
+};

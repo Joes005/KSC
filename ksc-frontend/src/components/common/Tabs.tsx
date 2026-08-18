@@ -51,8 +51,8 @@ export function Tabs({ tabs, defaultActive, onChange, children, className }: Tab
               className={cn(
                 "flex shrink-0 items-center gap-1.5 rounded-full border px-5 py-2.5 text-sm font-semibold transition-all duration-300",
                 isActive
-                  ? "border-primary bg-primary text-white shadow-md ring-4 ring-primary/10"
-                  : "border-gray-200 bg-white text-ksc-dark hover:border-primary/40 hover:bg-primary/5 hover:text-primary hover:-translate-y-0.5 hover:shadow-sm"
+                  ? "border-secondary bg-secondary text-ksc-navy-dark shadow-md ring-4 ring-secondary/20"
+                  : "border-white/10 bg-white/5 text-white/80 hover:border-secondary/40 hover:bg-secondary/10 hover:text-secondary hover:-translate-y-0.5 hover:shadow-sm"
               )}
             >
               {tab.label}
@@ -60,7 +60,7 @@ export function Tabs({ tabs, defaultActive, onChange, children, className }: Tab
                 <span
                   className={cn(
                     "inline-flex h-5 min-w-5 items-center justify-center rounded-full px-1.5 text-[11px] font-bold shadow-sm",
-                    isActive ? "bg-white/20 text-white" : "bg-ksc-mist text-primary"
+                    isActive ? "bg-ksc-navy-dark/20 text-ksc-navy-dark" : "bg-white/10 text-white/60"
                   )}
                 >
                   {tab.badge}

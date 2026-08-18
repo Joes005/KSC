@@ -53,7 +53,7 @@ export function Admissions() {
       </section>
 
       {/* Steps */}
-      <section className="bg-white py-10 lg:py-16">
+      <section className="bg-white/5 py-10 lg:py-16">
         <div className="container-site">
           <SectionHeading kicker="How to Apply" title="Your admission journey in four steps" />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -61,13 +61,13 @@ export function Admissions() {
               const Icon = stepIcons[i] ?? FileDown;
               return (
                 <div key={step.step} className="card-hover p-6 text-center">
-                  <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-primary text-white">
+                  <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-ksc-navy-dark text-white">
                     <Icon className="h-7 w-7" />
                   </span>
-                  <h3 className="mt-4 font-bold text-ksc-dark">
+                  <h3 className="mt-4 font-bold text-white">
                     {step.step}. {step.title}
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-ksc-ink/80">{step.description}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-white/70">{step.description}</p>
                 </div>
               );
             })}
@@ -76,7 +76,7 @@ export function Admissions() {
       </section>
 
       {/* Flyer + downloads */}
-      <section className="bg-ksc-mist/60 py-10 lg:py-16">
+      <section className="bg-ksc-navy py-10 lg:py-16">
         <div className="container-site max-w-5xl mx-auto">
           <div>
             <SectionHeading
@@ -92,12 +92,12 @@ export function Admissions() {
                 rel="noopener noreferrer"
                 className="card-hover flex items-center gap-4 p-5"
               >
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-ksc-navy-dark/10 text-secondary">
                   <Download className="h-6 w-6" />
                 </span>
                 <span>
-                  <span className="block font-bold text-ksc-dark">Alagappa University</span>
-                  <span className="text-xs text-ksc-ink/70">CDOE Prospectus — AY 2026 (PDF)</span>
+                  <span className="block font-bold text-white">Alagappa University</span>
+                  <span className="text-xs text-white/60">CDOE Prospectus — AY 2026 (PDF)</span>
                 </span>
               </a>
               <a
@@ -106,12 +106,12 @@ export function Admissions() {
                 rel="noopener noreferrer"
                 className="card-hover flex items-center gap-4 p-5"
               >
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-ksc-navy-dark/10 text-secondary">
                   <Download className="h-6 w-6" />
                 </span>
                 <span>
-                  <span className="block font-bold text-ksc-dark">Bharathiar University</span>
-                  <span className="text-xs text-ksc-ink/70">AY 2026-27 Admission (PDF)</span>
+                  <span className="block font-bold text-white">Bharathiar University</span>
+                  <span className="text-xs text-white/60">AY 2026-27 Admission (PDF)</span>
                 </span>
               </a>
 
@@ -121,12 +121,12 @@ export function Admissions() {
                 rel="noopener noreferrer"
                 className="card-hover flex items-center gap-4 p-5"
               >
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-ksc-navy-dark/10 text-secondary">
                   <Download className="h-6 w-6" />
                 </span>
                 <span>
-                  <span className="block font-bold text-ksc-dark">Manonmaniam Sundaranar University</span>
-                  <span className="text-xs text-ksc-ink/70">AY 2026 Admission Flyer (PDF)</span>
+                  <span className="block font-bold text-white">Manonmaniam Sundaranar University</span>
+                  <span className="text-xs text-white/60">AY 2026 Admission Flyer (PDF)</span>
                 </span>
               </a>
 
@@ -136,16 +136,16 @@ export function Admissions() {
                 rel="noopener noreferrer"
                 className="card-hover flex items-center gap-4 p-5"
               >
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-ksc-navy-dark/10 text-secondary">
                   <Download className="h-6 w-6" />
                 </span>
                 <span>
-                  <span className="block font-bold text-ksc-dark">Tamilnadu Open University</span>
-                  <span className="text-xs text-ksc-ink/70">AY 2026 Admission Flyer (PDF)</span>
+                  <span className="block font-bold text-white">Tamilnadu Open University</span>
+                  <span className="text-xs text-white/60">AY 2026 Admission Flyer (PDF)</span>
                 </span>
               </a>
             </div>
-            <p className="mt-8 text-center text-sm text-ksc-ink/70 max-w-2xl mx-auto">
+            <p className="mt-8 text-center text-sm text-white/60 max-w-2xl mx-auto">
               Not sure which programme suits you? Talk to our counsellors — we'll point you to the right
               course and documents before you apply.
             </p>
@@ -154,23 +154,23 @@ export function Admissions() {
       </section>
 
       {/* Eligibility summary */}
-      <section className="bg-ksc-mist/60 py-10 lg:py-16">
+      <section className="bg-ksc-navy py-10 lg:py-16">
         <div className="container-site">
           <SectionHeading kicker="Eligibility at a Glance" title="Who can apply" />
           <div className="mx-auto grid max-w-4xl gap-4 sm:grid-cols-2">
             {ELIGIBILITY_SUMMARY.map((item) => (
               <div key={item.level} className="card-hover p-5">
                 <div className="flex items-center gap-2">
-                  <BadgeCheck className="h-5 w-5 shrink-0 text-primary" />
-                  <h3 className="font-bold text-ksc-dark">{item.level}</h3>
+                  <BadgeCheck className="h-5 w-5 shrink-0 text-secondary" />
+                  <h3 className="font-bold text-white">{item.level}</h3>
                 </div>
-                <p className="mt-2 text-sm leading-relaxed text-ksc-ink/85">{item.detail}</p>
+                <p className="mt-2 text-sm leading-relaxed text-white/70">{item.detail}</p>
               </div>
             ))}
           </div>
-          <p className="mx-auto mt-6 max-w-4xl text-center text-sm text-ksc-ink/70">
+          <p className="mx-auto mt-6 max-w-4xl text-center text-sm text-white/60">
             Final eligibility is decided by the respective university. Not sure you qualify?{" "}
-            <Link to="/contact" className="font-semibold text-primary hover:underline">
+            <Link to="/contact" className="font-semibold text-secondary hover:underline">
               Ask our counsellors
             </Link>{" "}
             — we verify every case before you apply.
@@ -179,7 +179,7 @@ export function Admissions() {
       </section>
 
       {/* Apply form + universities sidebar */}
-      <section className="bg-white py-10 lg:py-16">
+      <section className="bg-white/5 py-10 lg:py-16">
         <div className="container-site grid gap-10 lg:grid-cols-3">
           <div className="lg:col-span-2">
             <SectionHeading
@@ -203,18 +203,18 @@ export function Admissions() {
                     className="card-hover flex items-center justify-between gap-3 p-5"
                   >
                     <span>
-                      <span className="block font-bold text-ksc-dark">{uni.name}</span>
-                      <span className="text-xs text-ksc-ink/70">
+                      <span className="block font-bold text-white">{uni.name}</span>
+                      <span className="text-xs text-white/60">
                         {uni.academicYear} · {uni.categories.length} programme categories
                       </span>
                     </span>
-                    <ArrowRight className="h-5 w-5 shrink-0 text-primary" />
+                    <ArrowRight className="h-5 w-5 shrink-0 text-secondary" />
                   </Link>
                 </li>
               ))}
             </ul>
 
-            <div className="card-hover mt-6 bg-primary p-6 text-white">
+            <div className="card-hover mt-6 bg-ksc-navy-dark p-6 text-white">
               <CheckCircle2 className="h-8 w-8 text-ksc-gold" />
               <h3 className="mt-3 text-lg font-bold">Documents you'll usually need</h3>
               <ul className="mt-3 space-y-1.5 text-sm text-white/85">

@@ -10,13 +10,13 @@ export function Gallery() {
   return (
     <>
       {/* Page header */}
-      <PageHeader 
+      <PageHeader bgImage="/assets/gallery/ksc-01.jpg" 
         title={`Inside ${SITE_CONFIG.shortName}`} 
         breadcrumb={[{ label: "Home", to: "/" }, { label: "Gallery" }]} 
       />
 
       {/* Photo grid */}
-      <section className="bg-white py-10 lg:py-16">
+      <section className="bg-ksc-navy py-10 lg:py-16">
         <div className="container-site">
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {GALLERY.map((item, i) => (
@@ -25,25 +25,25 @@ export function Gallery() {
                 className="card-hover group relative cursor-pointer overflow-hidden"
                 onClick={() => setLightbox(i)}
               >
-                <div className="relative aspect-[4/3] overflow-hidden bg-ksc-mist">
+                <div className="relative aspect-[4/3] overflow-hidden bg-white/5">
                   <img
                     src={item.src}
                     alt={item.alt}
                     loading="lazy"
                     className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                   />
-                  <span className="absolute inset-0 flex items-center justify-center bg-ksc-dark/0 transition-colors group-hover:bg-ksc-dark/30">
+                  <span className="absolute inset-0 flex items-center justify-center bg-ksc-navy-dark/0 transition-colors group-hover:bg-ksc-navy-dark/40">
                     <ZoomIn className="h-8 w-8 text-white opacity-0 transition-opacity group-hover:opacity-100" />
                   </span>
                 </div>
-                <figcaption className="flex items-center gap-2 px-4 py-3 text-sm font-semibold text-ksc-dark">
-                  <Camera className="h-4 w-4 shrink-0 text-primary" /> {item.caption}
+                <figcaption className="flex items-center gap-2 px-4 py-3 text-sm font-semibold text-white/90">
+                  <Camera className="h-4 w-4 shrink-0 text-secondary" /> {item.caption}
                 </figcaption>
               </figure>
             ))}
           </div>
 
-          <p className="mt-8 text-center text-xs text-ksc-ink/50">
+          <p className="mt-8 text-center text-xs text-white/50">
             Real photos from the Karur Study Center — walk in during working hours and see our services
             first-hand.
           </p>

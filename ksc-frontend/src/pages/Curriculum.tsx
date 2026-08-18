@@ -10,7 +10,7 @@ export function Curriculum() {
   return (
     <>
       {/* Page header */}
-      <PageHeader 
+      <PageHeader bgImage="/assets/gallery/ksc-10.jpg" 
         title="Curriculum & Syllabus" 
         breadcrumb={[{ label: "Home", to: "/" }, { label: "Curriculum" }]} 
       />

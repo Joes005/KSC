@@ -46,17 +46,16 @@ export function EnquiryForm({ fields, submitLabel, idPrefix, className }: Enquir
 
   if (status === "done") {
     return (
-      <div className="rounded-xl border border-primary/30 bg-primary/5 p-8 text-center">
-        <CheckCircle2 className="mx-auto h-12 w-12 text-primary" />
-        <h3 className="mt-4 text-xl font-bold text-ksc-dark">Thank you! Request received.</h3>
-        <p className="mt-2 text-sm text-ksc-ink/80">
-          Our counsellor will reach out to you shortly. (Form is wired to a placeholder endpoint — we&apos;ll
-          notify you on submission once the backend is connected.)
+      <div className="rounded-xl border border-secondary/30 bg-secondary/5 p-8 text-center shadow-glow">
+        <CheckCircle2 className="mx-auto h-12 w-12 text-secondary" />
+        <h3 className="mt-4 text-xl font-bold text-white">Thank you! Request received.</h3>
+        <p className="mt-2 text-sm text-white/70">
+          Our counsellor will reach out to you shortly.
         </p>
         <button
           type="button"
           onClick={() => setStatus("idle")}
-          className="btn-outline mt-6"
+          className="btn-outline mt-6 w-full"
         >
           Submit another enquiry
         </button>
@@ -65,15 +64,16 @@ export function EnquiryForm({ fields, submitLabel, idPrefix, className }: Enquir
   }
 
   return (
-    <form onSubmit={handleSubmit} className={cn("space-y-4", className)}>
+    <form onSubmit={handleSubmit} className={cn("space-y-5", className)}>
       {fields.map((field) => {
         const id = `${idPrefix}-${field.name}`;
-        const base = "w-full rounded-md border border-input bg-white px-3 py-2.5 text-sm focus:border-primary focus:ring-2 focus:ring-ring focus:outline-none";
+        // Premium Dark Theme Input Styling
+        const base = "w-full rounded-lg border border-white/10 bg-ksc-navy-dark px-4 py-3 text-sm text-white placeholder-white/30 focus:border-secondary focus:ring-2 focus:ring-secondary/20 focus:outline-none transition-all shadow-inner";
         return (
           <div key={field.name}>
-            <label htmlFor={id} className="mb-1.5 block text-sm font-semibold text-ksc-dark">
+            <label htmlFor={id} className="mb-2 block text-sm font-semibold text-white/90">
               {field.label}
-              {field.required && <span className="text-ksc-saffron"> *</span>}
+              {field.required && <span className="text-secondary ml-1">*</span>}
             </label>
             {field.type === "textarea" ? (
               <textarea
@@ -87,7 +87,7 @@ export function EnquiryForm({ fields, submitLabel, idPrefix, className }: Enquir
               <Select id={id} name={field.name} className={base}>
                 <option value="">{field.placeholder ?? "Select…"}</option>
                 {(field.options ?? []).map((opt) => (
-                  <option key={opt} value={opt}>
+                  <option key={opt} value={opt} className="bg-ksc-navy-dark text-white">
                     {opt}
                   </option>
                 ))}
@@ -98,14 +98,14 @@ export function EnquiryForm({ fields, submitLabel, idPrefix, className }: Enquir
           </div>
         );
       })}
-      <button type="submit" disabled={status === "submitting"} className="btn-gold w-full disabled:opacity-60">
+      <button type="submit" disabled={status === "submitting"} className="btn-gold w-full py-3.5 mt-2 disabled:opacity-60 disabled:hover:scale-100 disabled:hover:shadow-none text-base">
         {status === "submitting" ? (
           <>
-            <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Submitting…
+            <Loader2 className="mr-2 h-5 w-5 animate-spin" /> Submitting…
           </>
         ) : (
           <>
-            <Send className="mr-2 h-4 w-4" /> {submitLabel}
+            <Send className="mr-2 h-5 w-5" /> {submitLabel}
           </>
         )}
       </button>

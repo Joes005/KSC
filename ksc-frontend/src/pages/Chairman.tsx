@@ -7,7 +7,7 @@ export function Chairman() {
   return (
     <>
       {/* Page header */}
-      <PageHeader 
+      <PageHeader bgImage="/assets/gallery/ksc-06.jpg" 
         title="Chairman Message" 
         breadcrumb={[{ label: "Home", to: "/" }, { label: "Chairman Message" }]} 
       />

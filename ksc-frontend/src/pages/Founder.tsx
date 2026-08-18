@@ -7,7 +7,7 @@ export function Founder() {
   return (
     <>
       {/* Page header */}
-      <PageHeader 
+      <PageHeader bgImage="/assets/gallery/ksc-05.jpg" 
         title="Founder Message" 
         breadcrumb={[{ label: "Home", to: "/" }, { label: "Founder Message" }]} 
       />

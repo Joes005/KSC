@@ -29,42 +29,50 @@ export default {
           foreground: "hsl(var(--accent-foreground))",
         },
         card: {
-          DEFAULT: "hsl(var(--background))",
-          foreground: "hsl(var(--foreground))",
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
         },
         ksc: {
-          /* KSC brand palette — SET College-inspired but green-branded
-             green  #0E6B4E  primary (logo green)
-             gold   #EFA725  bright amber accent (SET-style CTAs)
-             saffron#F97316  warm orange highlight
-             navy   #0A1A33  deep navy headings/footer surfaces */
-          green: 'var(--ksc-green)',
-          'green-mid': 'var(--ksc-green-mid)',
-          dark: 'var(--ksc-dark)',
-          deep: 'var(--ksc-deep)',
-          mist: 'var(--ksc-mist)',
-          gold: 'var(--ksc-gold)',
-          saffron: 'var(--ksc-saffron)',
+          /* New Premium Dark Education Theme */
           navy: 'var(--ksc-navy)',
+          'navy-mid': 'var(--ksc-navy-mid)',
+          'navy-dark': 'var(--ksc-navy-dark)',
+          gold: 'var(--ksc-gold)',
+          'gold-light': 'var(--ksc-gold-light)',
           ink: 'var(--ksc-ink)',
+          muted: 'var(--ksc-muted)',
+          
+          /* Keeping old var names around just in case to not break build immediately, mapping to new colors */
+          green: 'var(--ksc-navy)',
+          'green-mid': 'var(--ksc-navy-mid)',
+          dark: 'var(--ksc-navy-dark)',
+          deep: 'var(--ksc-navy-dark)',
+          mist: 'var(--ksc-navy-mid)',
+          saffron: 'var(--ksc-gold)',
         }
       },
       fontFamily: {
-        sans: ['Outfit', 'sans-serif'],
-        heading: ['"Space Grotesk"', 'sans-serif'],
+        sans: ['"Inter"', 'sans-serif'],
+        heading: ['"Plus Jakarta Sans"', 'sans-serif'],
       },
       boxShadow: {
-        soft: '0 8px 30px rgba(10, 26, 51, 0.08)',
-        lift: '0 16px 40px rgba(10, 26, 51, 0.14)',
+        soft: '0 8px 30px rgba(0, 0, 0, 0.12)',
+        lift: '0 16px 40px rgba(0, 0, 0, 0.24)',
+        glow: '0 0 20px rgba(224, 180, 55, 0.15)',
       },
       keyframes: {
         marqueeVertical: {
-          '0%': { transform: 'translateY(100%)' },
-          '100%': { transform: 'translateY(-100%)' },
+          '0%': { transform: 'translateY(0%)' },
+          '100%': { transform: 'translateY(-50%)' },
         },
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-10px)' },
+        }
       },
       animation: {
         marqueeVertical: 'marqueeVertical 25s linear infinite',
+        float: 'float 6s ease-in-out infinite',
       },
     },
   },

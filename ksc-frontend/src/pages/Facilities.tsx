@@ -32,7 +32,7 @@ export function Facilities() {
   return (
     <>
       {/* Page header */}
-      <PageHeader 
+      <PageHeader bgImage="/assets/gallery/ksc-11.jpg" 
         title={`Facilities & Services at ${SITE_CONFIG.shortName}`} 
         breadcrumb={[{ label: "Home", to: "/" }, { label: "Facilities" }]} 
       />

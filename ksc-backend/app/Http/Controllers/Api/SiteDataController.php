@@ -12,6 +12,8 @@ use App\Models\Branch;
 use App\Models\PageContent;
 use App\Models\University;
 
+use App\Models\UserUpdatePoster;
+
 class SiteDataController extends Controller
 {
     public function index()
@@ -31,6 +33,7 @@ class SiteDataController extends Controller
             'gallery_images' => GalleryImage::orderBy('sort_order')->get(),
             'branches' => Branch::orderBy('sort_order')->get(),
             'universities' => University::with(['categories.programmes'])->get(),
+            'user_update_posters' => UserUpdatePoster::where('is_active', true)->orderBy('sort_order')->get(),
             'pages' => $pages,
         ]);
     }

@@ -77,15 +77,15 @@ export function Admissions() {
 
       {/* Flyer + downloads */}
       <section className="bg-ksc-mist/60 py-10 lg:py-16">
-        <div className="container-site grid items-center gap-10 lg:grid-cols-2">
-          <div className="order-2 lg:order-1">
+        <div className="container-site max-w-5xl mx-auto">
+          <div>
             <SectionHeading
-              align="left"
+              align="center"
               kicker="Download"
               title="University prospectus & admission details"
-              subtitle="Bring the flyers and prospectus below, or download them here. All three universities admit through our centre."
+              subtitle="Bring the flyers and prospectus below, or download them here. All four universities admit through our centre."
             />
-            <div className="mt-6 grid gap-4 sm:grid-cols-2">
+            <div className="mt-10 grid gap-4 sm:grid-cols-2">
               <a
                 href="/pdf/ALU-CDOE-Prospectus-AY-2026.pdf"
                 target="_blank"
@@ -128,21 +128,25 @@ export function Admissions() {
                   <span className="text-xs text-ksc-ink/70">AY 2026 Admission Flyer (Image)</span>
                 </span>
               </a>
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="card-hover flex items-center gap-4 p-5"
+              >
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                  <Download className="h-6 w-6" />
+                </span>
+                <span>
+                  <span className="block font-bold text-ksc-dark">Manonmaniam Sundaranar University</span>
+                  <span className="text-xs text-ksc-ink/70">AY 2026 Admission Flyer (PDF)</span>
+                </span>
+              </a>
             </div>
-            <p className="mt-4 text-xs text-ksc-ink/60">
+            <p className="mt-8 text-center text-sm text-ksc-ink/70 max-w-2xl mx-auto">
               Not sure which programme suits you? Talk to our counsellors — we'll point you to the right
               course and documents before you apply.
             </p>
-          </div>
-          <div className="order-1 lg:order-2 mx-auto w-full max-w-sm">
-            <div className="overflow-hidden rounded-xl border border-ksc-green/15 bg-white shadow-soft">
-              <img
-                src="/assets/gallery/tnou-ay2026.jpg"
-                alt="TNOU — Academic Year 2026 admission flyer"
-                loading="lazy"
-                className="w-full object-cover"
-              />
-            </div>
           </div>
         </div>
       </section>

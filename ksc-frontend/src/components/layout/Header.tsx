@@ -16,6 +16,7 @@ const NAV_ITEMS: NavItem[] = [
   { label: "Home", path: "/" },
   { label: "About", path: "/about" },
   { label: "Academic", path: "/academic" },
+  { label: "Gallery", path: "/gallery" },
   { label: "Contact", path: "/contact" },
 ];
 
@@ -87,7 +88,7 @@ export function Header() {
   return (
     <header ref={headerRef} className="sticky top-0 z-50 w-full border-b border-ksc-green/10 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/75">
       {/* Top bar */}
-      <div className="bg-ksc-dark text-white/80">
+      <div className="hidden bg-ksc-dark dark:bg-ksc-deep text-white/80 lg:block">
         <div className="container-site flex flex-col items-center justify-between py-2 text-xs md:flex-row">
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
             <a href={`mailto:${SITE_CONFIG.contact.email}`} className="flex items-center gap-1.5 transition-colors hover:text-white">
@@ -127,14 +128,14 @@ export function Header() {
       </div>
 
       {/* Main bar */}
-      <div className="container-site flex h-20 items-center justify-between gap-4">
-        <Link to="/" className="flex items-center gap-3" aria-label={`${SITE_CONFIG.name} home`}>
-          <Logo className="h-14 w-14 rounded-full ring-2 ring-ksc-gold/40" />
+      <div className="container-site flex h-16 sm:h-20 items-center justify-between gap-2 sm:gap-4">
+        <Link to="/" className="flex items-center gap-2 sm:gap-3" aria-label={`${SITE_CONFIG.name} home`}>
+          <Logo className="h-12 w-12 sm:h-16 sm:w-16 flex-shrink-0 rounded-full ring-2 ring-ksc-gold/40 shadow-sm" />
           <span className="flex flex-col leading-tight">
-            <span className="font-heading text-lg font-bold tracking-tight text-ksc-navy sm:text-xl">
+            <span className="font-heading text-base sm:text-lg font-bold tracking-tight text-ksc-navy sm:text-xl">
               {SITE_CONFIG.name}
             </span>
-            <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-ksc-gold">
+            <span className="hidden sm:block text-[11px] font-semibold uppercase tracking-[0.18em] text-ksc-gold">
               {SITE_CONFIG.tagline}
             </span>
           </span>

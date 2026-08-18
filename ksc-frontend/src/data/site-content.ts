@@ -81,7 +81,7 @@ export const HERO = {
   headline: "Karur Study Center",
   subHeadline: "Your trusted study centre for distance education",
   description:
-    "Get expert admission guidance for UG, PG, Diploma, Certificate and Vocational programmes from Tamil Nadu Open University (TNOU), Bharathidasan University (BDU) and Alagappa University (ALU) — all from right here in Karur, with continuous support through exams and results.",
+    "Get expert admission guidance for UG, PG, Diploma, Certificate and Vocational programmes from Tamil Nadu Open University (TNOU), Bharathidasan University (BDU), Alagappa University (ALU), and Manonmaniam Sundaranar University (MSU) — all from right here in Karur, with continuous support through exams and results.",
   ctas: [
     { label: "Explore Programmes", to: "/academic", primary: true },
     { label: "Apply Now", to: "/admissions", primary: false },
@@ -373,6 +373,12 @@ export const BRANCHES = [
     phone: "98652 22107, 93622 24107",
     isHead: false,
   },
+  {
+    name: "S.S. Institute",
+    address: "75/38, M.G.M Road, Raja Complex, 2nd Floor, Opposite Bus Stand, Dindigul - 3.",
+    phone: "90872 22107, 90472 22107",
+    isHead: false,
+  },
 ];
 
 /* =========================================================================== */
@@ -380,10 +386,10 @@ export const BRANCHES = [
 /* =========================================================================== */
 
 export const UNIVERSITY_LOGOS = [
-  { name: "Tamil Nadu Open University", short: "TNOU", url: "#", image: "" }, // TODO: logo
-  { name: "Bharathidasan University", short: "BDU", url: "#", image: "" }, // TODO: logo
   { name: "Alagappa University", short: "ALU", url: "#", image: "" }, // TODO: logo
+  { name: "Bharathidasan University", short: "BDU", url: "#", image: "" }, // TODO: logo
   { name: "Manonmaniam Sundaranar University", short: "MSU", url: "#", image: "" }, // TODO: logo
+  { name: "Tamil Nadu Open University", short: "TNOU", url: "#", image: "" }, // TODO: logo
 ];
 
 /* =========================================================================== */
@@ -437,8 +443,8 @@ export const ADMISSIONS_FORM_FIELDS: FormField[] = [
     options: [
       "Alagappa University (ALU) — CDOE",
       "Bharathidasan University (BDU)",
-      "Tamil Nadu Open University (TNOU)",
       "Manonmaniam Sundaranar University (MSU)",
+      "Tamil Nadu Open University (TNOU)",
     ],
   },
   { name: "course", label: "Course / Programme", type: "text", placeholder: "e.g. B.A. Tamil, M.B.A., B.Com…", required: true },

@@ -22,11 +22,16 @@ export function Logo({ className = "h-14 w-14" }: LogoProps) {
 
   if (branding.useImage) {
     return (
-      <img
-        src={branding.logoSource}
-        alt={`${SITE_CONFIG.shortName} logo`}
-        className={`object-contain ${className}`}
-      />
+      <div
+        className={`flex-shrink-0 flex items-center justify-center overflow-hidden ${className}`}
+        style={{ backgroundColor: '#ffffff' }}
+      >
+        <img
+          src={branding.logoSource}
+          alt={`${SITE_CONFIG.name} logo`}
+          className="h-full w-full object-cover scale-[1.10]"
+        />
+      </div>
     );
   }
 

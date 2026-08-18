@@ -57,6 +57,15 @@ export default {
         soft: '0 8px 30px rgba(10, 26, 51, 0.08)',
         lift: '0 16px 40px rgba(10, 26, 51, 0.14)',
       },
+      keyframes: {
+        marqueeVertical: {
+          '0%': { transform: 'translateY(100%)' },
+          '100%': { transform: 'translateY(-100%)' },
+        },
+      },
+      animation: {
+        marqueeVertical: 'marqueeVertical 25s linear infinite',
+      },
     },
   },
   plugins: [],

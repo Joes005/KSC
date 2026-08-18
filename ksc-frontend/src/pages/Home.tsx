@@ -85,14 +85,22 @@ function Hero() {
             <CalendarDays className="h-4 w-4" />
             {SITE_CONFIG.admissionOpen}
           </span>
-          <h1 className="mt-6 text-3xl font-extrabold leading-tight text-white sm:text-5xl lg:text-6xl">
+          <h1 className="mt-6 mb-2 text-[44px] sm:text-6xl lg:text-7xl font-heading font-black leading-tight text-ksc-gold tracking-tight">
             {HERO.headline}
-            <span className="mt-2 block text-2xl font-bold text-ksc-gold sm:text-4xl">
+            <span className="mt-4 block text-2xl font-bold leading-snug text-white sm:text-3xl lg:text-4xl">
               {HERO.subHeadline}
             </span>
           </h1>
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-white/90 sm:text-lg font-medium drop-shadow-sm">
-            {HERO.description}
+          <p className="mt-6 max-w-xl text-base leading-relaxed text-white/80 sm:text-lg font-medium drop-shadow-sm">
+            {HERO.description.split(/(Tamil Nadu Open University \(TNOU\)|Bharathidasan University \(BDU\)|Alagappa University \(ALU\)|Manonmaniam Sundaranar University \(MSU\))/g).map((part, i) =>
+              part.includes("University") ? (
+                <strong key={i} className="font-extrabold text-white drop-shadow-md">
+                  {part}
+                </strong>
+              ) : (
+                part
+              )
+            )}
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             {HERO.ctas.map((cta) =>
@@ -251,7 +259,7 @@ function WhyDistance() {
               <img src="/assets/user-photos/distance-student.png" alt="Student studying distance education" className="absolute inset-0 w-full h-full object-cover transform hover:scale-105 transition-transform duration-700" />
             </div>
           </div>
-          
+
           {/* Right: Accordion */}
           <div className="flex flex-col border-t border-white/60 bg-white/40 rounded-3xl p-2 lg:p-6 lg:col-span-7 shadow-sm">
             {WHY_DISTANCE.map((item, index) => {
@@ -275,9 +283,8 @@ function WhyDistance() {
                     </span>
                   </button>
                   <div
-                    className={`overflow-hidden transition-all duration-500 ease-in-out px-4 ${
-                      isActive ? 'max-h-40 opacity-100 pb-6' : 'max-h-0 opacity-0'
-                    }`}
+                    className={`overflow-hidden transition-all duration-500 ease-in-out px-4 ${isActive ? 'max-h-40 opacity-100 pb-6' : 'max-h-0 opacity-0'
+                      }`}
                   >
                     <p className="text-sm leading-relaxed text-ksc-ink/80 sm:text-base pl-16 pr-8">
                       {item.description}
@@ -384,12 +391,15 @@ function UniversityStrip() {
               className="group relative flex flex-col items-center overflow-hidden rounded-2xl border border-white bg-white/80 p-8 text-center shadow-sm backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-xl"
             >
               <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-primary to-ksc-gold opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              <div className="flex h-24 w-24 sm:h-28 sm:w-28 items-center justify-center rounded-full border-4 border-ksc-mist/80 bg-white p-2 sm:p-3 shadow-inner transition-transform duration-500 group-hover:scale-110 group-hover:border-primary/10">
+              <div 
+                className="relative flex h-24 w-24 sm:h-28 sm:w-28 items-center justify-center overflow-hidden rounded-full border-4 border-ksc-mist/80 shadow-inner transition-transform duration-500 group-hover:scale-110 group-hover:border-primary/10"
+                style={{ backgroundColor: '#ffffff' }}
+              >
                 <img
                   src={uni.logo}
                   alt={uni.name}
                   loading="lazy"
-                  className="h-full w-full object-contain"
+                  className="h-full w-full object-contain p-2 sm:p-3"
                 />
               </div>
               <h3 className="mt-6 text-lg sm:text-xl font-bold leading-tight text-ksc-dark transition-colors group-hover:text-primary">
@@ -510,17 +520,17 @@ function FacilitiesGrid() {
           {FACILITIES.map(({ icon, image, title, description }) => {
             const Icon = typeof icon === "string" ? ICON_MAP[icon] ?? Building2 : icon;
             return (
-            <div key={title} className="card-hover p-5 text-center">
-              <div className="mx-auto flex h-16 w-16 items-center justify-center overflow-hidden rounded-2xl bg-primary/10 text-primary shadow-sm border border-gray-100 transition-transform duration-300 hover:scale-110">
-                {image ? (
-                  <img src={image} alt={title} loading="lazy" className="h-full w-full object-cover" />
-                ) : (
-                  <Icon className="h-8 w-8" />
-                )}
+              <div key={title} className="card-hover p-5 text-center">
+                <div className="mx-auto flex h-16 w-16 items-center justify-center overflow-hidden rounded-2xl bg-primary/10 text-primary shadow-sm border border-gray-100 transition-transform duration-300 hover:scale-110">
+                  {image ? (
+                    <img src={image} alt={title} loading="lazy" className="h-full w-full object-cover" />
+                  ) : (
+                    <Icon className="h-8 w-8" />
+                  )}
+                </div>
+                <h4 className="mt-4 font-bold text-ksc-dark">{title}</h4>
+                <p className="mt-1.5 text-xs leading-relaxed text-ksc-ink/75">{description}</p>
               </div>
-              <h4 className="mt-4 font-bold text-ksc-dark">{title}</h4>
-              <p className="mt-1.5 text-xs leading-relaxed text-ksc-ink/75">{description}</p>
-            </div>
             );
           })}
         </div>
@@ -596,10 +606,10 @@ function Branches() {
       <div className="container-site">
         <SectionHeading
           kicker="Visit Us"
-          title="Our Centres"
+          title="Our Branchs"
           subtitle="Visit our centres — our counsellors will help you at every step."
         />
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {BRANCHES.map((branch) => (
             <div key={branch.name} className="group relative overflow-hidden rounded-2xl border border-gray-100 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-primary/20">
               <div className="absolute -right-10 -top-10 -z-10 h-32 w-32 rounded-full bg-primary/5 blur-3xl transition-opacity duration-300 opacity-0 group-hover:opacity-100"></div>
@@ -708,6 +718,85 @@ function CtaBand() {
   );
 }
 
+function NewsAndEventsBanner() {
+  const { data: { news_events: NEWS_EVENTS } } = useSiteData();
+
+  return (
+    <section className="bg-[#f8f9fa] py-8 sm:py-12 border-b border-gray-200 shadow-inner relative z-20">
+      <div className="w-full max-w-[96%] 2xl:max-w-[1400px] mx-auto px-2 sm:px-4 grid grid-cols-1 gap-8 lg:gap-12 md:grid-cols-12 md:items-center">
+        
+        {/* Left: Poster */}
+        <div className="md:col-span-4 lg:col-span-3 flex justify-center md:justify-start pl-0 xl:pl-8">
+          <div className="relative overflow-hidden rounded-md shadow-xl bg-[#0070bc] text-white w-full max-w-[280px] p-4 text-center transform transition-transform hover:scale-105 border-4 border-white cursor-pointer">
+            <h4 className="text-yellow-400 font-black text-2xl leading-tight mb-2 uppercase drop-shadow-md tracking-tighter">
+              ADMISSION<br/>OPEN <span className="text-3xl">2025-26</span>
+            </h4>
+            <div className="text-[10px] text-white/90 mb-3 tracking-widest uppercase font-semibold">Explore Top UG & PG Courses</div>
+            <div className="space-y-1 mt-2">
+              <div className="bg-yellow-400 text-blue-900 text-[10px] font-bold px-2 py-0.5 rounded-sm inline-block shadow mb-1">
+                UG Courses
+              </div>
+              <p className="text-[11px] font-bold tracking-widest border-b border-white/20 pb-2 mb-2">BA • B.Com • B.Sc • BBA</p>
+              
+              <div className="bg-yellow-400 text-blue-900 text-[10px] font-bold px-2 py-0.5 rounded-sm inline-block shadow mb-1 mt-1">
+                PG Courses
+              </div>
+              <p className="text-[11px] font-bold tracking-widest pb-3">MBA • MA • M.Com • M.Sc</p>
+            </div>
+            <div className="mt-2 pb-2">
+              <span className="bg-yellow-400 text-blue-900 text-xs font-black px-6 py-1.5 rounded-full uppercase shadow-lg shadow-black/20 hover:bg-white transition-colors">
+                Apply Now
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Center: News List */}
+        <div className="md:col-span-4 lg:col-span-6 flex flex-col items-center text-center space-y-4 px-2 xl:px-8">
+          <h2 className="text-2xl sm:text-[32px] font-extrabold text-[#000066] tracking-tight drop-shadow-sm pb-3 border-b-2 border-[#000066]/10 w-full sm:w-4/5">
+            News & Events
+          </h2>
+          <div className="relative w-full h-[220px] overflow-hidden group">
+            {/* Gradient masks for smooth fading at top and bottom */}
+            <div className="absolute top-0 left-0 w-full h-12 bg-gradient-to-b from-[#f8f9fa] to-transparent z-10 pointer-events-none"></div>
+            <div className="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-[#f8f9fa] to-transparent z-10 pointer-events-none"></div>
+            
+            <div className="space-y-8 w-full flex flex-col items-center animate-marqueeVertical hover:[animation-play-state:paused] pt-12 pb-12">
+              {NEWS_EVENTS.map((news, i) => (
+                <p key={i} className={`text-base sm:text-[18px] lg:text-[19px] leading-relaxed cursor-pointer hover:underline underline-offset-4 px-4 sm:px-8 max-w-2xl ${i === 0 ? "text-[#000066] font-bold" : "text-[#1a237e] font-semibold"}`}>
+                  {news.text}
+                </p>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Right: Notice Board */}
+        <div className="md:col-span-4 lg:col-span-3 flex justify-center md:justify-end pr-0 xl:pr-8">
+           <div className="relative flex flex-col items-center transform transition-transform hover:rotate-2 hover:scale-105 cursor-pointer mt-4 md:mt-0">
+              {/* Pin */}
+              <div className="absolute -top-1.5 z-20 w-3.5 h-3.5 rounded-full bg-red-600 shadow-[2px_3px_5px_rgba(0,0,0,0.4)] border border-red-800">
+                <div className="absolute top-[2px] left-[2px] w-1 h-1 bg-white/60 rounded-full"></div>
+              </div>
+              {/* Strings */}
+              <svg className="absolute top-0 z-10 w-[120px] h-[45px]" viewBox="0 0 100 50">
+                <path d="M50 0 L15 45" stroke="#737373" strokeWidth="2" fill="none" />
+                <path d="M50 0 L85 45" stroke="#737373" strokeWidth="2" fill="none" />
+              </svg>
+              {/* Board */}
+              <div className="mt-[36px] bg-gradient-to-br from-[#2E4A22] to-[#1E3016] border-[8px] border-[#a3a3a3] rounded-lg p-5 shadow-2xl relative z-10 min-w-[160px] shadow-black/30">
+                 <h3 className="text-[#f1f5f9] font-serif font-bold text-center leading-snug drop-shadow-md text-[18px] tracking-wide">
+                   NEWS<br/>&amp; EVENTS
+                 </h3>
+              </div>
+           </div>
+        </div>
+
+      </div>
+    </section>
+  );
+}
+
 /* --------------------------------------------------------------------------- */
 /* PAGE                                                                         */
 /* --------------------------------------------------------------------------- */
@@ -716,8 +805,8 @@ export function Home() {
   return (
     <>
       <Hero />
-      <AffiliationsStrip />
-      <NewsTicker items={NEWS_EVENTS} />
+
+      <NewsAndEventsBanner />
       <AboutSnapshot />
       <WhyDistance />
       <VisionMissionValues />

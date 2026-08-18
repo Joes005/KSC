@@ -152,185 +152,6 @@ const TNOU_SHORT_TERM: Programme[] = [
 ];
 
 export const UNIVERSITIES: University[] = [
-  {
-    id: "tnou",
-    name: "Tamil Nadu Open University",
-    shortName: "TNOU",
-    academicYear: "2026",
-    pattern: "Semester & Non-Semester depending on programme",
-    recognition:
-      "State Open University, Govt. of Tamil Nadu · Approved by UGC-DEB · Accredited NAAC A+",
-    address: "No. 577, Anna Salai, Saidapet, Chennai – 600015, Tamil Nadu",
-    website: "www.tnou.ac.in",
-    logo: "/assets/logo/Tamil_Nadu_Open_University_Logo_HD (2).png",
-    categories: [
-      {
-        id: "ug",
-        label: "UG Programmes",
-        count: 14,
-        note: "Duration: Min 3 Yrs to Max 6 Yrs",
-        programmes: TNOU_UG,
-      },
-      {
-        id: "pg",
-        label: "PG Programmes",
-        count: 14,
-        note: "Duration: Min 2 Yrs to Max 4 Yrs",
-        programmes: TNOU_PG,
-      },
-      {
-        id: "diploma",
-        label: "Diploma Programmes",
-        count: 11,
-        note: "Duration: 1 Year",
-        programmes: TNOU_DIPLOMA,
-      },
-      {
-        id: "certificate",
-        label: "Certificate Programmes",
-        count: 12,
-        note: "Duration: 6 Months",
-        programmes: TNOU_CERTIFICATE,
-      },
-      {
-        id: "vocational",
-        label: "Vocational Diploma Programmes",
-        count: 11,
-        note: "Duration: 1 Year",
-        programmes: TNOU_VOCATIONAL,
-      },
-      {
-        id: "adv-vocational",
-        label: "Adv. Vocational Diploma Programmes",
-        count: 2,
-        note: "Duration: 2 Years",
-        programmes: TNOU_ADV_VOCATIONAL,
-      },
-      {
-        id: "short-term",
-        label: "Short Term Programmes",
-        count: 12,
-        note: "Duration: 3 Months",
-        programmes: TNOU_SHORT_TERM,
-      },
-    ],
-    exam: {
-      note: "TNOU publishes time-tables and hall tickets on its official student portal several weeks before each examination cycle.",
-      // TODO: swap in real TNOU portals/PDFs
-      hallTicketUrl: "https://tnou.ac.in/hall-ticket-portal",
-      timetableUrl: "https://tnou.ac.in/exam-time-table",
-      syllabusUrl: "https://tnou.ac.in/syllabus",
-    },
-  },
-
-  /* =========================================================================== */
-  /* BHARATHIDASAN UNIVERSITY (BDU)                                              */
-  /* =========================================================================== */
-
-  {
-    id: "bdu",
-    name: "Bharathidasan University",
-    shortName: "BDU",
-    academicYear: "2026-27",
-    pattern: "Semester Pattern",
-    // TODO: confirm the exact recognition line for BDU CDOE
-    recognition: "UGC-DEB approved distance education · Accredited by NAAC",
-    address: "Palkalaiperur, Tiruchirappalli – 620024, Tamil Nadu",
-    website: "www.bdu.ac.in",
-    logo: "/assets/logo/Bharathidasan_University_Logo_HD (5).png",
-    categories: [
-      {
-        id: "ug",
-        label: "UG Courses",
-        count: 18,
-        note: "Semester Pattern (AY 2026-27) · General eligibility: Pass in 10+2 with subject-specific core requirements as noted",
-        programmes: [
-          { name: "B.A. Tamil", medium: "Tamil", pattern: "Semester", eligibility: "A pass in 10+2 with Tamil as a Language Paper" },
-          { name: "B.A. Economics", medium: "Tamil", pattern: "Semester", eligibility: "A pass in Higher Secondary Examination (10+2)" },
-          { name: "B.A. English", medium: "English", pattern: "Semester", eligibility: "A pass in Higher Secondary Examination (10+2)" },
-          { name: "B.A. History", medium: "Tamil", pattern: "Semester", eligibility: "A pass in Higher Secondary Examination (10+2)" },
-          { name: "B.A. Public Administration", medium: "English", pattern: "Semester", eligibility: "A pass in Higher Secondary Examination (10+2)" },
-          { name: "B.A. Political Science", medium: "English", pattern: "Semester", eligibility: "A pass in Higher Secondary Examination (10+2)" },
-          {
-            name: "B.B.A.",
-            medium: "Tamil / English",
-            pattern: "Semester",
-            eligibility:
-              "A pass in 10+2 with Commerce & Accountancy. 20% of seats reserved for Vocational Stream candidates. Lateral entry (Year 2) for holders of a 3-year Diploma in Commerce / Modern Office Practice.",
-          },
-          {
-            name: "B.Com",
-            medium: "Tamil / English",
-            pattern: "Semester",
-            eligibility:
-              "A pass in 10+2 with Commerce & Accountancy. 20% of seats reserved for Vocational Stream candidates. Lateral entry (Year 2) for holders of a 3-year Diploma in Commerce / Modern Office Practice.",
-          },
-          {
-            name: "B.Com Bank Management",
-            medium: "English",
-            pattern: "Semester",
-            eligibility: "A pass in Higher Secondary Examination (10+2)",
-          },
-          { name: "B.Sc. Mathematics", medium: "Tamil / English", pattern: "Semester", eligibility: "10+2 with Mathematics as one of the core subjects" },
-          { name: "B.Sc. Chemistry", medium: "English", pattern: "Semester", eligibility: "10+2 with Chemistry as one of the core subjects" },
-          { name: "B.Sc. Physics", medium: "English", pattern: "Semester", eligibility: "10+2 with Physics as one of the core subjects" },
-          { name: "B.Sc. Botany", medium: "English", pattern: "Semester", eligibility: "10+2 with Botany or Biology along with Chemistry" },
-          {
-            name: "B.Sc. Zoology",
-            medium: "English",
-            pattern: "Semester",
-            eligibility: "10+2 with Maths, Physics, Chemistry, Biology (OR) Physics, Chemistry, Botany, Zoology (OR) Biology as one of the core subjects",
-          },
-          { name: "B.Sc. Geography", medium: "English", pattern: "Semester", eligibility: "A pass in Higher Secondary Examination (10+2)" },
-          { name: "B.Sc. Computer Science", medium: "English", pattern: "Semester", eligibility: "10+2 with Computer Science or Mathematics as one of the core subjects" },
-          { name: "B.Sc. Information Technology", medium: "English", pattern: "Semester", eligibility: "A pass in Higher Secondary Examination (10+2)" },
-          { name: "B.C.A.", medium: "English", pattern: "Semester", eligibility: "10+2 with Mathematics as one of the core subjects" },
-        ],
-      },
-      {
-        id: "pg",
-        label: "PG Courses",
-        count: 16,
-        note: "Semester Pattern (AY 2026-27) · Eligibility in line with the university's prescribed UG-degree prerequisite",
-        programmes: [
-          { name: "M.A. Economics", medium: "English", pattern: "Semester", eligibility: "B.A. Economics / Econometrics" },
-          { name: "M.A. English", medium: "English", pattern: "Semester", eligibility: "B.A. English Literature (OR) any UG degree with English as Part-II Language" },
-          { name: "M.A. Tamil", medium: "Tamil", pattern: "Semester", eligibility: "B.A. Tamil / B.Lit / B.A. Applied Tamil / Pulavar Degree (OR) any UG degree with Tamil as Part-I Language" },
-          { name: "M.A. History", medium: "Tamil / English", pattern: "Semester", eligibility: "Any Undergraduate (UG) Degree" },
-          { name: "M.Sc. Mathematics", medium: "English", pattern: "Semester", eligibility: "B.Sc. Mathematics" },
-          { name: "M.Sc. Chemistry", medium: "English", pattern: "Semester", eligibility: "B.Sc. Chemistry" },
-          { name: "M.Sc. Physics", medium: "English", pattern: "Semester", eligibility: "B.Sc. Physics" },
-          { name: "M.Sc. Botany", medium: "English", pattern: "Semester", eligibility: "B.Sc. Botany" },
-          { name: "M.Sc. Zoology", medium: "English", pattern: "Semester", eligibility: "B.Sc. Zoology" },
-          { name: "M.Sc. Computer Science", medium: "English", pattern: "Semester", eligibility: "B.Sc. Computer Science / B.Sc. IT / BCA / Software Development (OR) equivalent degree accepted by the syndicate" },
-          { name: "M.Sc. Geography", medium: "English", pattern: "Semester", eligibility: "B.Sc. Geography" },
-          {
-            name: "M.Com",
-            medium: "English",
-            pattern: "Semester",
-            eligibility: "B.Com / Bank Management / Computer Applications / Financial Management / B.Com (Applied) / Co-operation / BBA",
-          },
-          { name: "M.A. Human Resource Management", medium: "English", pattern: "Semester", eligibility: "Any UG Degree in Arts or Science" },
-          { name: "M.Lib.I.Sc.", medium: "English", pattern: "Semester", eligibility: "B.Lib.I.Sc." },
-          { name: "M.B.A.", medium: "English", pattern: "Semester", eligibility: "A pass in a recognised Bachelor's Degree" },
-          {
-            name: "M.C.A.",
-            medium: "English",
-            pattern: "Semester",
-            eligibility:
-              "BCA / B.Sc. Computer Science / B.Sc. IT / B.E.(CSE) / B.Tech IT (or) any graduation with Mathematics at 10+2 or graduation level (or) B.Com (CA) with Business Mathematics / Statistics as a core subject",
-          },
-        ],
-      },
-    ],
-    exam: {
-      note: "Bharathidasan University publishes hall tickets and semester time-tables on its official university portal for distance-education learners.",
-      hallTicketUrl: "https://bdu.ac.in/cde/ht24w/",
-      timetableUrl: "/pdf/BDU-New-Sem-Pattern-Courses.pdf",
-      syllabusUrl: "https://www.bdu.ac.in",
-    },
-  },
-
   /* =========================================================================== */
   /* ALAGAPPA UNIVERSITY (ALU) — CDOE                                            */
   /* =========================================================================== */
@@ -343,7 +164,7 @@ export const UNIVERSITIES: University[] = [
     pattern: "Semester Pattern",
     recognition: "State University, Karaikudi · Centre for Distance and Online Education (CDOE) · UGC-DEB approved",
     address: "Alagappa Nagar, Karaikudi – 630003, Tamil Nadu",
-    website: "www.alagappauniversity.ac.in",
+    website: "#",
     logo: "/assets/logo/Alagappa_University_Logo_HD.png",
     categories: [
       {
@@ -432,9 +253,117 @@ export const UNIVERSITIES: University[] = [
     ],
     exam: {
       note: "Alagappa University publishes hall tickets and exam time-tables on its official MIS/distance student portal for CDOE learners.",
-      hallTicketUrl: "https://mis.alagappauniversity.ac.in/distance/student_main.php",
-      timetableUrl: "/pdf/ALU-CDOE-Prospectus-AY-2026.pdf",
-      syllabusUrl: "https://www.alagappauniversity.ac.in",
+      hallTicketUrl: "#",
+      timetableUrl: "#",
+      syllabusUrl: "#",
+    },
+  },
+
+  /* =========================================================================== */
+  /* BHARATHIDASAN UNIVERSITY (BDU)                                              */
+  /* =========================================================================== */
+
+  {
+    id: "bdu",
+    name: "Bharathidasan University",
+    shortName: "BDU",
+    academicYear: "2026-27",
+    pattern: "Semester Pattern",
+    // TODO: confirm the exact recognition line for BDU CDOE
+    recognition: "UGC-DEB approved distance education · Accredited by NAAC",
+    address: "Palkalaiperur, Tiruchirappalli – 620024, Tamil Nadu",
+    website: "#",
+    logo: "/assets/logo/Bharathidasan_University_Logo_HD (5).png",
+    categories: [
+      {
+        id: "ug",
+        label: "UG Courses",
+        count: 18,
+        note: "Semester Pattern (AY 2026-27) · General eligibility: Pass in 10+2 with subject-specific core requirements as noted",
+        programmes: [
+          { name: "B.A. Tamil", medium: "Tamil", pattern: "Semester", eligibility: "A pass in 10+2 with Tamil as a Language Paper" },
+          { name: "B.A. Economics", medium: "Tamil", pattern: "Semester", eligibility: "A pass in Higher Secondary Examination (10+2)" },
+          { name: "B.A. English", medium: "English", pattern: "Semester", eligibility: "A pass in Higher Secondary Examination (10+2)" },
+          { name: "B.A. History", medium: "Tamil", pattern: "Semester", eligibility: "A pass in Higher Secondary Examination (10+2)" },
+          { name: "B.A. Public Administration", medium: "English", pattern: "Semester", eligibility: "A pass in Higher Secondary Examination (10+2)" },
+          { name: "B.A. Political Science", medium: "English", pattern: "Semester", eligibility: "A pass in Higher Secondary Examination (10+2)" },
+          {
+            name: "B.B.A.",
+            medium: "Tamil / English",
+            pattern: "Semester",
+            eligibility:
+              "A pass in 10+2 with Commerce & Accountancy. 20% of seats reserved for Vocational Stream candidates. Lateral entry (Year 2) for holders of a 3-year Diploma in Commerce / Modern Office Practice.",
+          },
+          {
+            name: "B.Com",
+            medium: "Tamil / English",
+            pattern: "Semester",
+            eligibility:
+              "A pass in 10+2 with Commerce & Accountancy. 20% of seats reserved for Vocational Stream candidates. Lateral entry (Year 2) for holders of a 3-year Diploma in Commerce / Modern Office Practice.",
+          },
+          {
+            name: "B.Com Bank Management",
+            medium: "English",
+            pattern: "Semester",
+            eligibility: "A pass in Higher Secondary Examination (10+2)",
+          },
+          { name: "B.Sc. Mathematics", medium: "Tamil / English", pattern: "Semester", eligibility: "10+2 with Mathematics as one of the core subjects" },
+          { name: "B.Sc. Chemistry", medium: "English", pattern: "Semester", eligibility: "10+2 with Chemistry as one of the core subjects" },
+          { name: "B.Sc. Physics", medium: "English", pattern: "Semester", eligibility: "10+2 with Physics as one of the core subjects" },
+          { name: "B.Sc. Botany", medium: "English", pattern: "Semester", eligibility: "10+2 with Botany or Biology along with Chemistry" },
+          {
+            name: "B.Sc. Zoology",
+            medium: "English",
+            pattern: "Semester",
+            eligibility: "10+2 with Maths, Physics, Chemistry, Biology (OR) Physics, Chemistry, Botany, Zoology (OR) Biology as one of the core subjects",
+          },
+          { name: "B.Sc. Geography", medium: "English", pattern: "Semester", eligibility: "A pass in Higher Secondary Examination (10+2)" },
+          { name: "B.Sc. Computer Science", medium: "English", pattern: "Semester", eligibility: "10+2 with Computer Science or Mathematics as one of the core subjects" },
+          { name: "B.Sc. Information Technology", medium: "English", pattern: "Semester", eligibility: "A pass in Higher Secondary Examination (10+2)" },
+          { name: "B.C.A.", medium: "English", pattern: "Semester", eligibility: "10+2 with Mathematics as one of the core subjects" },
+        ],
+      },
+      {
+        id: "pg",
+        label: "PG Courses",
+        count: 16,
+        note: "Semester Pattern (AY 2026-27) · Eligibility in line with the university's prescribed UG-degree prerequisite",
+        programmes: [
+          { name: "M.A. Economics", medium: "English", pattern: "Semester", eligibility: "B.A. Economics / Econometrics" },
+          { name: "M.A. English", medium: "English", pattern: "Semester", eligibility: "B.A. English Literature (OR) any UG degree with English as Part-II Language" },
+          { name: "M.A. Tamil", medium: "Tamil", pattern: "Semester", eligibility: "B.A. Tamil / B.Lit / B.A. Applied Tamil / Pulavar Degree (OR) any UG degree with Tamil as Part-I Language" },
+          { name: "M.A. History", medium: "Tamil / English", pattern: "Semester", eligibility: "Any Undergraduate (UG) Degree" },
+          { name: "M.Sc. Mathematics", medium: "English", pattern: "Semester", eligibility: "B.Sc. Mathematics" },
+          { name: "M.Sc. Chemistry", medium: "English", pattern: "Semester", eligibility: "B.Sc. Chemistry" },
+          { name: "M.Sc. Physics", medium: "English", pattern: "Semester", eligibility: "B.Sc. Physics" },
+          { name: "M.Sc. Botany", medium: "English", pattern: "Semester", eligibility: "B.Sc. Botany" },
+          { name: "M.Sc. Zoology", medium: "English", pattern: "Semester", eligibility: "B.Sc. Zoology" },
+          { name: "M.Sc. Computer Science", medium: "English", pattern: "Semester", eligibility: "B.Sc. Computer Science / B.Sc. IT / BCA / Software Development (OR) equivalent degree accepted by the syndicate" },
+          { name: "M.Sc. Geography", medium: "English", pattern: "Semester", eligibility: "B.Sc. Geography" },
+          {
+            name: "M.Com",
+            medium: "English",
+            pattern: "Semester",
+            eligibility: "B.Com / Bank Management / Computer Applications / Financial Management / B.Com (Applied) / Co-operation / BBA",
+          },
+          { name: "M.A. Human Resource Management", medium: "English", pattern: "Semester", eligibility: "Any UG Degree in Arts or Science" },
+          { name: "M.Lib.I.Sc.", medium: "English", pattern: "Semester", eligibility: "B.Lib.I.Sc." },
+          { name: "M.B.A.", medium: "English", pattern: "Semester", eligibility: "A pass in a recognised Bachelor's Degree" },
+          {
+            name: "M.C.A.",
+            medium: "English",
+            pattern: "Semester",
+            eligibility:
+              "BCA / B.Sc. Computer Science / B.Sc. IT / B.E.(CSE) / B.Tech IT (or) any graduation with Mathematics at 10+2 or graduation level (or) B.Com (CA) with Business Mathematics / Statistics as a core subject",
+          },
+        ],
+      },
+    ],
+    exam: {
+      note: "Bharathidasan University publishes hall tickets and semester time-tables on its official university portal for distance-education learners.",
+      hallTicketUrl: "#",
+      timetableUrl: "#",
+      syllabusUrl: "#",
     },
   },
 
@@ -450,20 +379,95 @@ export const UNIVERSITIES: University[] = [
     pattern: "Semester / Non-Semester",
     recognition: "State University · UGC-DEB Approved",
     address: "Tirunelveli, Tamil Nadu",
-    website: "www.msuniv.ac.in",
+    website: "#",
     logo: "/assets/logo/Periyar_University_Logo_HD.png",
     categories: [], // Empty for now until courses are provided
     exam: {
       note: "Manonmaniam Sundaranar University publishes exam details on its official distance education portal.",
-      hallTicketUrl: "https://www.msuniv.ac.in/Distance-Education",
-      timetableUrl: "https://www.msuniv.ac.in/Distance-Education",
-      syllabusUrl: "https://www.msuniv.ac.in/Distance-Education",
+      hallTicketUrl: "#",
+      timetableUrl: "#",
+      syllabusUrl: "#",
     },
   },
 
   /* =========================================================================== */
   /* FUTURE UNIVERSITIES — append to this array as & when KSC adds partners.     */
   /* =========================================================================== */
+  /* =========================================================================== */
+  /* TAMIL NADU OPEN UNIVERSITY (TNOU)                                           */
+  /* =========================================================================== */
+
+  {
+    id: "tnou",
+    name: "Tamil Nadu Open University",
+    shortName: "TNOU",
+    academicYear: "2026",
+    pattern: "Semester & Non-Semester depending on programme",
+    recognition:
+      "State Open University, Govt. of Tamil Nadu · Approved by UGC-DEB · Accredited NAAC A+",
+    address: "No. 577, Anna Salai, Saidapet, Chennai – 600015, Tamil Nadu",
+    website: "#",
+    logo: "/assets/logo/Tamil_Nadu_Open_University_Logo_HD (2).png",
+    categories: [
+      {
+        id: "ug",
+        label: "UG Programmes",
+        count: 14,
+        note: "Duration: Min 3 Yrs to Max 6 Yrs",
+        programmes: TNOU_UG,
+      },
+      {
+        id: "pg",
+        label: "PG Programmes",
+        count: 14,
+        note: "Duration: Min 2 Yrs to Max 4 Yrs",
+        programmes: TNOU_PG,
+      },
+      {
+        id: "diploma",
+        label: "Diploma Programmes",
+        count: 11,
+        note: "Duration: 1 Year",
+        programmes: TNOU_DIPLOMA,
+      },
+      {
+        id: "certificate",
+        label: "Certificate Programmes",
+        count: 12,
+        note: "Duration: 6 Months",
+        programmes: TNOU_CERTIFICATE,
+      },
+      {
+        id: "vocational",
+        label: "Vocational Diploma Programmes",
+        count: 11,
+        note: "Duration: 1 Year",
+        programmes: TNOU_VOCATIONAL,
+      },
+      {
+        id: "adv-vocational",
+        label: "Adv. Vocational Diploma Programmes",
+        count: 2,
+        note: "Duration: 2 Years",
+        programmes: TNOU_ADV_VOCATIONAL,
+      },
+      {
+        id: "short-term",
+        label: "Short Term Programmes",
+        count: 12,
+        note: "Duration: 3 Months",
+        programmes: TNOU_SHORT_TERM,
+      },
+    ],
+    exam: {
+      note: "TNOU publishes time-tables and hall tickets on its official student portal several weeks before each examination cycle.",
+      // TODO: swap in real TNOU portals/PDFs
+      hallTicketUrl: "#",
+      timetableUrl: "#",
+      syllabusUrl: "#",
+    },
+  },
+
 ];
 
 export const getUniversityBySlug = (slug: string) =>

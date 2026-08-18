@@ -28,23 +28,36 @@ const TwitterXIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 export function Footer() {
-  const { data: { settings: SITE_CONFIG, universities: UNIVERSITIES } } = useSiteData();
+  const { data: { settings: SITE_CONFIG, universities: UNIVERSITIES, branches: BRANCHES } } = useSiteData();
   const { contact, socials } = SITE_CONFIG;
 
   return (
     <footer className="bg-ksc-dark text-white shadow-inner">
       {/* University logo strip */}
       <div className="border-b border-white/10 bg-ksc-deep">
-        <div className="container-site flex flex-wrap items-center justify-center gap-x-10 gap-y-4 py-6">
+        <div className="container-site grid grid-cols-1 gap-4 sm:grid-cols-2 md:flex md:flex-wrap items-center md:justify-center md:gap-x-10 md:gap-y-4 py-4 md:py-6">
           {UNIVERSITIES.map((uni) => (
             <Link
               key={uni.id}
               to={`/university/${uni.id}`}
               className="flex items-center gap-3 transition-colors hover:opacity-100 opacity-80"
             >
-              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 font-heading text-xs font-bold text-ksc-gold ring-1 ring-ksc-gold/40">
-                {uni.shortName.slice(0, 3).toUpperCase()}
-              </span>
+              {uni.logo ? (
+                <div 
+                  className="relative flex h-10 w-10 flex-shrink-0 items-center justify-center overflow-hidden rounded-full ring-1 ring-white/20"
+                  style={{ backgroundColor: '#ffffff' }}
+                >
+                  <img
+                    src={uni.logo}
+                    alt={uni.name}
+                    className="h-full w-full object-contain p-1"
+                  />
+                </div>
+              ) : (
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 font-heading text-xs font-bold text-ksc-gold ring-1 ring-ksc-gold/40">
+                  {uni.shortName.slice(0, 3).toUpperCase()}
+                </span>
+              )}
               <span className="text-sm font-semibold text-white/90">{uni.name}</span>
             </Link>
           ))}
@@ -52,11 +65,11 @@ export function Footer() {
       </div>
 
       {/* Main Footer Links */}
-      <div className="container-site grid grid-cols-1 gap-6 lg:gap-10 py-16 md:grid-cols-12">
+      <div className="container-site grid grid-cols-1 gap-8 md:gap-10 py-10 md:py-16 md:grid-cols-12">
         {/* Brand & Contact Col */}
         <div className="md:col-span-5 space-y-6">
-          <div className="flex items-center gap-4">
-            <Logo className="h-16 w-16 rounded-full bg-white p-1" />
+          <div className="flex items-center gap-3 md:gap-4">
+            <Logo className="h-14 w-14 md:h-20 md:w-20 flex-shrink-0 rounded-full ring-2 ring-white/20 shadow-sm" />
             <div className="leading-tight">
               <p className="text-xl font-bold tracking-wide">{SITE_CONFIG.name}</p>
               <p className="text-sm font-semibold uppercase tracking-wider text-ksc-gold mt-1">
@@ -67,20 +80,6 @@ export function Footer() {
           <p className="text-sm leading-relaxed text-white/80 max-w-md">
             {SITE_CONFIG.description}
           </p>
-          <ul className="space-y-4 text-sm font-medium text-white/90">
-            <li className="flex items-start gap-3">
-              <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-ksc-gold" />
-              <span className="leading-relaxed">{contact.address}</span>
-            </li>
-            <li className="flex items-center gap-3">
-              <Phone className="h-4 w-4 shrink-0 text-ksc-gold" />
-              <a href={`tel:${contact.phone}`} className="transition-colors hover:text-ksc-gold">{contact.phone}</a>
-            </li>
-            <li className="flex items-center gap-3">
-              <Mail className="h-4 w-4 shrink-0 text-ksc-gold" />
-              <a href={`mailto:${contact.email}`} className="transition-colors hover:text-ksc-gold">{contact.email}</a>
-            </li>
-          </ul>
         </div>
 
         {/* Links Grid */}
@@ -113,6 +112,34 @@ export function Footer() {
                 </a>
               </li>
             </ul>
+          </div>
+        </div>
+      </div>
+
+      {/* Branches Section */}
+      <div className="border-t border-white/10 bg-ksc-deep py-12">
+        <div className="container-site">
+          <h4 className="mb-8 text-center text-sm font-bold uppercase tracking-wider text-ksc-gold">Our Centres</h4>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {BRANCHES.map((branch) => (
+              <div key={branch.name} className="group rounded-xl border border-white/10 bg-white/5 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-ksc-gold/30 hover:bg-white/10 hover:shadow-xl">
+                <div className="mb-4 flex items-start gap-4">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-ksc-gold/10 text-ksc-gold transition-colors duration-300 group-hover:bg-ksc-gold group-hover:text-ksc-dark">
+                    <MapPin className="h-5 w-5" />
+                  </div>
+                  <div>
+                    {branch.isHead && <span className="mb-1 block text-[10px] font-black uppercase tracking-widest text-ksc-gold">Head Office</span>}
+                    <h5 className="text-sm font-bold text-white leading-tight">{branch.name}</h5>
+                  </div>
+                </div>
+                <div className="ml-14 space-y-3 text-xs text-white/75">
+                  <p className="leading-relaxed">{branch.address}</p>
+                  <p className="flex items-center gap-2 font-semibold text-white/90">
+                    <Phone className="h-3.5 w-3.5 text-ksc-gold" /> {branch.phone}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

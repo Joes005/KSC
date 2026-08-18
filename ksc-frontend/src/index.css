@@ -37,30 +37,35 @@
     --radius: 0.5rem;
   }
   .dark {
-    --background: 220 55% 8%; /* #091120 - Space Blue */
-    --foreground: 210 20% 98%; /* #F8FAFC - Crisp White */
-    --primary: 38 92% 55%; /* #F5A524 - Amber */
-    --primary-foreground: 220 55% 8%; /* Dark text on yellow button */
-    --secondary: 45 93% 47%; /* #FBBF24 - Gold / Amber */
-    --secondary-foreground: 220 55% 8%; /* Dark text */
-    --muted: 215 25% 16%;
-    --muted-foreground: 215 15% 65%; /* #94A3B8 */
-    --accent: 45 93% 47%; /* #FBBF24 - Lighter yellow */
-    --accent-foreground: 220 55% 8%;
-    --border: 215 30% 20%; /* #1F2E47 */
-    --input: 215 30% 20%;
-    --ring: 38 92% 55%;
+    --background: 222 47% 11%; /* #020617 - Deep Blue */
+    --foreground: 210 40% 98%; /* #F8FAFC - Crisp White */
+    
+    --primary: 38 92% 55%; /* #FBBF24 - Dark Yellow / Gold (Primary Action) */
+    --primary-foreground: 222 47% 11%; /* Dark text on Yellow */
+    
+    --secondary: 217 32% 17%; /* #1E293B - Lighter Blue */
+    --secondary-foreground: 210 40% 98%; /* White text */
+    
+    --muted: 217 32% 17%;
+    --muted-foreground: 215 20% 65%; /* #94A3B8 */
+    
+    --accent: 163 78% 40%; /* #14B885 - Green accent where needed */
+    --accent-foreground: 0 0% 100%;
+    
+    --border: 217 32% 20%; /* #1E293B */
+    --input: 217 32% 20%;
+    --ring: 38 92% 55%; /* Yellow Ring */
 
     /* KSC Brand Variables (Dark Theme - Fresh & Premium) */
-    --ksc-green: #F5A524; /* Primary Action Yellow */
-    --ksc-green-mid: #131C31; /* Elevated Blue for cards */
-    --ksc-dark: #F8FAFC; /* Crisp White for headings */
-    --ksc-deep: #1A253D; /* Highly Elevated Space Blue for contrast bands */
-    --ksc-mist: #131C31; /* Elevated Blue Card */
-    --ksc-gold: #FBBF24; /* Brighter Gold/Yellow for accents */
-    --ksc-saffron: #F59E0B; /* Deep Amber for gradients */
-    --ksc-navy: #F8FAFC; /* Crisp White */
-    --ksc-ink: #94A3B8; /* Slate-400 for secondary text */
+    --ksc-green: #14B885; /* Accent Green */
+    --ksc-green-mid: #0E6B4E; 
+    --ksc-dark: #FFFFFF; /* True white for headings */
+    --ksc-deep: #020617; /* Very Deep Blue for contrast bands (Top Bar) */
+    --ksc-mist: #1E293B; /* Slate-800 - Lighter Blue for distinct cards */
+    --ksc-gold: #FBBF24; /* Dark Yellow */
+    --ksc-saffron: #F97316; 
+    --ksc-navy: #F8FAFC; /* Crisp White for main text */
+    --ksc-ink: #CBD5E1; /* Slate-300 for highly legible secondary text */
   }
 }
 
@@ -68,87 +73,98 @@
   /* DARK THEME GLOBAL OVERRIDES */
   /* Custom Hero Backgrounds */
   .dark .bg-\[\#063731\] {
-    background: radial-gradient(circle at top right, #131C31 0%, #091120 100%) !important;
+    background: radial-gradient(circle at top right, #1E293B 0%, #020617 100%) !important;
   }
 
   /* Target dual-use classes and original component classes explicitly */
   .dark .bg-ksc-dark {
-    background-color: #091120 !important; /* Deep Space Blue */
+    background-color: #0F172A !important; /* Slate-900 */
+  }
+  .dark .bg-ksc-deep {
+    background-color: #020617 !important; /* Top Bar Deep Blue */
   }
   .dark .hover\:bg-ksc-dark:hover {
-    background-color: #131C31 !important; /* Elevated on hover */
+    background-color: #1E293B !important; /* Slate-800 on hover */
   }
   .dark .from-ksc-dark {
-    --tw-gradient-from: #091120 !important;
-    --tw-gradient-to: rgba(9, 17, 32, 0) !important;
+    --tw-gradient-from: #0F172A !important;
+    --tw-gradient-to: rgba(15, 23, 42, 0) !important;
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
   }
   .dark .to-ksc-dark {
-    --tw-gradient-to: #091120 !important;
+    --tw-gradient-to: #0F172A !important;
   }
   .dark .via-primary {
-    --tw-gradient-via: #F5A524 !important;
+    --tw-gradient-via: #FBBF24 !important;
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-via), var(--tw-gradient-to) !important;
   }
 
   /* Specific text opacities used in original theme */
-  .dark .text-ksc-ink\/80 { color: rgba(148, 163, 184, 0.8); }
-  .dark .text-ksc-ink\/75 { color: rgba(148, 163, 184, 0.75); }
-  .dark .text-ksc-ink\/70 { color: rgba(148, 163, 184, 0.7); }
-  .dark .text-ksc-ink\/60 { color: rgba(148, 163, 184, 0.6); }
+  .dark .text-ksc-ink\/80 { color: rgba(203, 213, 225, 0.95) !important; } /* Brightened for legibility */
+  .dark .text-ksc-ink\/75 { color: rgba(203, 213, 225, 0.9) !important; }
+  .dark .text-ksc-ink\/70 { color: rgba(203, 213, 225, 0.85) !important; }
+  .dark .text-ksc-ink\/60 { color: rgba(203, 213, 225, 0.75) !important; }
 
   /* Generic Light Tailwind Utilities overridden for Dark Mode */
-  .dark body { background-color: #050F1A !important; }
-  .dark .bg-white { background-color: #091120 !important; } /* Main Background slightly lighter than body */
-  .dark .hover\:bg-white:hover { background-color: #1A253D !important; } /* Fix invisible buttons on hover */
-  .dark .bg-gray-50 { background-color: #131C31 !important; } /* Elevated Card */
-  .dark .bg-gray-100 { background-color: #1A253D !important; } /* Higher Elevation */
+  .dark body { background-color: #020617 !important; } /* Slate-950 Deep Blue */
+  .dark .bg-white { background-color: #0F172A !important; } /* Slate-900 (Main Card Background) */
+  .dark .hover\:bg-white:hover { background-color: #1E293B !important; } /* Slate-800 hover */
+  .dark .bg-gray-50 { background-color: #1E293B !important; } /* Elevated Card */
+  .dark .bg-gray-100 { background-color: #334155 !important; } /* Higher Elevation */
   
-  .dark .bg-white\/95 { background-color: rgba(9, 17, 32, 0.95) !important; backdrop-filter: blur(12px); }
-  .dark .bg-white\/90 { background-color: rgba(9, 17, 32, 0.9) !important; }
-  .dark .bg-white\/80 { background-color: rgba(9, 17, 32, 0.8) !important; }
-  .dark .bg-white\/50 { background-color: rgba(9, 17, 32, 0.5) !important; }
-  .dark .bg-white\/15 { background-color: rgba(9, 17, 32, 0.15) !important; }
-  .dark .bg-white\/10 { background-color: rgba(9, 17, 32, 0.1) !important; }
-  .dark .bg-white\/5 { background-color: rgba(9, 17, 32, 0.05) !important; }
+  /* OVERRIDES for translucent backgrounds -> Solid distinct colors for legibility */
+  .dark .bg-white\/95 { background-color: #1E293B !important; backdrop-filter: none; } /* Main Navbar - High Contrast */
+  .dark .bg-white\/90 { background-color: #1E293B !important; }
+  .dark .bg-white\/80 { background-color: #1E293B !important; }
+  .dark .bg-white\/60 { background-color: #1E293B !important; } 
+  .dark .bg-white\/50 { background-color: #334155 !important; } /* Hover states for accordion */
+  .dark .bg-white\/40 { background-color: #1E293B !important; } /* Accordion Container - Solid Blue */
+  .dark .bg-white\/15 { background-color: rgba(30, 41, 59, 0.5) !important; }
+  .dark .bg-white\/10 { background-color: rgba(30, 41, 59, 0.3) !important; }
+  .dark .bg-white\/5 { background-color: rgba(30, 41, 59, 0.15) !important; }
+
+  /* Overrides for translucent white borders */
+  .dark .border-white\/60 { border-color: #334155 !important; }
+  .dark .border-white\/40 { border-color: #334155 !important; }
+  .dark .border-white\/20 { border-color: #1E293B !important; }
 
   /* Fix for invalid opacity mappings on CSS variables */
-  /* Make mist highly distinct like in light theme */
-  .dark .bg-ksc-mist\/60 { background-color: rgba(26, 37, 61, 0.8) !important; } /* Very elevated */
-  .dark .bg-ksc-mist\/50 { background-color: rgba(26, 37, 61, 0.6) !important; }
-  .dark .bg-ksc-mist\/30 { background-color: rgba(26, 37, 61, 0.4) !important; }
-  .dark .bg-ksc-mist\/20 { background-color: rgba(26, 37, 61, 0.25) !important; }
-  .dark .bg-ksc-mist\/10 { background-color: rgba(26, 37, 61, 0.15) !important; }
+  .dark .bg-ksc-mist\/60 { background-color: rgba(30, 41, 59, 0.7) !important; }
+  .dark .bg-ksc-mist\/50 { background-color: rgba(30, 41, 59, 0.5) !important; }
+  .dark .bg-ksc-mist\/30 { background-color: rgba(30, 41, 59, 0.3) !important; }
+  .dark .bg-ksc-mist\/20 { background-color: rgba(30, 41, 59, 0.2) !important; }
+  .dark .bg-ksc-mist\/10 { background-color: rgba(30, 41, 59, 0.1) !important; }
 
   /* Custom components */
   .dark .card-hover {
-    background-color: #131C31 !important;
-    border-color: #1F2E47 !important;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.3) !important;
+    background-color: #0F172A !important;
+    border-color: #1E293B !important;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4) !important;
   }
   .dark .card-hover:hover {
-    border-color: #F5A524 !important;
-    box-shadow: 0 10px 40px rgba(245, 165, 36, 0.1) !important; /* Soft Amber Glow */
+    border-color: #FBBF24 !important; /* Yellow border on hover */
+    box-shadow: 0 10px 40px rgba(251, 191, 36, 0.15) !important; /* Yellow Glow */
   }
 
-  .dark .text-gray-900 { color: #F8FAFC; }
-  .dark .text-gray-800 { color: #F8FAFC; }
-  .dark .text-gray-700 { color: #E2E8F0; } /* slate-200 */
-  .dark .text-gray-600 { color: #94A3B8; } /* slate-400 */
-  .dark .text-gray-500 { color: #64748B; } /* slate-500 */
+  .dark .text-gray-900 { color: #FFFFFF !important; }
+  .dark .text-gray-800 { color: #F8FAFC !important; }
+  .dark .text-gray-700 { color: #F1F5F9 !important; }
+  .dark .text-gray-600 { color: #E2E8F0 !important; }
+  .dark .text-gray-500 { color: #CBD5E1 !important; }
 
   /* Premium subtle borders */
-  .dark .border-gray-100 { border-color: #1F2E47 !important; }
-  .dark .border-gray-200 { border-color: #1F2E47 !important; }
-  .dark .border-gray-300 { border-color: #334155 !important; }
-  .dark .border-ksc-green\/10 { border-color: rgba(245, 165, 36, 0.15) !important; } /* Amber tint */
-  .dark .border-ksc-green\/20 { border-color: rgba(245, 165, 36, 0.25) !important; }
-  .dark .border-ksc-green\/5 { border-color: rgba(245, 165, 36, 0.08) !important; }
+  .dark .border-gray-100 { border-color: #1E293B !important; }
+  .dark .border-gray-200 { border-color: #334155 !important; }
+  .dark .border-gray-300 { border-color: #475569 !important; }
+  .dark .border-ksc-green\/10 { border-color: rgba(251, 191, 36, 0.15) !important; } /* Yellow tint */
+  .dark .border-ksc-green\/15 { border-color: rgba(251, 191, 36, 0.2) !important; }
+  .dark .border-ksc-green\/20 { border-color: rgba(251, 191, 36, 0.3) !important; }
+  .dark .border-ksc-green\/5 { border-color: rgba(251, 191, 36, 0.08) !important; }
 
   /* Soft glows instead of shadows for dark mode */
-  .dark .shadow-sm { box-shadow: 0 4px 20px -2px rgba(0,0,0,0.5); }
-  .dark .shadow-md { box-shadow: 0 8px 30px -4px rgba(0,0,0,0.6); }
-  .dark .shadow-xl { box-shadow: 0 20px 40px -8px rgba(0,0,0,0.7); }
+  .dark .shadow-sm { box-shadow: 0 4px 20px -2px rgba(0,0,0,0.5) !important; }
+  .dark .shadow-md { box-shadow: 0 8px 30px -4px rgba(0,0,0,0.6) !important; }
+  .dark .shadow-xl { box-shadow: 0 20px 40px -8px rgba(0,0,0,0.7) !important; }
 }
 
 @layer base {

@@ -36,7 +36,7 @@ export function Tabs({ tabs, defaultActive, onChange, children, className }: Tab
       <div
         role="tablist"
         aria-label="Programme categories"
-        className="flex gap-2 overflow-x-auto pb-2 -mx-1 px-1 scrollbar-none"
+        className="flex flex-wrap items-center gap-2 pb-4 pt-1"
       >
         {tabs.map((tab) => {
           const isActive = active === tab.id;
@@ -49,13 +49,13 @@ export function Tabs({ tabs, defaultActive, onChange, children, className }: Tab
               aria-controls={`panel-${tab.id}`}
               onClick={() => select(tab.id)}
               className={cn(
-                "flex shrink-0 items-center gap-1.5 rounded-full border px-5 py-2.5 text-sm font-semibold transition-all duration-300",
+                "flex items-center justify-center gap-1.5 rounded-full border px-5 py-2.5 text-sm font-semibold transition-all duration-300",
                 isActive
                   ? "border-secondary bg-secondary text-ksc-navy-dark shadow-md ring-4 ring-secondary/20"
                   : "border-white/10 bg-white/5 text-white/80 hover:border-secondary/40 hover:bg-secondary/10 hover:text-secondary hover:-translate-y-0.5 hover:shadow-sm"
               )}
             >
-              {tab.label}
+              <span className="leading-none mt-0.5">{tab.label}</span>
               {tab.badge !== undefined && (
                 <span
                   className={cn(

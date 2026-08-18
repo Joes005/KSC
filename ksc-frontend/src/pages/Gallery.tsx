@@ -16,7 +16,7 @@ export function Gallery() {
       />
 
       {/* Photo grid */}
-      <section className="bg-ksc-navy py-10 lg:py-16">
+      <section className="bg-ksc-navy py-10 lg:py-10 lg:py-16">
         <div className="container-site">
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {GALLERY.map((item, i) => (

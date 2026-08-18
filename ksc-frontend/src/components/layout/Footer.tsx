@@ -35,7 +35,7 @@ export function Footer() {
     <footer className="bg-ksc-navy text-white shadow-inner border-t border-white/10 animate-fade-in-up delay-200">
       {/* University logo strip */}
       <div className="border-b border-white/5 bg-ksc-navy-dark">
-        <div className="container-site grid grid-cols-1 gap-4 sm:grid-cols-2 md:flex md:flex-wrap items-center md:justify-center md:gap-x-10 md:gap-y-4 py-4 md:py-6">
+        <div className="container-site grid grid-cols-1 gap-4 sm:grid-cols-2 md:flex md:flex-wrap items-center md:justify-center md:gap-x-10 md:gap-y-4 py-3 md:py-4">
           {UNIVERSITIES.map((uni) => (
             <Link
               key={uni.id}
@@ -43,7 +43,7 @@ export function Footer() {
               className="flex items-center gap-3 transition-colors hover:opacity-100 opacity-70 group"
             >
               {uni.logo ? (
-                <div 
+                <div
                   className="relative flex h-10 w-10 flex-shrink-0 items-center justify-center overflow-hidden rounded-full border border-white/20 transition-all group-hover:border-secondary"
                   style={{ backgroundColor: '#ffffff' }}
                 >
@@ -65,11 +65,11 @@ export function Footer() {
       </div>
 
       {/* Main Footer Links */}
-      <div className="container-site grid grid-cols-1 gap-12 md:gap-10 py-12 md:py-20 md:grid-cols-12">
+      <div className="container-site grid grid-cols-1 gap-12 md:gap-10 py-8 md:py-12 md:grid-cols-12">
         {/* Brand & Contact Col */}
         <div className="md:col-span-5 space-y-6 pr-0 md:pr-10">
           <div className="flex items-center gap-4">
-            <Logo className="h-16 w-16 md:h-20 md:w-20 flex-shrink-0 rounded-full border border-secondary/40 shadow-glow transition-transform duration-500 hover:scale-105 hover:border-secondary" />
+            <Logo className="h-16 w-16 md:h-16 md:w-16 flex-shrink-0 rounded-full border border-secondary/40 shadow-glow transition-transform duration-500 hover:scale-105 hover:border-secondary" />
             <div className="leading-tight">
               <p className="font-heading text-2xl font-bold tracking-tight text-white">{SITE_CONFIG.name}</p>
               <p className="text-xs font-bold uppercase tracking-widest text-secondary mt-1.5">
@@ -87,7 +87,7 @@ export function Footer() {
         <div className="md:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-8">
           <div>
             <h4 className="mb-6 text-xs font-bold uppercase tracking-[0.2em] text-white">Quick Links</h4>
-            <ul className="space-y-4 text-sm font-medium text-white/60">
+            <ul className="space-y-3 text-sm font-medium text-white/60">
               <li><Link to="/" className="transition-colors hover:text-secondary">Home</Link></li>
               <li><Link to="/about" className="transition-colors hover:text-secondary">About Us</Link></li>
               <li><Link to="/gallery" className="transition-colors hover:text-secondary">Gallery</Link></li>
@@ -96,7 +96,7 @@ export function Footer() {
           </div>
           <div>
             <h4 className="mb-6 text-xs font-bold uppercase tracking-[0.2em] text-white">Programmes</h4>
-            <ul className="space-y-4 text-sm font-medium text-white/60">
+            <ul className="space-y-3 text-sm font-medium text-white/60">
               <li><Link to="/academic#tnou" className="transition-colors hover:text-secondary">TNOU Courses</Link></li>
               <li><Link to="/academic#bdu" className="transition-colors hover:text-secondary">BDU Courses</Link></li>
               <li><Link to="/academic#alagappa" className="transition-colors hover:text-secondary">ALU (Alagappa) Courses</Link></li>
@@ -105,7 +105,7 @@ export function Footer() {
           </div>
           <div>
             <h4 className="mb-6 text-xs font-bold uppercase tracking-[0.2em] text-white">Support</h4>
-            <ul className="space-y-4 text-sm font-medium text-white/60">
+            <ul className="space-y-3 text-sm font-medium text-white/60">
               <li><Link to="/exam-update" className="transition-colors hover:text-secondary">Exam Updates</Link></li>
               <li><Link to="/facilities" className="transition-colors hover:text-secondary">Facilities</Link></li>
               <li>
@@ -119,14 +119,14 @@ export function Footer() {
       </div>
 
       {/* Branches Section */}
-      <div className="border-t border-white/5 bg-ksc-navy-mid/30 py-12">
+      <div className="border-t border-white/5 bg-ksc-navy-mid/30 py-8">
         <div className="container-site">
-          <h4 className="mb-8 text-center text-xs font-bold uppercase tracking-[0.2em] text-white/80">Our Associated Centres</h4>
+          <h4 className="mb-6 text-center text-xs font-bold uppercase tracking-[0.2em] text-white/80">Our Associated Branches</h4>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {BRANCHES.map((branch) => (
-              <div key={branch.name} className="group rounded-2xl border border-white/5 bg-white/5 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-secondary/30 hover:bg-white/10 hover:shadow-glow">
+              <div key={branch.name} className="group rounded-2xl border border-white/5 bg-white/5 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-secondary/30 hover:bg-white/10 hover:shadow-glow">
                 <div className="mb-4 flex items-start gap-4">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/5 border border-white/10 text-secondary transition-colors duration-300 group-hover:bg-secondary/10 group-hover:border-secondary/30">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/5 border border-white/10 text-secondary transition-colors duration-300 group-hover:bg-secondary/10 group-hover:border-secondary/30">
                     <MapPin className="h-5 w-5" />
                   </div>
                   <div>
@@ -134,7 +134,7 @@ export function Footer() {
                     <h5 className="text-sm font-bold text-white leading-tight">{branch.name}</h5>
                   </div>
                 </div>
-                <div className="ml-16 space-y-3 text-xs text-white/60">
+                <div className="ml-14 space-y-2 text-xs text-white/60">
                   <p className="leading-relaxed">{branch.address}</p>
                   <p className="flex items-center gap-2 font-medium text-white/80">
                     <Phone className="h-3.5 w-3.5 text-secondary/60" /> {branch.phone}
@@ -147,7 +147,7 @@ export function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="bg-ksc-navy-dark px-6 py-6 sm:px-12 border-t border-white/5">
+      <div className="bg-ksc-navy-dark px-6 py-4 sm:px-12 border-t border-white/5">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 md:flex-row">
           <p className="text-xs text-white/50 font-medium tracking-wide">
             © {new Date().getFullYear()} Karur Study Centre. Developed by <a href="https://www.digitaltactsolutions.com/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-secondary transition-colors">Digitaltactsolutions</a>.
@@ -166,7 +166,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-white/60 transition-all hover:bg-secondary hover:text-ksc-navy-dark hover:scale-110"
+                className="flex h-8 w-8 items-center justify-center rounded-full bg-white/5 text-white/60 transition-all hover:bg-secondary hover:text-ksc-navy-dark hover:scale-110"
               >
                 <Icon className="h-4 w-4" />
               </a>

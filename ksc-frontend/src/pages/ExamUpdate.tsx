@@ -21,7 +21,7 @@ export function ExamUpdate() {
       </section>
 
       {/* University accordions */}
-      <section className="bg-white py-10 lg:py-16">
+      <section className="bg-white py-10 lg:py-10 lg:py-16">
         <div className="container-site">
           <SectionHeading
             kicker="Per-University"

@@ -235,6 +235,7 @@ export async function fetchSiteData() {
       }),
       contact_fields: pageSection(pages, "contact", "contact_fields", []),
     },
+    user_update_posters: api.user_update_posters || [],
     pages,
   };
 }

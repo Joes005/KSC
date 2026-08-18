@@ -16,7 +16,7 @@ export function About() {
       />
 
       {/* Long-form copy + facts sidebar */}
-      <section className="bg-ksc-navy py-16 sm:py-20">
+      <section className="bg-ksc-navy py-16 sm:py-10 lg:py-20">
         <div className="container-site grid gap-12 lg:grid-cols-3 lg:items-start">
           <div className="lg:col-span-2">
             <SectionHeading
@@ -102,7 +102,7 @@ function AboutDetail() {
   const intro = VISION_MISSION_VALUES;
 
   return (
-    <section className="bg-ksc-navy py-10 lg:py-16">
+    <section className="bg-ksc-navy py-10 lg:py-10 lg:py-16">
       <div className="container-site">
         <SectionHeading kicker="Our Foundation" title="Vision · Mission · Values" />
         <div className="mx-auto max-w-4xl">

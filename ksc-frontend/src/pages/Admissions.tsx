@@ -53,7 +53,7 @@ export function Admissions() {
       </section>
 
       {/* Steps */}
-      <section className="bg-white/5 py-10 lg:py-16">
+      <section className="bg-white/5 py-10 lg:py-10 lg:py-16">
         <div className="container-site">
           <SectionHeading kicker="How to Apply" title="Your admission journey in four steps" />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -76,7 +76,7 @@ export function Admissions() {
       </section>
 
       {/* Flyer + downloads */}
-      <section className="bg-ksc-navy py-10 lg:py-16">
+      <section className="bg-ksc-navy py-10 lg:py-10 lg:py-16">
         <div className="container-site max-w-5xl mx-auto">
           <div>
             <SectionHeading
@@ -154,7 +154,7 @@ export function Admissions() {
       </section>
 
       {/* Eligibility summary */}
-      <section className="bg-ksc-navy py-10 lg:py-16">
+      <section className="bg-ksc-navy py-10 lg:py-10 lg:py-16">
         <div className="container-site">
           <SectionHeading kicker="Eligibility at a Glance" title="Who can apply" />
           <div className="mx-auto grid max-w-4xl gap-4 sm:grid-cols-2">
@@ -179,7 +179,7 @@ export function Admissions() {
       </section>
 
       {/* Apply form + universities sidebar */}
-      <section className="bg-white/5 py-10 lg:py-16">
+      <section className="bg-white/5 py-10 lg:py-10 lg:py-16">
         <div className="container-site grid gap-10 lg:grid-cols-3">
           <div className="lg:col-span-2">
             <SectionHeading

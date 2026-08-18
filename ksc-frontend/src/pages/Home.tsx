@@ -87,21 +87,25 @@ function UserUpdatePopup() {
     : modalData.imageUrl;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
-      <div className="relative w-full max-w-md rounded-2xl bg-white/5 p-6 shadow-2xl animate-fade-in text-center border-4 border-ksc-gold overflow-hidden">
-        <button onClick={() => setIsOpen(false)} className="absolute right-4 top-4 z-10 text-gray-400 hover:text-white/60 bg-black/50 rounded-full p-1">
-          <X className="h-5 w-5" />
-        </button>
-        {displayImageUrl && (
-          <div className="mb-4 -mx-6 -mt-6">
-            <img src={displayImageUrl} alt="Update" className="w-full h-auto object-cover max-h-64 animate-fade-in transition-opacity duration-500" key={displayImageUrl} />
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 sm:p-6">
+      <div className="animate-fade-in flex justify-center w-full max-w-4xl">
+        {displayImageUrl ? (
+          <div className="relative inline-block">
+            {/* Close Button on Top Right of Image */}
+            <button onClick={() => setIsOpen(false)} className="absolute -right-3 -top-3 sm:-right-4 sm:-top-4 z-10 text-white hover:text-ksc-gold bg-black rounded-full p-1.5 sm:p-2 border-2 border-white/20 shadow-xl transition-all hover:scale-110">
+              <X className="h-5 w-5 sm:h-6 sm:w-6" />
+            </button>
+            <img src={displayImageUrl} alt="Update" className="w-auto h-auto object-contain max-h-[85vh] max-w-full rounded-xl shadow-2xl" key={displayImageUrl} />
+          </div>
+        ) : (
+          <div className="relative w-full max-w-2xl rounded-2xl bg-white/5 p-8 text-center border border-white/10">
+            <button onClick={() => setIsOpen(false)} className="absolute right-4 top-4 z-10 text-gray-400 hover:text-white/60 bg-black/50 rounded-full p-1 transition-all hover:scale-110">
+              <X className="h-5 w-5" />
+            </button>
+            <h3 className="text-2xl font-black text-white mb-2 uppercase drop-shadow-md">{modalData.title}</h3>
+            <p className="text-white/80 font-medium">{modalData.message}</p>
           </div>
         )}
-        <h3 className="text-2xl font-black text-white mb-2 uppercase drop-shadow-md">{modalData.title}</h3>
-        <p className="text-white/80 mb-6 text-sm font-medium">{modalData.message}</p>
-        <Button onClick={() => setIsOpen(false)} variant="gold" className="w-full font-bold">
-          Close
-        </Button>
       </div>
     </div>
   );
@@ -128,7 +132,7 @@ function Hero() {
           <div className="absolute top-[40%] -right-[10%] w-[40%] h-[60%] rounded-full bg-secondary/10 blur-[100px] animate-pulse delay-300"></div>
         </div>
 
-        <div className="container-site relative z-10 grid min-h-[500px] grid-cols-1 items-center gap-8 lg:gap-12 py-16 sm:min-h-[600px] lg:grid-cols-2 lg:py-24">
+        <div className="container-site relative z-10 grid min-h-[500px] grid-cols-1 items-center gap-8 lg:gap-12 py-10 lg:py-16 sm:min-h-[600px] lg:grid-cols-2 lg:py-12 lg:py-24">
 
           {/* Left Column: Details */}
           <div className="flex flex-col items-start text-left order-2 lg:order-1 animate-fade-in-up">
@@ -231,7 +235,7 @@ function AffiliationsStrip() {
 function AboutSnapshot() {
   const { data: { about_snapshot: ABOUT_SNAPSHOT } } = useSiteData();
   return (
-    <section className="bg-ksc-navy-dark py-12 sm:py-16 lg:py-24 overflow-hidden">
+    <section className="bg-ksc-navy-dark py-12 sm:py-16 lg:py-12 lg:py-24 overflow-hidden">
       <div className="container-site grid items-center gap-12 lg:grid-cols-2 lg:gap-20 animate-fade-in-up delay-200">
         {/* Image Column */}
         <div className="relative order-2 lg:order-1 px-4 lg:px-0 mx-auto w-full max-w-lg lg:max-w-none group">
@@ -294,7 +298,7 @@ function WhyDistance() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section className="bg-ksc-navy py-12 sm:py-16 lg:py-24 border-t border-white/5">
+    <section className="bg-ksc-navy py-12 sm:py-16 lg:py-12 lg:py-24 border-t border-white/5">
       <div className="container-site">
         <SectionHeading
           kicker="Why Distance Education"
@@ -359,7 +363,7 @@ function VisionMissionValues() {
   const [tab, setTab] = useState<"vision" | "mission" | "values">("vision");
 
   return (
-    <section className="bg-white/5 py-12 sm:py-16 lg:py-24">
+    <section className="bg-white/5 py-12 sm:py-16 lg:py-12 lg:py-24">
       <div className="container-site">
         <SectionHeading kicker="Our Foundation" title="Vision · Mission · Values" align="center" />
         <div className="mx-auto max-w-4xl">
@@ -425,7 +429,7 @@ function VisionMissionValues() {
 function UniversityStrip() {
   const { data: { universities: UNIVERSITIES } } = useSiteData();
   return (
-    <section className="bg-ksc-navy py-12 sm:py-16 lg:py-24 border-t border-white/5">
+    <section className="bg-ksc-navy py-12 sm:py-16 lg:py-12 lg:py-24 border-t border-white/5">
       <div className="container-site">
         <SectionHeading
           align="center"
@@ -497,7 +501,7 @@ function Stats() {
 function UniversityCourses() {
   const { data: { universities: UNIVERSITIES } } = useSiteData();
   return (
-    <section className="bg-ksc-navy py-20" id="programmes">
+    <section className="bg-ksc-navy py-10 lg:py-20" id="programmes">
       <div className="container-site">
         <SectionHeading
           kicker="Programmes Offered"
@@ -559,7 +563,7 @@ function UniversityCourses() {
 function FacilitiesGrid() {
   const { data: { facilities: FACILITIES } } = useSiteData();
   return (
-    <section className="bg-ksc-navy py-20 border-t border-white/5">
+    <section className="bg-ksc-navy py-10 lg:py-20 border-t border-white/5">
       <div className="container-site">
         <SectionHeading
           kicker="Facilities & Services"
@@ -601,7 +605,7 @@ function AdmissionSteps() {
   const { data: { admission_steps: ADMISSION_STEPS } } = useSiteData();
   const stepIcons = [FileDown, ClipboardList, Wallet, Package];
   return (
-    <section className="bg-ksc-navy py-20">
+    <section className="bg-ksc-navy py-10 lg:py-20">
       <div className="container-site">
         <SectionHeading
           kicker="How It Works"
@@ -657,7 +661,7 @@ function AdmissionSteps() {
 function Branches() {
   const { data: { branches: BRANCHES } } = useSiteData();
   return (
-    <section className="bg-white/5 py-20">
+    <section className="bg-white/5 py-10 lg:py-20">
       <div className="container-site">
         <SectionHeading
           kicker="Visit Us"
@@ -706,7 +710,7 @@ function GalleryStrip() {
   const { data: { gallery_images: GALLERY } } = useSiteData();
   const previews = GALLERY.slice(0, 6);
   return (
-    <section className="bg-white/5 py-20">
+    <section className="bg-white/5 py-10 lg:py-20">
       <div className="container-site">
         <SectionHeading
           kicker="Life at KSC"
@@ -746,7 +750,7 @@ function GalleryStrip() {
 function CtaBand() {
   const { data: { settings: SITE_CONFIG } } = useSiteData();
   return (
-    <section className="gradient-head relative overflow-hidden py-10 lg:py-16 text-white">
+    <section className="gradient-head relative overflow-hidden py-10 lg:py-10 lg:py-16 text-white">
       <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-ksc-gold/20 blur-3xl" />
       <div className="pointer-events-none absolute -left-10 bottom-0 h-56 w-56 rounded-full bg-ksc-saffron/20 blur-3xl" />
       <div className="container-site relative flex flex-col items-center gap-6 text-center md:flex-row md:justify-between md:text-left">

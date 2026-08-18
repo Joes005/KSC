@@ -15,7 +15,7 @@ export function Contact() {
   return (
     <div className="bg-ksc-navy min-h-screen">
       {/* Page header */}
-      <section className="bg-ksc-navy-dark relative overflow-hidden py-20 lg:py-24 text-white border-b border-white/5">
+      <section className="bg-ksc-navy-dark relative overflow-hidden py-20 lg:py-12 lg:py-24 text-white border-b border-white/5">
         {/* Background Image */}
         <img 
           src="/assets/user-photos/branch-exterior.jpg" 
@@ -37,7 +37,7 @@ export function Contact() {
         </div>
       </section>
 
-      <section className="py-16 lg:py-24">
+      <section className="py-16 lg:py-12 lg:py-24">
         <div className="container-site grid gap-12 lg:grid-cols-2">
           {/* Contact details + map */}
           <div className="animate-fade-in-up">

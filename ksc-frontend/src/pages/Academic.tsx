@@ -8,7 +8,7 @@ import { ProgrammeCards } from "../components/common/ProgrammeCards";
 
 function UniversityProgrammes({ uni }: { uni: University }) {
   return (
-    <section id={uni.id} className="scroll-mt-28 py-12 sm:py-16 lg:py-24">
+    <section id={uni.id} className="scroll-mt-28 py-12 sm:py-16 lg:py-12 lg:py-24">
       <div className="container-site">
         {/* University header */}
         <div className="rounded-2xl border border-white/10 bg-white/5 p-6 sm:p-8 shadow-sm">
@@ -122,7 +122,7 @@ export function Academic() {
       </div>
 
       {/* Eligibility note */}
-      <section className="bg-white/5 py-12 sm:py-16 lg:py-24">
+      <section className="bg-white/5 py-12 sm:py-16 lg:py-12 lg:py-24">
         <div className="container-site">
           <div className="grid lg:grid-cols-2 gap-6 lg:gap-10 items-center rounded-3xl border border-white/10 bg-white/5 p-8 sm:p-12 shadow-xl">
             <div className="order-2 lg:order-1 text-sm leading-relaxed text-white/80">

@@ -7,73 +7,95 @@
     --background: 0 0% 100%;
     --foreground: 215 60% 12%; /* #0A1A33 (ksc-navy) */
 
-    --primary: 163 78% 24%; /* #0E6B4E (ksc-green) */
+    /* New Primary: Deep Blue (#000066) */
+    --primary: 240 100% 20%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 38 92% 55%; /* #EFA725 (ksc-gold / amber) */
-    --secondary-foreground: 215 60% 12%;
+    /* New Secondary: Rich Gold (#EFA725) */
+    --secondary: 38 87% 54%;
+    --secondary-foreground: 240 100% 20%;
 
-    --muted: 210 25% 96%; /* #F4F6F8 (ksc-mist / clean light gray) */
-    --muted-foreground: 210 12% 38%;
+    --muted: 210 25% 96%;
+    --muted-foreground: 240 20% 40%;
 
-    --accent: 24 95% 53%; /* #F97316 (ksc-saffron) */
+    --accent: 38 87% 54%;
     --accent-foreground: 0 0% 100%;
 
     --border: 210 20% 90%;
     --input: 210 20% 90%;
-    --ring: 163 78% 24%;
+    --ring: 240 100% 20%;
 
-    /* KSC Brand Variables (Light Theme / Original) */
-    --ksc-green: #0E6B4E;
-    --ksc-green-mid: #0A5640;
-    --ksc-dark: #0A1A33;
-    --ksc-deep: #071321;
-    --ksc-mist: #F4F6F8;
+    /* KSC Brand Variables (Light Theme) */
+    --ksc-green: #000066; /* Aliased to Deep Blue for backward compatibility */
+    --ksc-green-mid: #000044;
+    --ksc-dark: #000066;
+    --ksc-deep: #000033;
+    --ksc-mist: #F4F6F9;
     --ksc-gold: #EFA725;
     --ksc-saffron: #F97316;
-    --ksc-navy: #0A1A33;
-    --ksc-ink: #33424E;
+    --ksc-navy: #000066;
+    --ksc-ink: #1A1A2E;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
   }
   .dark {
-    --background: 222 47% 11%; /* #020617 - Deep Blue */
-    --foreground: 210 40% 98%; /* #F8FAFC - Crisp White */
+    --background: 240 60% 5%; /* Ultra Deep Blue */
+    --foreground: 210 40% 98%;
     
-    --primary: 38 92% 55%; /* #FBBF24 - Dark Yellow / Gold (Primary Action) */
-    --primary-foreground: 222 47% 11%; /* Dark text on Yellow */
+    --primary: 38 87% 54%; /* Gold */
+    --primary-foreground: 240 100% 10%;
     
-    --secondary: 217 32% 17%; /* #1E293B - Lighter Blue */
-    --secondary-foreground: 210 40% 98%; /* White text */
+    --secondary: 240 40% 15%; /* Lighter Deep Blue */
+    --secondary-foreground: 210 40% 98%;
     
-    --muted: 217 32% 17%;
-    --muted-foreground: 215 20% 65%; /* #94A3B8 */
+    --muted: 240 40% 15%;
+    --muted-foreground: 215 20% 65%;
     
-    --accent: 163 78% 40%; /* #14B885 - Green accent where needed */
+    --accent: 38 87% 54%;
     --accent-foreground: 0 0% 100%;
     
-    --border: 217 32% 20%; /* #1E293B */
-    --input: 217 32% 20%;
-    --ring: 38 92% 55%; /* Yellow Ring */
+    --border: 240 40% 20%;
+    --input: 240 40% 20%;
+    --ring: 38 87% 54%;
 
-    /* KSC Brand Variables (Dark Theme - Fresh & Premium) */
-    --ksc-green: #14B885; /* Accent Green */
-    --ksc-green-mid: #0E6B4E; 
-    --ksc-dark: #FFFFFF; /* True white for headings */
-    --ksc-deep: #020617; /* Very Deep Blue for contrast bands (Top Bar) */
-    --ksc-mist: #1E293B; /* Slate-800 - Lighter Blue for distinct cards */
-    --ksc-gold: #FBBF24; /* Dark Yellow */
+    /* KSC Brand Variables (Dark Theme) */
+    --ksc-green: #EFA725;
+    --ksc-green-mid: #000066; 
+    --ksc-dark: #FFFFFF;
+    --ksc-deep: #000011;
+    --ksc-mist: #1A1A2E;
+    --ksc-gold: #FBBF24;
     --ksc-saffron: #F97316; 
-    --ksc-navy: #F8FAFC; /* Crisp White for main text */
-    --ksc-ink: #CBD5E1; /* Slate-300 for highly legible secondary text */
+    --ksc-navy: #F8FAFC;
+    --ksc-ink: #CBD5E1;
   }
 }
 
 @layer utilities {
+  .glass {
+    @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-lg dark:bg-[#000033]/70 dark:border-white/10;
+  }
+  .card-hover {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#000066]/10 dark:hover:shadow-[#EFA725]/10;
+  }
+  
+  /* Animations */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+  
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+  
   /* DARK THEME GLOBAL OVERRIDES */
   /* Custom Hero Backgrounds */
   .dark .bg-\[\#063731\] {
-    background: radial-gradient(circle at top right, #1E293B 0%, #020617 100%) !important;
+    background: radial-gradient(circle at top right, #1A1A2E 0%, #000011 100%) !important;
   }
 
   /* Target dual-use classes and original component classes explicitly */

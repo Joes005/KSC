@@ -39,6 +39,11 @@ class ProgrammeResource extends Resource
                 Forms\Components\TextInput::make('duration'),
                 Forms\Components\Textarea::make('eligibility')
                     ->columnSpanFull(),
+                Forms\Components\FileUpload::make('syllabus_path')
+                    ->label('Syllabus PDF')
+                    ->acceptedFileTypes(['application/pdf'])
+                    ->directory('syllabuses')
+                    ->columnSpanFull(),
             ]);
     }
 

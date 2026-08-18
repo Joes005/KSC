@@ -39,7 +39,7 @@ export const SITE_CONFIG = {
 
   /* === CONTACT / LOCATION (from KSC admission posters) === */
   contact: {
-    phone: "99651 07404", // primary cell number (from poster footer)
+    phone: "98652 23107", // primary cell number
     landline: "04324 236107", // landline (from poster footer)
     whatsapp: "919965107404", // KSC WhatsApp number (digits only, incl. country code)
     email: "Karurstudycentre1@gmail.com",
@@ -81,7 +81,7 @@ export const HERO = {
   headline: "Karur Study Center",
   subHeadline: "Your trusted study centre for distance education",
   description:
-    "Get expert admission guidance for UG, PG, Diploma, Certificate and Vocational programmes from Tamil Nadu Open University (TNOU), Bharathidasan University (BDU), Alagappa University (ALU), and Manonmaniam Sundaranar University (MSU) — all from right here in Karur, with continuous support through exams and results.",
+    "Get expert admission guidance for UG, PG, Diploma, Certificate and Vocational programmes from Alagappa University, Bharathiar University, Manonmaniam Sundaranar University, and Tamilnadu Open University — all from right here in Karur, with continuous support through exams and results.",
   ctas: [
     { label: "Explore Programmes", to: "/academic", primary: true },
     { label: "Apply Now", to: "/admissions", primary: false },
@@ -124,13 +124,14 @@ export const ABOUT_SNAPSHOT = {
   readMoreLink: "/about",
   body: [
     "Karur Study Center (KSC) is a dedicated distance-education study and admission centre based in Karur, Tamil Nadu. Since our inception we have been bridging the gap between open universities and students — helping you pick the right programme, submit a correct application, and stay supported through exams and results.",
-    "Our services are designed for working professionals, homemakers and students from remote areas who want recognised degrees without relocating or abandoning their commitments. We are affiliated with Tamil Nadu Open University (TNOU), Bharathidasan University (BDU) and Alagappa University (ALU), and guide learners through every stage of their academic journey.",
+    "Our services are designed for working professionals, homemakers and students from remote areas who want recognised degrees without relocating or abandoning their commitments. We are affiliated with Alagappa University, Bharathiar University, Manonmaniam Sundaranar University, and Tamilnadu Open University, and guide learners through every stage of their academic journey.",
     "From programme counselling and document verification to study-material support, exam updates and result guidance, our team walks with you until you earn your degree. With more than 50,000 learners served, KSC has grown into a trusted name for open and distance education in the region.",
   ],
   membership: [
-    "Authorised study centre of Tamil Nadu Open University (TNOU)",
-    "Recognised centre of Bharathidasan University (BDU)",
-    "Partner study centre of Alagappa University (ALU)",
+    "Partner study centre of Alagappa University",
+    "Recognised centre of Bharathiar University",
+    "Authorised study centre of Manonmaniam Sundaranar University",
+    "Authorised study centre of Tamilnadu Open University",
     "Affiliated with UGC-DEB recognised distance education",
   ],
   establishedYear: "2006",
@@ -190,7 +191,7 @@ export interface NewsEvent {
 
 export const NEWS_EVENTS: NewsEvent[] = [
   {
-    text: "Admissions are open for the Academic Year 2026 — TNOU, Bharathidasan University and Alagappa University.",
+    text: "Admissions are open for the Academic Year 2026 — Alagappa University, Bharathiar University, Manonmaniam Sundaranar University, and Tamilnadu Open University.",
     type: "admission",
     date: "Admissions Open",
     href: "/admissions",
@@ -325,9 +326,10 @@ export const ABOUT_PAGE = {
     "Our team is committed to honest, transparent guidance. We never push a course you don't need — we help you find the one that fits your background, budget and career goal.",
   ],
   membership: [
-    "Recognised study-centre partnership with Tamil Nadu Open University",
-    "Admission-support relationship with Bharathidasan University",
-    "Admission-support relationship with Alagappa University (CDOE)",
+    "Admission-support relationship with Alagappa University",
+    "Admission-support relationship with Bharathiar University",
+    "Admission-support relationship with Manonmaniam Sundaranar University",
+    "Recognised study-centre partnership with Tamilnadu Open University",
     "UGC-DEB recognised distance-education programmes (as applicable per university)",
   ],
 };
@@ -363,7 +365,7 @@ export const BRANCHES = [
     name: "Karur Study Centre",
     // from KSC admission posters
     address: "M.R.S. Plaza, 3rd Floor, 57-59, J-S-PS Complex, Near Mini Bus Stand, Karur - 1",
-    phone: "04324 236107 · 99651 07404, 93622 23107",
+    phone: "98652 23107, 93444 23107, 93622 23107",
     isHead: true,
   },
   {
@@ -386,10 +388,10 @@ export const BRANCHES = [
 /* =========================================================================== */
 
 export const UNIVERSITY_LOGOS = [
-  { name: "Alagappa University", short: "ALU", url: "#", image: "" }, // TODO: logo
-  { name: "Bharathidasan University", short: "BDU", url: "#", image: "" }, // TODO: logo
-  { name: "Manonmaniam Sundaranar University", short: "MSU", url: "#", image: "" }, // TODO: logo
-  { name: "Tamil Nadu Open University", short: "TNOU", url: "#", image: "" }, // TODO: logo
+  { name: "Alagappa University", url: "#", image: "" }, // TODO: logo
+  { name: "Bharathiar University", url: "#", image: "" }, // TODO: logo
+  { name: "Manonmaniam Sundaranar University", url: "#", image: "" }, // TODO: logo
+  { name: "Tamilnadu Open University", url: "#", image: "" }, // TODO: logo
 ];
 
 /* =========================================================================== */
@@ -441,10 +443,10 @@ export const ADMISSIONS_FORM_FIELDS: FormField[] = [
     placeholder: "Select your university…",
     required: true,
     options: [
-      "Alagappa University (ALU) — CDOE",
-      "Bharathidasan University (BDU)",
-      "Manonmaniam Sundaranar University (MSU)",
-      "Tamil Nadu Open University (TNOU)",
+      "Alagappa University",
+      "Bharathiar University",
+      "Manonmaniam Sundaranar University",
+      "Tamilnadu Open University",
     ],
   },
   { name: "course", label: "Course / Programme", type: "text", placeholder: "e.g. B.A. Tamil, M.B.A., B.Com…", required: true },

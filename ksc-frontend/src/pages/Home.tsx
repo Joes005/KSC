@@ -11,6 +11,7 @@ import {
   CalendarDays,
   MapPin,
   Phone,
+  X,
 } from "lucide-react";
 import {
   CalendarRange,
@@ -64,6 +65,26 @@ const HERO_IMAGES = [
   "/assets/gallery/ksc-09.jpg",
 ];
 
+function UserUpdatePopup() {
+  const [isOpen, setIsOpen] = useState(true);
+  
+  if (!isOpen) return null;
+  return (
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+      <div className="relative w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl animate-fade-in text-center border-4 border-ksc-gold">
+        <button onClick={() => setIsOpen(false)} className="absolute right-4 top-4 text-gray-400 hover:text-gray-600">
+          <X className="h-5 w-5" />
+        </button>
+        <h3 className="text-2xl font-black text-[#000066] mb-2 uppercase">User Update</h3>
+        <p className="text-gray-600 mb-6 text-sm font-medium">Important updates or notifications will be displayed here.</p>
+        <Button onClick={() => setIsOpen(false)} variant="gold" className="w-full font-bold">
+          Close
+        </Button>
+      </div>
+    </div>
+  );
+}
+
 function Hero() {
   const { data: { hero: HERO, settings: SITE_CONFIG } } = useSiteData();
   const [currentImage, setCurrentImage] = useState(0);
@@ -76,23 +97,29 @@ function Hero() {
   }, []);
 
   return (
-    <section className="relative w-full bg-[#063731] overflow-hidden">
+    <>
+    <UserUpdatePopup />
+    <section className="relative w-full bg-primary overflow-hidden">
+      {/* Dynamic Animated Background Glows */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-secondary/20 blur-[120px] animate-pulse"></div>
+        <div className="absolute top-[40%] -right-[10%] w-[40%] h-[60%] rounded-full bg-secondary/10 blur-[100px] animate-pulse delay-300"></div>
+      </div>
+
       <div className="container-site relative z-10 grid min-h-[500px] grid-cols-1 items-center gap-8 lg:gap-12 py-16 sm:min-h-[600px] lg:grid-cols-2 lg:py-24">
 
         {/* Left Column: Details */}
-        <div className="flex flex-col items-start text-left order-2 lg:order-1">
-          <span className="inline-flex items-center gap-2 rounded bg-ksc-green px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-white shadow">
-            <CalendarDays className="h-4 w-4" />
+        <div className="flex flex-col items-start text-left order-2 lg:order-1 animate-fade-in-up">
+          <span className="inline-flex items-center gap-2 rounded-full bg-secondary/20 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-secondary border border-secondary/30 shadow-sm backdrop-blur-md">
+            <CalendarDays className="h-4 w-4 animate-bounce" />
             {SITE_CONFIG.admissionOpen}
           </span>
-          <h1 className="mt-6 mb-2 text-[44px] sm:text-6xl lg:text-7xl font-heading font-black leading-tight text-ksc-gold tracking-tight">
+
+          <h1 className="mt-6 font-heading text-4xl font-extrabold leading-[1.1] text-white sm:text-5xl lg:text-6xl drop-shadow-lg">
             {HERO.headline}
-            <span className="mt-4 block text-2xl font-bold leading-snug text-white sm:text-3xl lg:text-4xl">
-              {HERO.subHeadline}
-            </span>
           </h1>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-white/80 sm:text-lg font-medium drop-shadow-sm">
-            {HERO.description.split(/(Tamil Nadu Open University \(TNOU\)|Bharathidasan University \(BDU\)|Alagappa University \(ALU\)|Manonmaniam Sundaranar University \(MSU\))/g).map((part, i) =>
+            {HERO.description.split(/(Alagappa University|Bharathiar University|Manonmaniam Sundaranar University|Tamilnadu Open University)/g).map((part, i) =>
               part.includes("University") ? (
                 <strong key={i} className="font-extrabold text-white drop-shadow-md">
                   {part}
@@ -102,16 +129,16 @@ function Hero() {
               )
             )}
           </p>
-          <div className="mt-8 flex flex-wrap gap-4">
+          <div className="mt-8 flex flex-wrap gap-4 animate-fade-in-up delay-100">
             {HERO.ctas.map((cta) =>
               cta.primary ? (
-                <Button key={cta.to} size="lg" variant="gold" asChild className="rounded-full px-8 shadow-xl shadow-ksc-gold/20 font-bold">
+                <Button key={cta.to} size="lg" variant="gold" asChild className="rounded-full px-8 shadow-xl shadow-secondary/20 font-bold transition-all duration-300 hover:shadow-secondary/40 hover:-translate-y-1">
                   <Link to={cta.to}>
                     {cta.label} <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
               ) : (
-                <Button key={cta.to} size="lg" variant="outline" className="rounded-full border-white/30 bg-transparent text-white hover:bg-white hover:text-ksc-dark px-8 shadow-xl backdrop-blur-sm font-bold" asChild>
+                <Button key={cta.to} size="lg" variant="outline" className="rounded-full border-white/30 bg-transparent text-white hover:bg-white hover:text-primary px-8 shadow-xl backdrop-blur-sm font-bold transition-all duration-300 hover:-translate-y-1 hover:border-white" asChild>
                   <Link to={cta.to}>{cta.label}</Link>
                 </Button>
               )
@@ -120,20 +147,20 @@ function Hero() {
         </div>
 
         {/* Right Column: Image/Carousel */}
-        <div className="relative h-[300px] w-full sm:h-[400px] lg:h-[500px] order-1 lg:order-2">
-          <div className="relative h-full w-full overflow-hidden rounded-2xl shadow-2xl">
+        <div className="relative h-[300px] w-full sm:h-[400px] lg:h-[500px] order-1 lg:order-2 animate-fade-in-up delay-200">
+          <div className="relative h-full w-full overflow-hidden rounded-2xl shadow-2xl shadow-primary/50 border border-white/10 group">
             {HERO_IMAGES.map((img, idx) => (
               <div
                 key={img}
                 className={cn(
-                  "absolute inset-0 transition-opacity duration-1000",
-                  idx === currentImage ? "opacity-100" : "opacity-0"
+                  "absolute inset-0 transition-all duration-1000",
+                  idx === currentImage ? "opacity-100 scale-100" : "opacity-0 scale-105 pointer-events-none"
                 )}
               >
-                <img src={img} alt="Karur Study Center" className="h-full w-full object-cover" />
+                <img src={img} alt="Karur Study Center" className="h-full w-full object-cover transition-transform duration-[10000ms] group-hover:scale-110" />
               </div>
             ))}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-80" />
           </div>
 
           {/* Floating Admissions Sticker */}
@@ -148,6 +175,7 @@ function Hero() {
 
       </div>
     </section>
+    </>
   );
 }
 
@@ -156,17 +184,17 @@ function Hero() {
 /* --------------------------------------------------------------------------- */
 function AffiliationsStrip() {
   return (
-    <section className="bg-white py-8 border-b border-gray-100">
+    <section className="bg-white py-8 border-b border-gray-100 animate-fade-in-up delay-100">
       <div className="container-site flex flex-wrap justify-center items-center gap-6 sm:gap-10 md:gap-20">
-        <div className="flex items-center gap-3 sm:gap-4 grayscale hover:grayscale-0 transition-all opacity-80 hover:opacity-100">
+        <div className="flex items-center gap-3 sm:gap-4 grayscale hover:grayscale-0 transition-all opacity-80 hover:opacity-100 hover:scale-105 duration-300">
           <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full border-[3px] border-[#166534] flex items-center justify-center font-bold text-[#166534] text-sm sm:text-base shadow-sm bg-white">UGC</div>
           <span className="font-bold text-xs sm:text-sm text-ksc-dark leading-tight">Approved<br />Institute</span>
         </div>
-        <div className="flex items-center gap-3 sm:gap-4 grayscale hover:grayscale-0 transition-all opacity-80 hover:opacity-100">
-          <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full border-[3px] border-ksc-gold flex items-center justify-center font-bold text-ksc-gold text-[10px] sm:text-[11px] text-center shadow-sm bg-white leading-tight">ISO<br />9001</div>
+        <div className="flex items-center gap-3 sm:gap-4 grayscale hover:grayscale-0 transition-all opacity-80 hover:opacity-100 hover:scale-105 duration-300">
+          <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full border-[3px] border-secondary flex items-center justify-center font-bold text-secondary text-[10px] sm:text-[11px] text-center shadow-sm bg-white leading-tight">ISO<br />9001</div>
           <span className="font-bold text-xs sm:text-sm text-ksc-dark leading-tight">Certified<br />Center</span>
         </div>
-        <div className="flex items-center gap-3 sm:gap-4 grayscale hover:grayscale-0 transition-all opacity-80 hover:opacity-100">
+        <div className="flex items-center gap-3 sm:gap-4 grayscale hover:grayscale-0 transition-all opacity-80 hover:opacity-100 hover:scale-105 duration-300">
           <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full border-[3px] border-[#1e40af] flex items-center justify-center font-bold text-[#1e40af] text-sm sm:text-base shadow-sm bg-white">NCTE</div>
           <span className="font-bold text-xs sm:text-sm text-ksc-dark leading-tight">Recognized<br />Courses</span>
         </div>
@@ -181,16 +209,16 @@ function AffiliationsStrip() {
 function AboutSnapshot() {
   const { data: { about_snapshot: ABOUT_SNAPSHOT } } = useSiteData();
   return (
-    <section className="bg-white py-12 sm:py-16 lg:py-24">
-      <div className="container-site grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+    <section className="bg-white py-12 sm:py-16 lg:py-24 overflow-hidden">
+      <div className="container-site grid items-center gap-12 lg:grid-cols-2 lg:gap-20 animate-fade-in-up delay-200">
         {/* Image Column */}
-        <div className="relative order-2 lg:order-1 px-4 lg:px-0 mx-auto w-full max-w-lg lg:max-w-none">
+        <div className="relative order-2 lg:order-1 px-4 lg:px-0 mx-auto w-full max-w-lg lg:max-w-none group">
           <div className="rounded-2xl overflow-hidden shadow-2xl border border-gray-100">
-            <img src="/assets/gallery/ksc-01.jpg" alt="Study materials and support at Karur Study Center" className="w-full h-auto object-cover aspect-[4/3] transform hover:scale-105 transition-transform duration-700" />
+            <img src="/assets/gallery/ksc-01.jpg" alt="Study materials and support at Karur Study Center" className="w-full h-auto object-cover aspect-[4/3] transform group-hover:scale-110 transition-transform duration-[10000ms]" />
           </div>
-          <div className="absolute -bottom-6 -right-2 md:-right-8 flex h-32 w-32 md:h-40 md:w-40 flex-col items-center justify-center rounded-full bg-gradient-to-br from-ksc-saffron to-ksc-gold border-8 border-white shadow-xl rotate-[-10deg] transition-transform hover:rotate-0 duration-300">
-            <span className="text-3xl md:text-5xl font-black text-ksc-dark">26+</span>
-            <span className="text-[10px] md:text-xs font-bold uppercase text-ksc-dark text-center leading-tight mt-1">Years of<br />Experience</span>
+          <div className="absolute -bottom-6 -right-2 md:-right-8 flex h-32 w-32 md:h-40 md:w-40 flex-col items-center justify-center rounded-full bg-gradient-to-br from-primary to-secondary border-8 border-white shadow-xl rotate-[-10deg] transition-transform hover:rotate-0 hover:scale-110 duration-300">
+            <span className="text-3xl md:text-5xl font-black text-white">26+</span>
+            <span className="text-[10px] md:text-xs font-bold uppercase text-white text-center leading-tight mt-1">Years of<br />Experience</span>
           </div>
         </div>
 
@@ -756,12 +784,12 @@ function NewsAndEventsBanner() {
           <h2 className="text-2xl sm:text-[32px] font-extrabold text-[#000066] tracking-tight drop-shadow-sm pb-3 border-b-2 border-[#000066]/10 w-full sm:w-4/5">
             News & Events
           </h2>
-          <div className="relative w-full h-[220px] overflow-hidden group">
+          <div className="relative w-full h-[140px] overflow-hidden group">
             {/* Gradient masks for smooth fading at top and bottom */}
-            <div className="absolute top-0 left-0 w-full h-12 bg-gradient-to-b from-[#f8f9fa] to-transparent z-10 pointer-events-none"></div>
-            <div className="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-[#f8f9fa] to-transparent z-10 pointer-events-none"></div>
+            <div className="absolute top-0 left-0 w-full h-8 bg-gradient-to-b from-[#f8f9fa] to-transparent z-10 pointer-events-none"></div>
+            <div className="absolute bottom-0 left-0 w-full h-8 bg-gradient-to-t from-[#f8f9fa] to-transparent z-10 pointer-events-none"></div>
             
-            <div className="space-y-8 w-full flex flex-col items-center animate-marqueeVertical hover:[animation-play-state:paused] pt-12 pb-12">
+            <div className="space-y-6 w-full flex flex-col items-center animate-marqueeVertical hover:[animation-play-state:paused] pt-8 pb-8">
               {NEWS_EVENTS.map((news, i) => (
                 <p key={i} className={`text-base sm:text-[18px] lg:text-[19px] leading-relaxed cursor-pointer hover:underline underline-offset-4 px-4 sm:px-8 max-w-2xl ${i === 0 ? "text-[#000066] font-bold" : "text-[#1a237e] font-semibold"}`}>
                   {news.text}

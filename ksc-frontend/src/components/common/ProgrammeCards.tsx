@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { Search, Filter, BookOpen } from "lucide-react";
+import { Search, Filter, BookOpen, Download } from "lucide-react";
 import type { Programme } from "../../data/universities";
 import { cn } from "../../utils/cn";
 
@@ -81,34 +81,91 @@ export function ProgrammeCards({ programmes, className }: ProgrammeCardsProps) {
           </button>
         </div>
       ) : (
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {filteredProgrammes.map((p, idx) => (
-            <div key={`${p.name}-${idx}`} className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-primary/20">
-              <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-primary to-ksc-gold opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
-              <div>
-                <div className="flex items-start justify-between gap-3">
-                  <h3 className="text-lg font-bold text-ksc-dark leading-tight transition-colors duration-300 group-hover:text-primary">{p.name}</h3>
+        <>
+          {/* Desktop Table View */}
+          <div className="hidden sm:block overflow-x-auto rounded-xl border border-gray-200 bg-white shadow-sm">
+            <table className="w-full text-left text-sm text-ksc-ink">
+              <thead className="bg-ksc-mist/50 text-xs uppercase text-ksc-dark">
+                <tr>
+                  <th className="px-6 py-4 font-bold border-b border-gray-200">Programme Name</th>
+                  <th className="px-6 py-4 font-bold border-b border-gray-200">Eligibility</th>
+                  <th className="px-6 py-4 font-bold border-b border-gray-200 whitespace-nowrap">Medium & Pattern</th>
+                  <th className="px-6 py-4 font-bold border-b border-gray-200 text-right">Syllabus</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100">
+                {filteredProgrammes.map((p, idx) => (
+                  <tr key={`${p.name}-${idx}`} className="hover:bg-primary/5 transition-colors group cursor-pointer animate-fade-in-up" style={{ animationDelay: `${idx * 50}ms` }}>
+                    <td className="px-6 py-4 font-bold text-ksc-dark align-top min-w-[200px] transition-colors group-hover:text-primary">
+                      {p.name}
+                    </td>
+                    <td className="px-6 py-4 align-top max-w-sm text-xs leading-relaxed text-gray-600">
+                      {p.eligibility || '—'}
+                    </td>
+                    <td className="px-6 py-4 align-top whitespace-nowrap">
+                      <div className="flex flex-col gap-2">
+                        {p.medium && (
+                          <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-primary/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-primary shadow-sm transition-transform group-hover:scale-105">
+                            <BookOpen className="h-3 w-3" /> {p.medium}
+                          </span>
+                        )}
+                        {p.pattern && (
+                          <span className="inline-flex w-fit items-center rounded-full bg-secondary/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-secondary shadow-sm border border-secondary/20 transition-transform group-hover:scale-105">
+                            {p.pattern}
+                          </span>
+                        )}
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 align-top text-right">
+                      {p.syllabusUrl ? (
+                        <a href={p.syllabusUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-white shadow-md shadow-primary/20 hover:shadow-lg hover:shadow-primary/40 hover:-translate-y-0.5 transition-all whitespace-nowrap">
+                          <Download className="h-3 w-3 animate-bounce" /> Download
+                        </a>
+                      ) : (
+                        <span className="text-xs text-gray-400">—</span>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          
+          {/* Mobile Card View */}
+          <div className="grid gap-5 sm:hidden">
+            {filteredProgrammes.map((p, idx) => (
+              <div key={`mobile-${p.name}-${idx}`} className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-gray-100 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-secondary/10 hover:border-secondary/30 animate-fade-in-up" style={{ animationDelay: `${idx * 50}ms` }}>
+                <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-primary to-secondary opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+                <div>
+                  <h3 className="text-lg font-bold text-ksc-dark leading-tight transition-colors group-hover:text-primary">{p.name}</h3>
+                  {p.eligibility && (
+                    <p className="mt-3 text-xs text-ksc-ink/80 leading-relaxed border-t border-gray-100 pt-3">
+                      <span className="font-semibold text-primary block mb-1">Eligibility:</span>
+                      {p.eligibility}
+                    </p>
+                  )}
                 </div>
-                {p.eligibility && (
-                  <p className="mt-4 text-xs text-ksc-ink/80 leading-relaxed border-t border-gray-100 pt-4">
-                    <span className="font-semibold text-ksc-ink block mb-1">Eligibility:</span>
-                    {p.eligibility}
-                  </p>
-                )}
+                <div className="mt-4 flex flex-wrap items-center gap-2 pt-3 border-t border-gray-100">
+                  {p.medium && (
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-primary shadow-sm transition-transform group-hover:scale-105">
+                      <BookOpen className="h-3 w-3" /> {p.medium}
+                    </span>
+                  )}
+                  {p.pattern && (
+                    <span className="inline-flex items-center rounded-full bg-secondary/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-secondary shadow-sm border border-secondary/20 transition-transform group-hover:scale-105">
+                      {p.pattern}
+                    </span>
+                  )}
+                  {p.syllabusUrl && (
+                    <a href={p.syllabusUrl} target="_blank" rel="noopener noreferrer" className="ml-auto inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-white shadow-md shadow-primary/20 hover:shadow-lg hover:-translate-y-0.5 transition-all">
+                      <Download className="h-3 w-3 animate-bounce" /> Syllabus
+                    </a>
+                  )}
+                </div>
               </div>
-              <div className="mt-5 flex flex-wrap items-center gap-2 pt-4 border-t border-gray-100">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-primary shadow-sm">
-                  <BookOpen className="h-3 w-3" /> {p.medium}
-                </span>
-                {p.pattern && (
-                  <span className="inline-flex items-center rounded-full bg-ksc-gold/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-ksc-gold shadow-sm border border-ksc-gold/10">
-                    {p.pattern}
-                  </span>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </>
       )}
     </div>
   );

@@ -144,6 +144,7 @@ function mapUniversities(list: any[]): University[] {
           pattern: p.pattern,
           duration: p.duration,
           eligibility: p.eligibility,
+          syllabusUrl: toAsset(p.syllabus_path),
         })),
       })),
       exam: {
@@ -181,13 +182,13 @@ export async function fetchSiteData() {
     : UNIVERSITIES;
 
   const afterAbout = pageSection(pages, "about", "about_page", ABOUT_SNAPSHOT);
-  if (afterAbout?.image) afterAbout.image = toAsset(afterAbout.image);
+  if ((afterAbout as any)?.image) (afterAbout as any).image = toAsset((afterAbout as any).image);
 
   const founderMessage = pageSection(pages, "founder", "message", FOUNDER_MESSAGE);
-  if (founderMessage?.image) founderMessage.image = toAsset(founderMessage.image);
+  if ((founderMessage as any)?.image) (founderMessage as any).image = toAsset((founderMessage as any).image);
 
   const chairmanMessage = pageSection(pages, "chairman", "message", CHAIRMAN_MESSAGE);
-  if (chairmanMessage?.image) chairmanMessage.image = toAsset(chairmanMessage.image);
+  if ((chairmanMessage as any)?.image) (chairmanMessage as any).image = toAsset((chairmanMessage as any).image);
 
   const reachCentre = pageSection(pages, "contact", "reach_centre", {
     kicker: "Get in Touch",

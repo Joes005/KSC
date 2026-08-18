@@ -134,9 +134,8 @@ export function Academic() {
                 always as per the respective university's admission notification — our counsellors can
                 verify your specific case at the centre.
               </p>
-              <p className="mt-4">
-                Programme lists are refreshed for every admission round — TNOU, Bharathidasan University
-                and Alagappa University all admit through our centre. Looking for something not listed?
+              <p className="mt-2 text-sm sm:text-base text-gray-600 max-w-2xl mx-auto">
+                Programme lists are refreshed for every admission round — Alagappa University, Bharathiar University, Manonmaniam Sundaranar University, and Tamilnadu Open University all admit through our centre. Looking for something not listed?
                 Contact us — more programmes may be available for the current admission round.
               </p>
               <div className="mt-8">

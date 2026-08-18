@@ -17,6 +17,8 @@ export interface Programme {
   duration?: string;
   /** Eligibility line (BDU supplies per-course eligibility) */
   eligibility?: string;
+  /** Link to download syllabus/course material */
+  syllabusUrl?: string;
 }
 
 export interface ProgrammeCategory {
@@ -55,8 +57,8 @@ export interface University {
 /* =========================================================================== */
 
 const TNOU_UG: Programme[] = [
-  { name: "B.A. Tamil", medium: "Tamil", pattern: "Non-Semester" },
-  { name: "B.A. English", medium: "English", pattern: "Semester" },
+  { name: "B.A. Tamil", medium: "Tamil", pattern: "Non-Semester", syllabusUrl: "#" },
+  { name: "B.A. English", medium: "English", pattern: "Semester", syllabusUrl: "#" },
   { name: "B.A. Economics", medium: "Tamil / English", pattern: "Semester" },
   { name: "B.A. History", medium: "Tamil / English", pattern: "Semester" },
   { name: "B.A. Political Science", medium: "Tamil / English", pattern: "Semester" },
@@ -159,12 +161,10 @@ export const UNIVERSITIES: University[] = [
   {
     id: "alagappa",
     name: "Alagappa University",
-    shortName: "ALU",
+    shortName: "Alagappa University",
     academicYear: "2026",
     pattern: "Semester Pattern",
     recognition: "State University, Karaikudi · Centre for Distance and Online Education (CDOE) · UGC-DEB approved",
-    address: "Alagappa Nagar, Karaikudi – 630003, Tamil Nadu",
-    website: "#",
     logo: "/assets/logo/Alagappa_University_Logo_HD.png",
     categories: [
       {
@@ -173,8 +173,8 @@ export const UNIVERSITIES: University[] = [
         count: 7,
         note: "Duration: 3 Years · A pass in HSC (10+2), or 3-year Diploma, or ITI (2-year programme)",
         programmes: [
-          { name: "B.A. Tamil", medium: "Tamil", pattern: "Semester", eligibility: "A pass in HSC (10+2) / 3-year Diploma / ITI (2-year programme)" },
-          { name: "B.A. English", medium: "English", pattern: "Semester", eligibility: "A pass in HSC (10+2) / 3-year Diploma / ITI (2-year programme)" },
+          { name: "B.A. Tamil", medium: "Tamil", pattern: "Semester", eligibility: "A pass in HSC (10+2) / 3-year Diploma / ITI (2-year programme)", syllabusUrl: "#" },
+          { name: "B.A. English", medium: "English", pattern: "Semester", eligibility: "A pass in HSC (10+2) / 3-year Diploma / ITI (2-year programme)", syllabusUrl: "#" },
           { name: "B.B.A.", medium: "English & Tamil", pattern: "Semester", eligibility: "A pass in HSC (10+2) / 3-year Diploma / ITI (2-year programme)" },
           { name: "B.Com", medium: "English & Tamil", pattern: "Semester", eligibility: "A pass in HSC (10+2) / 3-year Diploma / ITI (2-year programme)" },
           { name: "B.Com (Computer Application)", medium: "English", pattern: "Semester", eligibility: "A pass in HSC (10+2) / 3-year Diploma / ITI (2-year programme)" },
@@ -260,19 +260,17 @@ export const UNIVERSITIES: University[] = [
   },
 
   /* =========================================================================== */
-  /* BHARATHIDASAN UNIVERSITY (BDU)                                              */
+  /* BHARATHIAR UNIVERSITY                                                       */
   /* =========================================================================== */
 
   {
     id: "bdu",
-    name: "Bharathidasan University",
-    shortName: "BDU",
+    name: "Bharathiar University",
+    shortName: "Bharathiar University",
     academicYear: "2026-27",
     pattern: "Semester Pattern",
     // TODO: confirm the exact recognition line for BDU CDOE
     recognition: "UGC-DEB approved distance education · Accredited by NAAC",
-    address: "Palkalaiperur, Tiruchirappalli – 620024, Tamil Nadu",
-    website: "#",
     logo: "/assets/logo/Bharathidasan_University_Logo_HD (5).png",
     categories: [
       {
@@ -281,9 +279,9 @@ export const UNIVERSITIES: University[] = [
         count: 18,
         note: "Semester Pattern (AY 2026-27) · General eligibility: Pass in 10+2 with subject-specific core requirements as noted",
         programmes: [
-          { name: "B.A. Tamil", medium: "Tamil", pattern: "Semester", eligibility: "A pass in 10+2 with Tamil as a Language Paper" },
+          { name: "B.A. Tamil", medium: "Tamil", pattern: "Semester", eligibility: "A pass in 10+2 with Tamil as a Language Paper", syllabusUrl: "#" },
           { name: "B.A. Economics", medium: "Tamil", pattern: "Semester", eligibility: "A pass in Higher Secondary Examination (10+2)" },
-          { name: "B.A. English", medium: "English", pattern: "Semester", eligibility: "A pass in Higher Secondary Examination (10+2)" },
+          { name: "B.A. English", medium: "English", pattern: "Semester", eligibility: "A pass in Higher Secondary Examination (10+2)", syllabusUrl: "#" },
           { name: "B.A. History", medium: "Tamil", pattern: "Semester", eligibility: "A pass in Higher Secondary Examination (10+2)" },
           { name: "B.A. Public Administration", medium: "English", pattern: "Semester", eligibility: "A pass in Higher Secondary Examination (10+2)" },
           { name: "B.A. Political Science", medium: "English", pattern: "Semester", eligibility: "A pass in Higher Secondary Examination (10+2)" },
@@ -360,7 +358,7 @@ export const UNIVERSITIES: University[] = [
       },
     ],
     exam: {
-      note: "Bharathidasan University publishes hall tickets and semester time-tables on its official university portal for distance-education learners.",
+      note: "Bharathiar University publishes hall tickets and semester time-tables on its official university portal for distance-education learners.",
       hallTicketUrl: "#",
       timetableUrl: "#",
       syllabusUrl: "#",
@@ -374,12 +372,10 @@ export const UNIVERSITIES: University[] = [
   {
     id: "msu",
     name: "Manonmaniam Sundaranar University",
-    shortName: "MSU",
+    shortName: "Manonmaniam Sundaranar University",
     academicYear: "2026",
     pattern: "Semester / Non-Semester",
     recognition: "State University · UGC-DEB Approved",
-    address: "Tirunelveli, Tamil Nadu",
-    website: "#",
     logo: "/assets/logo/Periyar_University_Logo_HD.png",
     categories: [], // Empty for now until courses are provided
     exam: {
@@ -399,14 +395,12 @@ export const UNIVERSITIES: University[] = [
 
   {
     id: "tnou",
-    name: "Tamil Nadu Open University",
-    shortName: "TNOU",
+    name: "Tamilnadu Open University",
+    shortName: "Tamilnadu Open University",
     academicYear: "2026",
     pattern: "Semester & Non-Semester depending on programme",
     recognition:
       "State Open University, Govt. of Tamil Nadu · Approved by UGC-DEB · Accredited NAAC A+",
-    address: "No. 577, Anna Salai, Saidapet, Chennai – 600015, Tamil Nadu",
-    website: "#",
     logo: "/assets/logo/Tamil_Nadu_Open_University_Logo_HD (2).png",
     categories: [
       {

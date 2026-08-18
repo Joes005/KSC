@@ -86,16 +86,16 @@ export function Header() {
     );
 
   return (
-    <header ref={headerRef} className="sticky top-0 z-50 w-full border-b border-ksc-green/10 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/75">
+    <header ref={headerRef} className="sticky top-0 z-50 w-full glass animate-fade-in-up border-b border-primary/10">
       {/* Top bar */}
       <div className="hidden bg-ksc-dark dark:bg-ksc-deep text-white/80 lg:block">
         <div className="container-site flex flex-col items-center justify-between py-2 text-xs md:flex-row">
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
             <a href={`mailto:${SITE_CONFIG.contact.email}`} className="flex items-center gap-1.5 transition-colors hover:text-white">
-              <Mail className="h-3.5 w-3.5 text-ksc-gold" /> {SITE_CONFIG.contact.email}
+              <Mail className="h-3.5 w-3.5 text-secondary" /> {SITE_CONFIG.contact.email}
             </a>
             <a href={`tel:${SITE_CONFIG.contact.phone}`} className="flex items-center gap-1.5 transition-colors hover:text-white">
-              <Phone className="h-3.5 w-3.5 text-ksc-gold" /> {SITE_CONFIG.contact.phone}
+              <Phone className="h-3.5 w-3.5 text-secondary" /> {SITE_CONFIG.contact.phone}
             </a>
             <a
               href={`https://wa.me/${SITE_CONFIG.contact.whatsapp}`}
@@ -103,12 +103,12 @@ export function Header() {
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 transition-colors hover:text-white"
             >
-              <MessageCircle className="h-3.5 w-3.5 text-ksc-gold" /> WhatsApp
+              <MessageCircle className="h-3.5 w-3.5 text-secondary" /> WhatsApp
             </a>
           </div>
           <div className="mt-2 flex items-center gap-4 md:mt-0">
             <span className="hidden font-medium tracking-wide md:block">
-              <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-secondary animate-pulse" />
               {SITE_CONFIG.admissionOpen}
             </span>
             <Link 
@@ -119,7 +119,7 @@ export function Header() {
             </Link>
             <a 
               href="#" 
-              className="rounded-full bg-ksc-gold px-4 py-1 text-[11px] font-bold uppercase tracking-wider text-ksc-dark shadow transition-all hover:bg-white"
+              className="rounded-full bg-secondary px-4 py-1 text-[11px] font-bold uppercase tracking-wider text-ksc-dark shadow hover:shadow-lg hover:shadow-secondary/20 transition-all hover:bg-white"
             >
               Pay Fee Online
             </a>
@@ -129,13 +129,13 @@ export function Header() {
 
       {/* Main bar */}
       <div className="container-site flex h-16 sm:h-20 items-center justify-between gap-2 sm:gap-4">
-        <Link to="/" className="flex items-center gap-2 sm:gap-3" aria-label={`${SITE_CONFIG.name} home`}>
-          <Logo className="h-12 w-12 sm:h-16 sm:w-16 flex-shrink-0 rounded-full ring-2 ring-ksc-gold/40 shadow-sm" />
+        <Link to="/" className="flex items-center gap-2 sm:gap-3 group" aria-label={`${SITE_CONFIG.name} home`}>
+          <Logo className="h-12 w-12 sm:h-16 sm:w-16 flex-shrink-0 rounded-full ring-2 ring-secondary/40 shadow-sm transition-transform duration-500 group-hover:scale-105 group-hover:shadow-secondary/30 group-hover:shadow-lg" />
           <span className="flex flex-col leading-tight">
-            <span className="font-heading text-base sm:text-lg font-bold tracking-tight text-ksc-navy sm:text-xl">
+            <span className="font-heading text-base sm:text-lg font-extrabold tracking-tight text-secondary drop-shadow-md sm:text-xl transition-colors group-hover:text-primary dark:group-hover:text-secondary">
               {SITE_CONFIG.name}
             </span>
-            <span className="hidden sm:block text-[11px] font-semibold uppercase tracking-[0.18em] text-ksc-gold">
+            <span className="hidden sm:block text-[11px] font-bold uppercase tracking-[0.18em] text-primary/80 dark:text-gray-300">
               {SITE_CONFIG.tagline}
             </span>
           </span>

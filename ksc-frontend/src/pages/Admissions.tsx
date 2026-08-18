@@ -101,7 +101,7 @@ export function Admissions() {
                 </span>
               </a>
               <a
-                href="/pdf/Bharathidasan_University_AY_2026-27_Admission_HD.pdf"
+                href="/pdf/Bharathiar_University_AY_2026-27_Admission_HD.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="card-hover flex items-center gap-4 p-5"
@@ -110,24 +110,11 @@ export function Admissions() {
                   <Download className="h-6 w-6" />
                 </span>
                 <span>
-                  <span className="block font-bold text-ksc-dark">Bharathidasan University</span>
+                  <span className="block font-bold text-ksc-dark">Bharathiar University</span>
                   <span className="text-xs text-ksc-ink/70">AY 2026-27 Admission (PDF)</span>
                 </span>
               </a>
-              <a
-                href="/assets/gallery/tnou-ay2026.jpg"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="card-hover flex items-center gap-4 p-5"
-              >
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                  <Download className="h-6 w-6" />
-                </span>
-                <span>
-                  <span className="block font-bold text-ksc-dark">Tamil Nadu Open University</span>
-                  <span className="text-xs text-ksc-ink/70">AY 2026 Admission Flyer (Image)</span>
-                </span>
-              </a>
+
               <a
                 href="#"
                 target="_blank"
@@ -139,6 +126,21 @@ export function Admissions() {
                 </span>
                 <span>
                   <span className="block font-bold text-ksc-dark">Manonmaniam Sundaranar University</span>
+                  <span className="text-xs text-ksc-ink/70">AY 2026 Admission Flyer (PDF)</span>
+                </span>
+              </a>
+
+              <a
+                href="/pdf/Tamilnadu_Open_University_AY_2026_Admission_HD.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="card-hover flex items-center gap-4 p-5"
+              >
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                  <Download className="h-6 w-6" />
+                </span>
+                <span>
+                  <span className="block font-bold text-ksc-dark">Tamilnadu Open University</span>
                   <span className="text-xs text-ksc-ink/70">AY 2026 Admission Flyer (PDF)</span>
                 </span>
               </a>

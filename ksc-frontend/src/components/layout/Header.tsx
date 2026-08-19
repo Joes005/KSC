@@ -109,14 +109,14 @@ export function Header() {
               <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-secondary animate-pulse" />
               {SITE_CONFIG.admissionOpen}
             </span>
-            <Link 
-              to="/admissions" 
+            <Link
+              to="/admissions"
               className="rounded-full bg-white/5 px-4 py-1 font-bold text-white transition-all hover:bg-secondary hover:text-ksc-navy-dark"
             >
               Admissions
             </Link>
-            <a 
-              href="#" 
+            <a
+              href="#"
               className="rounded-full bg-secondary/10 border border-secondary/20 px-4 py-1 font-bold text-secondary transition-all hover:bg-secondary hover:text-ksc-navy-dark"
             >
               Pay Fee Online

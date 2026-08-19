@@ -29,7 +29,7 @@ export function Logo({ className = "h-14 w-14" }: LogoProps) {
         <img
           src={branding.logoSource}
           alt={`${SITE_CONFIG.name} logo`}
-          className="h-full w-full object-cover scale-[1.10]"
+          className="h-full w-full object-contain object-center scale-[1.20] translate-x-[2%] -translate-y-[3%]"
         />
       </div>
     );

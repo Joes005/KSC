@@ -191,10 +191,10 @@ function Hero() {
 
             {/* Floating Admissions Sticker */}
             <div className="absolute -bottom-6 -left-6 z-20 md:-bottom-8 md:-left-8">
-              <div className="flex h-24 w-24 flex-col items-center justify-center rounded-full bg-ksc-gold border-[4px] border-white shadow-2xl rotate-12 transition-transform hover:scale-110 md:h-32 md:w-32 md:border-[5px]">
+              <div className="flex h-28 w-28 flex-col items-center justify-center rounded-full bg-ksc-gold border-[4px] border-white shadow-2xl rotate-12 transition-transform hover:scale-110 md:h-36 md:w-36 md:border-[5px]">
                 <span className="text-[9px] font-bold uppercase text-ksc-navy tracking-widest drop-shadow-md md:text-[11px]">Admissions</span>
-                <span className="text-xl font-black text-ksc-navy drop-shadow-md md:text-3xl">OPEN</span>
-                <span className="text-[9px] font-bold text-ksc-navy/80 drop-shadow-md md:text-[11px]">{SITE_CONFIG.admissionYear}</span>
+                <span className="text-2xl font-black text-ksc-navy drop-shadow-md md:text-4xl leading-none">OPEN</span>
+                <span className="text-[8px] font-bold text-ksc-navy/90 drop-shadow-md md:text-[10px] px-2 text-center leading-tight mt-0.5">{SITE_CONFIG.admissionYear}</span>
               </div>
             </div>
           </div>

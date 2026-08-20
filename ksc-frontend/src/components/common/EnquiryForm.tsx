@@ -46,16 +46,16 @@ export function EnquiryForm({ fields, submitLabel, idPrefix, className }: Enquir
 
   if (status === "done") {
     return (
-      <div className="rounded-xl border border-secondary/30 bg-secondary/5 p-8 text-center shadow-glow">
-        <CheckCircle2 className="mx-auto h-12 w-12 text-secondary" />
-        <h3 className="mt-4 text-xl font-bold text-white">Thank you! Request received.</h3>
-        <p className="mt-2 text-sm text-white/70">
+      <div className="rounded-xl border-4 border-ksc-navy bg-slate-50 p-8 text-center shadow-md">
+        <CheckCircle2 className="mx-auto h-16 w-16 text-ksc-red" />
+        <h3 className="mt-6 text-2xl font-black uppercase tracking-tight text-ksc-navy">Thank you! Request received.</h3>
+        <p className="mt-3 text-base font-medium text-slate-600">
           Our counsellor will reach out to you shortly.
         </p>
         <button
           type="button"
           onClick={() => setStatus("idle")}
-          className="btn-outline mt-6 w-full"
+          className="btn-outline mt-8 w-full bg-white"
         >
           Submit another enquiry
         </button>
@@ -67,13 +67,13 @@ export function EnquiryForm({ fields, submitLabel, idPrefix, className }: Enquir
     <form onSubmit={handleSubmit} className={cn("space-y-5", className)}>
       {fields.map((field) => {
         const id = `${idPrefix}-${field.name}`;
-        // Premium Dark Theme Input Styling
-        const base = "w-full rounded-lg border border-white/10 bg-ksc-navy-dark px-4 py-3 text-sm text-white placeholder-white/30 focus:border-secondary focus:ring-2 focus:ring-secondary/20 focus:outline-none transition-all shadow-inner";
+        // Poster Theme Input Styling
+        const base = "w-full rounded-md border-2 border-slate-200 bg-slate-50 px-4 py-3 text-sm font-bold text-ksc-navy placeholder-slate-400 focus:border-ksc-navy focus:bg-white focus:outline-none transition-all shadow-sm";
         return (
           <div key={field.name}>
-            <label htmlFor={id} className="mb-2 block text-sm font-semibold text-white/90">
+            <label htmlFor={id} className="mb-2 block text-sm font-black uppercase tracking-widest text-ksc-navy">
               {field.label}
-              {field.required && <span className="text-secondary ml-1">*</span>}
+              {field.required && <span className="text-ksc-red ml-1">*</span>}
             </label>
             {field.type === "textarea" ? (
               <textarea
@@ -87,7 +87,7 @@ export function EnquiryForm({ fields, submitLabel, idPrefix, className }: Enquir
               <Select id={id} name={field.name} className={base}>
                 <option value="">{field.placeholder ?? "Select…"}</option>
                 {(field.options ?? []).map((opt) => (
-                  <option key={opt} value={opt} className="bg-ksc-navy-dark text-white">
+                  <option key={opt} value={opt} className="bg-white text-ksc-navy font-bold">
                     {opt}
                   </option>
                 ))}

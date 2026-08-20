@@ -1,57 +1,63 @@
-@import "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap";
 @import "tailwindcss";
 @config "../tailwind.config.js";
 
 @layer base {
   :root {
-    /* Premium Dark Theme Core */
-    --background: 211 74% 11%; /* #071A2F (Deep Navy) */
-    --foreground: 0 0% 100%; /* #FFFFFF (Bright White) */
+    /* Premium Poster Theme Core */
+    --background: 0 0% 100%; /* White */
+    --foreground: 222 47% 11%; /* #071B4A */
 
-    --primary: 211 71% 14%; /* #0B2341 */
+    --primary: 359 82% 43%; /* #C91419 Red */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 43 72% 51%; /* #E0B437 (Dark Golden Yellow) */
-    --secondary-foreground: 211 74% 11%;
+    --secondary: 48 100% 48%; /* #F5C400 Yellow */
+    --secondary-foreground: 222 47% 11%;
 
-    --muted: 215 14% 65%; /* #94A3B8 */
-    --muted-foreground: 0 0% 100%;
+    --muted: 215 16% 47%;
+    --muted-foreground: 210 40% 98%;
 
-    --accent: 43 72% 51%;
-    --accent-foreground: 211 74% 11%;
+    --accent: 48 100% 48%;
+    --accent-foreground: 222 47% 11%;
 
-    --border: 211 40% 20%;
-    --input: 211 40% 20%;
-    --ring: 43 72% 51%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 359 82% 43%;
     
-    --card: 211 71% 14%;
-    --card-foreground: 0 0% 100%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
 
     /* KSC Premium Brand Variables */
-    --ksc-navy: #071A2F;
-    --ksc-navy-mid: #0B2341;
-    --ksc-navy-dark: #040D1A;
-    --ksc-gold: #D4A62A;
-    --ksc-gold-light: #E0B437;
-    --ksc-ink: #FFFFFF;
-    --ksc-muted: #CBD5E1;
+    --poster-sky: #8DD7F7;
+    --poster-navy: #071B4A;
+    --poster-royal: #063B8F;
+    --poster-red: #C91419;
+    --poster-yellow: #F5C400;
+    --poster-cream: #FFF3D2;
 
-    --radius: 1rem;
+    --radius: 0.75rem;
   }
 }
 
 @layer base {
   body {
-    @apply bg-[hsl(var(--background))] text-white antialiased overflow-x-hidden;
+    @apply bg-[hsl(var(--background))] text-slate-900 antialiased overflow-x-hidden;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading font-semibold tracking-tight text-white;
+    @apply font-heading tracking-tight;
   }
+  
+  h1 { @apply text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight; }
+  h2 { @apply text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight; }
+  h3 { @apply text-2xl sm:text-3xl font-bold text-slate-900; }
+  h4 { @apply text-lg sm:text-xl font-bold text-slate-800; }
+  h5 { @apply text-base sm:text-lg font-bold text-slate-800; }
+  h6 { @apply text-sm sm:text-base font-bold text-slate-800; }
 
   ::selection {
-    @apply bg-secondary text-background;
+    @apply bg-ksc-navy text-white;
   }
 }
 
@@ -60,38 +66,55 @@
     @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
   }
 
-  /* Glassmorphism Panels */
+  /* Sharp Magazine Panels */
   .glass-panel {
-    @apply bg-white/5 backdrop-blur-md border border-white/10 shadow-lg;
+    @apply bg-white border border-slate-900;
   }
 
   .card-hover {
-    @apply rounded-2xl border border-white/10 bg-[hsl(var(--card))] shadow-soft transition-all duration-300 hover:-translate-y-2 hover:border-secondary hover:shadow-glow;
+    @apply rounded-xl bg-white shadow-sm border border-slate-100 transition-all duration-300 hover:shadow-md hover:-translate-y-1 hover:border-slate-200;
   }
 
-  /* Premium Buttons */
+  /* Traditional Buttons */
   .btn {
-    @apply inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary;
+    @apply inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold transition-all duration-300;
   }
 
   .btn-gold {
-    @apply inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-bold transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary bg-secondary text-background hover:bg-[#E0B437] shadow-soft hover:shadow-glow hover:-translate-y-1;
+    @apply inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold transition-all duration-300 bg-ksc-yellow text-ksc-navy hover:bg-yellow-400 hover:shadow-md hover:-translate-y-0.5;
   }
 
   .btn-outline {
-    @apply inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary border-2 border-white/20 bg-transparent text-white hover:border-secondary hover:text-secondary hover:-translate-y-1;
+    @apply inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold transition-all duration-300 border-2 border-ksc-navy bg-transparent text-ksc-navy hover:bg-ksc-navy hover:text-white hover:shadow-md;
   }
 
   .section-title {
-    @apply font-heading text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl;
+    @apply font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-ksc-navy;
   }
 
   .section-kicker {
-    @apply text-sm font-bold uppercase tracking-[0.25em] text-secondary;
+    @apply mb-4 inline-block px-3 py-1 text-xs font-black uppercase tracking-[0.2em] text-slate-900 border border-slate-900;
+  }
+
+  /* Vibrant Poster Utilities */
+  .poster-ribbon {
+    @apply inline-block bg-ksc-red text-white font-black uppercase tracking-wider shadow-lg transform -skew-x-12 px-6 py-2;
+  }
+  
+  .poster-ribbon-text {
+    @apply inline-block transform skew-x-12;
+  }
+
+  .text-glow {
+    text-shadow: 0 4px 12px rgba(245, 196, 0, 0.5);
+  }
+  
+  .text-shadow-heavy {
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
   }
 
   .gradient-head {
-    background: linear-gradient(135deg, var(--ksc-navy-dark) 0%, var(--ksc-navy-mid) 100%);
+    background: linear-gradient(135deg, var(--poster-sky) 0%, white 100%);
   }
 
   /* Animations */
@@ -111,6 +134,15 @@
 
   .animate-fade-in {
     animation: fadeIn 0.7s ease forwards;
+  }
+  
+  @keyframes slideInRight {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  
+  .animate-slide-in-right {
+    animation: slideInRight 0.7s ease-out forwards;
   }
 
   .delay-100 { animation-delay: 100ms; }

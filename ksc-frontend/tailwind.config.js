@@ -33,27 +33,38 @@ export default {
           foreground: "hsl(var(--card-foreground))",
         },
         ksc: {
-          /* New Premium Dark Education Theme */
-          navy: 'var(--ksc-navy)',
-          'navy-mid': 'var(--ksc-navy-mid)',
-          'navy-dark': 'var(--ksc-navy-dark)',
-          gold: 'var(--ksc-gold)',
-          'gold-light': 'var(--ksc-gold-light)',
-          ink: 'var(--ksc-ink)',
-          muted: 'var(--ksc-muted)',
+          /* Traditional Education Theme */
+          sky: '#f8fafc',
+          navy: '#071B4A', /* Dark Blue */
+          royal: '#1e3a8a',
+          red: '#C91419',
+          yellow: '#F5C400',
+          cream: '#fff8e7',
+          chalk: '#0d4a2c',
           
-          /* Keeping old var names around just in case to not break build immediately, mapping to new colors */
-          green: 'var(--ksc-navy)',
-          'green-mid': 'var(--ksc-navy-mid)',
-          dark: 'var(--ksc-navy-dark)',
-          deep: 'var(--ksc-navy-dark)',
-          mist: 'var(--ksc-navy-mid)',
-          saffron: 'var(--ksc-gold)',
+          /* Keep mapping aliases if needed */
+          blue: '#071B4A',
+          teal: '#1e3a8a',
+          orange: '#C91419',
+          
+          'navy-mid': '#1e293b',
+          'navy-dark': '#0f172a',
+          gold: '#0f172a',
+          'gold-light': '#334155',
+          ink: '#1e293b',
+          muted: '#64748b',
+          
+          green: 'var(--poster-royal)',
+          'green-mid': 'var(--poster-sky)',
+          dark: 'var(--poster-navy)',
+          deep: 'var(--poster-navy)',
+          mist: 'var(--poster-cream)',
+          saffron: 'var(--poster-yellow)',
         }
       },
       fontFamily: {
-        sans: ['"Inter"', 'sans-serif'],
-        heading: ['"Plus Jakarta Sans"', 'sans-serif'],
+        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+        heading: ['"Outfit"', 'sans-serif'],
       },
       boxShadow: {
         soft: '0 8px 30px rgba(0, 0, 0, 0.12)',

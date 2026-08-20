@@ -32,52 +32,73 @@ export function Footer() {
   const { contact, socials } = SITE_CONFIG;
 
   return (
-    <footer className="bg-ksc-navy text-white shadow-inner border-t border-white/10 animate-fade-in-up delay-200">
+    <footer className="bg-ksc-navy text-white animate-fade-in-up delay-200">
+      {/* Poster Red Contact Banner */}
+      <div className="bg-ksc-red border-y-4 border-ksc-yellow relative overflow-hidden py-10 shadow-2xl">
+        <div className="absolute inset-0 bg-[url('/assets/hero-pattern.svg')] opacity-10 mix-blend-overlay"></div>
+        <div className="container-site relative z-10 text-center flex flex-col md:flex-row items-center justify-between gap-6">
+           <h3 className="text-xl sm:text-2xl font-black uppercase text-white tracking-widest text-shadow-heavy">
+             Always Contact Our Educational Services:
+           </h3>
+           <div className="flex flex-col sm:flex-row gap-4 items-center bg-black/20 p-4 rounded-xl border border-white/10 shadow-inner">
+             <a href={`tel:${contact.phone}`} className="flex items-center gap-2 text-2xl sm:text-3xl font-black text-white hover:text-ksc-yellow transition-colors drop-shadow-md">
+               <Phone className="w-6 h-6 sm:w-8 sm:h-8" /> {contact.phone}
+             </a>
+             <span className="hidden sm:inline text-white/50">|</span>
+             <a href={`https://wa.me/${contact.whatsapp}`} className="flex items-center gap-2 text-2xl sm:text-3xl font-black text-white hover:text-[#25D366] transition-colors drop-shadow-md">
+               <MessageCircle className="w-6 h-6 sm:w-8 sm:h-8" /> {contact.whatsapp}
+             </a>
+           </div>
+        </div>
+      </div>
+
       {/* University logo strip */}
-      <div className="border-b border-white/5 bg-ksc-navy-dark">
-        <div className="container-site grid grid-cols-1 gap-4 sm:grid-cols-2 md:flex md:flex-wrap items-center md:justify-center md:gap-x-10 md:gap-y-4 py-3 md:py-4">
+      <div className="bg-ksc-navy border-b border-white/10">
+        <div className="container-site flex flex-wrap items-center justify-center gap-x-12 gap-y-6 py-6">
           {UNIVERSITIES.map((uni) => (
             <Link
               key={uni.id}
               to={`/university/${uni.id}`}
-              className="flex items-center gap-3 transition-colors hover:opacity-100 opacity-70 group"
+              className="flex items-center gap-4 transition-all duration-300 hover:scale-105 group"
             >
               {uni.logo ? (
                 <div
-                  className="relative flex h-10 w-10 flex-shrink-0 items-center justify-center overflow-hidden rounded-full border border-white/20 transition-all group-hover:border-secondary"
+                  className="relative flex h-14 w-14 flex-shrink-0 items-center justify-center overflow-hidden rounded-full border border-white transition-all duration-300 group-hover:border-ksc-red shadow-sm"
                   style={{ backgroundColor: '#ffffff' }}
                 >
                   <img
                     src={uni.logo}
                     alt={uni.name}
-                    className="h-full w-full object-contain p-1"
+                    className="h-full w-full object-contain p-1.5"
                   />
                 </div>
               ) : (
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 font-heading text-xs font-bold text-secondary border border-secondary/40 group-hover:bg-secondary/10">
+                <span className="flex h-14 w-14 items-center justify-center rounded-xl bg-white font-heading text-sm font-bold text-ksc-navy shadow-sm transition-transform duration-300 group-hover:scale-105 group-hover:bg-blue-50">
                   {uni.shortName.slice(0, 3).toUpperCase()}
                 </span>
               )}
-              <span className="text-sm font-semibold text-white/90 group-hover:text-secondary transition-colors">{uni.name}</span>
+              <span className="text-sm font-semibold tracking-wide text-white/80 group-hover:text-white transition-colors">{uni.name}</span>
             </Link>
           ))}
         </div>
       </div>
 
       {/* Main Footer Links */}
-      <div className="container-site grid grid-cols-1 gap-12 md:gap-10 py-8 md:py-12 md:grid-cols-12">
+      <div className="container-site grid grid-cols-1 gap-12 md:gap-10 py-12 md:py-16 md:grid-cols-12 bg-ksc-navy">
         {/* Brand & Contact Col */}
         <div className="md:col-span-5 space-y-6 pr-0 md:pr-10">
-          <div className="flex items-center gap-4">
-            <Logo className="h-16 w-16 md:h-16 md:w-16 flex-shrink-0 rounded-full border border-secondary/40 shadow-glow transition-transform duration-500 hover:scale-105 hover:border-secondary" />
+          <div className="flex items-center gap-4 animate-slide-in-right">
+            <div className="bg-white p-2.5 rounded-2xl shadow-sm">
+              <Logo className="h-12 w-12 md:h-14 md:w-14 flex-shrink-0 transition-transform duration-500 hover:scale-105" />
+            </div>
             <div className="leading-tight">
               <p className="font-heading text-2xl font-bold tracking-tight text-white">{SITE_CONFIG.name}</p>
-              <p className="text-xs font-bold uppercase tracking-widest text-secondary mt-1.5">
+              <p className="text-[11px] font-bold uppercase tracking-widest text-ksc-yellow mt-1">
                 {SITE_CONFIG.shortName}
               </p>
             </div>
           </div>
-          <p className="text-sm leading-relaxed text-white/70 max-w-md">
+          <p className="text-sm leading-relaxed text-slate-300 max-w-md animate-slide-in-right delay-100">
             {SITE_CONFIG.description}
           </p>
 
@@ -86,31 +107,31 @@ export function Footer() {
         {/* Links Grid */}
         <div className="md:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-8">
           <div>
-            <h4 className="mb-6 text-xs font-bold uppercase tracking-[0.2em] text-white">Quick Links</h4>
-            <ul className="space-y-3 text-sm font-medium text-white/60">
-              <li><Link to="/" className="transition-colors hover:text-secondary">Home</Link></li>
-              <li><Link to="/about" className="transition-colors hover:text-secondary">About Us</Link></li>
-              <li><Link to="/gallery" className="transition-colors hover:text-secondary">Gallery</Link></li>
-              <li><Link to="/contact" className="transition-colors hover:text-secondary">Contact Us</Link></li>
+            <h4 className="mb-6 text-sm font-bold uppercase tracking-wider text-ksc-yellow">Quick Links</h4>
+            <ul className="space-y-4 text-sm text-slate-300">
+              <li><Link to="/" className="transition-colors hover:text-white flex items-center gap-2"><span className="text-ksc-red">▶</span> Home</Link></li>
+              <li><Link to="/about" className="transition-colors hover:text-white flex items-center gap-2"><span className="text-ksc-red">▶</span> About Us</Link></li>
+              <li><Link to="/gallery" className="transition-colors hover:text-white flex items-center gap-2"><span className="text-ksc-red">▶</span> Gallery</Link></li>
+              <li><Link to="/contact" className="transition-colors hover:text-white flex items-center gap-2"><span className="text-ksc-red">▶</span> Contact Us</Link></li>
             </ul>
           </div>
           <div>
-            <h4 className="mb-6 text-xs font-bold uppercase tracking-[0.2em] text-white">Programmes</h4>
-            <ul className="space-y-3 text-sm font-medium text-white/60">
-              <li><Link to="/academic#tnou" className="transition-colors hover:text-secondary">TNOU Courses</Link></li>
-              <li><Link to="/academic#bdu" className="transition-colors hover:text-secondary">BDU Courses</Link></li>
-              <li><Link to="/academic#alagappa" className="transition-colors hover:text-secondary">ALU (Alagappa) Courses</Link></li>
-              <li><Link to="/admissions" className="transition-colors hover:text-secondary text-secondary/90 font-bold">Admissions {new Date().getFullYear()}</Link></li>
+            <h4 className="mb-6 text-sm font-bold uppercase tracking-wider text-ksc-yellow">Programmes</h4>
+            <ul className="space-y-4 text-sm text-slate-300">
+              <li><Link to="/academic#tnou" className="transition-colors hover:text-white flex items-center gap-2"><span className="text-ksc-red">▶</span> TNOU Courses</Link></li>
+              <li><Link to="/academic#bdu" className="transition-colors hover:text-white flex items-center gap-2"><span className="text-ksc-red">▶</span> BDU Courses</Link></li>
+              <li><Link to="/academic#alagappa" className="transition-colors hover:text-white flex items-center gap-2"><span className="text-ksc-red">▶</span> ALU Courses</Link></li>
+              <li><Link to="/admissions" className="transition-colors hover:text-white text-white font-bold flex items-center gap-2"><span className="text-ksc-yellow">▶</span> Admissions {new Date().getFullYear()}</Link></li>
             </ul>
           </div>
           <div>
-            <h4 className="mb-6 text-xs font-bold uppercase tracking-[0.2em] text-white">Support</h4>
-            <ul className="space-y-3 text-sm font-medium text-white/60">
-              <li><Link to="/exam-update" className="transition-colors hover:text-secondary">Exam Updates</Link></li>
-              <li><Link to="/facilities" className="transition-colors hover:text-secondary">Facilities</Link></li>
+            <h4 className="mb-6 text-sm font-bold uppercase tracking-wider text-ksc-yellow">Support</h4>
+            <ul className="space-y-4 text-sm text-slate-300">
+              <li><Link to="/exam-update" className="transition-colors hover:text-white flex items-center gap-2"><span className="text-ksc-red">▶</span> Exam Updates</Link></li>
+              <li><Link to="/facilities" className="transition-colors hover:text-white flex items-center gap-2"><span className="text-ksc-red">▶</span> Facilities</Link></li>
               <li>
-                <a href={`https://wa.me/${contact.whatsapp}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 transition-colors hover:text-[#25D366]">
-                  <MessageCircle className="h-4 w-4 text-[#25D366]/70" /> WhatsApp Help
+                <a href={`https://wa.me/${contact.whatsapp}`} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 transition-all bg-ksc-red hover:bg-red-700 rounded-lg px-4 py-2.5 mt-2 text-white shadow-sm hover:-translate-y-0.5">
+                  <MessageCircle className="h-4 w-4" /> WhatsApp Help
                 </a>
               </li>
             </ul>
@@ -119,38 +140,36 @@ export function Footer() {
       </div>
 
       {/* Branches Section */}
-      <div className="border-t border-white/5 bg-ksc-navy-mid/30 py-8">
-        <div className="container-site">
-          <h4 className="mb-6 text-center text-xs font-bold uppercase tracking-[0.2em] text-white/80">Our Associated Branches</h4>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="border-t border-white/10 py-12">
+          <h4 className="mb-8 text-center text-lg font-bold uppercase tracking-wider text-white">Our Associated Branches</h4>
+          <div className="container-site grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {BRANCHES.map((branch) => (
-              <div key={branch.name} className="group rounded-2xl border border-white/5 bg-white/5 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-secondary/30 hover:bg-white/10 hover:shadow-glow">
+              <div key={branch.name} className="group rounded-2xl bg-white/5 p-6 transition-all duration-300 hover:bg-white/10 hover:-translate-y-1">
                 <div className="mb-4 flex items-start gap-4">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/5 border border-white/10 text-secondary transition-colors duration-300 group-hover:bg-secondary/10 group-hover:border-secondary/30">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/10 text-ksc-yellow transition-colors duration-300 group-hover:bg-ksc-yellow group-hover:text-ksc-navy">
                     <MapPin className="h-5 w-5" />
                   </div>
                   <div>
-                    {branch.isHead && <span className="mb-1 block text-[10px] font-black uppercase tracking-[0.25em] text-secondary">Head Office</span>}
-                    <h5 className="text-sm font-bold text-white leading-tight">{branch.name}</h5>
+                    {branch.isHead && <span className="mb-1 block text-[10px] font-bold uppercase tracking-widest text-ksc-yellow">Head Office</span>}
+                    <h5 className="text-lg font-bold text-white leading-tight">{branch.name}</h5>
                   </div>
                 </div>
-                <div className="ml-14 space-y-2 text-xs text-white/60">
+                <div className="ml-16 space-y-2 text-sm text-slate-300">
                   <p className="leading-relaxed">{branch.address}</p>
-                  <p className="flex items-center gap-2 font-medium text-white/80">
-                    <Phone className="h-3.5 w-3.5 text-secondary/60" /> {branch.phone}
+                  <p className="flex items-center gap-2 font-medium text-white">
+                    <Phone className="h-4 w-4 text-ksc-yellow" /> {branch.phone}
                   </p>
                 </div>
               </div>
             ))}
           </div>
-        </div>
       </div>
 
       {/* Bottom bar */}
-      <div className="bg-ksc-navy-dark px-6 py-4 sm:px-12 border-t border-white/5">
+      <div className="bg-[#040e29] px-6 py-6 sm:px-12 border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 md:flex-row">
-          <p className="text-xs text-white/50 font-medium tracking-wide">
-            © {new Date().getFullYear()} Karur Study Centre. Developed by <a href="https://www.digitaltactsolutions.com/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-secondary transition-colors">Digitaltactsolutions</a>.
+          <p className="text-xs text-slate-500 font-bold tracking-widest uppercase">
+            © {new Date().getFullYear()} Karur Study Centre. Developed by <a href="https://www.digitaltactsolutions.com/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-slate-300 transition-colors">Digitaltactsolutions</a>.
           </p>
           {/* Social Icons */}
           <div className="flex gap-3">
@@ -166,9 +185,9 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="flex h-8 w-8 items-center justify-center rounded-full bg-white/5 text-white/60 transition-all hover:bg-secondary hover:text-ksc-navy-dark hover:scale-110"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-all hover:bg-ksc-yellow hover:text-ksc-navy hover:-translate-y-1 hover:shadow-sm"
               >
-                <Icon className="h-4 w-4" />
+                <Icon className="h-5 w-5" />
               </a>
             ))}
           </div>

@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, type ReactNode } from "react";
+import { useState, useEffect, type KeyboardEvent, type ReactNode } from "react";
 import { cn } from "../../utils/cn";
 
 interface TabsProps {
@@ -17,9 +17,6 @@ interface TabsProps {
  */
 export function Tabs({ tabs, defaultActive, onChange, children, className }: TabsProps) {
   const [active, setActive] = useState(defaultActive ?? tabs[0]?.id ?? "");
-  const activeRef = useRef(active);
-  activeRef.current = active;
-
   useEffect(() => {
     if (defaultActive) {
       setActive(defaultActive);
@@ -31,14 +28,22 @@ export function Tabs({ tabs, defaultActive, onChange, children, className }: Tab
     onChange?.(id);
   };
 
+  const handleKeys = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
+    if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+    event.preventDefault();
+    const nextIndex = event.key === "Home" ? 0 : event.key === "End" ? tabs.length - 1 : (index + (event.key === "ArrowRight" ? 1 : -1) + tabs.length) % tabs.length;
+    select(tabs[nextIndex].id);
+    document.getElementById(`tab-${tabs[nextIndex].id}`)?.focus();
+  };
+
   return (
     <div className={className}>
       <div
         role="tablist"
         aria-label="Programme categories"
-        className="flex flex-wrap items-center gap-2 pb-4 pt-1"
+        className="scrollbar-none flex items-center gap-2 overflow-x-auto pb-2 pt-1"
       >
-        {tabs.map((tab) => {
+        {tabs.map((tab, index) => {
           const isActive = active === tab.id;
           return (
             <button
@@ -47,12 +52,14 @@ export function Tabs({ tabs, defaultActive, onChange, children, className }: Tab
               id={`tab-${tab.id}`}
               aria-selected={isActive}
               aria-controls={`panel-${tab.id}`}
+              tabIndex={isActive ? 0 : -1}
               onClick={() => select(tab.id)}
+              onKeyDown={(event) => handleKeys(event, index)}
               className={cn(
-                "flex items-center justify-center gap-1.5 rounded-full border px-5 py-2.5 text-sm font-semibold transition-all duration-300",
+                "flex min-h-11 shrink-0 items-center justify-center gap-1.5 rounded-xl border px-4 py-2.5 text-sm font-semibold transition duration-200",
                 isActive
-                  ? "border-secondary bg-secondary text-ksc-navy-dark shadow-md ring-4 ring-secondary/20"
-                  : "border-white/10 bg-white/5 text-white/80 hover:border-secondary/40 hover:bg-secondary/10 hover:text-secondary hover:-translate-y-0.5 hover:shadow-sm"
+                  ? "border-ksc-royal bg-ksc-royal text-white shadow-sm"
+                  : "border-slate-200 bg-white text-slate-600 hover:border-ksc-sky/60 hover:text-ksc-royal"
               )}
             >
               <span className="leading-none mt-0.5">{tab.label}</span>
@@ -60,7 +67,7 @@ export function Tabs({ tabs, defaultActive, onChange, children, className }: Tab
                 <span
                   className={cn(
                     "inline-flex h-5 min-w-5 items-center justify-center rounded-full px-1.5 text-[11px] font-bold shadow-sm",
-                    isActive ? "bg-ksc-navy-dark/20 text-ksc-navy-dark" : "bg-white/10 text-white/60"
+                    isActive ? "bg-white/15 text-white" : "bg-slate-100 text-slate-500"
                   )}
                 >
                   {tab.badge}

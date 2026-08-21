@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { MapPin, Phone, Mail, MessageCircle } from "lucide-react";
+import { MapPin, Phone, MessageCircle } from "lucide-react";
 import { useSiteData } from "../../services/SiteDataContext";
 import { Logo } from "../brand/Logo";
 
@@ -33,20 +33,16 @@ export function Footer() {
 
   return (
     <footer className="bg-ksc-navy text-white animate-fade-in-up delay-200">
-      {/* Poster Red Contact Banner */}
-      <div className="bg-ksc-red border-y-4 border-ksc-yellow relative overflow-hidden py-10 shadow-2xl">
-        <div className="absolute inset-0 bg-[url('/assets/hero-pattern.svg')] opacity-10 mix-blend-overlay"></div>
-        <div className="container-site relative z-10 text-center flex flex-col md:flex-row items-center justify-between gap-6">
-           <h3 className="text-xl sm:text-2xl font-black uppercase text-white tracking-widest text-shadow-heavy">
-             Always Contact Our Educational Services:
-           </h3>
-           <div className="flex flex-col sm:flex-row gap-4 items-center bg-black/20 p-4 rounded-xl border border-white/10 shadow-inner">
-             <a href={`tel:${contact.phone}`} className="flex items-center gap-2 text-2xl sm:text-3xl font-black text-white hover:text-ksc-yellow transition-colors drop-shadow-md">
-               <Phone className="w-6 h-6 sm:w-8 sm:h-8" /> {contact.phone}
+      <div className="relative overflow-hidden bg-[#fff8e7] py-6 text-ksc-navy sm:py-7">
+        <div className="absolute right-0 top-0 h-full w-1/3 bg-ksc-yellow/20 [clip-path:polygon(30%_0,100%_0,100%_100%,0_100%)]" />
+        <div className="container-site relative z-10 flex flex-col items-center justify-between gap-4 text-center md:flex-row md:text-left">
+           <div><p className="text-[10px] font-bold uppercase tracking-[.16em] text-ksc-red">Need help choosing a course?</p><h3 className="mt-1 text-xl font-bold text-ksc-navy sm:text-2xl">Talk to our education team</h3></div>
+           <div className="flex flex-col items-center gap-2 sm:flex-row">
+             <a href={`tel:${contact.phone}`} className="flex min-h-10 items-center gap-2 rounded-lg bg-ksc-navy px-4 py-2 text-sm font-bold text-white transition-colors hover:bg-ksc-royal">
+               <Phone className="h-4 w-4" /> {contact.phone}
              </a>
-             <span className="hidden sm:inline text-white/50">|</span>
-             <a href={`https://wa.me/${contact.whatsapp}`} className="flex items-center gap-2 text-2xl sm:text-3xl font-black text-white hover:text-[#25D366] transition-colors drop-shadow-md">
-               <MessageCircle className="w-6 h-6 sm:w-8 sm:h-8" /> {contact.whatsapp}
+             <a href={`https://wa.me/${contact.whatsapp}`} className="flex min-h-10 items-center gap-2 rounded-lg bg-[#25D366] px-4 py-2 text-sm font-bold text-white transition-colors hover:bg-[#20b858]">
+               <MessageCircle className="h-4 w-4" /> {contact.whatsapp}
              </a>
            </div>
         </div>
@@ -140,25 +136,29 @@ export function Footer() {
       </div>
 
       {/* Branches Section */}
-      <div className="border-t border-white/10 py-12">
-          <h4 className="mb-8 text-center text-lg font-bold uppercase tracking-wider text-white">Our Associated Branches</h4>
-          <div className="container-site grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="border-t border-slate-200 bg-gradient-to-br from-[#eef7ff] via-white to-[#fff8e5] py-7 sm:py-8">
+          <div className="container-site mb-5 text-center">
+            <p className="text-[10px] font-bold uppercase tracking-[.16em] text-ksc-red">Visit Us</p>
+            <h4 className="mt-1 text-xl font-bold text-ksc-navy sm:text-2xl">Our Associated Branches</h4>
+            <p className="mt-1 text-sm text-slate-500">Meet our counsellors at the centre nearest to you.</p>
+          </div>
+          <div className="container-site grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {BRANCHES.map((branch) => (
-              <div key={branch.name} className="group rounded-2xl bg-white/5 p-6 transition-all duration-300 hover:bg-white/10 hover:-translate-y-1">
-                <div className="mb-4 flex items-start gap-4">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/10 text-ksc-yellow transition-colors duration-300 group-hover:bg-ksc-yellow group-hover:text-ksc-navy">
-                    <MapPin className="h-5 w-5" />
+              <div key={branch.name} className="group rounded-xl border border-slate-200 bg-white/90 p-4 transition duration-200 hover:-translate-y-0.5 hover:border-ksc-sky/50 hover:shadow-md">
+                <div className="mb-3 flex items-start gap-3">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-ksc-red/10 text-ksc-red transition-colors duration-200 group-hover:bg-ksc-red group-hover:text-white">
+                    <MapPin className="h-4 w-4" />
                   </div>
                   <div>
-                    {branch.isHead && <span className="mb-1 block text-[10px] font-bold uppercase tracking-widest text-ksc-yellow">Head Office</span>}
-                    <h5 className="text-lg font-bold text-white leading-tight">{branch.name}</h5>
+                    {branch.isHead && <span className="mb-0.5 block text-[9px] font-bold uppercase tracking-[.14em] text-ksc-red">Head Office</span>}
+                    <h5 className="text-base font-bold leading-tight text-ksc-navy">{branch.name}</h5>
                   </div>
                 </div>
-                <div className="ml-16 space-y-2 text-sm text-slate-300">
-                  <p className="leading-relaxed">{branch.address}</p>
-                  <p className="flex items-center gap-2 font-medium text-white">
-                    <Phone className="h-4 w-4 text-ksc-yellow" /> {branch.phone}
-                  </p>
+                <div className="ml-12 space-y-2 text-xs text-slate-600">
+                  <p className="leading-5">{branch.address}</p>
+                  <a href={`tel:${branch.phone}`} className="flex items-center gap-2 border-t border-slate-100 pt-2 font-bold text-ksc-navy transition-colors hover:text-ksc-red">
+                    <Phone className="h-3.5 w-3.5 text-ksc-red" /> {branch.phone}
+                  </a>
                 </div>
               </div>
             ))}

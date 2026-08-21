@@ -8,7 +8,6 @@ import {
   ClipboardList,
   Wallet,
   Package,
-  CalendarDays,
   MapPin,
   Phone,
   X,
@@ -22,28 +21,13 @@ import {
   MapPinned,
   MonitorSmartphone,
   Building2,
-  Star,
   Award,
   Globe
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import {
-  SITE_CONFIG,
-  HERO,
-  WHY_DISTANCE,
-  ABOUT_SNAPSHOT,
-  VISION_MISSION_VALUES,
-  NEWS_EVENTS,
-  ADMISSION_STEPS,
-  BRANCHES,
-} from "../data/site-content";
-import { UNIVERSITIES } from "../data/universities";
-import { GALLERY } from "../data/gallery";
-import { FACILITIES } from "../data/facilities";
 import { SectionHeading } from "../components/common/SectionHeading";
-import { Tabs } from "../components/common/Tabs";
 import { StatCounter } from "../components/common/StatCounter";
-import { NewsTicker } from "../components/common/NewsTicker";
+import { Tabs } from "../components/common/Tabs";
 import { Button } from "../components/ui/Button";
 import { cn } from "../utils/cn";
 
@@ -81,6 +65,18 @@ function UserUpdatePopup() {
       return () => clearInterval(timer);
     }
   }, [posters.length]);
+
+  useEffect(() => {
+    if (!isOpen || !modalData?.enabled) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const closeOnEscape = (event: KeyboardEvent) => event.key === "Escape" && setIsOpen(false);
+    window.addEventListener("keydown", closeOnEscape);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [isOpen, modalData?.enabled]);
   
   if (!isOpen || !modalData?.enabled) return null;
 
@@ -90,22 +86,22 @@ function UserUpdatePopup() {
     : modalData.imageUrl;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 sm:p-6">
-      <div className="animate-fade-in flex justify-center w-full max-w-4xl">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-ksc-navy/90 p-4 backdrop-blur-sm sm:p-6" role="dialog" aria-modal="true" aria-labelledby="update-title">
+      <div className="animate-fade-in flex w-full max-w-4xl justify-center">
         {displayImageUrl ? (
           <div className="relative inline-block">
             {/* Close Button on Top Right of Image */}
-            <button onClick={() => setIsOpen(false)} className="absolute -right-3 -top-3 sm:-right-4 sm:-top-4 z-10 text-white hover:text-ksc-gold bg-black rounded-full p-1.5 sm:p-2 border-2 border-white/20 shadow-xl transition-all hover:scale-110">
+            <button onClick={() => setIsOpen(false)} aria-label="Close update" autoFocus className="absolute -right-3 -top-3 z-10 flex h-11 w-11 items-center justify-center rounded-full border-2 border-white bg-ksc-navy text-white shadow-xl transition-colors hover:bg-ksc-red sm:-right-4 sm:-top-4">
               <X className="h-5 w-5 sm:h-6 sm:w-6" />
             </button>
             <img src={displayImageUrl} alt="Update" className="w-auto h-auto object-contain max-h-[85vh] max-w-full rounded-xl shadow-2xl" key={displayImageUrl} />
           </div>
         ) : (
           <div className="relative w-full max-w-2xl rounded-2xl bg-white/5 p-8 text-center border border-white/10">
-            <button onClick={() => setIsOpen(false)} className="absolute right-4 top-4 z-10 text-gray-400 hover:text-white/60 bg-black/50 rounded-full p-1 transition-all hover:scale-110">
+            <button onClick={() => setIsOpen(false)} aria-label="Close update" autoFocus className="absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20">
               <X className="h-5 w-5" />
             </button>
-            <h3 className="text-2xl font-black text-white mb-2 uppercase drop-shadow-md">{modalData.title}</h3>
+            <h3 id="update-title" className="mb-2 text-2xl font-bold text-white">{modalData.title}</h3>
             <p className="text-white/80 font-medium">{modalData.message}</p>
           </div>
         )}
@@ -115,7 +111,7 @@ function UserUpdatePopup() {
 }
 
 function Hero() {
-  const { data: { hero: HERO, settings: SITE_CONFIG } } = useSiteData();
+  const { data: { settings: SITE_CONFIG } } = useSiteData();
   const [currentImage, setCurrentImage] = useState(0);
 
   useEffect(() => {
@@ -128,62 +124,57 @@ function Hero() {
   return (
     <>
       <UserUpdatePopup />
-      {/* Hero Section (Poster Style) */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-ksc-navy via-[#0d276b] to-[#87bdf5] min-h-[600px] flex items-center pt-8 pb-16 border-b-8 border-ksc-red">
-        <div className="absolute inset-0 bg-[url('/assets/hero-pattern.svg')] bg-repeat opacity-10 mix-blend-overlay" />
-        
-        {/* Animated Background Image Fade */}
-        <div className="absolute inset-0 z-0 opacity-20">
-            <img
-              key={currentImage}
-              src={HERO_IMAGES[currentImage]}
-              alt="Campus Background"
-              className="h-full w-full object-cover object-top animate-fade-in mix-blend-luminosity"
-            />
-            <div className="absolute inset-0 bg-ksc-navy/40" />
+      <section className="relative overflow-hidden bg-white">
+        <div className="absolute inset-y-0 left-0 w-full bg-gradient-to-r from-[#f5f8fc] via-white to-[#eaf4ff] lg:w-[58%]" />
+        <div className="absolute left-0 top-0 h-1.5 w-40 bg-ksc-red" />
+        <div className="container-site relative grid items-center gap-12 py-14 lg:min-h-[650px] lg:grid-cols-[1.05fr_.95fr] lg:py-20">
+          <div className="relative z-10 max-w-2xl">
+            <div className="mb-7 inline-flex items-center gap-3 border-l-4 border-ksc-red pl-3">
+              <span className="text-xs font-extrabold uppercase tracking-[.2em] text-ksc-navy">Admissions open · {SITE_CONFIG.admissionYear}</span>
+            </div>
+            <p className="mb-3 text-sm font-bold uppercase tracking-[.14em] text-ksc-royal">Your next chapter starts here</p>
+            <h1 className="max-w-2xl text-4xl leading-[1.08] text-ksc-navy sm:text-5xl lg:text-6xl">
+              Karur Study <span className="text-ksc-royal">Center</span>
+            </h1>
+            <p className="mt-7 max-w-xl text-base font-medium leading-8 text-slate-600 sm:text-lg">Recognised UG, PG and diploma programmes with personal guidance, flexible learning and complete student support—right here in Karur.</p>
+            <div className="mt-9 flex flex-col gap-4 sm:flex-row">
+              <Link to="/admissions" className="btn-gold gap-2">Explore admissions <ArrowRight className="h-4 w-4" /></Link>
+              <Link to="/academic" className="btn-outline bg-white/70">View programmes</Link>
+            </div>
+            <div className="mt-10 grid gap-3 border-t border-slate-200 pt-6 text-sm font-semibold text-ksc-navy sm:grid-cols-3">
+              <span className="flex items-center gap-2"><CheckCircle2 className="h-5 w-5 text-ksc-red" /> Recognised degrees</span>
+              <span className="flex items-center gap-2"><CheckCircle2 className="h-5 w-5 text-ksc-red" /> Flexible schedules</span>
+              <span className="flex items-center gap-2"><CheckCircle2 className="h-5 w-5 text-ksc-red" /> Local support</span>
+            </div>
+          </div>
+
+          <div className="relative mx-auto w-full max-w-xl lg:mx-0 lg:justify-self-end">
+            <div className="absolute -right-4 -top-4 h-full w-full rounded-3xl bg-ksc-red" />
+            <div className="relative overflow-hidden rounded-3xl border-4 border-white bg-ksc-navy shadow-[var(--shadow-lg)]">
+              <img key={currentImage} src={HERO_IMAGES[currentImage]} alt="Students supported by Karur Study Centre" className="h-80 w-full object-cover object-top animate-fade-in sm:h-[480px]" />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ksc-navy via-ksc-navy/75 to-transparent px-7 pb-7 pt-24 text-white">
+                <p className="text-2xl font-bold text-white">Education that fits your life</p>
+                <p className="mt-1 text-sm text-white/75">Study. Grow. Move forward.</p>
+              </div>
+            </div>
+            <div className="absolute -left-2 top-8 rounded-lg bg-ksc-red px-5 py-3 text-white shadow-xl sm:-left-8">
+              <span className="block text-[10px] font-bold uppercase tracking-[.2em]">Now open</span>
+              <span className="font-heading text-3xl font-black uppercase">2026–27</span>
+            </div>
+          </div>
         </div>
 
-        <div className="container-site relative z-10 flex flex-col items-center text-center w-full">
-          
-          <h2 className="text-sm sm:text-xl md:text-2xl font-black text-white tracking-widest drop-shadow-md mb-2 uppercase bg-ksc-navy px-6 py-1.5 rounded-full border border-white/20">
-            Distance Education Learning Centre
-          </h2>
-          
-          <h1 className="text-6xl sm:text-8xl lg:text-[100px] font-black text-white text-shadow-heavy uppercase tracking-tighter leading-none mb-8 mt-4">
-            <span className="text-white drop-shadow-xl">Karur</span><br />
-            <span className="text-ksc-red text-glow">Study Centre</span>
-          </h1>
-
-          <div className="poster-ribbon mb-4">
-            <span className="poster-ribbon-text text-4xl sm:text-6xl">
-              Admission Open
-            </span>
-          </div>
-          
-          <div className="bg-ksc-yellow px-10 py-2 shadow-xl mb-12 border-b-4 border-yellow-600 rounded-sm transform rotate-1">
-            <span className="text-2xl sm:text-4xl font-black text-ksc-navy uppercase tracking-widest">
-              FOR {SITE_CONFIG.admissionYear}
-            </span>
-          </div>
-
-          {/* Icon Features Bar */}
-          <div className="flex flex-wrap justify-center gap-6 sm:gap-12 w-full max-w-5xl bg-ksc-navy/90 backdrop-blur-md border-y-4 border-ksc-yellow py-6 px-4 shadow-2xl">
-             <div className="flex items-center gap-3 text-white">
-                <BookOpen className="w-8 h-8 text-white opacity-80" />
-                <span className="font-bold text-sm sm:text-base leading-tight text-left uppercase">UG & PG<br/>Programs</span>
-             </div>
-             <div className="flex items-center gap-3 text-white">
-                <MonitorPlay className="w-8 h-8 text-white opacity-80" />
-                <span className="font-bold text-sm sm:text-base leading-tight text-left uppercase">Flexible<br/>Learning</span>
-             </div>
-             <div className="flex items-center gap-3 text-white">
-                <Globe className="w-8 h-8 text-white opacity-80" />
-                <span className="font-bold text-sm sm:text-base leading-tight text-left uppercase">Study from<br/>Anywhere</span>
-             </div>
-             <div className="flex items-center gap-3 text-white">
-                <Award className="w-8 h-8 text-ksc-yellow" />
-                <span className="font-bold text-sm sm:text-base leading-tight text-left uppercase text-ksc-yellow">Recognized<br/>Degrees</span>
-             </div>
+        <div className="relative border-y border-white/10 bg-ksc-navy text-white">
+          <div className="container-site grid grid-cols-2 divide-x divide-white/10 md:grid-cols-4">
+            {[
+              [BookOpen, "UG & PG", "Programmes"],
+              [MonitorPlay, "Flexible", "Learning"],
+              [Globe, "Learn from", "Anywhere"],
+              [Award, "Recognised", "Degrees"],
+            ].map(([Icon, top, bottom]) => {
+              const FeatureIcon = Icon as LucideIcon;
+              return <div key={top as string} className="flex items-center gap-3 px-4 py-5 sm:px-7"><FeatureIcon className="h-7 w-7 shrink-0 text-ksc-yellow" /><p className="text-xs font-extrabold uppercase tracking-wider sm:text-sm">{top as string}<span className="block text-white/55">{bottom as string}</span></p></div>;
+            })}
           </div>
         </div>
       </section>
@@ -219,50 +210,41 @@ function AffiliationsStrip() {
 /* ABOUT SNAPSHOT (POSTER THEME)                                               */
 /* --------------------------------------------------------------------------- */
 function AboutSnapshot() {
-  const { data: { about_snapshot: ABOUT_SNAPSHOT } } = useSiteData();
-  return (
-    <section className="bg-ksc-cream py-16 sm:py-24 overflow-hidden relative border-b-8 border-ksc-navy">
-      <div className="container-site">
-        <div className="text-center mb-16">
-          <h3 className="text-2xl sm:text-4xl font-black text-ksc-navy uppercase tracking-widest mb-2 drop-shadow-md">Want to continue</h3>
-          <h2 className="text-5xl sm:text-7xl font-black text-ksc-red text-shadow-heavy uppercase tracking-tighter">Your Education?</h2>
-        </div>
+  const POSTER_POINTS = [
+    "Education brings Knowledge",
+    "Education builds Character",
+    "Education creates Opportunity",
+    "Education reduces Poverty",
+    "Education makes you Independent",
+    "Education helps to serve the Nation",
+    "Education is the key to a Better Tomorrow",
+  ];
 
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20 animate-fade-in-up delay-200">
-          
-          {/* Text/Content Column */}
-          <div className="order-2 lg:order-1 flex flex-col items-start text-left">
-            <div className="bg-ksc-chalk border-[12px] border-[#8b5a2b] p-6 sm:p-10 rounded-sm shadow-2xl relative w-full">
-               <h4 className="text-ksc-yellow text-2xl font-black uppercase tracking-wider mb-6 pb-4 border-b border-white/20">Why Choose Us?</h4>
-               <ul className="space-y-4 text-white text-lg sm:text-xl font-medium tracking-wide">
-                 {ABOUT_SNAPSHOT.text.slice(0, 3).map((para, i) => (
-                   <li key={i} className="flex gap-4 items-start">
-                     <span className="text-ksc-yellow text-2xl leading-none mt-1">✿</span> 
-                     <span className="leading-snug">{para.length > 80 ? para.substring(0, 80) + '...' : para}</span>
-                   </li>
-                 ))}
-                 <li className="flex gap-4 items-start">
-                    <span className="text-ksc-yellow text-2xl leading-none mt-1">✿</span> 
-                    <span className="leading-snug text-ksc-yellow font-bold">Trusted by 50,000+ Students</span>
-                 </li>
-               </ul>
+  return (
+    <section className="relative overflow-hidden bg-[#fff8e7] py-16 sm:py-24">
+      <div className="absolute right-0 top-0 h-full w-1/3 bg-ksc-yellow/10 [clip-path:polygon(35%_0,100%_0,100%_100%,0_100%)]" />
+      <div className="container-site">
+        <div className="relative grid items-center gap-12 lg:grid-cols-[1.05fr_.95fr] lg:gap-20">
+          <div>
+            <SectionHeading align="left" kicker="The value of learning" title="Education opens more than doors" subtitle="A recognised qualification can create confidence, independence and opportunity at every stage of life." />
+            <div className="grid gap-3 sm:grid-cols-2">
+               {POSTER_POINTS.map((para, i) => (
+                 <div key={i} className="flex items-start gap-3 rounded-xl border border-ksc-navy/10 bg-white px-4 py-3 shadow-sm">
+                   <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-ksc-yellow text-xs font-black text-ksc-navy">{i + 1}</span>
+                   <span className="text-sm font-bold leading-6 text-ksc-navy">{para}</span>
+                 </div>
+               ))}
             </div>
-            <Link to={ABOUT_SNAPSHOT.readMoreLink} className="btn-gold mt-10">
-              Read More <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
           </div>
 
-          {/* Image Column */}
-          <div className="relative order-1 lg:order-2 px-4 lg:px-0 mx-auto w-full max-w-lg lg:max-w-none group">
-            <div className="rounded-3xl overflow-hidden shadow-2xl bg-white p-3 border-4 border-slate-100 transform rotate-2">
-              <img src="/assets/gallery/ksc-01.jpg" alt="Study materials" className="w-full h-auto rounded-2xl object-cover aspect-[4/3] transition-transform duration-[10000ms] group-hover:scale-105" />
+          <div className="relative mx-auto w-full max-w-lg">
+            <div className="overflow-hidden rounded-[2rem] bg-white p-3 shadow-[0_25px_70px_rgba(7,27,74,.16)]">
+              <img src="/assets/gallery/ksc-01.jpg" alt="Study materials at Karur Study Centre" className="aspect-[4/3] w-full rounded-[1.4rem] object-cover" />
             </div>
-            
-            <div className="absolute -bottom-10 -left-6 z-10 hidden sm:block">
-               <div className="bg-white p-6 rounded-xl shadow-2xl border-4 border-ksc-yellow max-w-[280px] transform -rotate-3">
-                  <p className="text-lg font-bold text-ksc-navy italic leading-snug">"Education is the most powerful weapon which you can use to change the world."</p>
-                  <p className="text-base font-black text-ksc-red mt-3 text-right">— KAMARAJAR</p>
-               </div>
+            <div className="relative -mt-14 ml-5 max-w-sm rounded-2xl bg-ksc-navy p-6 text-white shadow-xl sm:ml-12">
+              <BookOpen className="mb-4 h-8 w-8 text-ksc-yellow" aria-hidden="true" />
+              <p className="font-heading text-2xl font-bold leading-tight">Education is the most powerful weapon you can use to change the world.</p>
+              <p className="mt-4 text-xs font-black uppercase tracking-[.2em] text-ksc-yellow">— Kamarajar</p>
             </div>
           </div>
         </div>
@@ -279,7 +261,7 @@ function WhyDistance() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section className="bg-white py-12 sm:py-16 lg:py-12 lg:py-24 border-t border-slate-100">
+    <section className="bg-white py-12 sm:py-16 lg:py-24 border-t border-slate-100">
       <div className="container-site">
         <SectionHeading
           kicker="Why Distance Education"
@@ -287,44 +269,26 @@ function WhyDistance() {
           subtitle="Affordable, flexible and recognised — distance education fits around your life, not the other way around."
         />
         <div className="grid gap-10 lg:grid-cols-12 lg:items-start mt-12">
-          {/* Left: Sticky Image */}
           <div className="lg:col-span-5 hidden lg:block sticky top-28">
-            <div className="relative overflow-hidden rounded-3xl shadow-xl border-[6px] border-white h-full min-h-[500px]">
-              <div className="absolute inset-0 bg-ksc-sky/20 mix-blend-multiply rounded-3xl z-10" />
-              <img src="/assets/user-photos/distance-student.png" alt="Student studying distance education" className="absolute inset-0 w-full h-full object-cover transform hover:scale-105 transition-transform duration-700" />
+            <div className="relative overflow-hidden rounded-3xl shadow-xl h-full min-h-[500px]">
+              <img src="/assets/user-photos/distance-student.png" alt="Student studying distance education" className="absolute inset-0 w-full h-full object-cover" />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ksc-navy to-transparent p-7 pt-24 text-white"><p className="font-heading text-3xl font-black uppercase">Learn on your terms</p></div>
             </div>
           </div>
 
-          {/* Right: Accordion */}
-          <div className="flex flex-col bg-white rounded-3xl lg:col-span-7">
+          <div className="flex flex-col rounded-3xl bg-[#f8fbff] p-3 lg:col-span-7">
             {WHY_DISTANCE.map((item, index) => {
               const isActive = index === activeIndex;
               return (
-                <div key={item.title} className="border-b border-slate-100 last:border-b-0">
-                  <button
-                    onClick={() => setActiveIndex(index)}
-                    className="group flex w-full items-center justify-between py-6 px-4 text-left transition-all hover:bg-slate-100 focus:outline-none rounded-2xl"
-                  >
+                <div key={item.title} className="border-b border-slate-200 last:border-b-0">
+                  <button onClick={() => setActiveIndex(index)} className="group flex w-full items-center justify-between rounded-2xl px-4 py-6 text-left transition-all hover:bg-white">
                     <div className="flex items-center gap-4">
-                      <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl shadow-sm transition-colors duration-300 ${isActive ? 'bg-ksc-red text-white' : 'bg-white border-2 border-slate-200 text-ksc-navy'}`}>
-                        <span className="font-black text-lg">{String(index + 1).padStart(2, "0")}</span>
-                      </div>
-                      <span className={`text-lg font-bold sm:text-xl transition-colors duration-300 uppercase ${isActive ? 'text-ksc-red' : 'text-ksc-navy group-hover:text-ksc-red'}`}>
-                        {item.title}
-                      </span>
+                      <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full font-heading text-lg font-black transition-colors ${isActive ? 'bg-ksc-red text-white' : 'bg-white text-ksc-navy'}`}>{String(index + 1).padStart(2, "0")}</div>
+                      <span className={`text-lg font-bold sm:text-xl ${isActive ? 'text-ksc-red' : 'text-ksc-navy'}`}>{item.title}</span>
                     </div>
-                    <span className={`ml-4 flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-transform duration-300 ${isActive ? 'bg-ksc-red text-white' : 'bg-slate-200 text-slate-500'}`}>
-                      <span className="text-2xl font-light leading-none">{isActive ? '−' : '+'}</span>
-                    </span>
+                    <span className="ml-4 text-2xl font-light text-ksc-red">{isActive ? '−' : '+'}</span>
                   </button>
-                  <div
-                    className={`overflow-hidden transition-all duration-500 ease-in-out px-4 ${isActive ? 'max-h-40 opacity-100 pb-6' : 'max-h-0 opacity-0'
-                      }`}
-                  >
-                    <p className="text-sm leading-relaxed text-slate-600 sm:text-base pl-16 pr-8 font-medium">
-                      {item.description}
-                    </p>
-                  </div>
+                  <div className={`overflow-hidden px-4 transition-all duration-500 ${isActive ? 'max-h-40 pb-6 opacity-100' : 'max-h-0 opacity-0'}`}><p className="pl-15 pr-8 text-sm font-medium leading-7 text-slate-600 sm:text-base">{item.description}</p></div>
                 </div>
               );
             })}
@@ -465,13 +429,9 @@ function Stats() {
       <div className="absolute inset-0 bg-black/10 pointer-events-none mix-blend-overlay"></div>
       <div className="container-site relative z-10">
         <div className="grid grid-cols-2 gap-10 md:grid-cols-3 lg:grid-cols-5 divide-x-0 md:divide-x-2 divide-white/10">
-          {SITE_CONFIG.stats.map((s) => (
-            <div key={s.label} className="text-center px-4 animate-fade-in-up">
-              <div className="flex items-center justify-center mb-2">
-                <span className="text-5xl font-black text-white drop-shadow-sm">{s.value}</span>
-                <span className="text-3xl font-black text-ksc-yellow ml-1">{s.suffix}</span>
-              </div>
-              <p className="text-xs font-bold uppercase tracking-widest text-white/80">{s.label}</p>
+          {SITE_CONFIG.stats.map((s, index) => (
+            <div key={s.label} className="px-4">
+              <StatCounter value={s.value} suffix={s.suffix} label={s.label} duration={1200 + index * 140} />
             </div>
           ))}
         </div>
@@ -548,7 +508,7 @@ function UniversityCourses() {
 function FacilitiesGrid() {
   const { data: { facilities: FACILITIES } } = useSiteData();
   return (
-    <section className="bg-white py-10 lg:py-20 border-t-4 border-ksc-red">
+    <section className="facilities-showcase bg-white py-10 lg:py-20 border-t-4 border-ksc-red">
       <div className="container-site">
         <SectionHeading
           kicker="Facilities & Services"
@@ -559,16 +519,16 @@ function FacilitiesGrid() {
           {FACILITIES.map(({ icon, image, title, description }) => {
             const Icon = typeof icon === "string" ? ICON_MAP[icon] ?? Building2 : icon;
             return (
-              <div key={title} className="card-hover p-6 sm:p-8 bg-white text-center">
-                <div className="mx-auto flex h-16 w-16 items-center justify-center bg-white text-slate-900 border-2 border-slate-900 transition-transform duration-300 hover:scale-110">
+              <div key={title} className="facility-card card-hover group bg-white p-5 text-center sm:p-6">
+                <div className="facility-icon mx-auto flex h-14 w-14 items-center justify-center overflow-hidden rounded-xl border border-slate-200 bg-slate-50 text-ksc-navy transition duration-300">
                   {image ? (
-                    <img src={image} alt={title} loading="lazy" className="h-full w-full object-cover grayscale" />
+                    <img src={image} alt={title} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
                   ) : (
                     <Icon className="h-8 w-8 stroke-[1.5]" />
                   )}
                 </div>
-                <h4 className="mt-6 font-black uppercase text-slate-900">{title}</h4>
-                <p className="mt-2 text-xs font-medium leading-relaxed text-slate-500">{description}</p>
+                <h4 className="mt-4 font-bold text-ksc-navy">{title}</h4>
+                <p className="mt-2 text-sm leading-6 text-slate-500">{description}</p>
               </div>
             );
           })}
@@ -602,7 +562,7 @@ function AdmissionSteps() {
           {/* Connecting Line for Desktop */}
           <div className="hidden lg:block absolute top-12 left-[10%] right-[10%] h-0.5 bg-slate-200 border-t-2 border-dashed border-slate-300" />
           
-          {STEPS.map((step, index) => {
+          {STEPS.map((step) => {
             const Icon = step.icon;
             return (
               <div key={step.step} className="group relative flex flex-col items-center text-center">
@@ -697,26 +657,26 @@ function GalleryStrip() {
   const { data: { gallery_images: GALLERY } } = useSiteData();
   const previews = GALLERY.slice(0, 6);
   return (
-    <section className="bg-slate-50 py-10 lg:py-20 border-t border-slate-100">
+    <section className="gallery-showcase bg-slate-50 py-10 lg:py-20 border-t border-slate-100">
       <div className="container-site">
         <SectionHeading
           kicker="Life at KSC"
           title="Take a look inside"
           subtitle="Real photos from our centre — front office, study materials, counselling and more."
         />
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 mt-10">
+        <div className="mt-10 grid auto-rows-[150px] grid-cols-2 gap-3 sm:auto-rows-[190px] md:grid-cols-4 md:gap-4">
           {previews.map((item, index) => (
-            <Link key={index} to="/gallery" className="group relative overflow-hidden rounded-xl shadow-sm block aspect-[4/3]">
+            <Link key={index} to="/gallery" className={cn("gallery-tile group relative block overflow-hidden rounded-2xl border border-white/70 bg-slate-200 shadow-sm", index === 0 && "col-span-2 row-span-2")}>
               <div className="absolute inset-0 bg-slate-200">
                 <img
                   src={item.src}
                   alt={item.alt}
                   loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
-              <span className="absolute inset-0 flex items-end bg-gradient-to-t from-ksc-navy/80 via-ksc-navy/20 to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                <span className="text-sm font-bold text-white tracking-wider">{item.caption}</span>
+              <span className="absolute inset-0 flex items-end bg-gradient-to-t from-ksc-navy/90 via-ksc-navy/10 to-transparent p-4 opacity-70 transition-opacity duration-300 group-hover:opacity-100 sm:p-5">
+                <span className="translate-y-1 text-sm font-bold text-white transition-transform duration-300 group-hover:translate-y-0">{item.caption}</span>
               </span>
             </Link>
           ))}
@@ -737,21 +697,21 @@ function GalleryStrip() {
 function CtaBand() {
   const { data: { settings: SITE_CONFIG } } = useSiteData();
   return (
-    <section className="bg-ksc-sky/10 relative overflow-hidden py-10 lg:py-16 text-ksc-navy border-t border-slate-200">
+    <section className="compact-section relative overflow-hidden border-t border-slate-200 bg-ksc-sky/10 py-6 text-ksc-navy sm:py-7">
       <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-white/40 blur-3xl" />
       <div className="pointer-events-none absolute -left-10 bottom-0 h-56 w-56 rounded-full bg-white/40 blur-3xl" />
-      <div className="container-site relative flex flex-col items-center gap-6 text-center md:flex-row md:justify-between md:text-left">
+      <div className="container-site relative flex flex-col items-center gap-4 text-center md:flex-row md:justify-between md:text-left">
         <div>
-          <p className="text-sm font-black uppercase tracking-[0.2em] text-white bg-slate-900 inline-block px-4 py-1.5 mb-3">Ready to begin?</p>
-          <h2 className="mt-2 text-3xl font-black tracking-tight">{SITE_CONFIG.admissionOpen}</h2>
-          <p className="mt-2 text-slate-700 font-bold tracking-wide">{SITE_CONFIG.lastDate}</p>
+          <p className="mb-2 inline-block rounded-md bg-ksc-navy px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-white">Ready to begin?</p>
+          <h2 className="text-xl font-bold tracking-tight sm:text-2xl">{SITE_CONFIG.admissionOpen}</h2>
+          <p className="mt-1 text-sm font-semibold text-slate-600">{SITE_CONFIG.lastDate}</p>
         </div>
-        <div className="flex flex-wrap justify-center gap-3">
-          <Button size="lg" className="btn-gold" asChild>
+        <div className="flex flex-wrap justify-center gap-2">
+          <Button size="default" className="btn-gold" asChild>
             <Link to="/admissions">Apply Now</Link>
           </Button>
           <Button
-            size="lg"
+            size="default"
             className="btn-outline"
             asChild
           >
@@ -763,7 +723,61 @@ function CtaBand() {
   );
 }
 
+function UpdatesBar() {
+  const { data: { news_events: news } } = useSiteData();
+  const latest = news.slice(0, 2);
+  return (
+    <section className="border-b border-slate-200 bg-white">
+      <div className="container-site flex flex-col gap-4 py-5 lg:flex-row lg:items-center">
+        <div className="flex shrink-0 items-center gap-3">
+          <span className="rounded-full bg-ksc-red px-3 py-1.5 text-[10px] font-black uppercase tracking-[.2em] text-white">Latest updates</span>
+          <span className="hidden h-7 w-px bg-slate-200 lg:block" />
+        </div>
+        <div className="grid flex-1 gap-2 md:grid-cols-2">
+          {latest.map((item, index) => (
+            <p key={index} className="flex items-start gap-2 text-sm font-semibold text-slate-600"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-ksc-yellow" />{item.text}</p>
+          ))}
+        </div>
+        <Link to="/exam-update" className="inline-flex shrink-0 items-center gap-2 text-xs font-black uppercase tracking-wider text-ksc-navy hover:text-ksc-red">View all <ArrowRight className="h-4 w-4" /></Link>
+      </div>
+    </section>
+  );
+}
+
 function NewsAndEventsBanner() {
+  const { data: { news_events: newsEvents } } = useSiteData();
+
+  return (
+    <section className="compact-section relative overflow-hidden border-y border-white/10 bg-gradient-to-r from-ksc-navy via-ksc-royal to-ksc-navy py-7 text-white sm:py-8">
+      <div className="pointer-events-none absolute -left-12 -top-16 h-40 w-40 animate-float rounded-full bg-ksc-sky/20 blur-2xl" />
+      <div className="pointer-events-none absolute -bottom-20 right-8 h-44 w-44 animate-float rounded-full bg-ksc-yellow/15 blur-2xl [animation-delay:1.2s]" />
+      <div className="container-site relative grid items-center gap-6 md:grid-cols-[240px_1fr_auto]">
+        <div>
+          <span className="inline-flex items-center rounded-full bg-ksc-red px-3 py-1.5 text-[10px] font-bold uppercase tracking-[.18em] text-white">Latest updates</span>
+          <h2 className="mt-3 text-2xl font-bold text-white sm:text-3xl">News &amp; Events</h2>
+          <p className="mt-2 text-sm text-white/65">Important admissions and examination notices.</p>
+        </div>
+
+        <div className="group relative h-28 overflow-hidden rounded-2xl border border-white/10 bg-white/[.07] px-5 backdrop-blur-sm sm:h-32">
+          <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-8 bg-gradient-to-b from-ksc-royal/90 to-transparent" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-8 bg-gradient-to-t from-ksc-royal/90 to-transparent" />
+          <div className="flex w-full animate-marqueeVertical flex-col items-start gap-7 py-9 hover:[animation-play-state:paused]">
+            {[...newsEvents, ...newsEvents].map((news, index) => (
+              <p key={`${news.text}-${index}`} className="flex min-h-7 w-full items-start gap-3 text-sm font-medium leading-6 text-white/90 sm:text-base">
+                <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-ksc-yellow shadow-[0_0_0_4px_rgba(255,210,26,.12)]" />
+                {news.text}
+              </p>
+            ))}
+          </div>
+        </div>
+
+        <Link to="/exam-update" className="btn-outline border-white/40 bg-white/10 text-white hover:bg-white hover:text-ksc-navy">View all updates <ArrowRight className="ml-2 h-4 w-4" /></Link>
+      </div>
+    </section>
+  );
+}
+
+function LegacyNewsAndEventsBanner() {
   const { data: { news_events: NEWS_EVENTS } } = useSiteData();
 
   return (
@@ -846,11 +860,9 @@ function NewsAndEventsBanner() {
 /* PAGE                                                                         */
 /* --------------------------------------------------------------------------- */
 export function Home() {
-  const { data: { news_events: NEWS_EVENTS } } = useSiteData();
   return (
     <>
       <Hero />
-
       <NewsAndEventsBanner />
       <AboutSnapshot />
       <WhyDistance />
@@ -861,7 +873,6 @@ export function Home() {
       <FacilitiesGrid />
       <AdmissionSteps />
       <GalleryStrip />
-      <Branches />
       <CtaBand />
     </>
   );

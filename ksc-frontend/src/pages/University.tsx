@@ -38,9 +38,9 @@ export function University() {
       {/* University intro card */}
       <section className="bg-slate-50 py-14 border-b-4 border-ksc-yellow">
         <div className="container-site">
-          <div className="overflow-hidden rounded-3xl border-[6px] border-white bg-white shadow-xl">
+          <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl">
             <div className="grid gap-6 p-6 lg:grid-cols-[auto_1fr_auto] lg:p-10">
-              <div className="flex h-24 w-24 sm:h-32 sm:w-32 items-center justify-center rounded-2xl border-4 border-slate-100 bg-white shadow-md overflow-hidden">
+              <div className="flex h-24 w-24 sm:h-32 sm:w-32 items-center justify-center rounded-2xl border border-slate-200 bg-white shadow-md overflow-hidden">
                 {uni.logo ? (
                   <img src={uni.logo} alt={`${uni.shortName} Logo`} className="h-full w-full object-contain p-2" />
                 ) : (
@@ -159,7 +159,7 @@ export function University() {
             </div>
           </div>
 
-          <div className="rounded-2xl border-4 border-white bg-slate-100 p-8 text-ksc-navy shadow-xl">
+          <div className="rounded-2xl border border-slate-200 bg-white p-8 text-ksc-navy shadow-soft">
             <h3 className="text-xl font-black uppercase">Need admission guidance?</h3>
             <p className="mt-4 text-sm font-medium text-slate-700 leading-relaxed">
               Walk into {SITE_CONFIG.name} in Karur and our counsellors will help you pick the

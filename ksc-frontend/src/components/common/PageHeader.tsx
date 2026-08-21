@@ -9,37 +9,43 @@ interface PageHeaderProps {
 
 export function PageHeader({ title, breadcrumb, bgImage }: PageHeaderProps) {
   return (
-    <section className="bg-gradient-to-b from-ksc-navy via-[#0d276b] to-[#87bdf5] relative h-[300px] w-full overflow-hidden sm:h-[350px] border-b-8 border-ksc-red">
+    <section className="relative min-h-56 w-full overflow-hidden bg-gradient-to-br from-ksc-navy to-ksc-royal sm:min-h-64">
       {bgImage && (
         <img 
           src={bgImage} 
           alt="" 
-          className="absolute inset-0 w-full h-full object-cover opacity-20 pointer-events-none mix-blend-luminosity" 
+          className="absolute inset-0 h-full w-full object-cover opacity-25 pointer-events-none"
         />
       )}
 
       {/* Background Overlay */}
-      <div className="absolute inset-0 pointer-events-none bg-ksc-navy/40" />
+      <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-ksc-navy via-ksc-navy/85 to-ksc-royal/55" />
+      <div className="absolute bottom-0 left-0 flex h-1.5 w-full" aria-hidden="true">
+        <span className="w-[55%] bg-ksc-royal" />
+        <span className="w-[30%] bg-ksc-red" />
+        <span className="w-[15%] bg-ksc-yellow" />
+      </div>
 
       {/* Content */}
-      <div className="container-site relative z-10 flex h-full flex-col items-center justify-center text-center mt-4">
-        <h1 className="mb-8 text-5xl font-black text-white sm:text-6xl lg:text-7xl text-shadow-heavy uppercase tracking-tight">
+      <div className="container-site relative z-10 flex min-h-56 flex-col items-start justify-center py-9 text-left sm:min-h-64 sm:py-10">
+        <p className="mb-3 text-xs font-bold uppercase tracking-[.16em] text-ksc-yellow">Karur Study Centre</p>
+        <h1 className="mb-6 max-w-4xl text-4xl font-bold normal-case leading-tight tracking-tight text-white sm:text-5xl">
           {title}
         </h1>
 
         {/* Breadcrumb Ribbon */}
-        <nav className="poster-ribbon shadow-2xl px-8 py-2">
-          <div className="poster-ribbon-text flex items-center text-xs sm:text-sm font-bold tracking-widest text-white">
+        <nav aria-label="Breadcrumb">
+          <div className="flex flex-wrap items-center text-xs font-medium text-white/70 sm:text-sm">
             {breadcrumb.map((crumb, idx) => {
               const isLast = idx === breadcrumb.length - 1;
               return (
                 <div key={crumb.label} className="flex items-center">
                   {crumb.to && !isLast ? (
-                    <Link to={crumb.to} className="transition-colors hover:text-ksc-yellow drop-shadow-md">
+                    <Link to={crumb.to} className="transition-colors hover:text-ksc-yellow">
                       {crumb.label}
                     </Link>
                   ) : (
-                    <span className={isLast ? "text-ksc-yellow drop-shadow-md" : ""}>{crumb.label}</span>
+                    <span className={isLast ? "text-white" : ""}>{crumb.label}</span>
                   )}
 
                   {!isLast && <ChevronRight className="mx-2 h-4 w-4 text-white/50" />}

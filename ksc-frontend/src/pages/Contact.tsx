@@ -15,7 +15,7 @@ export function Contact() {
   return (
     <div className="bg-slate-50 min-h-screen">
       {/* Page header */}
-      <section className="bg-ksc-sky relative overflow-hidden py-20 lg:py-12 lg:py-24 text-ksc-navy border-b-4 border-ksc-red">
+      <section className="relative overflow-hidden border-b-4 border-ksc-red bg-gradient-to-br from-[#e8f5ff] via-white to-[#fff4d6] py-20 text-ksc-navy lg:py-12 lg:py-24">
         {/* Background Image */}
         <img 
           src="/assets/user-photos/branch-exterior.jpg" 
@@ -95,7 +95,7 @@ export function Contact() {
               </div>
             </div>
 
-            <div className="mt-10 overflow-hidden rounded-2xl shadow-xl border-4 border-white group">
+            <div className="mt-10 overflow-hidden rounded-2xl border border-slate-200 shadow-xl group">
               <img 
                 src="/assets/user-photos/branch-exterior.jpg" 
                 alt="Karur Study Centre Branch Exterior" 
@@ -104,7 +104,7 @@ export function Contact() {
             </div>
 
             {/* Embedded map */}
-            <div className="mt-8 overflow-hidden rounded-2xl border-4 border-white shadow-xl bg-white p-2">
+            <div className="mt-8 overflow-hidden rounded-2xl border border-slate-200 shadow-xl bg-white p-2">
               <iframe
                 title={`${SITE_CONFIG.name} location map`}
                 src={contact.mapEmbedUrl}

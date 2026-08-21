@@ -20,10 +20,12 @@ export function Gallery() {
         <div className="container-site">
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {GALLERY.map((item, i) => (
-              <figure
+              <button
+                type="button"
                 key={item.id}
-                className="card-hover group relative cursor-pointer overflow-hidden border-4 border-white shadow-md bg-white rounded-2xl"
+                className="card-hover group relative overflow-hidden rounded-2xl bg-white text-left"
                 onClick={() => setLightbox(i)}
+                aria-label={`Open photo: ${item.caption}`}
               >
                 <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
                   <img
@@ -39,7 +41,7 @@ export function Gallery() {
                 <figcaption className="flex items-center gap-3 px-5 py-4 text-sm font-bold text-ksc-navy uppercase tracking-wide">
                   <Camera className="h-5 w-5 shrink-0 text-ksc-red" /> {item.caption}
                 </figcaption>
-              </figure>
+              </button>
             ))}
           </div>
 
@@ -60,6 +62,7 @@ export function Gallery() {
           aria-label={GALLERY[lightbox].caption}
         >
           <button
+            onClick={() => setLightbox(null)}
             className="absolute right-4 top-4 flex h-12 w-12 items-center justify-center rounded-full bg-white text-ksc-red hover:bg-ksc-yellow hover:text-ksc-navy shadow-xl border-[3px] border-ksc-navy transition-colors"
             aria-label="Close"
           >

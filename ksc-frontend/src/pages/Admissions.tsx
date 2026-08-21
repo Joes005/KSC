@@ -40,7 +40,7 @@ export function Admissions() {
   return (
     <>
       {/* Page header */}
-      <section className="bg-ksc-sky relative overflow-hidden py-14 text-ksc-navy border-b-4 border-ksc-red">
+      <section className="relative overflow-hidden border-b-4 border-ksc-red bg-gradient-to-br from-[#e8f5ff] via-white to-[#fff4d6] py-14 text-ksc-navy">
         <div className="pointer-events-none absolute -right-16 top-0 h-64 w-64 rounded-full bg-white/40 blur-3xl" />
         <div className="container-site relative">
           <p className="section-kicker text-ksc-red bg-white inline-block px-3 py-1 rounded-md mb-2 shadow-sm">Admissions</p>
@@ -214,7 +214,7 @@ export function Admissions() {
               ))}
             </ul>
 
-            <div className="card-hover mt-8 border-4 border-white bg-slate-100 p-8 shadow-xl">
+            <div className="card-hover mt-8 bg-white p-8 shadow-soft">
               <CheckCircle2 className="h-10 w-10 text-ksc-red" />
               <h3 className="mt-4 text-lg font-black uppercase text-ksc-navy">Documents you'll usually need</h3>
               <ul className="mt-4 space-y-2 text-sm font-medium text-slate-700">

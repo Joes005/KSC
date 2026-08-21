@@ -11,7 +11,7 @@ function UniversityProgrammes({ uni }: { uni: University }) {
     <section id={uni.id} className="scroll-mt-28 py-12 sm:py-16 lg:py-12 lg:py-24 border-b-4 border-slate-200 bg-white">
       <div className="container-site">
         {/* University header */}
-        <div className="rounded-2xl border-4 border-ksc-yellow bg-slate-50 p-6 sm:p-8 shadow-md">
+        <div className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 shadow-soft">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div>
               <h2 className="text-2xl sm:text-3xl font-black text-ksc-navy uppercase">{uni.name}</h2>
@@ -124,7 +124,7 @@ export function Academic() {
       {/* Eligibility note */}
       <section className="bg-slate-50 py-12 sm:py-16 lg:py-12 lg:py-24 border-t-4 border-ksc-yellow">
         <div className="container-site">
-          <div className="grid lg:grid-cols-2 gap-6 lg:gap-10 items-center rounded-3xl border-[6px] border-white bg-slate-50 p-8 sm:p-12 shadow-xl">
+          <div className="grid lg:grid-cols-2 gap-6 lg:gap-10 items-center rounded-3xl border border-slate-200 bg-white p-8 sm:p-12 shadow-soft">
             <div className="order-2 lg:order-1 text-sm leading-relaxed text-slate-700 font-medium">
               <p className="font-black text-ksc-red uppercase text-2xl mb-4">Eligibility notes</p>
               <p className="mt-2 text-base">
@@ -148,7 +148,7 @@ export function Academic() {
               </div>
             </div>
             <div className="order-1 lg:order-2">
-              <div className="overflow-hidden rounded-2xl shadow-xl border-4 border-white">
+              <div className="overflow-hidden rounded-2xl shadow-xl">
                 <img 
                   src="/assets/user-photos/study-materials.jpg" 
                   alt="Study Materials" 

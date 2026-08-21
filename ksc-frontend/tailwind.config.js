@@ -47,15 +47,15 @@ export default {
           teal: '#1e3a8a',
           orange: '#C91419',
           
-          'navy-mid': '#1e293b',
-          'navy-dark': '#0f172a',
-          gold: '#0f172a',
-          'gold-light': '#334155',
-          ink: '#1e293b',
+          'navy-mid': '#0D2E68',
+          'navy-dark': '#041338',
+          gold: '#F5C400',
+          'gold-light': '#FFE477',
+          ink: '#24324A',
           muted: '#64748b',
           
-          green: 'var(--poster-royal)',
-          'green-mid': 'var(--poster-sky)',
+          green: '#063B8F',
+          'green-mid': '#147CC1',
           dark: 'var(--poster-navy)',
           deep: 'var(--poster-navy)',
           mist: 'var(--poster-cream)',
@@ -63,8 +63,8 @@ export default {
         }
       },
       fontFamily: {
-        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-        heading: ['"Outfit"', 'sans-serif'],
+        sans: ['"Manrope"', '"Noto Sans Tamil"', 'system-ui', 'sans-serif'],
+        heading: ['"Merriweather"', '"Noto Sans Tamil"', 'Georgia', 'serif'],
       },
       boxShadow: {
         soft: '0 8px 30px rgba(0, 0, 0, 0.12)',

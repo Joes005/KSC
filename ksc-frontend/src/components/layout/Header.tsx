@@ -1,75 +1,26 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { Phone, MessageCircle, Menu, X, ChevronDown, Mail } from "lucide-react";
+import { Phone, MessageCircle, Menu, X, Mail } from "lucide-react";
 import { useSiteData } from "../../services/SiteDataContext";
 import { Logo } from "../brand/Logo";
 import { cn } from "../../utils/cn";
 
 interface NavItem {
   label: string;
-  path?: string;
-  children?: { label: string; path: string }[];
+  path: string;
 }
 
 const NAV_ITEMS: NavItem[] = [
   { label: "Home", path: "/" },
   { label: "About", path: "/about" },
-  { label: "Academic", path: "/academic" },
+  { label: "Academics", path: "/academic" },
   { label: "Gallery", path: "/gallery" },
   { label: "Contact", path: "/contact" },
 ];
 
-function DesktopDropdown({ item }: { item: NavItem }) {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <div
-      className="relative"
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
-      onFocus={() => setOpen(true)}
-      onBlur={(e) => {
-        if (!e.currentTarget.contains(e.relatedTarget)) setOpen(false);
-      }}
-    >
-      <button
-        type="button"
-        aria-haspopup="true"
-        aria-expanded={open}
-        onClick={() => setOpen((v) => !v)}
-        className={cn(
-          "flex items-center gap-1 rounded-md px-3 py-2 text-sm font-semibold transition-colors tracking-wide",
-          "text-ksc-navy hover:text-ksc-red",
-          open && "text-ksc-red"
-        )}
-      >
-        {item.label}
-        <ChevronDown className={cn("h-4 w-4 transition-transform", open && "rotate-180")} />
-      </button>
-      {open && (
-        <div className="absolute left-0 top-full z-50 mt-1 min-w-56 rounded-md border-b-4 border-ksc-red bg-white p-2 shadow-xl">
-          {item.children?.map((child) => (
-            <Link
-              key={child.path}
-              to={child.path}
-              onClick={() => setOpen(false)}
-              className="block rounded-md px-3 py-2 text-sm font-semibold text-ksc-navy hover:bg-slate-50 hover:text-ksc-red"
-            >
-              {child.label}
-            </Link>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
-
 export function Header() {
   const { data: { settings: SITE_CONFIG } } = useSiteData();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
-  const headerRef = useRef<HTMLElement>(null);
-
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -89,11 +40,11 @@ export function Header() {
 
   return (
     <header className={cn(
-      "sticky top-0 z-50 w-full transition-all duration-300",
-      isScrolled ? "bg-white shadow-md" : "bg-white"
+      "sticky top-0 z-50 w-full border-b border-slate-200 transition-all duration-200",
+      isScrolled ? "bg-white/95 shadow-[0_8px_30px_rgba(7,27,74,.09)] backdrop-blur-xl" : "bg-white"
     )}>
       {/* Top bar (Dark Blue) */}
-      <div className="bg-ksc-navy text-white py-2 text-xs hidden md:block">
+      <div className="bg-ksc-navy text-white py-2.5 text-xs hidden md:block">
         <div className="container-site flex justify-between items-center">
           <div className="flex gap-6">
             <a href={`mailto:${SITE_CONFIG.contact.email}`} className="flex items-center gap-2 hover:text-ksc-yellow transition-colors">
@@ -119,50 +70,41 @@ export function Header() {
             </span>
             <Link 
               to="/admissions" 
-              className="bg-ksc-red text-white px-4 py-1.5 rounded-full text-xs font-bold hover:bg-red-700 transition-colors shadow-sm"
+              className="bg-ksc-red text-white px-4 py-1.5 rounded-md text-xs font-bold hover:bg-red-700 transition-colors"
             >
               Apply Now
             </Link>
-            <a
-              href="#"
-              className="bg-white/10 border border-white/20 text-white px-4 py-1.5 rounded-full text-xs font-bold hover:bg-white hover:text-ksc-navy transition-colors shadow-sm hidden sm:block"
-            >
-              Pay Fee Online
-            </a>
           </div>
         </div>
       </div>
 
       {/* Main bar */}
-      <div className="container-site flex h-20 items-center justify-between gap-4">
-        <Link to="/" className="flex items-center gap-4 group" aria-label={`${SITE_CONFIG.name} home`}>
-          <div className="bg-ksc-navy p-2 rounded-full">
-            <Logo className="h-10 w-10 sm:h-12 sm:w-12 flex-shrink-0" />
+      <div className="container-site flex min-h-20 items-center justify-between gap-6 py-3 xl:grid xl:grid-cols-[minmax(260px,1fr)_auto_minmax(260px,1fr)] xl:py-2">
+        <Link to="/" className="group flex min-w-0 items-center gap-3 justify-self-start" aria-label={`${SITE_CONFIG.name} home`}>
+          <div className="shrink-0 p-1">
+            <Logo className="h-12 w-12 flex-shrink-0 drop-shadow-md sm:h-14 sm:w-14" />
           </div>
-          <span className="flex flex-col leading-tight">
-            <span className="font-heading text-xl sm:text-2xl font-bold text-ksc-navy">
+          <span className="flex min-w-0 flex-col leading-tight">
+            <span className="truncate font-heading text-lg font-extrabold text-ksc-navy sm:text-xl">
               {SITE_CONFIG.name}
             </span>
-            <span className="text-xs font-medium text-slate-500 uppercase tracking-wider">
+            <span className="text-[11px] font-medium uppercase tracking-wider text-slate-500">
               {SITE_CONFIG.shortName}
             </span>
           </span>
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden items-center gap-8 xl:flex" aria-label="Primary">
+        <nav className="hidden items-center justify-center gap-1 2xl:gap-2 xl:flex" aria-label="Primary">
           {NAV_ITEMS.map((item) => {
-            if (item.children) {
-              return <DesktopDropdown key={item.label} item={item} />;
-            }
             return (
               <NavLink 
                 key={item.label} 
-                to={item.path!} 
+                to={item.path}
                 end={item.path === "/"} 
                 className={({ isActive }) =>
                   cn(
-                    "relative py-2 text-sm font-semibold transition-colors duration-200",
+                    "relative whitespace-nowrap rounded-lg px-3 py-3 text-sm font-semibold transition-colors duration-200 2xl:px-4",
                     isActive ? "text-ksc-red" : "text-slate-700 hover:text-ksc-red"
                   )
                 }
@@ -171,7 +113,7 @@ export function Header() {
                   <>
                     {item.label}
                     {isActive && (
-                      <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-ksc-red rounded-full" />
+                      <span className="absolute bottom-1 left-3 right-3 h-0.5 rounded-full bg-ksc-red 2xl:left-4 2xl:right-4" />
                     )}
                   </>
                 )}
@@ -181,7 +123,7 @@ export function Header() {
         </nav>
 
         {/* Desktop CTA */}
-        <div className="hidden items-center gap-4 xl:flex">
+        <div className="hidden items-center justify-self-end gap-3 xl:flex">
           <a
             href={`tel:${SITE_CONFIG.contact.phone}`}
             className="hidden items-center gap-3 text-sm font-semibold text-slate-700 2xl:flex hover:text-ksc-red transition-colors"
@@ -194,14 +136,14 @@ export function Header() {
               <span className="font-bold">{SITE_CONFIG.contact.phone}</span>
             </span>
           </a>
-          <Link to="/admissions" className="btn-gold ml-2">
+          <Link to="/admissions" className="btn-gold whitespace-nowrap">
             Apply Now
           </Link>
         </div>
 
         {/* Mobile toggle */}
         <button
-          className="xl:hidden rounded-lg border border-slate-200 p-2 text-ksc-navy hover:bg-slate-50 hover:text-ksc-red"
+          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-slate-200 text-ksc-navy hover:bg-slate-50 hover:text-ksc-red xl:hidden"
           onClick={() => setMobileOpen((v) => !v)}
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileOpen}
@@ -215,39 +157,10 @@ export function Header() {
         <div className="xl:hidden border-t border-slate-100 bg-white absolute left-0 top-full w-full shadow-lift">
           <nav className="container-site flex flex-col py-4" aria-label="Mobile">
             {NAV_ITEMS.map((item) => {
-              if (item.children) {
-                const expanded = mobileExpanded === item.label;
-                return (
-                  <div key={item.label} className="border-b border-slate-100">
-                    <button
-                      className="flex w-full items-center justify-between px-2 py-3 text-left text-sm font-semibold text-ksc-navy"
-                      onClick={() => setMobileExpanded(expanded ? null : item.label)}
-                      aria-expanded={expanded}
-                    >
-                      {item.label}
-                      <ChevronDown className={cn("h-4 w-4 text-ksc-red transition-transform", expanded && "rotate-180")} />
-                    </button>
-                    {expanded && (
-                      <div className="flex flex-col pb-2 pl-4">
-                        {item.children.map((child) => (
-                          <Link
-                            key={child.path}
-                            to={child.path}
-                            onClick={() => setMobileOpen(false)}
-                            className="rounded-md px-3 py-2.5 text-sm font-semibold text-slate-600 hover:bg-slate-50 hover:text-ksc-red"
-                          >
-                            {child.label}
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                );
-              }
               return (
                 <NavLink
                   key={item.label}
-                  to={item.path!}
+                  to={item.path}
                   end={item.path === "/"}
                   onClick={() => setMobileOpen(false)}
                   className={({ isActive }) =>

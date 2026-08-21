@@ -49,8 +49,8 @@ export function Facilities() {
             {FACILITIES.map(({ icon, image, title, description }) => {
               const Icon = typeof icon === "string" ? ICON_MAP[icon] ?? Building2 : icon;
               return (
-              <div key={title} className="group relative overflow-hidden rounded-xl border-[3px] border-slate-200 bg-white p-8 shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:border-ksc-red">
-                <div className="mb-6 inline-flex h-20 w-20 items-center justify-center overflow-hidden rounded-2xl shadow-sm border-2 border-slate-100 bg-slate-50 transition-transform duration-500 group-hover:scale-110 group-hover:bg-ksc-navy group-hover:border-ksc-navy">
+              <div key={title} className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-ksc-sky/50 hover:shadow-lg">
+                <div className="mb-5 inline-flex h-16 w-16 items-center justify-center overflow-hidden rounded-xl border border-slate-200 bg-slate-50 shadow-sm transition-transform duration-300 group-hover:scale-105">
                   {image ? (
                     <img src={image} alt={title} loading="lazy" className="h-full w-full object-cover p-2" />
                   ) : (
@@ -59,8 +59,8 @@ export function Facilities() {
                     </div>
                   )}
                 </div>
-                <h3 className="text-xl font-black uppercase tracking-wide text-ksc-navy transition-colors duration-300">{title}</h3>
-                <p className="mt-4 text-sm leading-relaxed font-medium text-slate-600">{description}</p>
+                <h3 className="text-lg font-bold text-ksc-navy">{title}</h3>
+                <p className="mt-3 text-sm leading-6 text-slate-600">{description}</p>
               </div>
               );
             })}
@@ -83,7 +83,7 @@ export function Facilities() {
               "/assets/gallery/ksc-09.jpg",
               "/assets/gallery/ksc-11.jpg",
             ].map((src, i) => (
-              <div key={i} className="group overflow-hidden rounded-2xl border-4 border-slate-100 bg-white shadow-md">
+              <div key={i} className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-md">
                 <div className="aspect-[4/3] overflow-hidden">
                   <img
                     src={src}

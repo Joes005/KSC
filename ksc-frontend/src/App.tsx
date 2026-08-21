@@ -5,6 +5,7 @@ import { Footer } from "./components/layout/Footer";
 import WhatsAppButton from './components/common/WhatsAppButton';
 import { StickyActionBar } from "./components/layout/StickyActionBar";
 import { ScrollToTop } from "./components/common/ScrollToTop";
+import { ScrollReveal } from "./components/common/ScrollReveal";
 import { ThemeProvider } from './services/ThemeContext';
 
 import { Home } from "./pages/Home";
@@ -19,6 +20,7 @@ import { ExamUpdate } from "./pages/ExamUpdate";
 import { Contact } from "./pages/Contact";
 import { Admissions } from "./pages/Admissions";
 import { University } from "./pages/University";
+import { NotFound } from "./pages/NotFound";
 
 function AdminRedirect() {
   useEffect(() => {
@@ -32,6 +34,7 @@ function App() {
     <ThemeProvider>
       <Router>
         <ScrollToTop />
+        <ScrollReveal />
         <div className="flex min-h-screen flex-col">
           <Header />
           <main className="flex-grow">
@@ -50,7 +53,7 @@ function App() {
               <Route path="/university/:id" element={<University />} />
               <Route path="/admin" element={<AdminRedirect />} />
               {/* fallback — unknown paths show the homepage */}
-              <Route path="*" element={<Home />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
           <Footer />

@@ -73,7 +73,7 @@ export function EnquiryForm({ fields, submitLabel, idPrefix, className }: Enquir
           <div key={field.name}>
             <label htmlFor={id} className="mb-2 block text-sm font-black uppercase tracking-widest text-ksc-navy">
               {field.label}
-              {field.required && <span className="text-ksc-red ml-1">*</span>}
+              {field.required && <span className="ml-1 text-ksc-red" aria-hidden="true">*</span>}
             </label>
             {field.type === "textarea" ? (
               <textarea
@@ -81,10 +81,11 @@ export function EnquiryForm({ fields, submitLabel, idPrefix, className }: Enquir
                 name={field.name}
                 placeholder={field.placeholder}
                 rows={4}
+                required={field.required}
                 className={base}
               />
             ) : field.type === "select" ? (
-              <Select id={id} name={field.name} className={base}>
+              <Select id={id} name={field.name} required={field.required} className={base}>
                 <option value="">{field.placeholder ?? "Select…"}</option>
                 {(field.options ?? []).map((opt) => (
                   <option key={opt} value={opt} className="bg-white text-ksc-navy font-bold">
@@ -93,12 +94,13 @@ export function EnquiryForm({ fields, submitLabel, idPrefix, className }: Enquir
                 ))}
               </Select>
             ) : (
-              <Input id={id} name={field.name} type={field.type} placeholder={field.placeholder} className={base} />
+              <Input id={id} name={field.name} type={field.type} required={field.required} placeholder={field.placeholder} className={base} />
             )}
           </div>
         );
       })}
-      <button type="submit" disabled={status === "submitting"} className="btn-gold w-full py-3.5 mt-2 disabled:opacity-60 disabled:hover:scale-100 disabled:hover:shadow-none text-base">
+      <p className="text-xs text-slate-500"><span className="text-ksc-red" aria-hidden="true">*</span> Required fields</p>
+      <button type="submit" disabled={status === "submitting"} className="btn-gold mt-2 w-full py-3.5 text-base disabled:opacity-60" aria-live="polite">
         {status === "submitting" ? (
           <>
             <Loader2 className="mr-2 h-5 w-5 animate-spin" /> Submitting…

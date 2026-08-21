@@ -14,17 +14,13 @@ export function PageHeader({ title, breadcrumb, bgImage }: PageHeaderProps) {
         <img 
           src={bgImage} 
           alt="" 
-          className="absolute inset-0 h-full w-full object-cover opacity-25 pointer-events-none"
+          className="page-header-image absolute inset-0 h-full w-full object-cover opacity-25 pointer-events-none"
         />
       )}
 
       {/* Background Overlay */}
       <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-ksc-navy via-ksc-navy/85 to-ksc-royal/55" />
-      <div className="absolute bottom-0 left-0 flex h-1.5 w-full" aria-hidden="true">
-        <span className="w-[55%] bg-ksc-royal" />
-        <span className="w-[30%] bg-ksc-red" />
-        <span className="w-[15%] bg-ksc-yellow" />
-      </div>
+      <div className="absolute bottom-0 left-0 h-1 w-24 bg-ksc-yellow" aria-hidden="true" />
 
       {/* Content */}
       <div className="container-site relative z-10 flex min-h-56 flex-col items-start justify-center py-9 text-left sm:min-h-64 sm:py-10">

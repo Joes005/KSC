@@ -103,7 +103,7 @@ function AboutDetail() {
     <section className="bg-white py-10 lg:py-10 lg:py-16">
       <div className="container-site">
         <SectionHeading kicker="Our Foundation" title="Vision · Mission · Values" />
-        <div className="mx-auto max-w-4xl">
+        <div className="mx-auto max-w-6xl">
           <Tabs
             tabs={[
               { id: "vision", label: "Vision" },
@@ -134,9 +134,9 @@ function AboutDetail() {
                 );
               }
               return (
-                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="grid gap-3 md:grid-cols-3">
                   {intro.values.map((v) => (
-                    <div key={v.title} className="card-hover p-6 bg-slate-50 border border-slate-100 text-center">
+                    <div key={v.title} className="card-hover border border-slate-100 bg-slate-50 p-4 text-center">
                       <h4 className="font-bold text-ksc-navy uppercase">{v.title}</h4>
                       <p className="mt-2 text-sm font-medium text-slate-600">{v.description}</p>
                     </div>

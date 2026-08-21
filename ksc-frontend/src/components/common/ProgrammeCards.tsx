@@ -83,46 +83,47 @@ export function ProgrammeCards({ programmes, className }: ProgrammeCardsProps) {
       ) : (
         <>
           {/* Desktop Table View */}
-          <div className="hidden overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-sm sm:block">
-            <table className="w-full text-left text-sm text-slate-600">
-              <thead className="bg-ksc-navy text-xs uppercase tracking-wider text-white">
+          <div className="relative hidden overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-[0_10px_30px_rgba(7,26,77,.08)] sm:block">
+            <table className="w-full min-w-[780px] table-fixed text-left text-sm text-slate-600">
+              <colgroup><col className="w-[34%]" /><col className="w-[36%]" /><col className="w-[20%]" /><col className="w-[10%]" /></colgroup>
+              <thead className="bg-gradient-to-r from-ksc-navy to-ksc-royal text-[11px] uppercase tracking-[.1em] text-white">
                 <tr>
-                  <th className="px-6 py-5 font-bold border-b border-white/10">Programme Name</th>
-                  <th className="px-6 py-5 font-bold border-b border-white/10">Eligibility</th>
-                  <th className="px-6 py-5 font-bold border-b border-white/10 whitespace-nowrap">Medium & Pattern</th>
-                  <th className="px-6 py-5 font-bold border-b border-white/10 text-right">Syllabus</th>
+                  <th className="border-b border-white/10 px-5 py-4 font-bold">Programme</th>
+                  <th className="border-b border-white/10 px-5 py-4 font-bold">Eligibility</th>
+                  <th className="whitespace-nowrap border-b border-white/10 px-5 py-4 font-bold">Medium &amp; Pattern</th>
+                  <th className="border-b border-white/10 px-5 py-4 text-center font-bold">Syllabus</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
                 {filteredProgrammes.map((p, idx) => (
-                  <tr key={`${p.name}-${idx}`} className="group animate-fade-in-up transition-colors hover:bg-slate-50" style={{ animationDelay: `${idx * 35}ms` }}>
-                    <td className="min-w-[220px] px-6 py-5 align-top text-base font-bold text-ksc-navy transition-colors group-hover:text-ksc-red">
+                  <tr key={`${p.name}-${idx}`} className={cn("group animate-fade-in-up transition-colors hover:bg-[#eef7ff]", idx % 2 === 1 && "bg-slate-50/60")} style={{ animationDelay: `${idx * 35}ms` }}>
+                    <td className="border-l-4 border-transparent px-5 py-4 align-middle text-[15px] font-bold leading-6 text-ksc-navy transition-colors group-hover:border-ksc-red group-hover:text-ksc-red">
                       {p.name}
                     </td>
-                    <td className="max-w-sm px-6 py-5 align-top text-xs leading-relaxed text-slate-500">
+                    <td className="px-5 py-4 align-middle text-xs leading-5 text-slate-500">
                       {p.eligibility || '—'}
                     </td>
-                    <td className="px-6 py-5 align-top whitespace-nowrap">
-                      <div className="flex flex-col gap-2">
+                    <td className="px-5 py-4 align-middle">
+                      <div className="flex flex-wrap gap-1.5">
                         {p.medium && (
-                          <span className="inline-flex w-fit items-center gap-1.5 rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-600">
+                          <span className="inline-flex w-fit items-center gap-1.5 rounded-full border border-ksc-sky/25 bg-[#eef8ff] px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-ksc-royal">
                             <BookOpen className="h-3 w-3" /> {p.medium}
                           </span>
                         )}
                         {p.pattern && (
-                          <span className="inline-flex w-fit items-center rounded-full border border-ksc-sky/20 bg-ksc-sky/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-ksc-royal">
+                          <span className="inline-flex w-fit items-center rounded-full border border-ksc-yellow/50 bg-ksc-yellow/15 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-ksc-navy">
                             {p.pattern}
                           </span>
                         )}
                       </div>
                     </td>
-                    <td className="px-6 py-5 align-top text-right">
+                    <td className="px-4 py-4 text-center align-middle">
                       {p.syllabusUrl ? (
-                        <a href={p.syllabusUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-lg border border-ksc-royal px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-ksc-royal transition-colors hover:bg-ksc-royal hover:text-white">
-                          <Download className="h-4 w-4" /> Download
+                        <a href={p.syllabusUrl} target="_blank" rel="noopener noreferrer" aria-label={`Download syllabus for ${p.name}`} className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-ksc-royal text-ksc-royal transition-colors hover:bg-ksc-royal hover:text-white">
+                          <Download className="h-4 w-4" />
                         </a>
                       ) : (
-                        <span className="text-xs text-white/30">—</span>
+                        <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-slate-100 text-xs text-slate-400" title="Syllabus not available">—</span>
                       )}
                     </td>
                   </tr>

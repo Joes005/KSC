@@ -151,7 +151,7 @@ function Hero() {
           <div className="relative mx-auto w-full max-w-xl lg:mx-0 lg:justify-self-end">
             <div className="absolute -right-4 -top-4 h-full w-full rounded-3xl bg-ksc-red" />
             <div className="relative overflow-hidden rounded-3xl border-4 border-white bg-ksc-navy shadow-[var(--shadow-lg)]">
-              <img key={currentImage} src={HERO_IMAGES[currentImage]} alt="Students supported by Karur Study Centre" className="h-80 w-full object-cover object-top animate-fade-in sm:h-[480px]" />
+              <img key={currentImage} src={HERO_IMAGES[currentImage]} alt="Students supported by Karur Study Centre" className="hero-media h-80 w-full object-cover object-top animate-fade-in sm:h-[480px]" />
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ksc-navy via-ksc-navy/75 to-transparent px-7 pb-7 pt-24 text-white">
                 <p className="text-2xl font-bold text-white">Education that fits your life</p>
                 <p className="mt-1 text-sm text-white/75">Study. Grow. Move forward.</p>
@@ -311,7 +311,7 @@ function VisionMissionValues() {
     <section className="bg-slate-50 py-12 sm:py-16 lg:py-12 lg:py-24 border-t border-slate-100">
       <div className="container-site">
         <SectionHeading kicker="Our Foundation" title="Vision · Mission · Values" align="center" />
-        <div className="mx-auto max-w-4xl">
+        <div className="mx-auto max-w-6xl">
           <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
             {(
               [
@@ -333,7 +333,7 @@ function VisionMissionValues() {
             ))}
           </div>
 
-          <div className="bg-white rounded-2xl shadow-soft mt-8 p-6 sm:p-10 border border-slate-100 min-h-[250px] flex flex-col justify-center relative">
+          <div className="relative mt-6 flex min-h-[210px] flex-col justify-center rounded-2xl border border-slate-100 bg-white p-5 shadow-soft sm:p-6">
             {tab === "vision" && (
               <div className="animate-fade-in text-center">
                 <p className="text-xl sm:text-2xl font-bold leading-relaxed text-ksc-navy max-w-2xl mx-auto">
@@ -352,11 +352,11 @@ function VisionMissionValues() {
               </ul>
             )}
             {tab === "values" && (
-              <div className="animate-fade-in grid gap-4 sm:gap-6 sm:grid-cols-2">
+              <div className="animate-fade-in grid gap-3 md:grid-cols-3">
                 {values.map((v) => (
-                  <div key={v.title} className="rounded-xl bg-slate-50 p-5 sm:p-6 border-2 border-slate-100 transition-colors hover:border-ksc-yellow hover:bg-white">
-                    <p className="font-bold text-ksc-navy text-base sm:text-lg uppercase tracking-wide">{v.title}</p>
-                    <p className="mt-2 text-sm sm:text-base text-slate-600 leading-relaxed font-medium">{v.description}</p>
+                  <div key={v.title} className="rounded-xl border border-slate-200 bg-slate-50 p-4 transition-colors hover:border-ksc-sky hover:bg-white">
+                    <p className="text-sm font-bold uppercase tracking-wide text-ksc-navy">{v.title}</p>
+                    <p className="mt-1.5 text-sm leading-6 text-slate-600">{v.description}</p>
                   </div>
                 ))}
               </div>

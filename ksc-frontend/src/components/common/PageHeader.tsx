@@ -19,32 +19,32 @@ export function PageHeader({ title, breadcrumb, bgImage }: PageHeaderProps) {
       )}
 
       {/* Background Overlay */}
-      <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-ksc-navy via-ksc-navy/85 to-ksc-royal/55" />
-      <div className="absolute bottom-0 left-0 h-1 w-24 bg-ksc-yellow" aria-hidden="true" />
+      <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-ksc-navy via-ksc-navy/85 to-ksc-royal/55 backdrop-blur-[2px]" />
+      <div className="absolute bottom-0 left-0 h-1.5 w-32 bg-gradient-to-r from-ksc-yellow to-amber-500" aria-hidden="true" />
 
       {/* Content */}
       <div className="container-site relative z-10 flex min-h-56 flex-col items-start justify-center py-9 text-left sm:min-h-64 sm:py-10">
-        <p className="mb-3 text-xs font-bold uppercase tracking-[.16em] text-ksc-yellow">Karur Study Centre</p>
-        <h1 className="mb-6 max-w-4xl text-4xl font-bold normal-case leading-tight tracking-tight text-white sm:text-5xl">
+        <p className="mb-3 animate-fade-in text-xs font-bold uppercase tracking-[.2em] text-ksc-yellow">Karur Study Centre</p>
+        <h1 className="mb-6 max-w-4xl animate-fade-in-up text-4xl font-extrabold normal-case leading-tight tracking-tight text-white drop-shadow-md sm:text-5xl">
           {title}
         </h1>
 
         {/* Breadcrumb Ribbon */}
-        <nav aria-label="Breadcrumb">
-          <div className="flex flex-wrap items-center text-xs font-medium text-white/70 sm:text-sm">
+        <nav aria-label="Breadcrumb" className="animate-fade-in-up delay-100">
+          <div className="flex flex-wrap items-center rounded-full border border-white/10 bg-white/10 px-5 py-2 text-xs font-medium text-white/70 backdrop-blur-md sm:text-sm shadow-sm">
             {breadcrumb.map((crumb, idx) => {
               const isLast = idx === breadcrumb.length - 1;
               return (
                 <div key={crumb.label} className="flex items-center">
                   {crumb.to && !isLast ? (
-                    <Link to={crumb.to} className="transition-colors hover:text-ksc-yellow">
+                    <Link to={crumb.to} className="transition-all hover:text-white hover:drop-shadow-glow">
                       {crumb.label}
                     </Link>
                   ) : (
-                    <span className={isLast ? "text-white" : ""}>{crumb.label}</span>
+                    <span className={isLast ? "font-bold text-white" : ""}>{crumb.label}</span>
                   )}
 
-                  {!isLast && <ChevronRight className="mx-2 h-4 w-4 text-white/50" />}
+                  {!isLast && <ChevronRight className="mx-2 h-3.5 w-3.5 text-white/40" />}
                 </div>
               );
             })}

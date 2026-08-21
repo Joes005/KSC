@@ -23,8 +23,7 @@ export function Logo({ className = "h-14 w-14" }: LogoProps) {
   if (branding.useImage) {
     return (
       <div
-        className={`flex-shrink-0 flex items-center justify-center overflow-hidden ${className}`}
-        style={{ backgroundColor: '#ffffff' }}
+        className={`flex-shrink-0 flex items-center justify-center overflow-hidden rounded-full bg-white shadow-md ${className}`}
       >
         <img
           src={branding.logoSource}

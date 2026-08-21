@@ -44,9 +44,9 @@ export function EnquiryForm({ fields, submitLabel, idPrefix, className }: Enquir
     }
   };
 
-  if (status === "done") {
+    if (status === "done") {
     return (
-      <div className="rounded-xl border-4 border-ksc-navy bg-slate-50 p-8 text-center shadow-md">
+      <div className="glass-panel p-8 text-center sm:p-10">
         <CheckCircle2 className="mx-auto h-16 w-16 text-ksc-red" />
         <h3 className="mt-6 text-2xl font-black uppercase tracking-tight text-ksc-navy">Thank you! Request received.</h3>
         <p className="mt-3 text-base font-medium text-slate-600">
@@ -55,7 +55,7 @@ export function EnquiryForm({ fields, submitLabel, idPrefix, className }: Enquir
         <button
           type="button"
           onClick={() => setStatus("idle")}
-          className="btn-outline mt-8 w-full bg-white"
+          className="btn-outline mt-8 w-full"
         >
           Submit another enquiry
         </button>
@@ -68,7 +68,7 @@ export function EnquiryForm({ fields, submitLabel, idPrefix, className }: Enquir
       {fields.map((field) => {
         const id = `${idPrefix}-${field.name}`;
         // Poster Theme Input Styling
-        const base = "w-full rounded-md border-2 border-slate-200 bg-slate-50 px-4 py-3 text-sm font-bold text-ksc-navy placeholder-slate-400 focus:border-ksc-navy focus:bg-white focus:outline-none transition-all shadow-sm";
+        const base = "w-full rounded-xl border border-slate-200/60 bg-white/60 px-4 py-3 text-sm font-bold text-ksc-navy placeholder-slate-400 focus:border-ksc-royal/40 focus:bg-white focus:outline-none focus:ring-2 focus:ring-ksc-royal/20 transition-all shadow-inner";
         return (
           <div key={field.name}>
             <label htmlFor={id} className="mb-2 block text-sm font-black uppercase tracking-widest text-ksc-navy">

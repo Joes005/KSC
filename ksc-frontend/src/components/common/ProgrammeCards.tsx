@@ -29,7 +29,7 @@ export function ProgrammeCards({ programmes, className }: ProgrammeCardsProps) {
   return (
     <div className={cn("space-y-6", className)}>
       {/* Filters */}
-      <div className="flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:flex-row sm:items-center">
+      <div className="flex flex-col gap-4 rounded-2xl border border-white/40 bg-white/70 p-5 shadow-soft backdrop-blur-md sm:flex-row sm:items-center">
         <div className="relative flex-1">
           <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
           <input
@@ -37,7 +37,7 @@ export function ProgrammeCards({ programmes, className }: ProgrammeCardsProps) {
             placeholder="Search programmes..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full rounded-xl border border-slate-200 bg-slate-50 py-3 pl-11 pr-4 text-sm text-slate-800 outline-none transition focus:border-ksc-royal focus:bg-white focus:ring-2 focus:ring-ksc-royal/10"
+            className="w-full rounded-xl border border-slate-200/60 bg-white/60 py-3 pl-11 pr-4 text-sm text-slate-800 outline-none shadow-inner transition focus:border-ksc-royal/30 focus:bg-white focus:ring-2 focus:ring-ksc-royal/20"
           />
         </div>
         
@@ -47,7 +47,7 @@ export function ProgrammeCards({ programmes, className }: ProgrammeCardsProps) {
               <select
                 value={mediumFilter}
                 onChange={(e) => setMediumFilter(e.target.value)}
-                className="w-full cursor-pointer appearance-none rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-700 outline-none focus:border-ksc-royal focus:ring-2 focus:ring-ksc-royal/10"
+                className="w-full cursor-pointer appearance-none rounded-xl border border-slate-200/60 bg-white/60 px-4 py-3 text-sm text-slate-700 outline-none shadow-inner transition focus:border-ksc-royal/30 focus:bg-white focus:ring-2 focus:ring-ksc-royal/20"
                 style={{ backgroundImage: 'url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23ffffff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E")', backgroundRepeat: 'no-repeat', backgroundPosition: 'right .7em top 50%', backgroundSize: '.65em auto' }}
               >
                 <option value="All">All Mediums</option>
@@ -60,7 +60,7 @@ export function ProgrammeCards({ programmes, className }: ProgrammeCardsProps) {
               <select
                 value={patternFilter}
                 onChange={(e) => setPatternFilter(e.target.value)}
-                className="w-full cursor-pointer appearance-none rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-700 outline-none focus:border-ksc-royal focus:ring-2 focus:ring-ksc-royal/10"
+                className="w-full cursor-pointer appearance-none rounded-xl border border-slate-200/60 bg-white/60 px-4 py-3 text-sm text-slate-700 outline-none shadow-inner transition focus:border-ksc-royal/30 focus:bg-white focus:ring-2 focus:ring-ksc-royal/20"
                 style={{ backgroundImage: 'url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23ffffff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E")', backgroundRepeat: 'no-repeat', backgroundPosition: 'right .7em top 50%', backgroundSize: '.65em auto' }}
               >
                 <option value="All">All Patterns</option>
@@ -83,7 +83,7 @@ export function ProgrammeCards({ programmes, className }: ProgrammeCardsProps) {
       ) : (
         <>
           {/* Desktop Table View */}
-          <div className="relative hidden overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-[0_10px_30px_rgba(7,26,77,.08)] sm:block">
+          <div className="relative hidden overflow-x-auto rounded-2xl border border-white/40 bg-white/80 backdrop-blur-md shadow-lift sm:block">
             <table className="w-full min-w-[780px] table-fixed text-left text-sm text-slate-600">
               <colgroup><col className="w-[34%]" /><col className="w-[36%]" /><col className="w-[20%]" /><col className="w-[10%]" /></colgroup>
               <thead className="bg-gradient-to-r from-ksc-navy to-ksc-royal text-[11px] uppercase tracking-[.1em] text-white">
@@ -96,7 +96,7 @@ export function ProgrammeCards({ programmes, className }: ProgrammeCardsProps) {
               </thead>
               <tbody className="divide-y divide-slate-100">
                 {filteredProgrammes.map((p, idx) => (
-                  <tr key={`${p.name}-${idx}`} className={cn("group animate-fade-in-up transition-colors hover:bg-[#eef7ff]", idx % 2 === 1 && "bg-slate-50/60")} style={{ animationDelay: `${idx * 35}ms` }}>
+                  <tr key={`${p.name}-${idx}`} className={cn("group animate-fade-in-up transition-all duration-300 hover:bg-white hover:shadow-soft", idx % 2 === 1 && "bg-slate-50/40")} style={{ animationDelay: `${idx * 35}ms` }}>
                     <td className="border-l-4 border-transparent px-5 py-4 align-middle text-[15px] font-bold leading-6 text-ksc-navy transition-colors group-hover:border-ksc-red group-hover:text-ksc-red">
                       {p.name}
                     </td>
@@ -135,7 +135,7 @@ export function ProgrammeCards({ programmes, className }: ProgrammeCardsProps) {
           {/* Mobile Card View */}
           <div className="grid gap-5 sm:hidden">
             {filteredProgrammes.map((p, idx) => (
-              <div key={`mobile-${p.name}-${idx}`} className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition duration-200 hover:border-ksc-sky/50 animate-fade-in-up" style={{ animationDelay: `${idx * 35}ms` }}>
+              <div key={`mobile-${p.name}-${idx}`} className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/40 bg-white/80 p-6 backdrop-blur-md shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-ksc-sky/50 hover:shadow-lift animate-fade-in-up" style={{ animationDelay: `${idx * 35}ms` }}>
                 <div>
                   <h3 className="text-lg font-bold leading-tight text-ksc-navy transition-colors group-hover:text-ksc-red">{p.name}</h3>
                   {p.eligibility && (

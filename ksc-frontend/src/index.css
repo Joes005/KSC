@@ -43,11 +43,12 @@
 
 @layer utilities {
   .container-site { @apply mx-auto w-full px-4 sm:px-6 lg:px-8; max-width: var(--container); }
-  .glass-panel { @apply border border-[#dce4ef] bg-white shadow-[var(--shadow-md)]; }
-  .card-hover { @apply rounded-2xl border border-[#dce4ef] bg-white shadow-[var(--shadow-sm)] transition duration-300 ease-out hover:-translate-y-1 hover:border-[#149be0]/45 hover:shadow-[var(--shadow-md)]; }
-  .btn { @apply inline-flex min-h-11 items-center justify-center rounded-xl px-5 py-2.5 text-sm font-bold transition duration-200 ease-out disabled:pointer-events-none disabled:opacity-50; }
-  .btn-gold { @apply inline-flex min-h-11 items-center justify-center rounded-xl bg-[#083b82] px-5 py-2.5 text-sm font-bold text-white shadow-sm transition duration-200 ease-out hover:-translate-y-0.5 hover:bg-[#071a4d] hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#083b82] focus-visible:ring-offset-2; }
-  .btn-outline { @apply inline-flex min-h-11 items-center justify-center rounded-xl border border-[#083b82] bg-white px-5 py-2.5 text-sm font-bold text-[#083b82] transition duration-200 ease-out hover:bg-[#eef7ff] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#083b82] focus-visible:ring-offset-2; }
+  .glass-panel { @apply border border-white/30 bg-white/70 backdrop-blur-xl shadow-glow; }
+  .glass-header { @apply border-b border-white/20 bg-white/80 backdrop-blur-2xl shadow-soft; }
+  .card-hover { @apply rounded-2xl border border-white/40 bg-white/80 backdrop-blur-sm shadow-soft transition-all duration-300 ease-out hover:-translate-y-1.5 hover:border-[#149be0]/30 hover:shadow-lift hover:bg-white; }
+  .btn { @apply inline-flex min-h-11 items-center justify-center rounded-xl px-5 py-2.5 text-sm font-bold transition duration-300 ease-out disabled:pointer-events-none disabled:opacity-50; }
+  .btn-gold { @apply inline-flex min-h-11 items-center justify-center rounded-xl bg-gradient-to-br from-[#083b82] to-[#041f47] px-6 py-2.5 text-sm font-bold text-white shadow-[0_4px_14px_0_rgba(8,59,130,0.39)] transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_6px_20px_rgba(8,59,130,0.23)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#083b82] focus-visible:ring-offset-2; }
+  .btn-outline { @apply inline-flex min-h-11 items-center justify-center rounded-xl border border-[#083b82]/30 bg-transparent px-6 py-2.5 text-sm font-bold text-[#083b82] shadow-sm transition-all duration-300 ease-out hover:border-[#083b82] hover:bg-[#083b82]/5 hover:-translate-y-1 hover:shadow-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#083b82] focus-visible:ring-offset-2; }
   .section-title { @apply font-heading text-2xl font-bold leading-[1.25] normal-case tracking-[-0.025em] text-[#071a4d] sm:text-3xl; }
   .section-kicker { @apply mb-3 inline-flex items-center border-l-4 border-[#c8101e] pl-3 text-xs font-bold uppercase tracking-[.16em] text-[#c8101e]; }
   .poster-ribbon { @apply inline-flex rounded-full bg-[#c8101e] px-4 py-2 text-sm font-bold text-white shadow-sm; }

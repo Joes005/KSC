@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useSiteData } from "../services/SiteDataContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   ArrowRight,
   CheckCircle2,
@@ -30,6 +30,87 @@ import { StatCounter } from "../components/common/StatCounter";
 import { Tabs } from "../components/common/Tabs";
 import { Button } from "../components/ui/Button";
 import { cn } from "../utils/cn";
+
+/* --------------------------------------------------------------------------- */
+/* PREMIUM STUDIO ANIMATIONS / HOOKS                                            */
+/* --------------------------------------------------------------------------- */
+function useMousePosition() {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  useEffect(() => {
+    const updateMousePosition = (ev: MouseEvent) => {
+      setMousePosition({ x: ev.clientX, y: ev.clientY });
+    };
+    window.addEventListener('mousemove', updateMousePosition);
+    return () => window.removeEventListener('mousemove', updateMousePosition);
+  }, []);
+  return mousePosition;
+}
+
+function CustomCursor({ isHovering }: { isHovering: boolean }) {
+  const { x, y } = useMousePosition();
+  if (typeof window === 'undefined') return null;
+  return (
+    <div 
+      className={cn(
+        "pointer-events-none fixed left-0 top-0 z-[100] flex items-center justify-center rounded-full bg-white/30 backdrop-blur-md border border-white/50 text-ksc-navy font-bold text-xs uppercase tracking-widest shadow-2xl transition-all duration-300 ease-out",
+        isHovering ? "opacity-100 h-20 w-20 scale-100" : "opacity-0 h-4 w-4 scale-0"
+      )}
+      style={{ transform: `translate3d(${x - (isHovering ? 40 : 8)}px, ${y - (isHovering ? 40 : 8)}px, 0)` }}
+    >
+      <span className={cn("transition-opacity duration-300", isHovering ? "opacity-100" : "opacity-0")}>View</span>
+    </div>
+  );
+}
+
+function MagneticButton({ children, className }: { children: React.ReactNode, className?: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+
+  const handleMouse = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!ref.current) return;
+    const { clientX, clientY } = e;
+    const { height, width, left, top } = ref.current.getBoundingClientRect();
+    const middleX = clientX - (left + width / 2);
+    const middleY = clientY - (top + height / 2);
+    setPosition({ x: middleX * 0.15, y: middleY * 0.15 }); 
+  };
+
+  const reset = () => {
+    setPosition({ x: 0, y: 0 });
+  };
+
+  return (
+    <div
+      ref={ref}
+      onMouseMove={handleMouse}
+      onMouseLeave={reset}
+      className={className}
+      style={{ transform: `translate3d(${position.x}px, ${position.y}px, 0)`, transition: position.x === 0 ? "transform 0.5s ease-out" : "transform 0.1s ease-out" }}
+    >
+      {children}
+    </div>
+  );
+}
+
+function useScrollReveal() {
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -100px 0px" }
+    );
+    
+    document.querySelectorAll(".reveal-section").forEach((el) => observer.observe(el));
+    
+    return () => observer.disconnect();
+  }, []);
+}
 
 /* --------------------------------------------------------------------------- */
 /* HERO                                                                            */
@@ -86,15 +167,15 @@ function UserUpdatePopup() {
     : modalData.imageUrl;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-ksc-navy/90 p-4 backdrop-blur-sm sm:p-6" role="dialog" aria-modal="true" aria-labelledby="update-title">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-ksc-navy/75 p-4 backdrop-blur-xl sm:p-6" role="dialog" aria-modal="true" aria-labelledby="update-title">
       <div className="animate-fade-in flex w-full max-w-4xl justify-center">
         {displayImageUrl ? (
-          <div className="relative inline-block">
-            {/* Close Button on Top Right of Image */}
-            <button onClick={() => setIsOpen(false)} aria-label="Close update" autoFocus className="absolute -right-3 -top-3 z-10 flex h-11 w-11 items-center justify-center rounded-full border-2 border-white bg-ksc-navy text-white shadow-xl transition-colors hover:bg-ksc-red sm:-right-4 sm:-top-4">
-              <X className="h-5 w-5 sm:h-6 sm:w-6" />
+          <div className="relative inline-block rounded-3xl bg-white/10 p-2 sm:p-3 shadow-[0_0_60px_rgba(0,0,0,0.5)] border border-white/20 backdrop-blur-md transition-transform duration-500 hover:scale-[1.02]">
+            {/* Close Button */}
+            <button onClick={() => setIsOpen(false)} aria-label="Close update" autoFocus className="absolute -right-4 -top-4 sm:-right-6 sm:-top-6 z-20 flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-full border border-white/30 bg-black/40 text-white shadow-2xl backdrop-blur-md transition-all hover:bg-ksc-red hover:scale-110 hover:border-ksc-red">
+              <X className="h-6 w-6 sm:h-7 sm:w-7 stroke-[2.5]" />
             </button>
-            <img src={displayImageUrl} alt="Update" className="w-auto h-auto object-contain max-h-[85vh] max-w-full rounded-xl shadow-2xl" key={displayImageUrl} />
+            <img src={displayImageUrl} alt="Update" className="w-auto h-auto object-contain max-h-[80vh] max-w-full rounded-2xl shadow-inner" key={displayImageUrl} />
           </div>
         ) : (
           <div className="relative w-full max-w-2xl rounded-2xl bg-white/5 p-8 text-center border border-white/10">
@@ -125,21 +206,33 @@ function Hero() {
     <>
       <UserUpdatePopup />
       <section className="relative overflow-hidden bg-white">
-        <div className="absolute inset-y-0 left-0 w-full bg-gradient-to-r from-[#f5f8fc] via-white to-[#eaf4ff] lg:w-[58%]" />
+        {/* Dynamic Backgrounds */}
+        <div className="absolute inset-y-0 left-0 w-full bg-gradient-to-r from-slate-50 via-white to-blue-50 lg:w-[58%]" />
+        <div className="absolute -left-32 -top-32 h-[500px] w-[500px] rounded-full bg-ksc-sky/40 blur-[100px]" />
+        <div className="absolute right-0 top-1/4 h-[400px] w-[400px] rounded-full bg-ksc-yellow/5 blur-[120px]" />
         <div className="absolute left-0 top-0 h-1.5 w-40 bg-ksc-red" />
         <div className="container-site relative grid items-center gap-12 py-14 lg:min-h-[650px] lg:grid-cols-[1.05fr_.95fr] lg:py-20">
           <div className="relative z-10 max-w-2xl">
-            <div className="mb-7 inline-flex items-center gap-3 border-l-4 border-ksc-red pl-3">
+            <div className="mb-7 inline-flex items-center gap-3 rounded-full border border-ksc-red/20 bg-red-50/50 px-4 py-2">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-ksc-red opacity-75"></span>
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-ksc-red"></span>
+              </span>
               <span className="text-xs font-extrabold uppercase tracking-[.2em] text-ksc-navy">Admissions open · {SITE_CONFIG.admissionYear}</span>
             </div>
             <p className="mb-3 text-sm font-bold uppercase tracking-[.14em] text-ksc-royal">Your next chapter starts here</p>
-            <h1 className="max-w-2xl text-4xl leading-[1.08] text-ksc-navy sm:text-5xl lg:text-6xl">
-              Karur Study <span className="text-ksc-royal">Center</span>
+            <h1 className="max-w-2xl text-4xl font-extrabold leading-[1.08] tracking-tight text-ksc-navy sm:text-5xl lg:text-[4rem]">
+              <span className="block overflow-hidden pb-1"><span className="block animate-slideUpWord">Karur Study</span></span>
+              <span className="block overflow-hidden pb-2"><span className="block animate-slideUpWord bg-gradient-to-r from-ksc-royal to-blue-500 bg-clip-text text-transparent" style={{ animationDelay: '150ms' }}>Center</span></span>
             </h1>
-            <p className="mt-7 max-w-xl text-base font-medium leading-8 text-slate-600 sm:text-lg">Recognised UG, PG and diploma programmes with personal guidance, flexible learning and complete student support—right here in Karur.</p>
-            <div className="mt-9 flex flex-col gap-4 sm:flex-row">
-              <Link to="/admissions" className="btn-gold gap-2">Explore admissions <ArrowRight className="h-4 w-4" /></Link>
-              <Link to="/academic" className="btn-outline bg-white/70">View programmes</Link>
+            <p className="mt-7 max-w-xl text-base font-medium leading-8 text-slate-600 sm:text-lg animate-fade-in-up" style={{ animationDelay: '300ms' }}>Recognised UG, PG and diploma programmes with personal guidance, flexible learning and complete student support—right here in Karur.</p>
+            <div className="mt-9 flex flex-col gap-4 sm:flex-row animate-fade-in-up" style={{ animationDelay: '450ms' }}>
+              <MagneticButton>
+                <Link to="/admissions" className="btn-gold gap-2 w-full">Explore admissions <ArrowRight className="h-4 w-4" /></Link>
+              </MagneticButton>
+              <MagneticButton>
+                <Link to="/academic" className="btn-outline bg-white/70 w-full">View programmes</Link>
+              </MagneticButton>
             </div>
             <div className="mt-10 grid gap-3 border-t border-slate-200 pt-6 text-sm font-semibold text-ksc-navy sm:grid-cols-3">
               <span className="flex items-center gap-2"><CheckCircle2 className="h-5 w-5 text-ksc-red" /> Recognised degrees</span>
@@ -149,17 +242,19 @@ function Hero() {
           </div>
 
           <div className="relative mx-auto w-full max-w-xl lg:mx-0 lg:justify-self-end">
-            <div className="absolute -right-4 -top-4 h-full w-full rounded-3xl bg-ksc-red" />
-            <div className="relative overflow-hidden rounded-3xl border-4 border-white bg-ksc-navy shadow-[var(--shadow-lg)]">
+            <div className="absolute -right-4 -top-4 h-full w-full rounded-3xl bg-gradient-to-br from-ksc-red to-[#910a11] shadow-2xl" />
+            <div className="relative overflow-hidden rounded-3xl border-4 border-white/80 bg-ksc-navy shadow-[0_20px_50px_-12px_rgba(7,27,74,0.35)] backdrop-blur-sm transition-transform duration-500 hover:-translate-y-2">
               <img key={currentImage} src={HERO_IMAGES[currentImage]} alt="Students supported by Karur Study Centre" className="hero-media h-80 w-full object-cover object-top animate-fade-in sm:h-[480px]" />
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ksc-navy via-ksc-navy/75 to-transparent px-7 pb-7 pt-24 text-white">
-                <p className="text-2xl font-bold text-white">Education that fits your life</p>
-                <p className="mt-1 text-sm text-white/75">Study. Grow. Move forward.</p>
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ksc-navy via-ksc-navy/80 to-transparent px-8 pb-8 pt-24 text-white">
+                <p className="text-2xl font-bold text-white drop-shadow-md">Education that fits your life</p>
+                <p className="mt-1.5 text-sm font-medium text-white/80">Study. Grow. Move forward.</p>
               </div>
             </div>
-            <div className="absolute -left-2 top-8 rounded-lg bg-ksc-red px-5 py-3 text-white shadow-xl sm:-left-8">
-              <span className="block text-[10px] font-bold uppercase tracking-[.2em]">Now open</span>
-              <span className="font-heading text-3xl font-black uppercase">2026–27</span>
+            <div className="absolute -left-2 top-8 rounded-2xl bg-white p-4 shadow-[0_12px_30px_rgba(0,0,0,0.12)] sm:-left-8 backdrop-blur-md">
+              <div className="flex flex-col items-center justify-center rounded-xl bg-ksc-red px-5 py-3 text-white">
+                <span className="block text-[10px] font-bold uppercase tracking-[.2em] text-white/90">Now open</span>
+                <span className="font-heading text-2xl font-black uppercase tracking-tight">{SITE_CONFIG.admissionYear}</span>
+              </div>
             </div>
           </div>
         </div>
@@ -237,11 +332,16 @@ function AboutSnapshot() {
             </div>
           </div>
 
-          <div className="relative mx-auto w-full max-w-lg">
+          <div className="relative mx-auto w-full max-w-lg reveal-section">
             <div className="overflow-hidden rounded-[2rem] bg-white p-3 shadow-[0_25px_70px_rgba(7,27,74,.16)]">
-              <img src="/assets/gallery/ksc-01.jpg" alt="Study materials at Karur Study Centre" className="aspect-[4/3] w-full rounded-[1.4rem] object-cover" />
+              <div className="relative aspect-[4/3] w-full rounded-[1.4rem] overflow-hidden bg-slate-200">
+                {/* Cinematic Image Reveal via is-visible class */}
+                <div className="absolute inset-0 transition-all duration-1000 [clip-path:inset(15%_15%_15%_15%_round_2rem)] [.is-visible_&]:[clip-path:inset(0%_0%_0%_0%_round_1.4rem)]">
+                  <img src="/assets/gallery/ksc-01.jpg" alt="Study materials at Karur Study Centre" className="h-full w-full object-cover transition-transform duration-[1.5s] scale-125 [.is-visible_&]:scale-100" />
+                </div>
+              </div>
             </div>
-            <div className="relative -mt-14 ml-5 max-w-sm rounded-2xl bg-ksc-navy p-6 text-white shadow-xl sm:ml-12">
+            <div className="relative -mt-14 ml-5 max-w-sm rounded-2xl bg-ksc-navy p-6 text-white shadow-xl sm:ml-12 transition-all duration-700 opacity-0 translate-y-12 [.is-visible_&]:opacity-100 [.is-visible_&]:translate-y-0 delay-300">
               <BookOpen className="mb-4 h-8 w-8 text-ksc-yellow" aria-hidden="true" />
               <p className="font-heading text-2xl font-bold leading-tight">Education is the most powerful weapon you can use to change the world.</p>
               <p className="mt-4 text-xs font-black uppercase tracking-[.2em] text-ksc-yellow">— Kamarajar</p>
@@ -281,7 +381,7 @@ function WhyDistance() {
               const isActive = index === activeIndex;
               return (
                 <div key={item.title} className="border-b border-slate-200 last:border-b-0">
-                  <button onClick={() => setActiveIndex(index)} className="group flex w-full items-center justify-between rounded-2xl px-4 py-6 text-left transition-all hover:bg-white">
+                  <button onClick={() => setActiveIndex(index)} className="group flex w-full items-center justify-between rounded-2xl px-4 py-6 text-left transition-all hover:bg-white hover:shadow-sm">
                     <div className="flex items-center gap-4">
                       <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full font-heading text-lg font-black transition-colors ${isActive ? 'bg-ksc-red text-white' : 'bg-white text-ksc-navy'}`}>{String(index + 1).padStart(2, "0")}</div>
                       <span className={`text-lg font-bold sm:text-xl ${isActive ? 'text-ksc-red' : 'text-ksc-navy'}`}>{item.title}</span>
@@ -303,65 +403,77 @@ function WhyDistance() {
 /* VISION / MISSION / VALUES                                                    */
 /* --------------------------------------------------------------------------- */
 function VisionMissionValues() {
-  const { data: { vision_mission: VISION_MISSION_VALUES } } = useSiteData();
-  const { vision, mission, values } = VISION_MISSION_VALUES;
-  const [tab, setTab] = useState<"vision" | "mission" | "values">("vision");
+  const { data: { vision_mission: intro } } = useSiteData();
 
   return (
-    <section className="bg-slate-50 py-12 sm:py-16 lg:py-12 lg:py-24 border-t border-slate-100">
+    <section className="bg-slate-50 py-12 sm:py-16 lg:py-24 border-t border-slate-100">
       <div className="container-site">
-        <SectionHeading kicker="Our Foundation" title="Vision · Mission · Values" align="center" />
+        <SectionHeading kicker="Our Foundation" title="Vision · Mission · Values" />
         <div className="mx-auto max-w-6xl">
-          <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
-            {(
-              [
-                { id: "vision", label: "Vision" },
-                { id: "mission", label: "Mission" },
-                { id: "values", label: "Values" },
-              ] as const
-            ).map((t) => (
-              <button
-                key={t.id}
-                onClick={() => setTab(t.id)}
-                className={`rounded-md px-8 py-3 text-sm sm:text-base font-bold transition-all duration-300 uppercase tracking-widest ${tab === t.id
-                  ? "bg-white text-ksc-navy shadow-soft border border-slate-200"
-                  : "bg-transparent text-slate-500 hover:text-ksc-navy"
-                  }`}
-              >
-                {t.label}
-              </button>
-            ))}
-          </div>
-
-          <div className="relative mt-6 flex min-h-[210px] flex-col justify-center rounded-2xl border border-slate-100 bg-white p-5 shadow-soft sm:p-6">
-            {tab === "vision" && (
-              <div className="animate-fade-in text-center">
-                <p className="text-xl sm:text-2xl font-bold leading-relaxed text-ksc-navy max-w-2xl mx-auto">
-                  "{vision}"
-                </p>
-              </div>
-            )}
-            {tab === "mission" && (
-              <ul className="animate-fade-in grid sm:grid-cols-2 gap-6">
-                {mission.map((m) => (
-                  <li key={m.slice(0, 24)} className="flex items-start gap-4 text-slate-700 bg-slate-50 p-4 rounded-xl border-2 border-slate-100">
-                    <CheckCircle2 className="mt-0.5 h-6 w-6 shrink-0 text-ksc-red" />
-                    <span className="text-sm sm:text-base leading-relaxed font-bold">{m}</span>
-                  </li>
-                ))}
-              </ul>
-            )}
-            {tab === "values" && (
-              <div className="animate-fade-in grid gap-3 md:grid-cols-3">
-                {values.map((v) => (
-                  <div key={v.title} className="rounded-xl border border-slate-200 bg-slate-50 p-4 transition-colors hover:border-ksc-sky hover:bg-white">
-                    <p className="text-sm font-bold uppercase tracking-wide text-ksc-navy">{v.title}</p>
-                    <p className="mt-1.5 text-sm leading-6 text-slate-600">{v.description}</p>
+          <Tabs
+            tabs={[
+              { id: "vision", label: "Vision" },
+              { id: "mission", label: "Mission" },
+              { id: "values", label: "Values" },
+            ]}
+            defaultActive="vision"
+          >
+            {(activeId) => {
+              if (activeId === "vision") {
+                return (
+                  <div className="relative overflow-hidden rounded-2xl bg-white p-6 sm:p-8 shadow-md border border-slate-100 group animate-fade-in-up max-w-4xl mx-auto">
+                    {/* Decorative quote mark */}
+                    <div className="absolute -top-4 -right-2 text-[120px] font-black text-ksc-red/5 font-heading leading-none transition-transform duration-700 group-hover:scale-110 group-hover:text-ksc-red/10 select-none pointer-events-none">"</div>
+                    {/* Animated bottom border */}
+                    <div className="absolute bottom-0 left-0 h-1.5 w-0 bg-gradient-to-r from-ksc-red to-ksc-yellow transition-all duration-700 ease-out group-hover:w-full" />
+                    
+                    <p className="text-xl sm:text-2xl font-heading font-black leading-relaxed text-ksc-navy relative z-10 transition-transform duration-500 group-hover:translate-x-1">
+                      {intro.vision}
+                    </p>
                   </div>
-                ))}
-              </div>
-            )}
-          </div>
+                );
+              }
+              if (activeId === "mission") {
+                return (
+                  <div className="grid gap-4 sm:grid-cols-2 animate-fade-in-up">
+                    {intro.mission.map((m) => (
+                      <div key={m.slice(0, 20)} className="group relative overflow-hidden rounded-2xl bg-white p-4 sm:p-5 shadow-sm border border-slate-100 transition-all duration-300 hover:shadow-md hover:border-ksc-red/30 hover:-translate-y-1">
+                        {/* Decorative corner shape */}
+                        <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-ksc-sky/30 to-transparent rounded-bl-full -mr-8 -mt-8 transition-transform duration-500 group-hover:scale-150 pointer-events-none" />
+                        
+                        <div className="relative z-10 flex items-start gap-3">
+                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-50 text-ksc-red transition-all duration-300 group-hover:bg-ksc-red group-hover:text-white group-hover:shadow-sm group-hover:rotate-6">
+                            <CheckCircle2 className="h-5 w-5 stroke-[2]" />
+                          </div>
+                          <p className="text-sm sm:text-base text-slate-700 font-medium leading-relaxed transition-colors duration-300 group-hover:text-ksc-navy mt-0.5">{m}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                );
+              }
+              return (
+                <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-3 animate-fade-in-up">
+                  {intro.values.map((v, i) => (
+                    <div key={v.title} className="group relative overflow-hidden rounded-2xl bg-white p-6 sm:p-8 shadow-sm border border-slate-100 transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
+                      {/* Shadow Number */}
+                      <div className="absolute -bottom-2 right-4 text-[100px] font-black text-slate-100/80 transition-colors duration-500 group-hover:text-white/10 pointer-events-none select-none leading-none z-0">
+                        {i + 1}
+                      </div>
+                      
+                      {/* Hover background fill */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-ksc-navy to-ksc-royal opacity-0 transition-opacity duration-500 group-hover:opacity-100 pointer-events-none z-0" />
+                      
+                      <div className="relative z-10">
+                        <h4 className="font-black text-xl text-ksc-navy uppercase tracking-wide transition-colors duration-500 group-hover:text-white">{v.title}</h4>
+                        <p className="mt-3 text-sm font-medium leading-relaxed text-slate-600 transition-colors duration-500 group-hover:text-white/80">{v.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              );
+            }}
+          </Tabs>
         </div>
       </div>
     </section>
@@ -474,7 +586,7 @@ function UniversityCourses() {
                 </div>
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                   {uni.categories.map((cat) => (
-                    <div key={cat.id} className="card-hover flex flex-col p-6 sm:p-8 bg-white">
+                    <div key={cat.id} className="card-hover flex flex-col p-6 sm:p-8">
                       <div className="flex items-center justify-between">
                         <h4 className="font-black uppercase text-slate-900">{cat.label}</h4>
                         {cat.count !== undefined && (
@@ -505,38 +617,209 @@ function UniversityCourses() {
 /* --------------------------------------------------------------------------- */
 /* FACILITIES GRID                                                              */
 /* --------------------------------------------------------------------------- */
-function FacilitiesGrid() {
+function FacilitiesSpotlight() {
   const { data: { facilities: FACILITIES } } = useSiteData();
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const navigate = useNavigate();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const itemRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const resumeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const prevIndexRef = useRef(0);
+
+  // Auto-play interval
+  useEffect(() => {
+    if (!isAutoPlaying) return;
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % FACILITIES.length);
+    }, 4000); // 4 seconds per slide
+    return () => clearInterval(interval);
+  }, [isAutoPlaying, FACILITIES.length]);
+
+  // Handle manual user clicks and resume autoplay later
+  const handleUserInteraction = (index: number) => {
+    setActiveIndex(index);
+    setIsAutoPlaying(false);
+    
+    if (resumeTimeoutRef.current) {
+      clearTimeout(resumeTimeoutRef.current);
+    }
+    resumeTimeoutRef.current = setTimeout(() => {
+      // Force an immediate tick so the user sees it resume instantly, 
+      // then turn the auto-player back on
+      setActiveIndex((prev) => (prev + 1) % FACILITIES.length);
+      setIsAutoPlaying(true);
+    }, 5000); // Resume autoplay after 5s of inactivity
+  };
+
+  // Auto-scroll to keep active item at the top without jumping the main page
+  useEffect(() => {
+    if (containerRef.current && itemRefs.current[activeIndex]) {
+      const container = containerRef.current;
+      
+      // Find a fully collapsed item to measure its exact height
+      let collapsedItem = itemRefs.current.find((el, i) => i !== activeIndex && i !== prevIndexRef.current && el !== null);
+      let collapsedHeight = collapsedItem ? collapsedItem.offsetHeight : (window.innerWidth >= 640 ? 106 : 90);
+      
+      const gap = 12; // gap-3 = 12px
+      const targetTop = activeIndex * (collapsedHeight + gap);
+      
+      container.scrollTo({
+        top: targetTop,
+        behavior: 'smooth'
+      });
+      
+      prevIndexRef.current = activeIndex;
+    }
+  }, [activeIndex]);
+
   return (
-    <section className="facilities-showcase bg-white py-10 lg:py-20 border-t-4 border-ksc-red">
-      <div className="container-site">
+    <section className="facilities-showcase bg-slate-50 py-16 lg:py-24 border-t border-slate-200 overflow-hidden relative">
+      <div className="absolute top-0 right-0 w-1/3 h-full bg-ksc-navy/5 -skew-x-12 transform origin-top" />
+      <div className="container-site relative z-10">
         <SectionHeading
           kicker="Facilities & Services"
           title="Everything you need under one roof"
           subtitle="Admission guidance, study material, exam support — all from your local study centre."
         />
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-3">
-          {FACILITIES.map(({ icon, image, title, description }) => {
-            const Icon = typeof icon === "string" ? ICON_MAP[icon] ?? Building2 : icon;
-            return (
-              <div key={title} className="facility-card card-hover group bg-white p-5 text-center sm:p-6">
-                <div className="facility-icon mx-auto flex h-14 w-14 items-center justify-center overflow-hidden rounded-xl border border-slate-200 bg-slate-50 text-ksc-navy transition duration-300">
-                  {image ? (
-                    <img src={image} alt={title} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                  ) : (
-                    <Icon className="h-8 w-8 stroke-[1.5]" />
+        
+        <div className="mt-14 grid lg:grid-cols-2 gap-10 lg:gap-16 items-start max-w-7xl mx-auto">
+          
+          {/* Left Side: Cinematic Sticky Display */}
+          <div className="lg:sticky lg:top-24 h-[400px] sm:h-[500px] lg:h-[600px] w-full rounded-[2.5rem] shadow-2xl border-4 border-white overflow-hidden bg-slate-200 relative isolate">
+            {FACILITIES.map((facility, index) => {
+              const isActive = index === activeIndex;
+              return (
+                <div 
+                  key={index} 
+                  className={cn(
+                    "absolute inset-0 transition-all duration-1000 ease-[cubic-bezier(0.4,0,0.2,1)]",
+                    isActive ? "opacity-100 scale-100 z-10" : "opacity-0 scale-110 z-0 pointer-events-none"
                   )}
+                >
+                   {/* Fallback pattern if no image */}
+                   <div className="absolute inset-0 bg-ksc-navy/5" />
+                   {facility.image && (
+                     <img src={facility.image} alt={facility.title} className="h-full w-full object-cover" />
+                   )}
+                   {/* Bottom Gradient for Text Legibility if needed */}
+                   <div className="absolute inset-0 bg-gradient-to-t from-ksc-navy/90 via-ksc-navy/20 to-transparent opacity-80" />
                 </div>
-                <h4 className="mt-4 font-bold text-ksc-navy">{title}</h4>
-                <p className="mt-2 text-sm leading-6 text-slate-500">{description}</p>
-              </div>
-            );
-          })}
-        </div>
-        <div className="mt-10 text-center">
-          <Link to="/facilities" className="btn-outline">
-            Explore our Facilities <ArrowRight className="ml-2 h-4 w-4" />
-          </Link>
+              );
+            })}
+
+            {/* Floating Glass Badge Overlay */}
+            <div className="absolute bottom-8 left-8 right-8 z-20 flex items-center gap-4 rounded-2xl bg-white/10 p-5 backdrop-blur-xl border border-white/20 shadow-xl transition-all duration-500">
+              {FACILITIES.map((facility, index) => {
+                 const isActive = index === activeIndex;
+                 const Icon = typeof facility.icon === "string" ? ICON_MAP[facility.icon] ?? Building2 : facility.icon;
+                 if (!isActive) return null;
+                 return (
+                   <div key={index} className="flex items-center gap-5 w-full animate-fade-in">
+                     <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-ksc-yellow text-ksc-navy shadow-lg">
+                       <Icon className="h-7 w-7 stroke-[2]" />
+                     </div>
+                     <div>
+                       <h4 className="text-xl font-bold text-white tracking-tight">{facility.title}</h4>
+                       <p className="text-sm font-medium text-white/80 mt-1 uppercase tracking-wider">Highlight Feature</p>
+                     </div>
+                   </div>
+                 );
+              })}
+            </div>
+          </div>
+
+          {/* Right Side: Expanding Accordion List with Fixed Bottom Button */}
+          <div className="flex flex-col h-[400px] sm:h-[500px] lg:h-[600px] w-full">
+            
+            {/* Scrollable List */}
+            <div 
+              ref={containerRef}
+              className="relative flex flex-col gap-3 py-4 overflow-y-hidden pr-2 lg:pr-4 flex-1 scroll-smooth"
+              style={{ maskImage: "linear-gradient(to bottom, black 85%, transparent 100%)", WebkitMaskImage: "linear-gradient(to bottom, black 85%, transparent 100%)" }}
+            >
+              {FACILITIES.map((facility, index) => {
+                const isActive = index === activeIndex;
+                const Icon = typeof facility.icon === "string" ? ICON_MAP[facility.icon] ?? Building2 : facility.icon;
+                
+                return (
+                  <button 
+                    key={index}
+                    ref={(el) => { itemRefs.current[index] = el; }}
+                    onClick={() => { 
+                      if (isActive) {
+                        navigate('/facilities');
+                      } else {
+                        handleUserInteraction(index);
+                      }
+                    }}
+                    className={cn(
+                      "group relative flex w-full flex-col items-start rounded-2xl p-5 sm:p-6 text-left transition-all duration-500 ease-in-out border overflow-hidden shrink-0 scroll-mt-4 lg:scroll-mt-6",
+                      isActive 
+                        ? "bg-white shadow-lift border-ksc-navy/10 ring-1 ring-ksc-navy/5" 
+                        : "bg-transparent border-transparent hover:bg-white/60"
+                    )}
+                  >
+                    {/* Progress Line */}
+                    <div className="absolute left-0 top-0 h-full w-1.5 bg-slate-100 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                    
+                    {isActive && (
+                      <div className="absolute left-0 top-0 h-full w-1.5 bg-slate-200">
+                         <div 
+                           className="w-full bg-ksc-red origin-top" 
+                           style={{
+                             height: '100%',
+                             animation: isAutoPlaying ? 'progress 4s linear forwards' : 'none',
+                             transform: !isAutoPlaying ? 'scaleY(1)' : undefined
+                           }}
+                         />
+                      </div>
+                    )}
+  
+                    <div className="flex items-center gap-5 w-full relative z-10">
+                       <div className={cn(
+                         "flex h-12 w-12 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-xl transition-all duration-500",
+                         isActive ? "bg-ksc-navy text-white shadow-md rotate-3 scale-110" : "bg-white text-slate-400 border border-slate-100 group-hover:text-ksc-red group-hover:scale-105"
+                       )}>
+                         <Icon className="h-6 w-6 sm:h-7 sm:w-7 stroke-[1.5]" />
+                       </div>
+                       <h4 className={cn(
+                         "text-lg sm:text-xl font-bold transition-colors duration-300 tracking-tight", 
+                         isActive ? "text-ksc-navy" : "text-slate-500 group-hover:text-slate-700"
+                       )}>
+                         {facility.title}
+                       </h4>
+                    </div>
+                    
+                    {/* Accordion Content */}
+                    <div className={cn(
+                      "grid transition-all duration-500 ease-in-out w-full",
+                      isActive ? "grid-rows-[1fr] opacity-100 mt-4 sm:mt-5" : "grid-rows-[0fr] opacity-0"
+                    )}>
+                      <div className="overflow-hidden">
+                         <p className="text-sm sm:text-base font-medium leading-relaxed text-slate-600 pl-[4.5rem] pr-2">
+                           {facility.description}
+                         </p>
+                         <div className="pl-[4.5rem] mt-4 pb-2">
+                           <Link to="/facilities" className="inline-flex items-center gap-1.5 text-sm font-bold text-ksc-navy hover:text-ksc-red transition-colors group/link">
+                             Read full details 
+                             <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover/link:translate-x-1" />
+                           </Link>
+                         </div>
+                      </div>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+            
+            {/* Fixed Bottom Button */}
+            <div className="mt-4 pt-4 border-t border-slate-200/60 pl-2">
+               <Link to="/facilities" className="btn-outline border-slate-300 text-slate-600 hover:border-ksc-navy hover:bg-ksc-navy hover:text-white transition-all text-sm h-10 px-6">
+                 View all facilities <ArrowRight className="ml-2 h-4 w-4" />
+               </Link>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -655,37 +938,52 @@ function Branches() {
 /* --------------------------------------------------------------------------- */
 function GalleryStrip() {
   const { data: { gallery_images: GALLERY } } = useSiteData();
-  const previews = GALLERY.slice(0, 6);
+  const [isHovering, setIsHovering] = useState(false);
+  
   return (
-    <section className="gallery-showcase bg-slate-50 py-10 lg:py-20 border-t border-slate-100">
+    <section className="gallery-showcase overflow-hidden bg-slate-50 py-12 lg:py-24 border-t border-slate-100 cursor-none">
+      <CustomCursor isHovering={isHovering} />
       <div className="container-site">
         <SectionHeading
           kicker="Life at KSC"
           title="Take a look inside"
           subtitle="Real photos from our centre — front office, study materials, counselling and more."
         />
-        <div className="mt-10 grid auto-rows-[150px] grid-cols-2 gap-3 sm:auto-rows-[190px] md:grid-cols-4 md:gap-4">
-          {previews.map((item, index) => (
-            <Link key={index} to="/gallery" className={cn("gallery-tile group relative block overflow-hidden rounded-2xl border border-white/70 bg-slate-200 shadow-sm", index === 0 && "col-span-2 row-span-2")}>
-              <div className="absolute inset-0 bg-slate-200">
+      </div>
+      
+      {/* Marquee Container */}
+      <div 
+        className="relative mt-12 flex w-full overflow-hidden"
+        onMouseEnter={() => setIsHovering(true)}
+        onMouseLeave={() => setIsHovering(false)}
+      >
+        {/* Fade gradients for smooth entry/exit */}
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-slate-50 to-transparent sm:w-40" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-slate-50 to-transparent sm:w-40" />
+        
+        <div className="flex w-max animate-marqueeHorizontal gap-5 px-5 hover:[animation-play-state:paused]">
+          {[...GALLERY, ...GALLERY].map((item, index) => (
+            <Link key={`${item.caption}-${index}`} to="/gallery" className="group relative block h-[220px] w-[320px] shrink-0 overflow-hidden rounded-[2rem] border-4 border-white bg-slate-200 shadow-md sm:h-[300px] sm:w-[450px] transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+              <div className="absolute inset-0">
                 <img
                   src={item.src}
                   alt={item.alt}
                   loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="h-full w-full object-cover transition-transform duration-[1.5s] group-hover:scale-110"
                 />
               </div>
-              <span className="absolute inset-0 flex items-end bg-gradient-to-t from-ksc-navy/90 via-ksc-navy/10 to-transparent p-4 opacity-70 transition-opacity duration-300 group-hover:opacity-100 sm:p-5">
-                <span className="translate-y-1 text-sm font-bold text-white transition-transform duration-300 group-hover:translate-y-0">{item.caption}</span>
+              <span className="absolute inset-x-0 bottom-0 flex flex-col justify-end bg-gradient-to-t from-ksc-navy/90 via-ksc-navy/40 to-transparent p-6 pt-20 opacity-0 transition-all duration-500 group-hover:opacity-100">
+                <span className="translate-y-4 text-lg font-bold text-white transition-transform duration-500 ease-out group-hover:translate-y-0">{item.caption}</span>
               </span>
             </Link>
           ))}
         </div>
-        <div className="mt-12 text-center">
-          <Link to="/gallery" className="btn-outline">
-            View Full Gallery <ArrowRight className="ml-2 h-4 w-4" />
-          </Link>
-        </div>
+      </div>
+      
+      <div className="container-site mt-14 text-center">
+        <Link to="/gallery" className="btn-outline">
+          View Full Gallery <ArrowRight className="ml-2 h-4 w-4" />
+        </Link>
       </div>
     </section>
   );
@@ -707,16 +1005,16 @@ function CtaBand() {
           <p className="mt-1 text-sm font-semibold text-slate-600">{SITE_CONFIG.lastDate}</p>
         </div>
         <div className="flex flex-wrap justify-center gap-2">
-          <Button size="default" className="btn-gold" asChild>
-            <Link to="/admissions">Apply Now</Link>
-          </Button>
-          <Button
-            size="default"
-            className="btn-outline"
-            asChild
-          >
-            <Link to="/contact">Talk to a Counsellor</Link>
-          </Button>
+          <MagneticButton>
+            <Button size="default" className="btn-gold" asChild>
+              <Link to="/admissions">Apply Now</Link>
+            </Button>
+          </MagneticButton>
+          <MagneticButton>
+            <Button size="default" className="btn-outline" asChild>
+              <Link to="/contact">Talk to a Counsellor</Link>
+            </Button>
+          </MagneticButton>
         </div>
       </div>
     </section>
@@ -860,6 +1158,8 @@ function LegacyNewsAndEventsBanner() {
 /* PAGE                                                                         */
 /* --------------------------------------------------------------------------- */
 export function Home() {
+  useScrollReveal();
+  
   return (
     <>
       <Hero />
@@ -870,7 +1170,7 @@ export function Home() {
       <Stats />
       <UniversityStrip />
       <UniversityCourses />
-      <FacilitiesGrid />
+      <FacilitiesSpotlight />
       <AdmissionSteps />
       <GalleryStrip />
       <CtaBand />

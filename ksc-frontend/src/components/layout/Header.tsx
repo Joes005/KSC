@@ -40,11 +40,11 @@ export function Header() {
 
   return (
     <header className={cn(
-      "sticky top-0 z-50 w-full border-b border-slate-200 transition-all duration-200",
-      isScrolled ? "bg-white/95 shadow-[0_8px_30px_rgba(7,27,74,.09)] backdrop-blur-xl" : "bg-white"
+      "sticky top-0 z-50 w-full transition-all duration-500",
+      isScrolled ? "bg-ksc-navy/75 backdrop-blur-2xl backdrop-saturate-200 shadow-md border-b border-white/20" : "bg-ksc-navy/60 backdrop-blur-xl backdrop-saturate-150 border-b border-white/10"
     )}>
       {/* Top bar (Dark Blue) */}
-      <div className="bg-ksc-navy text-white py-2.5 text-xs hidden md:block">
+      <div className="bg-ksc-navy text-white py-2.5 text-xs hidden md:block relative z-20">
         <div className="container-site flex justify-between items-center">
           <div className="flex gap-6">
             <a href={`mailto:${SITE_CONFIG.contact.email}`} className="flex items-center gap-2 hover:text-ksc-yellow transition-colors">
@@ -70,7 +70,7 @@ export function Header() {
             </span>
             <Link 
               to="/admissions" 
-              className="bg-ksc-red text-white px-4 py-1.5 rounded-md text-xs font-bold hover:bg-red-700 transition-colors"
+              className="bg-gradient-to-r from-ksc-red to-[#a30b13] text-white px-4 py-1.5 rounded-md text-xs font-bold hover:shadow-[0_4px_12px_rgba(201,20,25,0.4)] transition-all duration-300 hover:-translate-y-0.5"
             >
               Apply Now
             </Link>
@@ -85,10 +85,10 @@ export function Header() {
             <Logo className="h-12 w-12 flex-shrink-0 drop-shadow-md sm:h-14 sm:w-14" />
           </div>
           <span className="flex min-w-0 flex-col leading-tight">
-            <span className="truncate font-heading text-lg font-extrabold text-ksc-navy sm:text-xl">
+            <span className="truncate font-heading text-lg font-extrabold text-white sm:text-xl drop-shadow-sm">
               {SITE_CONFIG.name}
             </span>
-            <span className="text-[11px] font-medium uppercase tracking-wider text-slate-500">
+            <span className="text-[11px] font-medium uppercase tracking-wider text-white/70">
               {SITE_CONFIG.shortName}
             </span>
           </span>
@@ -104,8 +104,8 @@ export function Header() {
                 end={item.path === "/"} 
                 className={({ isActive }) =>
                   cn(
-                    "relative whitespace-nowrap rounded-lg px-3 py-3 text-sm font-semibold transition-colors duration-200 2xl:px-4",
-                    isActive ? "text-ksc-red" : "text-slate-700 hover:text-ksc-red"
+                    "relative whitespace-nowrap rounded-xl px-4 py-2.5 text-sm font-bold transition-all duration-300",
+                    isActive ? "text-ksc-yellow bg-white/10" : "text-white/80 hover:text-white hover:bg-white/5"
                   )
                 }
               >
@@ -113,7 +113,7 @@ export function Header() {
                   <>
                     {item.label}
                     {isActive && (
-                      <span className="absolute bottom-1 left-3 right-3 h-0.5 rounded-full bg-ksc-red 2xl:left-4 2xl:right-4" />
+                      <span className="absolute bottom-0 left-4 right-4 h-0.5 rounded-t-full bg-ksc-yellow" />
                     )}
                   </>
                 )}
@@ -126,14 +126,14 @@ export function Header() {
         <div className="hidden items-center justify-self-end gap-3 xl:flex">
           <a
             href={`tel:${SITE_CONFIG.contact.phone}`}
-            className="hidden items-center gap-3 text-sm font-semibold text-slate-700 2xl:flex hover:text-ksc-red transition-colors"
+            className="hidden items-center gap-3 text-sm font-semibold text-white/90 2xl:flex hover:text-ksc-yellow transition-colors"
           >
-            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-ksc-navy">
+            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white">
               <Phone className="h-4 w-4" />
             </span>
             <span className="flex flex-col">
-              <span className="text-xs text-slate-500">Call us today</span>
-              <span className="font-bold">{SITE_CONFIG.contact.phone}</span>
+              <span className="text-xs text-white/60">Call us today</span>
+              <span className="font-bold drop-shadow-sm">{SITE_CONFIG.contact.phone}</span>
             </span>
           </a>
           <Link to="/admissions" className="btn-gold whitespace-nowrap">
@@ -143,7 +143,7 @@ export function Header() {
 
         {/* Mobile toggle */}
         <button
-          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-slate-200 text-ksc-navy hover:bg-slate-50 hover:text-ksc-red xl:hidden"
+          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/20 text-white hover:bg-white/10 hover:text-ksc-yellow xl:hidden"
           onClick={() => setMobileOpen((v) => !v)}
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileOpen}
@@ -154,7 +154,7 @@ export function Header() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="xl:hidden border-t border-slate-100 bg-white absolute left-0 top-full w-full shadow-lift">
+        <div className="xl:hidden border-t border-white/20 bg-ksc-navy/80 backdrop-blur-2xl backdrop-saturate-200 absolute left-0 top-full w-full shadow-2xl">
           <nav className="container-site flex flex-col py-4" aria-label="Mobile">
             {NAV_ITEMS.map((item) => {
               return (
@@ -165,9 +165,9 @@ export function Header() {
                   onClick={() => setMobileOpen(false)}
                   className={({ isActive }) =>
                     cn(
-                      "border-b border-slate-100 px-2 py-3 text-sm font-semibold transition-colors",
-                      isActive ? "text-ksc-red font-bold" : "text-slate-600 hover:text-ksc-navy",
-                      "hover:bg-slate-50"
+                      "border-b border-white/10 px-2 py-3 text-sm font-semibold transition-colors",
+                      isActive ? "text-ksc-yellow font-bold" : "text-white/80 hover:text-white",
+                      "hover:bg-white/5"
                     )
                   }
                 >

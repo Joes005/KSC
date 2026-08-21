@@ -43,8 +43,8 @@ export function Contact() {
           <div className="animate-fade-in-up">
             <SectionHeading align="left" kicker="Get in Touch" title="Reach the centre" />
             <div className="space-y-4 mt-8">
-              <div className="card-hover flex items-start gap-4 p-6 border-2 border-slate-200 bg-white rounded-xl shadow-sm">
-                <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-slate-50 text-ksc-red border-2 border-slate-200">
+              <div className="card-hover flex items-start gap-4 p-6 rounded-xl shadow-soft">
+                <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-white/60 text-ksc-red border border-white/50 shadow-inner">
                   <MapPin className="h-6 w-6 stroke-[2]" />
                 </span>
                 <div>
@@ -53,8 +53,8 @@ export function Contact() {
                 </div>
               </div>
 
-              <div className="card-hover flex items-start gap-4 p-6 border-2 border-slate-200 bg-white rounded-xl shadow-sm">
-                <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-slate-50 text-ksc-red border-2 border-slate-200">
+              <div className="card-hover flex items-start gap-4 p-6 rounded-xl shadow-soft">
+                <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-white/60 text-ksc-red border border-white/50 shadow-inner">
                   <Phone className="h-6 w-6 stroke-[2]" />
                 </span>
                 <div>
@@ -65,8 +65,8 @@ export function Contact() {
                 </div>
               </div>
 
-              <div className="card-hover flex items-start gap-4 p-6 border-2 border-slate-200 bg-white rounded-xl shadow-sm">
-                <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-[#25D366]/10 text-[#25D366] border-2 border-[#25D366]/20">
+              <div className="card-hover flex items-start gap-4 p-6 rounded-xl shadow-soft">
+                <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-[#25D366]/10 text-[#25D366] border border-[#25D366]/20 shadow-inner">
                   <MessageCircle className="h-6 w-6 stroke-[2]" />
                 </span>
                 <div>
@@ -82,8 +82,8 @@ export function Contact() {
                 </div>
               </div>
 
-              <div className="card-hover flex items-start gap-4 p-6 border-2 border-slate-200 bg-white rounded-xl shadow-sm">
-                <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-slate-50 text-ksc-red border-2 border-slate-200">
+              <div className="card-hover flex items-start gap-4 p-6 rounded-xl shadow-soft">
+                <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-white/60 text-ksc-red border border-white/50 shadow-inner">
                   <Mail className="h-6 w-6 stroke-[2]" />
                 </span>
                 <div>
@@ -95,7 +95,7 @@ export function Contact() {
               </div>
             </div>
 
-            <div className="mt-10 overflow-hidden rounded-2xl border border-slate-200 shadow-xl group">
+            <div className="mt-10 overflow-hidden rounded-2xl glass-panel shadow-lift group">
               <img 
                 src="/assets/user-photos/branch-exterior.jpg" 
                 alt="Karur Study Centre Branch Exterior" 
@@ -104,7 +104,7 @@ export function Contact() {
             </div>
 
             {/* Embedded map */}
-            <div className="mt-8 overflow-hidden rounded-2xl border border-slate-200 shadow-xl bg-white p-2">
+            <div className="mt-8 overflow-hidden rounded-2xl glass-panel shadow-lift p-2">
               <iframe
                 title={`${SITE_CONFIG.name} location map`}
                 src={contact.mapEmbedUrl}
@@ -123,7 +123,7 @@ export function Contact() {
               title="Tell us what you're looking for"
               subtitle="Fill in the form and we'll get back to you with programme options and admission guidance."
             />
-            <div className="bg-white border-2 border-slate-200 shadow-xl rounded-2xl p-6 sm:p-10 mt-8 relative overflow-hidden">
+            <div className="glass-panel shadow-lift rounded-2xl p-6 sm:p-10 mt-8 relative overflow-hidden">
                {/* Form background decorative glow */}
               <div className="absolute top-0 right-0 w-64 h-64 bg-ksc-yellow/20 rounded-full blur-[80px] pointer-events-none" />
               <EnquiryForm fields={CONTACT_FORM_FIELDS} submitLabel="Send Enquiry" idPrefix="contact" className="relative z-10" />

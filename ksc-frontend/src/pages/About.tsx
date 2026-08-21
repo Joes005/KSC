@@ -10,14 +10,15 @@ export function About() {
   return (
     <>
       {/* Page header */}
-      <PageHeader bgImage="/assets/images/about-students.png" 
-        title="About Us" 
-        breadcrumb={[{ label: "Home", to: "/" }, { label: "About Us" }]} 
+      <PageHeader bgImage="/assets/images/about-students.png"
+        title="About Us"
+        breadcrumb={[{ label: "Home", to: "/" }, { label: "About Us" }]}
       />
 
       {/* Long-form copy + facts sidebar */}
-      <section className="bg-white py-16 sm:py-10 lg:py-20 border-b border-slate-100">
-        <div className="container-site grid gap-12 lg:grid-cols-3 lg:items-start">
+      <section className="relative overflow-hidden bg-white py-16 sm:py-10 lg:py-20 border-b border-slate-100">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-50/50 via-white to-white pointer-events-none" />
+        <div className="container-site relative grid gap-12 lg:grid-cols-3 lg:items-start">
           <div className="lg:col-span-2">
             <SectionHeading
               align="left"
@@ -26,12 +27,12 @@ export function About() {
             />
             <div className="space-y-5 leading-relaxed text-slate-700 font-medium text-sm sm:text-base">
               <p>{ABOUT_PAGE.body[0]}</p>
-              
+
               <div className="my-10 overflow-hidden rounded-3xl shadow-lift border border-slate-200 p-2 bg-white">
-                <img 
-                  src="/assets/images/about-students.png" 
-                  alt="Happy students at Karur Study Centre" 
-                  className="w-full h-auto rounded-2xl object-cover transform hover:scale-105 transition-transform duration-700" 
+                <img
+                  src="/assets/images/about-students.png"
+                  alt="Happy students at Karur Study Centre"
+                  className="w-full h-auto rounded-2xl object-cover transform hover:scale-105 transition-transform duration-700"
                 />
               </div>
 
@@ -46,15 +47,15 @@ export function About() {
           {/* Facts sidebar */}
           <aside className="space-y-6 mt-12 lg:mt-0">
 
-            <div className="group relative overflow-hidden rounded-2xl bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md border border-slate-100">
+            <div className="card-hover p-6">
               <span className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-50 text-ksc-navy transition-transform duration-300 group-hover:scale-110 group-hover:bg-blue-50">
                 <CalendarDays className="h-8 w-8 stroke-[1.5]" />
               </span>
               <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Established</p>
               <p className="mt-1 text-3xl font-bold text-slate-800">{ABOUT_PAGE.establishedYear}</p>
             </div>
-            
-            <div className="group relative overflow-hidden rounded-2xl bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md border border-slate-100">
+
+            <div className="card-hover p-6">
               <span className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-50 text-ksc-navy transition-transform duration-300 group-hover:scale-110 group-hover:bg-blue-50">
                 <Building2 className="h-8 w-8 stroke-[1.5]" />
               </span>
@@ -65,8 +66,8 @@ export function About() {
                 <Link to="/chairman" className="inline-flex items-center hover:text-ksc-red transition-colors">Read Chairman Message <ArrowRight className="ml-1.5 h-4 w-4" /></Link>
               </div>
             </div>
-            
-            <div className="group relative overflow-hidden rounded-2xl bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md border border-slate-100">
+
+            <div className="card-hover p-6">
               <span className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-50 text-ksc-navy transition-transform duration-300 group-hover:scale-110 group-hover:bg-blue-50">
                 <Users className="h-8 w-8 stroke-[1.5]" />
               </span>
@@ -74,12 +75,12 @@ export function About() {
               <p className="mt-1 text-3xl font-bold text-slate-800">50,000+ <span className="text-lg font-semibold text-slate-500">learners</span></p>
             </div>
 
-            <div className="rounded-2xl bg-white p-6 shadow-sm border border-slate-100">
+            <div className="glass-panel p-6">
               <h3 className="text-xl font-bold text-ksc-navy mb-5">Membership &amp; Recognition</h3>
               <ul className="flex flex-col gap-4">
                 {ABOUT_PAGE.membership.map((m) => (
                   <li key={m} className="flex items-start gap-3 text-sm font-medium text-slate-600">
-                    <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-ksc-yellow" /> 
+                    <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-ksc-yellow" />
                     <span className="leading-relaxed">{m}</span>
                   </li>
                 ))}
@@ -115,30 +116,53 @@ function AboutDetail() {
             {(activeId) => {
               if (activeId === "vision") {
                 return (
-                  <div className="card-hover p-8 bg-slate-50 border-2 border-slate-100">
-                    <p className="text-xl font-bold leading-relaxed text-ksc-navy">{intro.vision}</p>
+                  <div className="relative overflow-hidden rounded-2xl bg-white p-6 sm:p-8 shadow-md border border-slate-100 group animate-fade-in-up max-w-4xl mx-auto">
+                    {/* Decorative quote mark */}
+                    <div className="absolute -top-4 -right-2 text-[120px] font-black text-ksc-red/5 font-heading leading-none transition-transform duration-700 group-hover:scale-110 group-hover:text-ksc-red/10 select-none pointer-events-none">"</div>
+                    {/* Animated bottom border */}
+                    <div className="absolute bottom-0 left-0 h-1.5 w-0 bg-gradient-to-r from-ksc-red to-ksc-yellow transition-all duration-700 ease-out group-hover:w-full" />
+                    
+                    <p className="text-xl sm:text-2xl font-heading font-black leading-relaxed text-ksc-navy relative z-10 transition-transform duration-500 group-hover:translate-x-1">
+                      {intro.vision}
+                    </p>
                   </div>
                 );
               }
               if (activeId === "mission") {
                 return (
-                  <div className="card-hover p-8 bg-slate-50 border-2 border-slate-100">
-                    <ul className="space-y-4">
-                      {intro.mission.map((m) => (
-                        <li key={m.slice(0, 20)} className="flex items-start gap-3 text-slate-700 font-medium">
-                          <CheckCircle2 className="mt-0.5 h-6 w-6 shrink-0 text-ksc-red" /> {m}
-                        </li>
-                      ))}
-                    </ul>
+                  <div className="grid gap-4 sm:grid-cols-2 animate-fade-in-up">
+                    {intro.mission.map((m) => (
+                      <div key={m.slice(0, 20)} className="group relative overflow-hidden rounded-2xl bg-white p-4 sm:p-5 shadow-sm border border-slate-100 transition-all duration-300 hover:shadow-md hover:border-ksc-red/30 hover:-translate-y-1">
+                        {/* Decorative corner shape */}
+                        <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-ksc-sky/30 to-transparent rounded-bl-full -mr-8 -mt-8 transition-transform duration-500 group-hover:scale-150 pointer-events-none" />
+                        
+                        <div className="relative z-10 flex items-start gap-3">
+                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-50 text-ksc-red transition-all duration-300 group-hover:bg-ksc-red group-hover:text-white group-hover:shadow-sm group-hover:rotate-6">
+                            <CheckCircle2 className="h-5 w-5 stroke-[2]" />
+                          </div>
+                          <p className="text-sm sm:text-base text-slate-700 font-medium leading-relaxed transition-colors duration-300 group-hover:text-ksc-navy mt-0.5">{m}</p>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 );
               }
               return (
-                <div className="grid gap-3 md:grid-cols-3">
-                  {intro.values.map((v) => (
-                    <div key={v.title} className="card-hover border border-slate-100 bg-slate-50 p-4 text-center">
-                      <h4 className="font-bold text-ksc-navy uppercase">{v.title}</h4>
-                      <p className="mt-2 text-sm font-medium text-slate-600">{v.description}</p>
+                <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-3 animate-fade-in-up">
+                  {intro.values.map((v, i) => (
+                    <div key={v.title} className="group relative overflow-hidden rounded-2xl bg-white p-6 sm:p-8 shadow-sm border border-slate-100 transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
+                      {/* Shadow Number */}
+                      <div className="absolute -bottom-2 right-4 text-[100px] font-black text-slate-100/80 transition-colors duration-500 group-hover:text-white/10 pointer-events-none select-none leading-none z-0">
+                        {i + 1}
+                      </div>
+                      
+                      {/* Hover background fill */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-ksc-navy to-ksc-royal opacity-0 transition-opacity duration-500 group-hover:opacity-100 pointer-events-none z-0" />
+                      
+                      <div className="relative z-10">
+                        <h4 className="font-black text-xl text-ksc-navy uppercase tracking-wide transition-colors duration-500 group-hover:text-white">{v.title}</h4>
+                        <p className="mt-3 text-sm font-medium leading-relaxed text-slate-600 transition-colors duration-500 group-hover:text-white/80">{v.description}</p>
+                      </div>
                     </div>
                   ))}
                 </div>

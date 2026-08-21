@@ -24,9 +24,8 @@ export function SectionHeading({
       )}
     >
       {kicker && (
-        <div className={cn("mb-4 flex", align === "center" && "justify-center")}>
-          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-ksc-royal">
-            <span className="h-2 w-2 rounded-full bg-ksc-yellow ring-4 ring-ksc-yellow/15" aria-hidden="true" />
+        <div className={cn("mb-6 flex", align === "center" && "justify-center")}>
+          <div className="inline-flex items-center rounded-full bg-white pl-4 pr-5 py-1.5 text-[11px] font-black uppercase tracking-[0.2em] text-ksc-red shadow-sm border border-slate-100 border-l-[6px] border-l-ksc-red transition-transform hover:-translate-y-0.5">
             {kicker}
           </div>
         </div>

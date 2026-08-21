@@ -76,14 +76,39 @@ export default {
           '0%': { transform: 'translateY(0%)' },
           '100%': { transform: 'translateY(-50%)' },
         },
+        marqueeHorizontal: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
         float: {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-10px)' },
+        },
+        progress: {
+          '0%': { transform: 'scaleY(0)' },
+          '100%': { transform: 'scaleY(1)' },
+        },
+        slideUpWord: {
+          '0%': { transform: 'translateY(120%) rotate(4deg)', opacity: '0' },
+          '100%': { transform: 'translateY(0) rotate(0)', opacity: '1' },
+        },
+        clipReveal: {
+          '0%': { clipPath: 'inset(15% 15% 15% 15% round 2rem)' },
+          '100%': { clipPath: 'inset(0% 0% 0% 0% round 1.4rem)' },
+        },
+        imageScaleDown: {
+          '0%': { transform: 'scale(1.3)' },
+          '100%': { transform: 'scale(1)' },
         }
       },
       animation: {
         marqueeVertical: 'marqueeVertical 25s linear infinite',
+        marqueeHorizontal: 'marqueeHorizontal 40s linear infinite',
         float: 'float 6s ease-in-out infinite',
+        progress: 'progress 4s linear forwards',
+        slideUpWord: 'slideUpWord 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+        clipReveal: 'clipReveal 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+        imageScaleDown: 'imageScaleDown 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards',
       },
     },
   },

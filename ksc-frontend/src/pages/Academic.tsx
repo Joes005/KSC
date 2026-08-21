@@ -8,10 +8,11 @@ import { ProgrammeCards } from "../components/common/ProgrammeCards";
 
 function UniversityProgrammes({ uni }: { uni: University }) {
   return (
-    <section id={uni.id} className="scroll-mt-28 py-12 sm:py-16 lg:py-12 lg:py-24 border-b-4 border-slate-200 bg-white">
-      <div className="container-site">
+    <section id={uni.id} className="scroll-mt-28 relative overflow-hidden py-12 sm:py-16 lg:py-12 lg:py-24 border-b border-slate-100 bg-white">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-blue-50/40 via-white to-white pointer-events-none" />
+      <div className="container-site relative z-10">
         {/* University header */}
-        <div className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 shadow-soft">
+        <div className="glass-panel p-6 sm:p-8">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div>
               <h2 className="text-2xl sm:text-3xl font-black text-ksc-navy uppercase">{uni.name}</h2>
@@ -122,9 +123,10 @@ export function Academic() {
       </div>
 
       {/* Eligibility note */}
-      <section className="bg-slate-50 py-12 sm:py-16 lg:py-12 lg:py-24 border-t-4 border-ksc-yellow">
-        <div className="container-site">
-          <div className="grid lg:grid-cols-2 gap-6 lg:gap-10 items-center rounded-3xl border border-slate-200 bg-white p-8 sm:p-12 shadow-soft">
+      <section className="relative overflow-hidden bg-white py-12 sm:py-16 lg:py-12 lg:py-24 border-t border-slate-100">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-50/60 via-white to-white pointer-events-none" />
+        <div className="container-site relative z-10">
+          <div className="glass-panel grid lg:grid-cols-2 gap-6 lg:gap-10 items-center p-8 sm:p-12">
             <div className="order-2 lg:order-1 text-sm leading-relaxed text-slate-700 font-medium">
               <p className="font-black text-ksc-red uppercase text-2xl mb-4">Eligibility notes</p>
               <p className="mt-2 text-base">

@@ -17,7 +17,7 @@ export function Contact() {
       {/* Page header */}
       <section className="relative overflow-hidden border-b-4 border-ksc-red bg-gradient-to-br from-[#e8f5ff] via-white to-[#fff4d6] py-20 text-ksc-navy lg:py-12 lg:py-24">
         {/* Background Image */}
-        <img 
+        <img loading="lazy" 
           src="/assets/user-photos/branch-exterior.jpg" 
           alt="" 
           className="absolute inset-0 w-full h-full object-cover opacity-20 pointer-events-none mix-blend-multiply" 
@@ -96,7 +96,7 @@ export function Contact() {
             </div>
 
             <div className="mt-10 overflow-hidden rounded-2xl glass-panel shadow-lift group">
-              <img 
+              <img loading="lazy" 
                 src="/assets/user-photos/branch-exterior.jpg" 
                 alt="Karur Study Centre Branch Exterior" 
                 className="w-full h-48 sm:h-72 object-cover transform transition-transform duration-[10000ms] group-hover:scale-110" 

@@ -165,7 +165,7 @@ export function Header() {
                   onClick={() => setMobileOpen(false)}
                   className={({ isActive }) =>
                     cn(
-                      "border-b border-white/10 px-2 py-3 text-sm font-semibold transition-colors",
+                      "border-b border-white/10 px-4 py-4 text-base font-semibold transition-colors block w-full text-left",
                       isActive ? "text-ksc-yellow font-bold" : "text-white/80 hover:text-white",
                       "hover:bg-white/5"
                     )

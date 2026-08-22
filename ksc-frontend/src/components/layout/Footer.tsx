@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { MapPin, Phone, MessageCircle } from "lucide-react";
+import { Phone, MessageCircle } from "lucide-react";
 import { useSiteData } from "../../services/SiteDataContext";
 import { Logo } from "../brand/Logo";
 
@@ -37,7 +37,7 @@ export function Footer() {
         <div className="absolute right-0 top-0 h-full w-1/3 bg-ksc-yellow/20 [clip-path:polygon(30%_0,100%_0,100%_100%,0_100%)]" />
         <div className="container-site relative z-10 flex flex-col items-center justify-between gap-4 text-center md:flex-row md:text-left">
            <div><p className="text-[10px] font-bold uppercase tracking-[.16em] text-ksc-red">Need help choosing a course?</p><h3 className="mt-1 text-xl font-bold text-ksc-navy sm:text-2xl">Talk to our education team</h3></div>
-           <div className="flex flex-col items-center gap-2 sm:flex-row">
+           <div className="flex flex-row flex-wrap justify-center items-center gap-2 sm:gap-3">
              <a href={`tel:${contact.phone}`} className="flex min-h-10 items-center gap-2 rounded-lg bg-ksc-navy px-4 py-2 text-sm font-bold text-white transition-colors hover:bg-ksc-royal">
                <Phone className="h-4 w-4" /> {contact.phone}
              </a>
@@ -50,7 +50,7 @@ export function Footer() {
 
       {/* University logo strip */}
       <div className="bg-ksc-navy border-b border-white/10">
-        <div className="container-site flex flex-wrap items-center justify-center gap-x-12 gap-y-6 py-6">
+        <div className="container-site grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-6 gap-x-8 py-6 w-fit mx-auto px-4 sm:px-6">
           {UNIVERSITIES.map((uni) => (
             <Link
               key={uni.id}
@@ -101,7 +101,7 @@ export function Footer() {
         </div>
 
         {/* Links Grid */}
-        <div className="md:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-8">
+        <div className="md:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-8">
           <div>
             <h4 className="mb-6 text-sm font-bold uppercase tracking-wider text-ksc-yellow">Quick Links</h4>
             <ul className="space-y-4 text-sm text-slate-300">
@@ -120,7 +120,7 @@ export function Footer() {
               <li><Link to="/admissions" className="transition-colors hover:text-white text-white font-bold flex items-center gap-2"><span className="text-ksc-yellow">▶</span> Admissions {new Date().getFullYear()}</Link></li>
             </ul>
           </div>
-          <div>
+          <div className="col-span-2 sm:col-span-1">
             <h4 className="mb-6 text-sm font-bold uppercase tracking-wider text-ksc-yellow">Support</h4>
             <ul className="space-y-4 text-sm text-slate-300">
               <li><Link to="/exam-update" className="transition-colors hover:text-white flex items-center gap-2"><span className="text-ksc-red">▶</span> Exam Updates</Link></li>

@@ -42,7 +42,7 @@ export function University() {
             <div className="grid gap-6 p-6 lg:grid-cols-[auto_1fr_auto] lg:p-10">
               <div className="flex h-24 w-24 sm:h-32 sm:w-32 items-center justify-center rounded-2xl border border-slate-200 bg-white shadow-md overflow-hidden">
                 {uni.logo ? (
-                  <img src={uni.logo} alt={`${uni.shortName} Logo`} className="h-full w-full object-contain p-2" />
+                  <img loading="lazy" src={uni.logo} alt={`${uni.shortName} Logo`} className="h-full w-full object-contain p-2" />
                 ) : (
                   <GraduationCap className="h-10 w-10 text-ksc-navy" />
                 )}

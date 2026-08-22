@@ -53,16 +53,8 @@ export function SiteDataProvider({ children }: { children: ReactNode }) {
 
   return (
     <SiteDataContext.Provider value={{ data, loading }}>
-      {loading ? (
-        <div className="flex h-screen w-full items-center justify-center bg-[#063731]">
-          <div className="text-center text-white">
-            <div className="mb-4 h-12 w-12 animate-spin rounded-full border-4 border-ksc-gold border-t-transparent mx-auto"></div>
-            <p className="font-bold tracking-widest text-ksc-gold uppercase">Loading KSC...</p>
-          </div>
-        </div>
-      ) : (
-        children
-      )}
+      {/* Remove blocking loading screen so the app loads instantly with fallback data */}
+      {children}
     </SiteDataContext.Provider>
   );
 }

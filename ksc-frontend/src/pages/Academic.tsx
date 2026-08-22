@@ -151,7 +151,7 @@ export function Academic() {
             </div>
             <div className="order-1 lg:order-2">
               <div className="overflow-hidden rounded-2xl shadow-xl">
-                <img 
+                <img loading="lazy" 
                   src="/assets/user-photos/study-materials.jpg" 
                   alt="Study Materials" 
                   className="w-full h-[300px] object-cover transform hover:scale-105 transition-transform duration-700" 

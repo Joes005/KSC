@@ -50,7 +50,7 @@ function CustomCursor({ isHovering }: { isHovering: boolean }) {
   const { x, y } = useMousePosition();
   if (typeof window === 'undefined') return null;
   return (
-    <div 
+    <div
       className={cn(
         "pointer-events-none fixed left-0 top-0 z-[100] flex items-center justify-center rounded-full bg-white/30 backdrop-blur-md border border-white/50 text-ksc-navy font-bold text-xs uppercase tracking-widest shadow-2xl transition-all duration-300 ease-out",
         isHovering ? "opacity-100 h-20 w-20 scale-100" : "opacity-0 h-4 w-4 scale-0"
@@ -72,7 +72,7 @@ function MagneticButton({ children, className }: { children: React.ReactNode, cl
     const { height, width, left, top } = ref.current.getBoundingClientRect();
     const middleX = clientX - (left + width / 2);
     const middleY = clientY - (top + height / 2);
-    setPosition({ x: middleX * 0.15, y: middleY * 0.15 }); 
+    setPosition({ x: middleX * 0.15, y: middleY * 0.15 });
   };
 
   const reset = () => {
@@ -105,9 +105,9 @@ function useScrollReveal() {
       },
       { threshold: 0.15, rootMargin: "0px 0px -100px 0px" }
     );
-    
+
     document.querySelectorAll(".reveal-section").forEach((el) => observer.observe(el));
-    
+
     return () => observer.disconnect();
   }, []);
 }
@@ -158,11 +158,11 @@ function UserUpdatePopup() {
       window.removeEventListener("keydown", closeOnEscape);
     };
   }, [isOpen, modalData?.enabled]);
-  
+
   if (!isOpen || !modalData?.enabled) return null;
 
   // Fallback to static modal image if no API posters are present
-  const displayImageUrl = posters.length > 0 
+  const displayImageUrl = posters.length > 0
     ? (posters[currentPosterIndex].image_path.startsWith('http') ? posters[currentPosterIndex].image_path : `${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/storage/${posters[currentPosterIndex].image_path}`)
     : modalData.imageUrl;
 
@@ -323,12 +323,12 @@ function AboutSnapshot() {
           <div>
             <SectionHeading align="left" kicker="The value of learning" title="Education opens more than doors" subtitle="A recognised qualification can create confidence, independence and opportunity at every stage of life." />
             <div className="grid gap-3 sm:grid-cols-2">
-               {POSTER_POINTS.map((para, i) => (
-                 <div key={i} className="flex items-start gap-3 rounded-xl border border-ksc-navy/10 bg-white px-4 py-3 shadow-sm">
-                   <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-ksc-yellow text-xs font-black text-ksc-navy">{i + 1}</span>
-                   <span className="text-sm font-bold leading-6 text-ksc-navy">{para}</span>
-                 </div>
-               ))}
+              {POSTER_POINTS.map((para, i) => (
+                <div key={i} className="flex items-start gap-3 rounded-xl border border-ksc-navy/10 bg-white px-4 py-3 shadow-sm">
+                  <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-ksc-yellow text-xs font-black text-ksc-navy">{i + 1}</span>
+                  <span className="text-sm font-bold leading-6 text-ksc-navy">{para}</span>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -337,7 +337,7 @@ function AboutSnapshot() {
               <div className="relative aspect-[4/3] w-full rounded-[1.4rem] overflow-hidden bg-slate-200">
                 {/* Cinematic Image Reveal via is-visible class */}
                 <div className="absolute inset-0 transition-all duration-1000 [clip-path:inset(15%_15%_15%_15%_round_2rem)] [.is-visible_&]:[clip-path:inset(0%_0%_0%_0%_round_1.4rem)]">
-                  <img src="/assets/gallery/ksc-01.jpg" alt="Study materials at Karur Study Centre" className="h-full w-full object-cover transition-transform duration-[1.5s] scale-125 [.is-visible_&]:scale-100" />
+                  <img src="/assets/gallery/ksc-01.jpg" alt="Study materials at Karur Study Centre" loading="lazy" className="h-full w-full object-cover transition-transform duration-[1.5s] scale-125 [.is-visible_&]:scale-100" />
                 </div>
               </div>
             </div>
@@ -371,7 +371,7 @@ function WhyDistance() {
         <div className="grid gap-10 lg:grid-cols-12 lg:items-start mt-12">
           <div className="lg:col-span-5 hidden lg:block sticky top-28">
             <div className="relative overflow-hidden rounded-3xl shadow-xl h-full min-h-[500px]">
-              <img src="/assets/user-photos/distance-student.png" alt="Student studying distance education" className="absolute inset-0 w-full h-full object-cover" />
+              <img src="/assets/user-photos/distance-student.png" alt="Student studying distance education" loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ksc-navy to-transparent p-7 pt-24 text-white"><p className="font-heading text-3xl font-black uppercase">Learn on your terms</p></div>
             </div>
           </div>
@@ -426,7 +426,7 @@ function VisionMissionValues() {
                     <div className="absolute -top-4 -right-2 text-[120px] font-black text-ksc-red/5 font-heading leading-none transition-transform duration-700 group-hover:scale-110 group-hover:text-ksc-red/10 select-none pointer-events-none">"</div>
                     {/* Animated bottom border */}
                     <div className="absolute bottom-0 left-0 h-1.5 w-0 bg-gradient-to-r from-ksc-red to-ksc-yellow transition-all duration-700 ease-out group-hover:w-full" />
-                    
+
                     <p className="text-xl sm:text-2xl font-heading font-black leading-relaxed text-ksc-navy relative z-10 transition-transform duration-500 group-hover:translate-x-1">
                       {intro.vision}
                     </p>
@@ -440,7 +440,7 @@ function VisionMissionValues() {
                       <div key={m.slice(0, 20)} className="group relative overflow-hidden rounded-2xl bg-white p-4 sm:p-5 shadow-sm border border-slate-100 transition-all duration-300 hover:shadow-md hover:border-ksc-red/30 hover:-translate-y-1">
                         {/* Decorative corner shape */}
                         <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-ksc-sky/30 to-transparent rounded-bl-full -mr-8 -mt-8 transition-transform duration-500 group-hover:scale-150 pointer-events-none" />
-                        
+
                         <div className="relative z-10 flex items-start gap-3">
                           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-50 text-ksc-red transition-all duration-300 group-hover:bg-ksc-red group-hover:text-white group-hover:shadow-sm group-hover:rotate-6">
                             <CheckCircle2 className="h-5 w-5 stroke-[2]" />
@@ -460,10 +460,10 @@ function VisionMissionValues() {
                       <div className="absolute -bottom-2 right-4 text-[100px] font-black text-slate-100/80 transition-colors duration-500 group-hover:text-white/10 pointer-events-none select-none leading-none z-0">
                         {i + 1}
                       </div>
-                      
+
                       {/* Hover background fill */}
                       <div className="absolute inset-0 bg-gradient-to-br from-ksc-navy to-ksc-royal opacity-0 transition-opacity duration-500 group-hover:opacity-100 pointer-events-none z-0" />
-                      
+
                       <div className="relative z-10">
                         <h4 className="font-black text-xl text-ksc-navy uppercase tracking-wide transition-colors duration-500 group-hover:text-white">{v.title}</h4>
                         <p className="mt-3 text-sm font-medium leading-relaxed text-slate-600 transition-colors duration-500 group-hover:text-white/80">{v.description}</p>
@@ -640,7 +640,7 @@ function FacilitiesSpotlight() {
   const handleUserInteraction = (index: number) => {
     setActiveIndex(index);
     setIsAutoPlaying(false);
-    
+
     if (resumeTimeoutRef.current) {
       clearTimeout(resumeTimeoutRef.current);
     }
@@ -656,19 +656,19 @@ function FacilitiesSpotlight() {
   useEffect(() => {
     if (containerRef.current && itemRefs.current[activeIndex]) {
       const container = containerRef.current;
-      
+
       // Find a fully collapsed item to measure its exact height
       let collapsedItem = itemRefs.current.find((el, i) => i !== activeIndex && i !== prevIndexRef.current && el !== null);
       let collapsedHeight = collapsedItem ? collapsedItem.offsetHeight : (window.innerWidth >= 640 ? 106 : 90);
-      
+
       const gap = 12; // gap-3 = 12px
       const targetTop = activeIndex * (collapsedHeight + gap);
-      
+
       container.scrollTo({
         top: targetTop,
         behavior: 'smooth'
       });
-      
+
       prevIndexRef.current = activeIndex;
     }
   }, [activeIndex]);
@@ -682,28 +682,28 @@ function FacilitiesSpotlight() {
           title="Everything you need under one roof"
           subtitle="Admission guidance, study material, exam support — all from your local study centre."
         />
-        
+
         <div className="mt-14 grid lg:grid-cols-2 gap-10 lg:gap-16 items-start max-w-7xl mx-auto">
-          
+
           {/* Left Side: Cinematic Sticky Display */}
           <div className="lg:sticky lg:top-24 h-[400px] sm:h-[500px] lg:h-[600px] w-full rounded-[2.5rem] shadow-2xl border-4 border-white overflow-hidden bg-slate-200 relative isolate">
             {FACILITIES.map((facility, index) => {
               const isActive = index === activeIndex;
               return (
-                <div 
-                  key={index} 
+                <div
+                  key={index}
                   className={cn(
                     "absolute inset-0 transition-all duration-1000 ease-[cubic-bezier(0.4,0,0.2,1)]",
                     isActive ? "opacity-100 scale-100 z-10" : "opacity-0 scale-110 z-0 pointer-events-none"
                   )}
                 >
-                   {/* Fallback pattern if no image */}
-                   <div className="absolute inset-0 bg-ksc-navy/5" />
-                   {facility.image && (
-                     <img src={facility.image} alt={facility.title} className="h-full w-full object-cover" />
-                   )}
-                   {/* Bottom Gradient for Text Legibility if needed */}
-                   <div className="absolute inset-0 bg-gradient-to-t from-ksc-navy/90 via-ksc-navy/20 to-transparent opacity-80" />
+                  {/* Fallback pattern if no image */}
+                  <div className="absolute inset-0 bg-ksc-navy/5" />
+                  {facility.image && (
+                    <img src={facility.image} alt={facility.title} loading="lazy" className="h-full w-full object-cover" />
+                  )}
+                  {/* Bottom Gradient for Text Legibility if needed */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-ksc-navy/90 via-ksc-navy/20 to-transparent opacity-80" />
                 </div>
               );
             })}
@@ -711,29 +711,29 @@ function FacilitiesSpotlight() {
             {/* Floating Glass Badge Overlay */}
             <div className="absolute bottom-8 left-8 right-8 z-20 flex items-center gap-4 rounded-2xl bg-white/10 p-5 backdrop-blur-xl border border-white/20 shadow-xl transition-all duration-500">
               {FACILITIES.map((facility, index) => {
-                 const isActive = index === activeIndex;
-                 const Icon = typeof facility.icon === "string" ? ICON_MAP[facility.icon] ?? Building2 : facility.icon;
-                 if (!isActive) return null;
-                 return (
-                   <div key={index} className="flex items-center gap-5 w-full animate-fade-in">
-                     <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-ksc-yellow text-ksc-navy shadow-lg">
-                       <Icon className="h-7 w-7 stroke-[2]" />
-                     </div>
-                     <div>
-                       <h4 className="text-xl font-bold text-white tracking-tight">{facility.title}</h4>
-                       <p className="text-sm font-medium text-white/80 mt-1 uppercase tracking-wider">Highlight Feature</p>
-                     </div>
-                   </div>
-                 );
+                const isActive = index === activeIndex;
+                const Icon = typeof facility.icon === "string" ? ICON_MAP[facility.icon] ?? Building2 : facility.icon;
+                if (!isActive) return null;
+                return (
+                  <div key={index} className="flex items-center gap-5 w-full animate-fade-in">
+                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-ksc-yellow text-ksc-navy shadow-lg">
+                      <Icon className="h-7 w-7 stroke-[2]" />
+                    </div>
+                    <div>
+                      <h4 className="text-xl font-bold text-white tracking-tight">{facility.title}</h4>
+                      <p className="text-sm font-medium text-white/80 mt-1 uppercase tracking-wider">Highlight Feature</p>
+                    </div>
+                  </div>
+                );
               })}
             </div>
           </div>
 
           {/* Right Side: Expanding Accordion List with Fixed Bottom Button */}
           <div className="flex flex-col h-[400px] sm:h-[500px] lg:h-[600px] w-full">
-            
+
             {/* Scrollable List */}
-            <div 
+            <div
               ref={containerRef}
               className="relative flex flex-col gap-3 py-4 overflow-y-hidden pr-2 lg:pr-4 flex-1 scroll-smooth"
               style={{ maskImage: "linear-gradient(to bottom, black 85%, transparent 100%)", WebkitMaskImage: "linear-gradient(to bottom, black 85%, transparent 100%)" }}
@@ -741,12 +741,12 @@ function FacilitiesSpotlight() {
               {FACILITIES.map((facility, index) => {
                 const isActive = index === activeIndex;
                 const Icon = typeof facility.icon === "string" ? ICON_MAP[facility.icon] ?? Building2 : facility.icon;
-                
+
                 return (
-                  <button 
+                  <button
                     key={index}
                     ref={(el) => { itemRefs.current[index] = el; }}
-                    onClick={() => { 
+                    onClick={() => {
                       if (isActive) {
                         navigate('/facilities');
                       } else {
@@ -755,69 +755,69 @@ function FacilitiesSpotlight() {
                     }}
                     className={cn(
                       "group relative flex w-full flex-col items-start rounded-2xl p-5 sm:p-6 text-left transition-all duration-500 ease-in-out border overflow-hidden shrink-0 scroll-mt-4 lg:scroll-mt-6",
-                      isActive 
-                        ? "bg-white shadow-lift border-ksc-navy/10 ring-1 ring-ksc-navy/5" 
+                      isActive
+                        ? "bg-white shadow-lift border-ksc-navy/10 ring-1 ring-ksc-navy/5"
                         : "bg-transparent border-transparent hover:bg-white/60"
                     )}
                   >
                     {/* Progress Line */}
                     <div className="absolute left-0 top-0 h-full w-1.5 bg-slate-100 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                    
+
                     {isActive && (
                       <div className="absolute left-0 top-0 h-full w-1.5 bg-slate-200">
-                         <div 
-                           className="w-full bg-ksc-red origin-top" 
-                           style={{
-                             height: '100%',
-                             animation: isAutoPlaying ? 'progress 4s linear forwards' : 'none',
-                             transform: !isAutoPlaying ? 'scaleY(1)' : undefined
-                           }}
-                         />
+                        <div
+                          className="w-full bg-ksc-red origin-top"
+                          style={{
+                            height: '100%',
+                            animation: isAutoPlaying ? 'progress 4s linear forwards' : 'none',
+                            transform: !isAutoPlaying ? 'scaleY(1)' : undefined
+                          }}
+                        />
                       </div>
                     )}
-  
+
                     <div className="flex items-center gap-5 w-full relative z-10">
-                       <div className={cn(
-                         "flex h-12 w-12 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-xl transition-all duration-500",
-                         isActive ? "bg-ksc-navy text-white shadow-md rotate-3 scale-110" : "bg-white text-slate-400 border border-slate-100 group-hover:text-ksc-red group-hover:scale-105"
-                       )}>
-                         <Icon className="h-6 w-6 sm:h-7 sm:w-7 stroke-[1.5]" />
-                       </div>
-                       <h4 className={cn(
-                         "text-lg sm:text-xl font-bold transition-colors duration-300 tracking-tight", 
-                         isActive ? "text-ksc-navy" : "text-slate-500 group-hover:text-slate-700"
-                       )}>
-                         {facility.title}
-                       </h4>
+                      <div className={cn(
+                        "flex h-12 w-12 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-xl transition-all duration-500",
+                        isActive ? "bg-ksc-navy text-white shadow-md rotate-3 scale-110" : "bg-white text-slate-400 border border-slate-100 group-hover:text-ksc-red group-hover:scale-105"
+                      )}>
+                        <Icon className="h-6 w-6 sm:h-7 sm:w-7 stroke-[1.5]" />
+                      </div>
+                      <h4 className={cn(
+                        "text-lg sm:text-xl font-bold transition-colors duration-300 tracking-tight",
+                        isActive ? "text-ksc-navy" : "text-slate-500 group-hover:text-slate-700"
+                      )}>
+                        {facility.title}
+                      </h4>
                     </div>
-                    
+
                     {/* Accordion Content */}
                     <div className={cn(
                       "grid transition-all duration-500 ease-in-out w-full",
                       isActive ? "grid-rows-[1fr] opacity-100 mt-4 sm:mt-5" : "grid-rows-[0fr] opacity-0"
                     )}>
                       <div className="overflow-hidden">
-                         <p className="text-sm sm:text-base font-medium leading-relaxed text-slate-600 pl-[4.5rem] pr-2">
-                           {facility.description}
-                         </p>
-                         <div className="pl-[4.5rem] mt-4 pb-2">
-                           <Link to="/facilities" className="inline-flex items-center gap-1.5 text-sm font-bold text-ksc-navy hover:text-ksc-red transition-colors group/link">
-                             Read full details 
-                             <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover/link:translate-x-1" />
-                           </Link>
-                         </div>
+                        <p className="text-sm sm:text-base font-medium leading-relaxed text-slate-600 pl-[4.5rem] pr-2">
+                          {facility.description}
+                        </p>
+                        <div className="pl-[4.5rem] mt-4 pb-2">
+                          <Link to="/facilities" className="inline-flex items-center gap-1.5 text-sm font-bold text-ksc-navy hover:text-ksc-red transition-colors group/link">
+                            Read full details
+                            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover/link:translate-x-1" />
+                          </Link>
+                        </div>
                       </div>
                     </div>
                   </button>
                 );
               })}
             </div>
-            
+
             {/* Fixed Bottom Button */}
             <div className="mt-4 pt-4 border-t border-slate-200/60 pl-2">
-               <Link to="/facilities" className="btn-outline border-slate-300 text-slate-600 hover:border-ksc-navy hover:bg-ksc-navy hover:text-white transition-all text-sm h-10 px-6">
-                 View all facilities <ArrowRight className="ml-2 h-4 w-4" />
-               </Link>
+              <Link to="/facilities" className="btn-outline border-slate-300 text-slate-600 hover:border-ksc-navy hover:bg-ksc-navy hover:text-white transition-all text-sm h-10 px-6">
+                View all facilities <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
             </div>
           </div>
         </div>
@@ -844,7 +844,7 @@ function AdmissionSteps() {
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4 mt-16 relative">
           {/* Connecting Line for Desktop */}
           <div className="hidden lg:block absolute top-12 left-[10%] right-[10%] h-0.5 bg-slate-200 border-t-2 border-dashed border-slate-300" />
-          
+
           {STEPS.map((step) => {
             const Icon = step.icon;
             return (
@@ -912,7 +912,7 @@ function Branches() {
                   <MapPin className="h-6 w-6" />
                 </div>
               </div>
-              
+
               <div className="mt-6 space-y-4 text-slate-600">
                 <div className="flex items-start gap-3">
                   <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-ksc-navy" />
@@ -939,7 +939,7 @@ function Branches() {
 function GalleryStrip() {
   const { data: { gallery_images: GALLERY } } = useSiteData();
   const [isHovering, setIsHovering] = useState(false);
-  
+
   return (
     <section className="gallery-showcase overflow-hidden bg-slate-50 py-12 lg:py-24 border-t border-slate-100 cursor-none">
       <CustomCursor isHovering={isHovering} />
@@ -950,9 +950,9 @@ function GalleryStrip() {
           subtitle="Real photos from our centre — front office, study materials, counselling and more."
         />
       </div>
-      
+
       {/* Marquee Container */}
-      <div 
+      <div
         className="relative mt-12 flex w-full overflow-hidden"
         onMouseEnter={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}
@@ -960,7 +960,7 @@ function GalleryStrip() {
         {/* Fade gradients for smooth entry/exit */}
         <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-slate-50 to-transparent sm:w-40" />
         <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-slate-50 to-transparent sm:w-40" />
-        
+
         <div className="flex w-max animate-marqueeHorizontal gap-5 px-5 hover:[animation-play-state:paused]">
           {[...GALLERY, ...GALLERY].map((item, index) => (
             <Link key={`${item.caption}-${index}`} to="/gallery" className="group relative block h-[220px] w-[320px] shrink-0 overflow-hidden rounded-[2rem] border-4 border-white bg-slate-200 shadow-md sm:h-[300px] sm:w-[450px] transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
@@ -979,7 +979,7 @@ function GalleryStrip() {
           ))}
         </div>
       </div>
-      
+
       <div className="container-site mt-14 text-center">
         <Link to="/gallery" className="btn-outline">
           View Full Gallery <ArrowRight className="ml-2 h-4 w-4" />
@@ -1159,7 +1159,7 @@ function LegacyNewsAndEventsBanner() {
 /* --------------------------------------------------------------------------- */
 export function Home() {
   useScrollReveal();
-  
+
   return (
     <>
       <Hero />

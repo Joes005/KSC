@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ExternalLink, Building2, Award, MapPin, Globe } from "lucide-react";
+import { ExternalLink, Building2, Award, MapPin, Globe, GraduationCap } from "lucide-react";
 import type { University } from "../data/universities";
 import { useSiteData } from "../services/SiteDataContext";
 import { PageHeader } from "../components/common/PageHeader";
@@ -12,23 +12,34 @@ function UniversityProgrammes({ uni }: { uni: University }) {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-blue-50/40 via-white to-white pointer-events-none" />
       <div className="container-site relative z-10">
         {/* University header */}
-        <div className="glass-panel p-6 sm:p-8">
-          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-            <div>
-              <h2 className="text-2xl sm:text-3xl font-black uppercase text-gradient-navy">{uni.name}</h2>
-              <p className="mt-2 text-sm sm:text-base font-bold text-slate-500 uppercase tracking-widest">
-                <span className="text-ksc-navy">{uni.shortName}</span> · {uni.academicYear}
-              </p>
-              {uni.pattern && (
-                <p className="mt-3 inline-block rounded-md bg-white border-2 border-slate-200 px-4 py-1.5 text-xs font-black tracking-widest uppercase text-ksc-navy shadow-sm">
-                  {uni.pattern}
+        <div className="group relative overflow-hidden rounded-3xl border-2 border-slate-200 bg-white p-6 sm:p-8 shadow-xl transition-all duration-300 hover:shadow-2xl">
+          <div className="absolute top-0 left-0 h-1.5 w-0 bg-gradient-to-r from-ksc-navy via-ksc-red to-ksc-gold transition-all duration-700 ease-out group-hover:w-full" />
+          
+          <div className="relative z-10 flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+              <div className="flex h-20 w-20 sm:h-24 sm:w-24 shrink-0 items-center justify-center rounded-2xl border-2 border-slate-100 bg-slate-50 shadow-sm overflow-hidden">
+                {uni.logo ? (
+                  <img loading="lazy" src={uni.logo} alt={`${uni.shortName} Logo`} className="h-full w-full object-contain p-2" />
+                ) : (
+                  <GraduationCap className="h-8 w-8 text-ksc-navy" />
+                )}
+              </div>
+              <div>
+                <h2 className="text-2xl sm:text-3xl font-black uppercase text-gradient-navy">{uni.name}</h2>
+                <p className="mt-2 text-sm sm:text-base font-bold text-slate-500 uppercase tracking-widest">
+                  <span className="text-ksc-navy">{uni.shortName}</span> · {uni.academicYear}
                 </p>
-              )}
+                {uni.pattern && (
+                  <p className="mt-3 inline-block rounded-md bg-white border-2 border-slate-200 px-4 py-1.5 text-xs font-black tracking-widest uppercase text-ksc-navy shadow-sm">
+                    {uni.pattern}
+                  </p>
+                )}
+              </div>
             </div>
             <div className="flex flex-wrap gap-2">
               {uni.recognition && (
                 <span className="inline-flex items-center gap-2 rounded-md border-2 border-ksc-red bg-red-50 px-4 py-2 text-xs sm:text-sm font-black uppercase tracking-widest text-ksc-red shadow-sm">
-                  <Award className="h-5 w-5 text-ksc-red" /> {uni.recognition}
+                  <Award className="h-5 w-5 text-ksc-red shrink-0" /> {uni.recognition}
                 </span>
               )}
             </div>

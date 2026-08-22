@@ -48,6 +48,54 @@ export function Footer() {
         </div>
       </div>
 
+      {/* Branches Section */}
+      <div className="border-t border-slate-200 bg-gradient-to-br from-[#eef7ff] via-white to-[#fff8e5] py-7 sm:py-8">
+          <div className="container-site mb-5 text-center">
+            <p className="text-[10px] font-bold uppercase tracking-[.16em] text-ksc-red">Visit Us</p>
+            <h4 className="mt-1 text-xl font-bold text-ksc-navy sm:text-2xl">Our Associated Branches</h4>
+            <p className="mt-1 text-sm text-slate-500">Meet our counsellors at the centre nearest to you.</p>
+          </div>
+          <div className="container-site grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {BRANCHES.map((branch) => {
+              const mapUrl = `https://maps.google.com/maps?q=${encodeURIComponent(branch.name + ", " + branch.address)}`;
+              return (
+                <div 
+                  key={branch.name}
+                  onClick={() => window.open(mapUrl, '_blank')}
+                  className="group relative cursor-pointer overflow-hidden rounded-2xl border border-slate-200 bg-white/90 p-5 pr-12 transition-all duration-300 hover:-translate-y-1 hover:border-ksc-red/30 hover:shadow-xl hover:bg-white"
+                >
+                  {/* Hover Arrow */}
+                  <div className="absolute right-5 top-5 text-slate-300 transition-all duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-ksc-red">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+                  </div>
+
+                  <div className="mb-3 flex items-start gap-4">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-red-50 text-xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12 shadow-sm border border-red-100">
+                      📍
+                    </div>
+                    <div>
+                      {branch.isHead && <span className="mb-1 block text-[10px] font-black uppercase tracking-[.18em] text-ksc-red">Head Office</span>}
+                      <h5 className="text-base font-extrabold leading-tight text-ksc-navy transition-colors group-hover:text-ksc-red">{branch.name}</h5>
+                    </div>
+                  </div>
+                  <div className="ml-14 space-y-3 text-sm text-slate-600">
+                    <p className="leading-relaxed font-medium">{branch.address}</p>
+                    <div className="border-t border-slate-100 pt-3">
+                      <a 
+                        href={`tel:${branch.phone}`} 
+                        onClick={(e) => e.stopPropagation()}
+                        className="inline-flex items-center gap-2 font-bold text-ksc-navy transition-colors hover:text-ksc-red"
+                      >
+                        <Phone className="h-4 w-4 text-ksc-red" /> {branch.phone}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+      </div>
+
       {/* University logo strip */}
       <div className="bg-ksc-navy border-b border-white/10">
         <div className="container-site grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-6 gap-x-8 py-6 w-fit mx-auto px-4 sm:px-6">
@@ -133,54 +181,6 @@ export function Footer() {
             </ul>
           </div>
         </div>
-      </div>
-
-      {/* Branches Section */}
-      <div className="border-t border-slate-200 bg-gradient-to-br from-[#eef7ff] via-white to-[#fff8e5] py-7 sm:py-8">
-          <div className="container-site mb-5 text-center">
-            <p className="text-[10px] font-bold uppercase tracking-[.16em] text-ksc-red">Visit Us</p>
-            <h4 className="mt-1 text-xl font-bold text-ksc-navy sm:text-2xl">Our Associated Branches</h4>
-            <p className="mt-1 text-sm text-slate-500">Meet our counsellors at the centre nearest to you.</p>
-          </div>
-          <div className="container-site grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {BRANCHES.map((branch) => {
-              const mapUrl = `https://maps.google.com/maps?q=${encodeURIComponent(branch.name + ", " + branch.address)}`;
-              return (
-                <div 
-                  key={branch.name}
-                  onClick={() => window.open(mapUrl, '_blank')}
-                  className="group relative cursor-pointer overflow-hidden rounded-2xl border border-slate-200 bg-white/90 p-5 pr-12 transition-all duration-300 hover:-translate-y-1 hover:border-ksc-red/30 hover:shadow-xl hover:bg-white"
-                >
-                  {/* Hover Arrow */}
-                  <div className="absolute right-5 top-5 text-slate-300 transition-all duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-ksc-red">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
-                  </div>
-
-                  <div className="mb-3 flex items-start gap-4">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-red-50 text-xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12 shadow-sm border border-red-100">
-                      📍
-                    </div>
-                    <div>
-                      {branch.isHead && <span className="mb-1 block text-[10px] font-black uppercase tracking-[.18em] text-ksc-red">Head Office</span>}
-                      <h5 className="text-base font-extrabold leading-tight text-ksc-navy transition-colors group-hover:text-ksc-red">{branch.name}</h5>
-                    </div>
-                  </div>
-                  <div className="ml-14 space-y-3 text-sm text-slate-600">
-                    <p className="leading-relaxed font-medium">{branch.address}</p>
-                    <div className="border-t border-slate-100 pt-3">
-                      <a 
-                        href={`tel:${branch.phone}`} 
-                        onClick={(e) => e.stopPropagation()}
-                        className="inline-flex items-center gap-2 font-bold text-ksc-navy transition-colors hover:text-ksc-red"
-                      >
-                        <Phone className="h-4 w-4 text-ksc-red" /> {branch.phone}
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
       </div>
 
       {/* Bottom bar */}

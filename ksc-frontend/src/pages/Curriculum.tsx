@@ -6,7 +6,8 @@ import { Accordion } from "../components/common/Accordion";
 import { PageHeader } from "../components/common/PageHeader";
 
 export function Curriculum() {
-  const { data: { curriculum: CURRICULUM, universities: UNIVERSITIES } } = useSiteData();
+  const { data: { pages, curriculum: fallbackCurriculum, universities: UNIVERSITIES } } = useSiteData();
+  const CURRICULUM = pages?.curriculum?.content || fallbackCurriculum;
   return (
     <>
       {/* Page header */}

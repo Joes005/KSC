@@ -31,7 +31,8 @@ import { cn } from "../../utils/cn";
 import { CustomCursor, MagneticButton, useScrollReveal } from "./SharedHooks";
 
 export function VisionMissionValues() {
-  const { data: { vision_mission: intro } } = useSiteData();
+  const { data: { pages, vision_mission: fallbackIntro } } = useSiteData();
+  const intro = pages?.home?.vision_mission || fallbackIntro;
 
   return (
     <section className="relative bg-slate-50 py-12 sm:py-16 lg:py-16 border-t border-slate-100">

@@ -5,8 +5,9 @@ import { SectionHeading } from "../components/common/SectionHeading";
 import { EnquiryForm } from "../components/common/EnquiryForm";
 
 export function Contact() {
-  const { data: { settings: SITE_CONFIG } } = useSiteData();
+  const { data: { settings: SITE_CONFIG, pages } } = useSiteData();
   const { contact } = SITE_CONFIG;
+  const reach_centre = pages?.contact?.reach_centre;
 
   const waUrl = `https://wa.me/${contact.whatsapp}?text=${encodeURIComponent(
     `Hello ${SITE_CONFIG.name}, I have a question about admissions.`
@@ -46,63 +47,35 @@ export function Contact() {
         <div className="container-site relative z-10 grid gap-12 lg:grid-cols-2">
           {/* Contact details + map */}
           <div>
-            <SectionHeading align="left" kicker="Get in Touch" title="Reach the centre" />
+            <SectionHeading align="left" kicker={reach_centre?.kicker || "Get in Touch"} title={reach_centre?.title || "Reach the centre"} />
             <div className="space-y-4 mt-8">
-              <div className="card-hover flex items-start gap-4 p-6 rounded-xl shadow-soft">
-                <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-white/60 text-ksc-red border border-white/50 shadow-inner">
-                  <MapPin className="h-6 w-6 stroke-[2]" />
-                </span>
-                <div>
-                  <p className="font-black text-ksc-navy text-lg uppercase tracking-wide">Visit us</p>
-                  <p className="mt-2 text-sm font-medium text-slate-600 leading-relaxed">{contact.address}</p>
-                </div>
-              </div>
-
-              <div className="card-hover flex items-start gap-4 p-6 rounded-xl shadow-soft">
-                <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-white/60 text-ksc-red border border-white/50 shadow-inner">
-                  <Phone className="h-6 w-6 stroke-[2]" />
-                </span>
-                <div>
-                  <p className="font-black text-ksc-navy text-lg uppercase tracking-wide">Call us</p>
-                  <a href={`tel:${contact.phone}`} className="mt-2 block text-sm font-bold text-ksc-royal hover:text-ksc-red hover:underline transition-colors tracking-widest">
-                    {contact.phone}
-                  </a>
-                </div>
-              </div>
-
-              <div className="card-hover flex items-start gap-4 p-6 rounded-xl shadow-soft">
-                <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-[#25D366]/10 text-[#25D366] border border-[#25D366]/20 shadow-inner">
-                  <MessageCircle className="h-6 w-6 stroke-[2]" />
-                </span>
-                <div>
-                  <p className="font-black text-ksc-navy text-lg uppercase tracking-wide">WhatsApp</p>
-                  <a
-                    href={waUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 mt-2 text-sm font-bold text-[#25D366] hover:underline transition-colors tracking-widest"
-                  >
-                    Chat on WhatsApp ({contact.whatsapp})
-                  </a>
-                </div>
-              </div>
-
-              <div className="card-hover flex items-start gap-4 p-6 rounded-xl shadow-soft">
-                <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-white/60 text-ksc-red border border-white/50 shadow-inner">
-                  <Mail className="h-6 w-6 stroke-[2]" />
-                </span>
-                <div>
-                  <p className="font-black text-ksc-navy text-lg uppercase tracking-wide">Email</p>
-                  <a href={`mailto:${contact.email}`} className="mt-2 block text-sm font-bold text-ksc-royal hover:text-ksc-red hover:underline transition-colors tracking-wider">
-                    {contact.email}
-                  </a>
-                </div>
-              </div>
+              {reach_centre?.items?.map((item: any, idx: number) => {
+                const IconComponent = { MapPin, Phone, MessageCircle, Mail }[item.icon as string] || MapPin;
+                const isWa = item.icon === 'MessageCircle';
+                const linkHref = isWa ? waUrl : item.link || '#';
+                return (
+                  <div key={idx} className="card-hover flex items-start gap-4 p-6 rounded-xl shadow-soft">
+                    <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-white/60 text-ksc-red border border-white/50 shadow-inner">
+                      <IconComponent className="h-6 w-6 stroke-[2]" />
+                    </span>
+                    <div>
+                      <p className="font-black text-ksc-navy text-lg uppercase tracking-wide">{item.title}</p>
+                      {item.link ? (
+                        <a href={linkHref} target={isWa ? "_blank" : undefined} rel={isWa ? "noopener noreferrer" : undefined} className="mt-2 block text-sm font-bold text-ksc-royal hover:text-ksc-red hover:underline transition-colors tracking-widest">
+                          {item.button_label || item.value}
+                        </a>
+                      ) : (
+                        <p className="mt-2 text-sm font-medium text-slate-600 leading-relaxed">{item.value}</p>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
 
             <div className="mt-10 overflow-hidden rounded-2xl glass-panel shadow-lift group">
               <img loading="lazy"
-                src="/assets/user-photos/branch-exterior.jpg"
+                src={reach_centre?.image || "/assets/user-photos/branch-exterior.jpg"}
                 alt="Karur Study Centre Branch Exterior"
                 className="w-full h-48 sm:h-72 object-cover transform transition-transform duration-[10000ms] group-hover:scale-110"
               />
@@ -112,7 +85,7 @@ export function Contact() {
             <div className="mt-8 overflow-hidden rounded-2xl glass-panel shadow-lift p-2">
               <iframe
                 title={`${SITE_CONFIG.name} location map`}
-                src={contact.mapEmbedUrl}
+                src={reach_centre?.mapEmbedUrl || contact.mapEmbedUrl}
                 className="h-72 sm:h-96 w-full rounded-xl"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"

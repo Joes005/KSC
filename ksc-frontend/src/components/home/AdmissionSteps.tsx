@@ -31,7 +31,8 @@ import { cn } from "../../utils/cn";
 import { CustomCursor, MagneticButton, useScrollReveal } from "./SharedHooks";
 
 export function AdmissionSteps() {
-  const { data: { admission_steps: ADMISSION_STEPS } } = useSiteData();
+  const { data: { pages, admission_steps: fallbackAdmissionSteps } } = useSiteData();
+  const ADMISSION_STEPS = pages?.home?.admission_steps || fallbackAdmissionSteps;
   const STEPS = ADMISSION_STEPS.map((s, i) => ({ ...s, icon: [FileDown, ClipboardList, Wallet, Package][i] }));
 
   return (

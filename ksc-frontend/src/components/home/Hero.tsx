@@ -107,7 +107,8 @@ export function UserUpdatePopup() {
 }
 
 export function Hero() {
-  const { data: { settings: SITE_CONFIG } } = useSiteData();
+  const { data: { settings: SITE_CONFIG, pages, hero: fallbackHero } } = useSiteData();
+  const heroData = pages?.home?.hero || fallbackHero;
   const [currentImage, setCurrentImage] = useState(0);
 
   useEffect(() => {
@@ -135,19 +136,19 @@ export function Hero() {
               </span>
               <span className="text-xs font-extrabold uppercase tracking-[.2em] text-ksc-navy">Admissions open · {SITE_CONFIG.admissionYear}</span>
             </div>
-            <p className="mb-3 text-sm font-bold uppercase tracking-[.14em] text-ksc-royal">Your next chapter starts here</p>
+            <p className="mb-3 text-sm font-bold uppercase tracking-[.14em] text-ksc-royal">{heroData.subHeadline}</p>
             <h1 className="max-w-2xl text-4xl font-extrabold leading-[1.08] tracking-tight text-ksc-navy sm:text-5xl lg:text-[4rem]">
-              <span className="block overflow-hidden pb-1"><span className="block animate-slideUpWord text-gradient-navy">Karur Study</span></span>
-              <span className="block overflow-hidden pb-2"><span className="block animate-slideUpWord bg-gradient-to-r from-ksc-royal to-blue-500 bg-clip-text text-transparent" style={{ animationDelay: '150ms' }}>Center</span></span>
+              <span className="block pb-1 text-gradient-navy">{heroData.headline}</span>
             </h1>
-            <p className="mt-7 max-w-xl text-base font-medium leading-8 text-slate-600 sm:text-lg animate-fade-in-up" style={{ animationDelay: '300ms' }}>Recognised UG, PG and diploma programmes with personal guidance, flexible learning and complete student support—right here in Karur.</p>
+            <p className="mt-7 max-w-xl text-base font-medium leading-8 text-slate-600 sm:text-lg animate-fade-in-up" style={{ animationDelay: '300ms' }}>{heroData.description}</p>
             <div className="mt-9 flex flex-col gap-4 sm:flex-row animate-fade-in-up" style={{ animationDelay: '450ms' }}>
-              <MagneticButton>
-                <Link to="/admissions" className="btn-gold gap-2 w-full btn-shimmer">Explore admissions <ArrowRight className="h-4 w-4" /></Link>
-              </MagneticButton>
-              <MagneticButton>
-                <Link to="/academic" className="btn-outline bg-white/70 w-full">View programmes</Link>
-              </MagneticButton>
+              {heroData.ctas?.map((cta: any, idx: number) => (
+                <MagneticButton key={idx}>
+                  <Link to={cta.to} className={cn(cta.primary ? "btn-gold gap-2 w-full btn-shimmer" : "btn-outline bg-white/70 w-full")}>
+                    {cta.label} {cta.primary && <ArrowRight className="h-4 w-4" />}
+                  </Link>
+                </MagneticButton>
+              ))}
             </div>
             <div className="mt-10 grid gap-3 border-t border-slate-200 pt-6 text-sm font-semibold text-ksc-navy sm:grid-cols-3">
               <span className="flex items-center gap-2"><CheckCircle2 className="h-5 w-5 text-ksc-red" /> Recognised degrees</span>

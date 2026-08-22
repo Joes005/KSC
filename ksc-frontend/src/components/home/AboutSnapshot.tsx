@@ -31,15 +31,8 @@ import { cn } from "../../utils/cn";
 import { CustomCursor, MagneticButton, useScrollReveal } from "./SharedHooks";
 
 export function AboutSnapshot() {
-  const POSTER_POINTS = [
-    "Education brings Knowledge",
-    "Education builds Character",
-    "Education creates Opportunity",
-    "Education reduces Poverty",
-    "Education makes you Independent",
-    "Education helps to serve the Nation",
-    "Education is the key to a Better Tomorrow",
-  ];
+  const { data: { pages, about_snapshot: fallbackAboutSnapshot } } = useSiteData();
+  const ABOUT_SNAPSHOT = pages?.home?.about_snapshot || fallbackAboutSnapshot;
 
   return (
     <section className="relative overflow-hidden bg-[#fff8e7] py-12 sm:py-16">
@@ -48,13 +41,19 @@ export function AboutSnapshot() {
         <div className="relative grid items-center gap-12 lg:grid-cols-[1.05fr_.95fr] lg:gap-20">
           <div>
             <SectionHeading align="left" kicker="The value of learning" title="Education opens more than doors" subtitle="A recognised qualification can create confidence, independence and opportunity at every stage of life." />
-            <div className="grid gap-3 sm:grid-cols-2">
-              {POSTER_POINTS.map((para, i) => (
-                <div key={i} className="flex items-start gap-3 rounded-xl border border-ksc-navy/10 bg-white px-4 py-3 shadow-sm">
-                  <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-ksc-yellow text-xs font-black text-ksc-navy">{i + 1}</span>
-                  <span className="text-sm font-bold leading-6 text-ksc-navy">{para}</span>
+            <div className="grid gap-4">
+              {ABOUT_SNAPSHOT.text?.map((para: string, i: number) => (
+                <div key={i} className="flex items-start gap-3 rounded-xl border border-ksc-navy/10 bg-white px-4 py-4 shadow-sm">
+                  <span className="text-sm font-medium leading-6 text-slate-700">{para}</span>
                 </div>
               ))}
+              {ABOUT_SNAPSHOT.readMoreLink && (
+                <div className="mt-2">
+                  <Link to={ABOUT_SNAPSHOT.readMoreLink} className="text-sm font-bold text-ksc-red hover:underline flex items-center">
+                    Read More <ArrowRight className="ml-1 h-4 w-4" />
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
 

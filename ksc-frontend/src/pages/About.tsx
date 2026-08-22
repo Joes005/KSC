@@ -6,7 +6,8 @@ import { Tabs } from "../components/common/Tabs";
 import { PageHeader } from "../components/common/PageHeader";
 
 export function About() {
-  const { data: { about_snapshot: ABOUT_PAGE } } = useSiteData(); // Note: reusing about_snapshot structure for fallback or create separate
+  const { data: { pages, about_snapshot: fallbackAboutPage } } = useSiteData();
+  const ABOUT_PAGE = pages?.about?.about_page || fallbackAboutPage;
   return (
     <>
       {/* Page header */}
@@ -97,8 +98,8 @@ export function About() {
 }
 
 function AboutDetail() {
-  const { data: { vision_mission: VISION_MISSION_VALUES } } = useSiteData();
-  const intro = VISION_MISSION_VALUES;
+  const { data: { pages, vision_mission: fallbackIntro } } = useSiteData();
+  const intro = pages?.home?.vision_mission || fallbackIntro;
 
   return (
     <section className="relative bg-white py-10 lg:py-10 lg:py-16 bg-dot-pattern">

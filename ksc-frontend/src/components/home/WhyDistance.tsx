@@ -31,7 +31,8 @@ import { cn } from "../../utils/cn";
 import { CustomCursor, MagneticButton, useScrollReveal } from "./SharedHooks";
 
 export function WhyDistance() {
-  const { data: { why_distance: WHY_DISTANCE } } = useSiteData();
+  const { data: { pages, why_distance: fallbackWhyDistance } } = useSiteData();
+  const WHY_DISTANCE = pages?.home?.why_distance || fallbackWhyDistance;
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (

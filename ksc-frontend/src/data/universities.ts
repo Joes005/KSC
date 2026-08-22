@@ -260,13 +260,13 @@ export const UNIVERSITIES: University[] = [
   },
 
   /* =========================================================================== */
-  /* BHARATHIAR UNIVERSITY                                                       */
+  /* BHARATHIDASAN UNIVERSITY                                                       */
   /* =========================================================================== */
 
   {
     id: "bdu",
-    name: "Bharathiar University",
-    shortName: "Bharathiar University",
+    name: "Bharathidasan University",
+    shortName: "Bharathidasan University",
     academicYear: "2026-27",
     pattern: "Semester Pattern",
     // TODO: confirm the exact recognition line for BDU CDOE
@@ -358,7 +358,7 @@ export const UNIVERSITIES: University[] = [
       },
     ],
     exam: {
-      note: "Bharathiar University publishes hall tickets and semester time-tables on its official university portal for distance-education learners.",
+      note: "Bharathidasan University publishes hall tickets and semester time-tables on its official university portal for distance-education learners.",
       hallTicketUrl: "#",
       timetableUrl: "#",
       syllabusUrl: "#",

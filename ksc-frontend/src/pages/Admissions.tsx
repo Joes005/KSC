@@ -101,7 +101,7 @@ export function Admissions() {
                 </span>
               </a>
               <a
-                href="/pdf/Bharathiar_University_AY_2026-27_Admission_HD.pdf"
+                href="/pdf/Bharathidasan_University_AY_2026-27_Admission_HD.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="card-hover flex items-center gap-4 p-5 bg-slate-50 border-2 border-slate-100"
@@ -110,7 +110,7 @@ export function Admissions() {
                   <Download className="h-6 w-6" />
                 </span>
                 <span>
-                  <span className="block font-bold text-ksc-navy uppercase text-sm">Bharathiar University</span>
+                  <span className="block font-bold text-ksc-navy uppercase text-sm">Bharathidasan University</span>
                   <span className="text-xs font-bold text-slate-500 tracking-widest">AY 2026-27 Admission (PDF)</span>
                 </span>
               </a>

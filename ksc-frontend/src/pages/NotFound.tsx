@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export function NotFound() {
   return (
-    <section className="flex min-h-[60vh] items-center bg-slate-50 py-20">
+    <section className="flex min-h-[60vh] items-center bg-slate-50 py-16">
       <div className="container-site text-center">
         <p className="section-kicker">404 error</p>
         <h1 className="mx-auto max-w-2xl text-4xl font-bold text-ksc-navy sm:text-5xl">This page could not be found</h1>

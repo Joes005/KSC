@@ -81,7 +81,7 @@ export const HERO = {
   headline: "Karur Study Center",
   subHeadline: "Your trusted study centre for distance education",
   description:
-    "Get expert admission guidance for UG, PG, Diploma, Certificate and Vocational programmes from Alagappa University, Bharathiar University, Manonmaniam Sundaranar University, and Tamilnadu Open University — all from right here in Karur, with continuous support through exams and results.",
+    "Get expert admission guidance for UG, PG, Diploma, Certificate and Vocational programmes from Alagappa University, Bharathidasan University, Manonmaniam Sundaranar University, and Tamilnadu Open University — all from right here in Karur, with continuous support through exams and results.",
   ctas: [
     { label: "Explore Programmes", to: "/academic", primary: true },
     { label: "Apply Now", to: "/admissions", primary: false },
@@ -124,12 +124,12 @@ export const ABOUT_SNAPSHOT = {
   readMoreLink: "/about",
   body: [
     "Karur Study Center (KSC) is a dedicated distance-education study and admission centre based in Karur, Tamil Nadu. Since our inception we have been bridging the gap between open universities and students — helping you pick the right programme, submit a correct application, and stay supported through exams and results.",
-    "Our services are designed for working professionals, homemakers and students from remote areas who want recognised degrees without relocating or abandoning their commitments. We are affiliated with Alagappa University, Bharathiar University, Manonmaniam Sundaranar University, and Tamilnadu Open University, and guide learners through every stage of their academic journey.",
+    "Our services are designed for working professionals, homemakers and students from remote areas who want recognised degrees without relocating or abandoning their commitments. We are affiliated with Alagappa University, Bharathidasan University, Manonmaniam Sundaranar University, and Tamilnadu Open University, and guide learners through every stage of their academic journey.",
     "From programme counselling and document verification to study-material support, exam updates and result guidance, our team walks with you until you earn your degree. With more than 50,000 learners served, KSC has grown into a trusted name for open and distance education in the region.",
   ],
   membership: [
     "Partner study centre of Alagappa University",
-    "Recognised centre of Bharathiar University",
+    "Recognised centre of Bharathidasan University",
     "Authorised study centre of Manonmaniam Sundaranar University",
     "Authorised study centre of Tamilnadu Open University",
     "Affiliated with UGC-DEB recognised distance education",
@@ -191,7 +191,7 @@ export interface NewsEvent {
 
 export const NEWS_EVENTS: NewsEvent[] = [
   {
-    text: "Admissions are open for the Academic Year 2026 — Alagappa University, Bharathiar University, Manonmaniam Sundaranar University, and Tamilnadu Open University.",
+    text: "Admissions are open for the Academic Year 2026 — Alagappa University, Bharathidasan University, Manonmaniam Sundaranar University, and Tamilnadu Open University.",
     type: "admission",
     date: "Admissions Open",
     href: "/admissions",
@@ -327,7 +327,7 @@ export const ABOUT_PAGE = {
   ],
   membership: [
     "Admission-support relationship with Alagappa University",
-    "Admission-support relationship with Bharathiar University",
+    "Admission-support relationship with Bharathidasan University",
     "Admission-support relationship with Manonmaniam Sundaranar University",
     "Recognised study-centre partnership with Tamilnadu Open University",
     "UGC-DEB recognised distance-education programmes (as applicable per university)",
@@ -389,7 +389,7 @@ export const BRANCHES = [
 
 export const UNIVERSITY_LOGOS = [
   { name: "Alagappa University", url: "#", image: "" }, // TODO: logo
-  { name: "Bharathiar University", url: "#", image: "" }, // TODO: logo
+  { name: "Bharathidasan University", url: "#", image: "" }, // TODO: logo
   { name: "Manonmaniam Sundaranar University", url: "#", image: "" }, // TODO: logo
   { name: "Tamilnadu Open University", url: "#", image: "" }, // TODO: logo
 ];
@@ -444,7 +444,7 @@ export const ADMISSIONS_FORM_FIELDS: FormField[] = [
     required: true,
     options: [
       "Alagappa University",
-      "Bharathiar University",
+      "Bharathidasan University",
       "Manonmaniam Sundaranar University",
       "Tamilnadu Open University",
     ],

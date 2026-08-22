@@ -38,7 +38,7 @@ export function Facilities() {
       />
 
       {/* Facilities grid */}
-      <section className="bg-slate-50 py-12 sm:py-16 lg:py-12 lg:py-24 border-b-4 border-ksc-red">
+      <section className="bg-slate-50 py-10 sm:py-12 lg:py-16 border-b-4 border-ksc-red">
         <div className="container-site">
           <SectionHeading
             kicker="What We Provide"
@@ -69,7 +69,7 @@ export function Facilities() {
       </section>
 
       {/* Photo strip */}
-      <section className="bg-white py-12 sm:py-16 lg:py-12 lg:py-24 border-b-4 border-ksc-yellow">
+      <section className="bg-white py-10 sm:py-12 lg:py-16 border-b-4 border-ksc-yellow">
         <div className="container-site">
           <SectionHeading
             kicker="Inside Our Center"
@@ -99,7 +99,7 @@ export function Facilities() {
       </section>
 
       {/* Support CTA */}
-      <section className="bg-slate-50 py-20 border-b-4 border-ksc-navy">
+      <section className="bg-slate-50 py-16 border-b-4 border-ksc-navy">
         <div className="container-site flex flex-col items-center gap-6 text-center">
           <h2 className="text-3xl font-black uppercase tracking-tight text-ksc-navy">Want to see for yourself?</h2>
           <p className="max-w-xl text-lg font-medium text-slate-600">

@@ -100,7 +100,7 @@ export function EnquiryForm({ fields, submitLabel, idPrefix, className }: Enquir
         );
       })}
       <p className="text-xs text-slate-500"><span className="text-ksc-red" aria-hidden="true">*</span> Required fields</p>
-      <button type="submit" disabled={status === "submitting"} className="btn-gold mt-2 w-full py-3.5 text-base disabled:opacity-60" aria-live="polite">
+      <button type="submit" disabled={status === "submitting"} className="btn-gold mt-2 w-full py-3.5 text-base disabled:opacity-60 btn-shimmer" aria-live="polite">
         {status === "submitting" ? (
           <>
             <Loader2 className="mr-2 h-5 w-5 animate-spin" /> Submitting…

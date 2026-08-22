@@ -16,7 +16,7 @@ export function About() {
       />
 
       {/* Long-form copy + facts sidebar */}
-      <section className="relative overflow-hidden bg-white py-16 sm:py-10 lg:py-20 border-b border-slate-100">
+      <section className="relative overflow-hidden bg-white py-12 sm:py-10 lg:py-12 border-b border-slate-100 bg-dot-pattern">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-50/50 via-white to-white pointer-events-none" />
         <div className="container-site relative grid gap-12 lg:grid-cols-3 lg:items-start">
           <div className="lg:col-span-2">
@@ -101,7 +101,7 @@ function AboutDetail() {
   const intro = VISION_MISSION_VALUES;
 
   return (
-    <section className="bg-white py-10 lg:py-10 lg:py-16">
+    <section className="relative bg-white py-10 lg:py-10 lg:py-16 bg-dot-pattern">
       <div className="container-site">
         <SectionHeading kicker="Our Foundation" title="Vision · Mission · Values" />
         <div className="mx-auto max-w-6xl">

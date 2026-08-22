@@ -70,7 +70,7 @@ export function Header() {
             </span>
             <Link 
               to="/admissions" 
-              className="bg-gradient-to-r from-ksc-red to-[#a30b13] text-white px-4 py-1.5 rounded-md text-xs font-bold hover:shadow-[0_4px_12px_rgba(201,20,25,0.4)] transition-all duration-300 hover:-translate-y-0.5"
+              className="bg-gradient-to-r from-ksc-red to-[#a30b13] text-white px-4 py-1.5 rounded-md text-xs font-bold hover:shadow-[0_4px_12px_rgba(201,20,25,0.4)] transition-all duration-300 hover:-translate-y-0.5 btn-shimmer"
             >
               Apply Now
             </Link>
@@ -136,7 +136,7 @@ export function Header() {
               <span className="font-bold drop-shadow-sm">{SITE_CONFIG.contact.phone}</span>
             </span>
           </a>
-          <Link to="/admissions" className="btn-gold whitespace-nowrap">
+          <Link to="/admissions" className="btn-gold whitespace-nowrap btn-shimmer">
             Apply Now
           </Link>
         </div>
@@ -175,7 +175,7 @@ export function Header() {
                 </NavLink>
               );
             })}
-            <Link to="/admissions" onClick={() => setMobileOpen(false)} className="btn-gold mt-6 w-full py-3 shadow-lg">
+            <Link to="/admissions" onClick={() => setMobileOpen(false)} className="btn-gold mt-6 w-full py-3 shadow-lg btn-shimmer">
               Apply Now
             </Link>
           </nav>

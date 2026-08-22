@@ -129,7 +129,43 @@
   }
 
   .card-hover {
-    @apply rounded-2xl border border-white/40 bg-white/80 backdrop-blur-sm shadow-soft transition-all duration-300 ease-out hover:-translate-y-1.5 hover:border-[#149be0]/30 hover:shadow-lift hover:bg-white;
+    @apply rounded-2xl border border-white/60 bg-white/70 backdrop-blur-md transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] hover:-translate-y-2 hover:border-ksc-sky/50 hover:bg-white/95 hover:shadow-[0_20px_40px_-15px_rgba(8,59,130,0.15)];
+  }
+
+  .bg-dot-pattern {
+    position: relative;
+  }
+
+  .bg-dot-pattern::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(#083b82 1.5px, transparent 1.5px);
+    background-size: 24px 24px;
+    opacity: 0.04;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .text-gradient-navy {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-ksc-navy to-ksc-royal;
+  }
+
+  .btn-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-shimmer::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transform: rotate(45deg);
+    animation: shimmer 3s infinite linear;
   }
 
   .btn {
@@ -235,13 +271,54 @@
   }
 }
 
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) rotate(45deg);
+  }
+
+  100% {
+    transform: translateX(100%) rotate(45deg);
+  }
+}
+
 .reveal-section {
   opacity: 0;
   transform: translateY(18px);
-  transition: opacity .62s var(--ease-standard) var(--reveal-delay, 0ms), transform .62s var(--ease-standard) var(--reveal-delay, 0ms);
+  transition: opacity .62s cubic-bezier(0.25, 1, 0.5, 1) var(--reveal-delay, 0ms), transform .62s cubic-bezier(0.25, 1, 0.5, 1) var(--reveal-delay, 0ms);
 }
 
 .reveal-section.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Stagger text inside reveal sections */
+.reveal-section .section-title,
+.reveal-section h1,
+.reveal-section h2 {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1) 0.1s;
+}
+
+.reveal-section.is-visible .section-title,
+.reveal-section.is-visible h1,
+.reveal-section.is-visible h2 {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal-section .section-title+p,
+.reveal-section h1+p,
+.reveal-section h2+p {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1) 0.25s;
+}
+
+.reveal-section.is-visible .section-title+p,
+.reveal-section.is-visible h1+p,
+.reveal-section.is-visible h2+p {
   opacity: 1;
   transform: none;
 }

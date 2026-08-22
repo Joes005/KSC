@@ -13,34 +13,39 @@ export function Contact() {
   )}`;
 
   return (
-    <div className="bg-slate-50 min-h-screen">
+    <div className="bg-slate-50 min-h-screen bg-dot-pattern">
       {/* Page header */}
-      <section className="relative overflow-hidden border-b-4 border-ksc-red bg-gradient-to-br from-[#e8f5ff] via-white to-[#fff4d6] py-20 text-ksc-navy lg:py-12 lg:py-24">
+      <section className="relative overflow-hidden border-b-4 border-ksc-red bg-white py-16 text-ksc-navy lg:py-12 lg:py-16">
         {/* Background Image */}
-        <img loading="lazy" 
-          src="/assets/user-photos/branch-exterior.jpg" 
-          alt="" 
-          className="absolute inset-0 w-full h-full object-cover opacity-20 pointer-events-none mix-blend-multiply" 
+        <img loading="lazy"
+          src="/assets/user-photos/branch-exterior.jpg"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover opacity-20 pointer-events-none mix-blend-multiply"
         />
         {/* Background Overlay */}
         <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-ksc-sky via-transparent to-transparent opacity-80" />
 
         <div className="pointer-events-none absolute -left-20 top-0 h-96 w-96 rounded-full bg-white/40 blur-[100px]" />
         <div className="pointer-events-none absolute -right-16 top-0 h-96 w-96 rounded-full bg-white/40 blur-[100px]" />
-        
+
         <div className="container-site relative z-10 text-center lg:text-left">
           <p className="section-kicker text-ksc-red bg-white inline-block px-3 py-1 rounded-md mb-4 shadow-sm uppercase tracking-widest">Contact Us</p>
-          <h1 className="text-4xl font-heading font-black sm:text-5xl lg:text-6xl tracking-tight uppercase drop-shadow-md">We're here to help</h1>
-          <p className="mt-6 max-w-2xl text-lg font-bold text-slate-700 leading-relaxed mx-auto lg:mx-0 bg-white/50 p-4 rounded-xl backdrop-blur-sm border-2 border-white shadow-sm">
+          <h1 className="text-4xl font-heading font-black sm:text-5xl lg:text-6xl tracking-tight uppercase drop-shadow-md text-gradient-navy">We're here to help</h1>
+          <p className="mt-6 max-w-2xl text-lg font-bold text-slate-700 leading-relaxed mx-auto lg:mx-0 bg-white/70 p-4 rounded-xl backdrop-blur-md border-2 border-white shadow-sm">
             Visit us in Karur, call, WhatsApp or send an enquiry — our counsellors respond quickly and are ready to guide your future.
           </p>
         </div>
       </section>
 
-      <section className="py-16 lg:py-12 lg:py-24">
-        <div className="container-site grid gap-12 lg:grid-cols-2">
+      <section className="relative py-12 lg:py-16 reveal-section is-visible overflow-hidden">
+        {/* Dynamic ambient background blobs */}
+        <div className="absolute top-0 left-0 -translate-x-1/4 -translate-y-1/4 w-[800px] h-[800px] bg-ksc-navy/5 rounded-full blur-[100px] pointer-events-none animate-ambient-drift" />
+        <div className="absolute bottom-0 right-0 translate-x-1/4 translate-y-1/4 w-[600px] h-[600px] bg-ksc-red/5 rounded-full blur-[100px] pointer-events-none animate-ambient-drift" style={{ animationDelay: '-5s', animationDuration: '25s' }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-ksc-sky/10 rounded-full blur-[120px] pointer-events-none animate-ambient-drift" style={{ animationDelay: '-10s', animationDuration: '30s' }} />
+        
+        <div className="container-site relative z-10 grid gap-12 lg:grid-cols-2">
           {/* Contact details + map */}
-          <div className="animate-fade-in-up">
+          <div>
             <SectionHeading align="left" kicker="Get in Touch" title="Reach the centre" />
             <div className="space-y-4 mt-8">
               <div className="card-hover flex items-start gap-4 p-6 rounded-xl shadow-soft">
@@ -96,10 +101,10 @@ export function Contact() {
             </div>
 
             <div className="mt-10 overflow-hidden rounded-2xl glass-panel shadow-lift group">
-              <img loading="lazy" 
-                src="/assets/user-photos/branch-exterior.jpg" 
-                alt="Karur Study Centre Branch Exterior" 
-                className="w-full h-48 sm:h-72 object-cover transform transition-transform duration-[10000ms] group-hover:scale-110" 
+              <img loading="lazy"
+                src="/assets/user-photos/branch-exterior.jpg"
+                alt="Karur Study Centre Branch Exterior"
+                className="w-full h-48 sm:h-72 object-cover transform transition-transform duration-[10000ms] group-hover:scale-110"
               />
             </div>
 
@@ -116,7 +121,7 @@ export function Contact() {
           </div>
 
           {/* Enquiry form */}
-          <div className="animate-fade-in-up delay-200">
+          <div>
             <SectionHeading
               align="left"
               kicker="Send an Enquiry"
@@ -124,7 +129,7 @@ export function Contact() {
               subtitle="Fill in the form and we'll get back to you with programme options and admission guidance."
             />
             <div className="glass-panel shadow-lift rounded-2xl p-6 sm:p-10 mt-8 relative overflow-hidden">
-               {/* Form background decorative glow */}
+              {/* Form background decorative glow */}
               <div className="absolute top-0 right-0 w-64 h-64 bg-ksc-yellow/20 rounded-full blur-[80px] pointer-events-none" />
               <EnquiryForm fields={CONTACT_FORM_FIELDS} submitLabel="Send Enquiry" idPrefix="contact" className="relative z-10" />
             </div>

@@ -107,7 +107,7 @@ export function NewsAndEventsBanner() {
           </div>
         </div>
 
-        <Link to="/exam-update" className="btn-outline border-white/40 bg-white/10 text-white hover:bg-white hover:text-ksc-navy">View all updates <ArrowRight className="ml-2 h-4 w-4" /></Link>
+        <Link to="/exam-update" className="btn border border-white/40 bg-white/10 text-white hover:bg-white hover:text-ksc-navy">View all updates <ArrowRight className="ml-2 h-4 w-4" /></Link>
       </div>
     </section>
   );

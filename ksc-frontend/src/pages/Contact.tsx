@@ -3,11 +3,14 @@ import { CONTACT_FORM_FIELDS } from "../data/site-content";
 import { useSiteData } from "../services/SiteDataContext";
 import { SectionHeading } from "../components/common/SectionHeading";
 import { EnquiryForm } from "../components/common/EnquiryForm";
+import { useScrollReveal } from "../components/home/SharedHooks";
 
 export function Contact() {
   const { data: { settings: SITE_CONFIG, pages } } = useSiteData();
   const { contact } = SITE_CONFIG;
   const reach_centre = pages?.contact?.reach_centre;
+  
+  useScrollReveal();
 
   const waUrl = `https://wa.me/${contact.whatsapp}?text=${encodeURIComponent(
     `Hello ${SITE_CONFIG.name}, I have a question about admissions.`
@@ -38,7 +41,7 @@ export function Contact() {
         </div>
       </section>
 
-      <section className="relative py-12 lg:py-16 reveal-section is-visible overflow-hidden">
+      <section className="relative py-12 lg:py-16 reveal-section overflow-hidden">
         {/* Dynamic ambient background blobs */}
         <div className="absolute top-0 left-0 -translate-x-1/4 -translate-y-1/4 w-[800px] h-[800px] bg-ksc-navy/5 rounded-full blur-[100px] pointer-events-none animate-ambient-drift" />
         <div className="absolute bottom-0 right-0 translate-x-1/4 translate-y-1/4 w-[600px] h-[600px] bg-ksc-red/5 rounded-full blur-[100px] pointer-events-none animate-ambient-drift" style={{ animationDelay: '-5s', animationDuration: '25s' }} />
@@ -46,7 +49,7 @@ export function Contact() {
         
         <div className="container-site relative z-10 grid gap-12 lg:grid-cols-2">
           {/* Contact details + map */}
-          <div>
+          <div className="opacity-0 translate-x-[-20px] transition-all duration-700 [.is-visible_&]:opacity-100 [.is-visible_&]:translate-x-0 delay-100">
             <SectionHeading align="left" kicker={reach_centre?.kicker || "Get in Touch"} title={reach_centre?.title || "Reach the centre"} />
             <div className="space-y-4 mt-8">
               {reach_centre?.items?.map((item: any, idx: number) => {
@@ -94,7 +97,7 @@ export function Contact() {
           </div>
 
           {/* Enquiry form */}
-          <div>
+          <div className="opacity-0 translate-x-[20px] transition-all duration-700 [.is-visible_&]:opacity-100 [.is-visible_&]:translate-x-0 delay-300">
             <SectionHeading
               align="left"
               kicker="Send an Enquiry"

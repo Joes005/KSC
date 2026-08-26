@@ -5,14 +5,15 @@ import { useSiteData } from "../services/SiteDataContext";
 import { PageHeader } from "../components/common/PageHeader";
 import { Tabs } from "../components/common/Tabs";
 import { ProgrammeCards } from "../components/common/ProgrammeCards";
+import { useScrollReveal } from "../components/home/SharedHooks";
 
 function UniversityProgrammes({ uni }: { uni: University }) {
   return (
-    <section id={uni.id} className="scroll-mt-28 relative overflow-hidden py-10 sm:py-12 lg:py-16 border-b border-slate-100 bg-white bg-dot-pattern">
+    <section id={uni.id} className="scroll-mt-28 relative overflow-hidden py-10 sm:py-12 lg:py-16 border-b border-slate-100 bg-white bg-dot-pattern reveal-section">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-blue-50/40 via-white to-white pointer-events-none" />
       <div className="container-site relative z-10">
         {/* University header */}
-        <div className="group relative overflow-hidden rounded-3xl border-2 border-slate-200 bg-white p-6 sm:p-8 shadow-xl transition-all duration-300 hover:shadow-2xl">
+        <div className="group relative overflow-hidden rounded-3xl border-2 border-slate-200 bg-white p-6 sm:p-8 shadow-xl transition-all duration-700 hover:shadow-2xl opacity-0 translate-y-12 [.is-visible_&]:opacity-100 [.is-visible_&]:translate-y-0 delay-100">
           <div className="absolute top-0 left-0 h-1.5 w-0 bg-gradient-to-r from-ksc-navy via-ksc-red to-ksc-gold transition-all duration-700 ease-out group-hover:w-full" />
           
           <div className="relative z-10 flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
@@ -67,7 +68,7 @@ function UniversityProgrammes({ uni }: { uni: University }) {
         </div>
 
         {/* Category tabs + programme tables */}
-        <div className="mt-10">
+        <div className="mt-10 opacity-0 translate-y-12 transition-all duration-700 [.is-visible_&]:opacity-100 [.is-visible_&]:translate-y-0 delay-300">
           <Tabs
             key={uni.id}
             tabs={uni.categories.map((c) => ({
@@ -102,6 +103,9 @@ function UniversityProgrammes({ uni }: { uni: University }) {
 
 export function Academic() {
   const { data: { universities: UNIVERSITIES } } = useSiteData();
+  
+  useScrollReveal();
+  
   return (
     <>
       {/* Page header */}
@@ -111,8 +115,8 @@ export function Academic() {
       />
 
       {/* Quick university jump nav */}
-      <div className="border-b-4 border-ksc-yellow bg-slate-50 py-5">
-        <div className="container-site flex flex-wrap items-center gap-3">
+      <div className="border-b-4 border-ksc-yellow bg-slate-50 py-5 reveal-section">
+        <div className="container-site flex flex-wrap items-center gap-3 opacity-0 translate-y-8 transition-all duration-700 [.is-visible_&]:opacity-100 [.is-visible_&]:translate-y-0">
           <Building2 className="h-6 w-6 text-ksc-navy" />
           {UNIVERSITIES.map((uni) => (
             <a
@@ -134,10 +138,10 @@ export function Academic() {
       </div>
 
       {/* Eligibility note */}
-      <section className="relative overflow-hidden bg-white py-10 sm:py-12 lg:py-16 border-t border-slate-100 bg-dot-pattern">
+      <section className="relative overflow-hidden bg-white py-10 sm:py-12 lg:py-16 border-t border-slate-100 bg-dot-pattern reveal-section">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-50/60 via-white to-white pointer-events-none" />
         <div className="container-site relative z-10">
-          <div className="glass-panel grid lg:grid-cols-2 gap-6 lg:gap-10 items-center p-8 sm:p-12">
+          <div className="glass-panel grid lg:grid-cols-2 gap-6 lg:gap-10 items-center p-8 sm:p-12 opacity-0 scale-95 transition-all duration-700 [.is-visible_&]:opacity-100 [.is-visible_&]:scale-100">
             <div className="order-2 lg:order-1 text-sm leading-relaxed text-slate-700 font-medium">
               <p className="font-black text-ksc-red uppercase text-2xl mb-4">Eligibility notes</p>
               <p className="mt-2 text-base">

@@ -13,6 +13,7 @@ import { ADMISSIONS_FORM_FIELDS } from "../data/site-content";
 import { useSiteData } from "../services/SiteDataContext";
 import { SectionHeading } from "../components/common/SectionHeading";
 import { EnquiryForm } from "../components/common/EnquiryForm";
+import { useScrollReveal } from "../components/home/SharedHooks";
 
 const ELIGIBILITY_SUMMARY = [
   {
@@ -36,11 +37,24 @@ const ELIGIBILITY_SUMMARY = [
 export function Admissions() {
   const { data: { settings: SITE_CONFIG, admission_steps: ADMISSION_STEPS, universities: UNIVERSITIES } } = useSiteData();
   const stepIcons = [FileDown, ClipboardList, Wallet, Package];
+  
+  useScrollReveal();
 
   return (
     <>
       {/* Page header */}
-      <section className="relative overflow-hidden border-b border-ksc-red/20 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[#e8f5ff] via-white to-[#fff4d6] py-14 text-ksc-navy">
+      <section className="relative overflow-hidden border-b border-ksc-red/20 bg-ksc-navy/5 py-16 lg:py-20 text-ksc-navy">
+        {/* Background Image */}
+        <img loading="lazy"
+          src="/assets/user-photos/distance-student.png"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover opacity-15 pointer-events-none mix-blend-multiply"
+        />
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[#e8f5ff]/90 via-white/95 to-[#fff4d6]/90" />
+        
+        {/* Decorative Grid */}
+        <div className="absolute inset-0 bg-grid-slate-800/[0.04] bg-[bottom_1px_center] pointer-events-none" style={{ maskImage: 'linear-gradient(to bottom, transparent, black)' }} />
         <div className="pointer-events-none absolute -right-16 top-0 h-64 w-64 rounded-full bg-white/60 blur-[80px]" />
         <div className="container-site relative z-10">
           <p className="section-kicker text-ksc-red bg-white inline-block px-3 py-1 rounded-md mb-2 shadow-sm">Admissions</p>
@@ -53,15 +67,16 @@ export function Admissions() {
       </section>
 
       {/* Steps */}
-      <section className="relative overflow-hidden bg-slate-50/50 py-10 lg:py-16 border-b border-slate-100">
+      <section className="relative overflow-hidden bg-slate-50/50 bg-dot-pattern py-10 lg:py-16 border-b border-slate-100 reveal-section">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-ksc-sky/10 rounded-full blur-[100px] pointer-events-none animate-ambient-drift" />
         <div className="container-site relative z-10">
           <SectionHeading kicker="How to Apply" title="Your admission journey in four steps" />
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4 mt-12">
             {ADMISSION_STEPS.map((step, i) => {
               const Icon = stepIcons[i] ?? FileDown;
               return (
-                <div key={step.step} className="card-hover p-6 text-center">
-                  <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-50 text-ksc-navy border border-slate-200 shadow-sm transition-transform duration-300 hover:scale-110 hover:bg-ksc-red hover:text-white">
+                <div key={step.step} className="card-hover group p-6 text-center opacity-0 translate-y-12 transition-all duration-700 [.is-visible_&]:opacity-100 [.is-visible_&]:translate-y-0" style={{ transitionDelay: `${i * 150}ms` }}>
+                  <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-50 text-ksc-navy border border-slate-200 shadow-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-ksc-red group-hover:text-white">
                     <Icon className="h-8 w-8 stroke-[2]" />
                   </span>
                   <h3 className="mt-5 font-black uppercase text-ksc-navy">
@@ -76,8 +91,9 @@ export function Admissions() {
       </section>
 
       {/* Flyer + downloads */}
-      <section className="bg-white py-10 lg:py-10 lg:py-16">
-        <div className="container-site max-w-5xl mx-auto">
+      <section className="relative bg-white py-10 lg:py-16 reveal-section overflow-hidden">
+        <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-ksc-red/5 rounded-full blur-[120px] pointer-events-none animate-ambient-drift" style={{ animationDelay: '-5s' }} />
+        <div className="container-site max-w-5xl mx-auto relative z-10">
           <div>
             <SectionHeading
               align="center"
@@ -85,7 +101,7 @@ export function Admissions() {
               title="University prospectus & admission details"
               subtitle="Bring the flyers and prospectus below, or download them here. All four universities admit through our centre."
             />
-            <div className="mt-10 grid gap-4 sm:grid-cols-2">
+            <div className="mt-12 grid gap-5 sm:grid-cols-2 opacity-0 scale-95 transition-all duration-700 [.is-visible_&]:opacity-100 [.is-visible_&]:scale-100 delay-200">
               <a
                 href="/pdf/ALU-CDOE-Prospectus-AY-2026.pdf"
                 target="_blank"
@@ -154,12 +170,13 @@ export function Admissions() {
       </section>
 
       {/* Eligibility summary */}
-      <section className="bg-slate-50/50 py-10 lg:py-16 border-t border-slate-100">
-        <div className="container-site">
+      <section className="relative bg-slate-50/80 bg-dot-pattern py-10 lg:py-16 border-t border-slate-100 reveal-section overflow-hidden">
+        <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-ksc-yellow/5 rounded-full blur-[100px] pointer-events-none animate-ambient-drift" style={{ animationDelay: '-10s' }} />
+        <div className="container-site relative z-10">
           <SectionHeading kicker="Eligibility at a Glance" title="Who can apply" />
-          <div className="mx-auto grid max-w-4xl gap-4 sm:grid-cols-2 mt-8">
-            {ELIGIBILITY_SUMMARY.map((item) => (
-              <div key={item.level} className="card-hover p-6">
+          <div className="mx-auto grid max-w-4xl gap-5 sm:grid-cols-2 mt-12">
+            {ELIGIBILITY_SUMMARY.map((item, i) => (
+              <div key={item.level} className="card-hover p-6 opacity-0 translate-y-12 transition-all duration-700 [.is-visible_&]:opacity-100 [.is-visible_&]:translate-y-0" style={{ transitionDelay: `${i * 150}ms` }}>
                 <div className="flex items-center gap-3">
                   <BadgeCheck className="h-6 w-6 shrink-0 text-ksc-red" />
                   <h3 className="font-black uppercase text-ksc-navy">{item.level}</h3>
@@ -179,8 +196,8 @@ export function Admissions() {
       </section>
 
       {/* Apply form + universities sidebar */}
-      <section className="relative overflow-hidden bg-white py-10 lg:py-16 border-t border-slate-100">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-blue-50/40 via-white to-white pointer-events-none" />
+      <section className="relative overflow-hidden bg-white py-10 lg:py-16 border-t border-slate-100 reveal-section">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-ksc-navy/[0.03] via-transparent to-transparent pointer-events-none" />
         <div className="container-site relative z-10 grid gap-10 lg:grid-cols-3">
           <div className="lg:col-span-2">
             <SectionHeading
@@ -189,12 +206,12 @@ export function Admissions() {
               title="Start your application"
               subtitle="Share your details and we'll call you back with the exact documents, fees and next steps for your chosen course."
             />
-            <div className="glass-panel p-6 sm:p-8 mt-8">
+            <div className="glass-panel p-6 sm:p-8 mt-10 opacity-0 translate-x-[-20px] transition-all duration-700 [.is-visible_&]:opacity-100 [.is-visible_&]:translate-x-0 delay-200">
               <EnquiryForm fields={ADMISSIONS_FORM_FIELDS} submitLabel="Submit Application Request" idPrefix="admission" />
             </div>
           </div>
 
-          <aside>
+          <aside className="opacity-0 translate-x-[20px] transition-all duration-700 [.is-visible_&]:opacity-100 [.is-visible_&]:translate-x-0 delay-300">
             <SectionHeading align="left" kicker="Universities" title="Programmes available" />
             <ul className="space-y-4 mt-8">
               {UNIVERSITIES.map((uni) => (

@@ -32,17 +32,18 @@ import { CustomCursor, MagneticButton, useScrollReveal } from "./SharedHooks";
 
 export function Branches() {
   const { data: { branches: BRANCHES } } = useSiteData();
+  useScrollReveal();
   return (
-    <section className="bg-white py-10 lg:py-16 border-t-4 border-ksc-red">
-      <div className="container-site">
+    <section className="bg-white py-10 lg:py-16 border-t-4 border-ksc-red bg-wavy-pattern reveal-section">
+      <div className="container-site relative z-10">
         <SectionHeading
           kicker="Visit Us"
           title="Our Branchs"
           subtitle="Visit our centres — our counsellors will help you at every step."
         />
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mt-10">
-          {BRANCHES.map((branch) => (
-            <div key={branch.name} className="group relative overflow-hidden rounded-2xl bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-lg border border-slate-100">
+          {BRANCHES.map((branch, i) => (
+            <div key={branch.name} className="group relative overflow-hidden rounded-2xl bg-white p-8 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(8,59,130,0.15)] hover:border-ksc-yellow/50 border border-slate-100 opacity-0 translate-y-12 [.is-visible_&]:opacity-100 [.is-visible_&]:translate-y-0" style={{ transitionDelay: `${i * 150}ms` }}>
               <div className="flex items-start justify-between">
                 <div>
                   <span className={cn(
@@ -51,9 +52,9 @@ export function Branches() {
                   )}>
                     {branch.isHead ? "Head Office" : "Branch"}
                   </span>
-                  <h3 className="mt-4 text-xl font-bold text-slate-800">{branch.name}</h3>
+                  <h3 className="mt-4 text-xl font-bold text-slate-800 group-hover:text-ksc-royal transition-colors">{branch.name}</h3>
                 </div>
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-50 text-ksc-navy transition-colors duration-300 group-hover:bg-ksc-navy group-hover:text-white">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-50 text-ksc-navy transition-colors duration-300 group-hover:bg-ksc-yellow group-hover:text-ksc-navy shadow-inner group-hover:shadow-[0_0_15px_rgba(255,212,0,0.4)]">
                   <MapPin className="h-6 w-6" />
                 </div>
               </div>

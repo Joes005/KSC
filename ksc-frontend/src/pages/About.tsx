@@ -4,10 +4,14 @@ import { useSiteData } from "../services/SiteDataContext";
 import { SectionHeading } from "../components/common/SectionHeading";
 import { Tabs } from "../components/common/Tabs";
 import { PageHeader } from "../components/common/PageHeader";
+import { useScrollReveal } from "../components/home/SharedHooks";
 
 export function About() {
   const { data: { pages, about_snapshot: fallbackAboutPage } } = useSiteData();
   const ABOUT_PAGE = pages?.about?.about_page || fallbackAboutPage;
+  
+  useScrollReveal();
+  
   return (
     <>
       {/* Page header */}
@@ -17,16 +21,16 @@ export function About() {
       />
 
       {/* Long-form copy + facts sidebar */}
-      <section className="relative overflow-hidden bg-white py-12 sm:py-10 lg:py-12 border-b border-slate-100 bg-dot-pattern">
+      <section className="relative overflow-hidden bg-white py-12 sm:py-10 lg:py-12 border-b border-slate-100 bg-dot-pattern reveal-section">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-50/50 via-white to-white pointer-events-none" />
         <div className="container-site relative grid gap-12 lg:grid-cols-3 lg:items-start">
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2 opacity-0 translate-x-[-20px] transition-all duration-700 [.is-visible_&]:opacity-100 [.is-visible_&]:translate-x-0 delay-100">
             <SectionHeading
               align="left"
               kicker="Who We Are"
               title="Your local bridge to open-university education"
             />
-            <div className="space-y-5 leading-relaxed text-slate-700 font-medium text-sm sm:text-base">
+            <div className="space-y-5 leading-relaxed text-slate-700 font-medium text-sm sm:text-base mt-6">
               <p>{ABOUT_PAGE.body[0]}</p>
 
               <div className="my-10 overflow-hidden rounded-3xl shadow-lift border border-slate-200 p-2 bg-white">
@@ -46,7 +50,7 @@ export function About() {
           </div>
 
           {/* Facts sidebar */}
-          <aside className="space-y-6 mt-12 lg:mt-0">
+          <aside className="space-y-6 mt-12 lg:mt-0 opacity-0 translate-x-[20px] transition-all duration-700 [.is-visible_&]:opacity-100 [.is-visible_&]:translate-x-0 delay-300">
 
             <div className="card-hover p-6">
               <span className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-50 text-ksc-navy transition-transform duration-300 group-hover:scale-110 group-hover:bg-blue-50">
@@ -102,10 +106,10 @@ function AboutDetail() {
   const intro = pages?.home?.vision_mission || fallbackIntro;
 
   return (
-    <section className="relative bg-white py-10 lg:py-10 lg:py-16 bg-dot-pattern">
-      <div className="container-site">
+    <section className="relative bg-white py-10 lg:py-10 lg:py-16 bg-dot-pattern reveal-section">
+      <div className="container-site opacity-0 translate-y-12 transition-all duration-700 [.is-visible_&]:opacity-100 [.is-visible_&]:translate-y-0">
         <SectionHeading kicker="Our Foundation" title="Vision · Mission · Values" />
-        <div className="mx-auto max-w-6xl">
+        <div className="mx-auto max-w-6xl mt-8">
           <Tabs
             tabs={[
               { id: "vision", label: "Vision" },

@@ -2,10 +2,13 @@ import { useState } from "react";
 import { X, ZoomIn, Camera } from "lucide-react";
 import { useSiteData } from "../services/SiteDataContext";
 import { PageHeader } from "../components/common/PageHeader";
+import { useScrollReveal } from "../components/home/SharedHooks";
 
 export function Gallery() {
   const { data: { gallery_images: GALLERY, settings: SITE_CONFIG } } = useSiteData();
   const [lightbox, setLightbox] = useState<number | null>(null);
+  
+  useScrollReveal();
 
   return (
     <>
@@ -16,14 +19,15 @@ export function Gallery() {
       />
 
       {/* Photo grid */}
-      <section className="bg-slate-50 py-10 lg:py-10 lg:py-16 border-t-4 border-ksc-yellow border-b-4 border-ksc-red">
+      <section className="bg-slate-50 py-10 lg:py-10 lg:py-16 border-t-4 border-ksc-yellow border-b-4 border-ksc-red reveal-section">
         <div className="container-site">
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {GALLERY.map((item, i) => (
               <button
                 type="button"
                 key={item.id}
-                className="card-hover group relative overflow-hidden rounded-2xl bg-white text-left"
+                className="card-hover group relative overflow-hidden rounded-2xl bg-white text-left opacity-0 translate-y-12 transition-all duration-700 [.is-visible_&]:opacity-100 [.is-visible_&]:translate-y-0"
+                style={{ transitionDelay: `${i * 100}ms` }}
                 onClick={() => setLightbox(i)}
                 aria-label={`Open photo: ${item.caption}`}
               >
@@ -45,7 +49,7 @@ export function Gallery() {
             ))}
           </div>
 
-          <p className="mt-10 text-center text-sm font-medium text-slate-500 max-w-2xl mx-auto bg-slate-100 border-2 border-slate-200 p-4 rounded-xl">
+          <p className="mt-12 text-center text-sm font-medium text-slate-500 max-w-2xl mx-auto bg-slate-100 border-2 border-slate-200 p-4 rounded-xl opacity-0 translate-y-8 transition-all duration-700 [.is-visible_&]:opacity-100 [.is-visible_&]:translate-y-0 delay-300">
             Real photos from the Karur Study Center — walk in during working hours and see our services
             first-hand.
           </p>

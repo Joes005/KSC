@@ -683,3 +683,14 @@ main a:not(.btn-gold):not(.btn-outline):not([class*="bg-"]) {
     height: 13rem;
   }
 }
+  .bg-wavy-pattern {
+    position: relative;
+  }
+  .bg-wavy-pattern::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cpath fill='none' stroke='%23083b82' stroke-opacity='0.05' stroke-width='1.5' d='M0 40c10 0 10-10 20-10s10 10 20 10 10-10 20-10 10 10 20 10'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }

@@ -40,8 +40,8 @@ export function Header() {
 
   return (
     <header className={cn(
-      "sticky top-0 z-50 w-full transition-all duration-500",
-      isScrolled ? "bg-ksc-navy/75 backdrop-blur-2xl backdrop-saturate-200 shadow-md border-b border-white/20" : "bg-ksc-navy/60 backdrop-blur-xl backdrop-saturate-150 border-b border-white/10"
+      "sticky top-0 z-50 w-full transition-all duration-300",
+      isScrolled ? "bg-ksc-navy/90 backdrop-blur-md shadow-lg" : "bg-ksc-navy/95 backdrop-blur-sm border-b border-white/10"
     )}>
       {/* Top bar (Dark Blue) */}
       <div className="bg-ksc-navy text-white py-2.5 text-xs hidden md:block relative z-20">
@@ -63,14 +63,13 @@ export function Header() {
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-2 font-semibold text-ksc-yellow">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-ksc-yellow opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-ksc-yellow"></span>
               </span>
               Admissions Open {SITE_CONFIG.admissionYear}
             </span>
             <Link 
               to="/admissions" 
-              className="bg-gradient-to-r from-ksc-red to-[#a30b13] text-white px-4 py-1.5 rounded-md text-xs font-bold hover:shadow-[0_4px_12px_rgba(201,20,25,0.4)] transition-all duration-300 hover:-translate-y-0.5 btn-shimmer"
+              className="bg-ksc-red hover:bg-[#a30b13] text-white px-4 py-1.5 rounded-md text-xs font-bold transition-colors"
             >
               Apply Now
             </Link>
@@ -136,7 +135,7 @@ export function Header() {
               <span className="font-bold drop-shadow-sm">{SITE_CONFIG.contact.phone}</span>
             </span>
           </a>
-          <Link to="/admissions" className="btn-gold whitespace-nowrap btn-shimmer">
+          <Link to="/admissions" className="btn-gold whitespace-nowrap hover:shadow-lg transition-shadow">
             Apply Now
           </Link>
         </div>
@@ -154,7 +153,7 @@ export function Header() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="xl:hidden border-t border-white/20 bg-ksc-navy/80 backdrop-blur-2xl backdrop-saturate-200 absolute left-0 top-full w-full shadow-2xl">
+        <div className="xl:hidden border-t border-white/10 bg-ksc-navy/95 backdrop-blur-md absolute left-0 top-full w-full shadow-2xl">
           <nav className="container-site flex flex-col py-4" aria-label="Mobile">
             {NAV_ITEMS.map((item) => {
               return (
@@ -175,7 +174,7 @@ export function Header() {
                 </NavLink>
               );
             })}
-            <Link to="/admissions" onClick={() => setMobileOpen(false)} className="btn-gold mt-6 w-full py-3 shadow-lg btn-shimmer">
+            <Link to="/admissions" onClick={() => setMobileOpen(false)} className="btn-gold mt-6 w-full py-3 shadow-md">
               Apply Now
             </Link>
           </nav>

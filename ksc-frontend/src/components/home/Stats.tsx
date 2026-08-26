@@ -32,13 +32,14 @@ import { CustomCursor, MagneticButton, useScrollReveal } from "./SharedHooks";
 
 export function Stats() {
   const { data: { settings: SITE_CONFIG } } = useSiteData();
+  useScrollReveal();
   return (
-    <section className="bg-ksc-navy py-16 relative overflow-hidden">
+    <section className="bg-ksc-navy py-16 relative overflow-hidden reveal-section">
       <div className="absolute inset-0 bg-black/10 pointer-events-none mix-blend-overlay"></div>
       <div className="container-site relative z-10">
         <div className="grid grid-cols-2 gap-10 md:grid-cols-3 lg:grid-cols-5 divide-x-0 md:divide-x-2 divide-white/10">
           {SITE_CONFIG.stats.map((s, index) => (
-            <div key={s.label} className="px-4">
+            <div key={s.label} className="px-4 opacity-0 scale-95 transition-all duration-700 [.is-visible_&]:opacity-100 [.is-visible_&]:scale-100" style={{ transitionDelay: `${index * 120}ms` }}>
               <StatCounter value={s.value} suffix={s.suffix} label={s.label} duration={1200 + index * 140} />
             </div>
           ))}

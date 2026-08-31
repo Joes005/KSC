@@ -134,7 +134,7 @@ export const ABOUT_SNAPSHOT = {
     "Authorised study centre of Tamilnadu Open University",
     "Affiliated with UGC-DEB recognised distance education",
   ],
-  establishedYear: "2006",
+  establishedYear: "2001",
 };
 
 /* =========================================================================== */

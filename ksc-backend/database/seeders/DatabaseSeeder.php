@@ -383,6 +383,27 @@ class DatabaseSeeder extends Seeder
                     ['name' => 'message', 'label' => 'Message', 'type' => 'textarea', 'placeholder' => 'How can we help you?', 'required' => false],
                 ],
             ],
+            'admissions' => [
+                'header' => [
+                    'kicker' => 'Admissions',
+                    'title' => 'Admissions — Academic Year 2026',
+                    'description' => 'Apply for UG, PG, Diploma, Certificate, Vocational and Short-Term programmes through our centre. We guide you through every step — from form to study material.',
+                ],
+                'eligibility_summary' => [
+                    ['level' => 'UG Programmes', 'detail' => 'Pass in Higher Secondary (10+2). Science courses need the corresponding core subject in 10+2 (e.g. Mathematics for B.Sc. Maths / BCA).'],
+                    ['level' => 'PG Programmes', 'detail' => 'A relevant Bachelor\'s degree (e.g. B.Sc. Chemistry for M.Sc. Chemistry). Specific prerequisites appear under each course on the Academic page.'],
+                    ['level' => 'Diploma / Certificate / Vocational', 'detail' => 'Varies by programme — 10th pass (SSLC) is sufficient for most. Confirm your case with our counsellors.'],
+                    ['level' => 'Distance & Open learning', 'detail' => 'Programmes are UGC-DEB recognised where applicable; no regular attendance required — study from home with our support.'],
+                ],
+            ],
+            'exam_update' => [
+                'header' => [
+                    'kicker' => 'Exam Update',
+                    'title' => 'Examinations, Hall Tickets & Timetables',
+                    'description' => 'Stay on top of your exams. Pick your university below to jump to hall-ticket portals and timetable downloads.',
+                    'supportNote' => 'Need help reading your hall ticket or understanding your timetable? Visit the centre or message us on WhatsApp during working hours.',
+                ],
+            ],
         ];
 
         foreach ($pages as $pageSlug => $sections) {

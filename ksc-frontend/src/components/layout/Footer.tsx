@@ -98,7 +98,7 @@ export function Footer() {
 
       {/* University logo strip */}
       <div className="bg-ksc-navy border-b border-white/10">
-        <div className="container-site grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-6 gap-x-8 py-6 w-fit mx-auto px-4 sm:px-6">
+        <div className="container-site flex flex-wrap items-center justify-center gap-x-8 gap-y-6 py-6 mx-auto px-4 sm:px-6">
           {UNIVERSITIES.map((uni) => (
             <Link
               key={uni.id}

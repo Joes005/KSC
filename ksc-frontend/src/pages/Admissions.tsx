@@ -35,9 +35,12 @@ const ELIGIBILITY_SUMMARY = [
 ];
 
 export function Admissions() {
-  const { data: { settings: SITE_CONFIG, admission_steps: ADMISSION_STEPS, universities: UNIVERSITIES } } = useSiteData();
+  const { data: { settings: SITE_CONFIG, admission_steps: fallbackSteps, universities: UNIVERSITIES, pages } } = useSiteData();
   const stepIcons = [FileDown, ClipboardList, Wallet, Package];
-  
+  const headerData = (pages?.admissions?.header || {}) as any;
+  const stepsData = (pages?.home?.admission_steps || fallbackSteps) as any[];
+  const eligibilityData = (pages?.admissions?.eligibility_summary || ELIGIBILITY_SUMMARY) as any[];
+
   useScrollReveal();
 
   return (
@@ -57,11 +60,10 @@ export function Admissions() {
         <div className="absolute inset-0 bg-grid-slate-800/[0.04] bg-[bottom_1px_center] pointer-events-none" style={{ maskImage: 'linear-gradient(to bottom, transparent, black)' }} />
         <div className="pointer-events-none absolute -right-16 top-0 h-64 w-64 rounded-full bg-white/60 blur-[80px]" />
         <div className="container-site relative z-10">
-          <p className="section-kicker text-ksc-red bg-white inline-block px-3 py-1 rounded-md mb-2 shadow-sm">Admissions</p>
-          <h1 className="mt-2 text-3xl font-black uppercase tracking-tight sm:text-4xl">Admissions — {SITE_CONFIG.admissionYear}</h1>
+          <p className="section-kicker text-ksc-red bg-white inline-block px-3 py-1 rounded-md mb-2 shadow-sm">{headerData.kicker || 'Admissions'}</p>
+          <h1 className="mt-2 text-3xl font-black uppercase tracking-tight sm:text-4xl">{headerData.title || `Admissions — ${SITE_CONFIG.admissionYear}`}</h1>
           <p className="mt-4 max-w-2xl text-slate-700 font-bold leading-relaxed">
-            Apply for UG, PG, Diploma, Certificate, Vocational and Short-Term programmes through our
-            centre. We guide you through every step — from form to study material.
+            {headerData.description || 'Apply for UG, PG, Diploma, Certificate, Vocational and Short-Term programmes through our centre. We guide you through every step — from form to study material.'}
           </p>
         </div>
       </section>
@@ -72,10 +74,10 @@ export function Admissions() {
         <div className="container-site relative z-10">
           <SectionHeading kicker="How to Apply" title="Your admission journey in four steps" />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4 mt-12">
-            {ADMISSION_STEPS.map((step, i) => {
+            {stepsData.map((step, i) => {
               const Icon = stepIcons[i] ?? FileDown;
               return (
-                <div key={step.step} className="card-hover group p-6 text-center opacity-0 translate-y-12 transition-all duration-700 [.is-visible_&]:opacity-100 [.is-visible_&]:translate-y-0" style={{ transitionDelay: `${i * 150}ms` }}>
+                <div key={step.step || i} className="card-hover group p-6 text-center opacity-0 translate-y-12 transition-all duration-700 [.is-visible_&]:opacity-100 [.is-visible_&]:translate-y-0" style={{ transitionDelay: `${i * 150}ms` }}>
                   <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-50 text-ksc-navy border border-slate-200 shadow-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-ksc-red group-hover:text-white">
                     <Icon className="h-8 w-8 stroke-[2]" />
                   </span>
@@ -132,7 +134,7 @@ export function Admissions() {
               </a>
 
               <a
-                href="#"
+                href="/pdf/ALU-CDOE-Prospectus-AY-2026.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="card-hover flex items-center gap-4 p-5 bg-slate-50 border-2 border-slate-100"
@@ -147,7 +149,7 @@ export function Admissions() {
               </a>
 
               <a
-                href="/pdf/Tamilnadu_Open_University_AY_2026_Admission_HD.pdf"
+                href="/pdf/ALU-CDOE-Prospectus-AY-2026.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="card-hover flex items-center gap-4 p-5 bg-slate-50 border-2 border-slate-100"
@@ -175,7 +177,7 @@ export function Admissions() {
         <div className="container-site relative z-10">
           <SectionHeading kicker="Eligibility at a Glance" title="Who can apply" />
           <div className="mx-auto grid max-w-4xl gap-5 sm:grid-cols-2 mt-12">
-            {ELIGIBILITY_SUMMARY.map((item, i) => (
+            {eligibilityData.map((item, i) => (
               <div key={item.level} className="card-hover p-6 opacity-0 translate-y-12 transition-all duration-700 [.is-visible_&]:opacity-100 [.is-visible_&]:translate-y-0" style={{ transitionDelay: `${i * 150}ms` }}>
                 <div className="flex items-center gap-3">
                   <BadgeCheck className="h-6 w-6 shrink-0 text-ksc-red" />

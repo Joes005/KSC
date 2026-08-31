@@ -4,23 +4,22 @@ import { SectionHeading } from "../components/common/SectionHeading";
 import { Accordion } from "../components/common/Accordion";
 
 export function ExamUpdate() {
-  const { data: { universities: UNIVERSITIES, news_events: NEWS_EVENTS } } = useSiteData();
+  const { data: { universities: UNIVERSITIES, news_events: NEWS_EVENTS, pages } } = useSiteData();
+  const headerData = (pages?.exam_update?.header || {}) as any;
+
   return (
     <>
       {/* Page header */}
       <section className="gradient-head relative overflow-hidden py-14 text-white">
         <div className="pointer-events-none absolute -right-16 top-0 h-64 w-64 rounded-full bg-ksc-gold/20 blur-3xl" />
         <div className="container-site relative">
-          <p className="section-kicker border-ksc-yellow text-ksc-yellow">Exam Update</p>
-          <h1 className="mt-2 text-3xl font-black text-white drop-shadow-md sm:text-4xl">Examinations, Hall Tickets &amp; Timetables</h1>
+          <p className="section-kicker border-ksc-yellow text-ksc-yellow">{headerData.kicker || 'Exam Update'}</p>
+          <h1 className="mt-2 text-3xl font-black text-white drop-shadow-md sm:text-4xl">{headerData.title || 'Examinations, Hall Tickets & Timetables'}</h1>
           <p className="mt-3 max-w-2xl text-white/90 font-medium leading-relaxed">
-            Stay on top of your exams. Pick your university below to jump to hall-ticket portals and
-            timetable downloads.
+            {headerData.description || 'Stay on top of your exams. Pick your university below to jump to hall-ticket portals and timetable downloads.'}
           </p>
         </div>
       </section>
-
-
 
       {/* Quick notices */}
       <section className="bg-ksc-mist/60 py-14">
@@ -35,8 +34,7 @@ export function ExamUpdate() {
             ))}
           </ul>
           <p className="mt-6 text-sm text-ksc-ink/70">
-            Need help reading your hall ticket or understanding your timetable? Visit the centre or
-            message us on WhatsApp during working hours.
+            {headerData.supportNote || 'Need help reading your hall ticket or understanding your timetable? Visit the centre or message us on WhatsApp during working hours.'}
           </p>
         </div>
       </section>

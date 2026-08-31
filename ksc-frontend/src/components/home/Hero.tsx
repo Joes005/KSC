@@ -160,16 +160,16 @@ export function Hero() {
           <div className="relative mx-auto w-full max-w-xl lg:mx-0 lg:justify-self-end">
             <div className="absolute -right-4 -top-4 h-full w-full rounded-3xl bg-gradient-to-br from-ksc-red to-[#910a11] shadow-2xl" />
             <div className="relative overflow-hidden rounded-3xl border-4 border-white/80 bg-ksc-navy shadow-[0_20px_50px_-12px_rgba(7,27,74,0.35)] backdrop-blur-sm transition-transform duration-500 hover:-translate-y-2">
-              <img key={currentImage} src={HERO_IMAGES[currentImage]} alt="Students supported by Karur Study Centre" className="hero-media h-80 w-full object-cover object-top animate-fade-in sm:h-[480px]" />
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ksc-navy via-ksc-navy/80 to-transparent px-8 pb-8 pt-24 text-white">
-                <p className="text-2xl font-bold text-white drop-shadow-md">Education that fits your life</p>
-                <p className="mt-1.5 text-sm font-medium text-white/80">Study. Grow. Move forward.</p>
+              <img key={currentImage} src={HERO_IMAGES[currentImage]} alt="Students supported by Karur Study Centre" className="hero-media h-72 w-full object-cover object-top animate-fade-in sm:h-[480px]" />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ksc-navy via-ksc-navy/80 to-transparent px-5 pb-5 pt-16 text-white sm:px-8 sm:pb-8 sm:pt-24">
+                <p className="text-xl font-bold text-white drop-shadow-md sm:text-2xl">Education that fits your life</p>
+                <p className="mt-1 text-xs font-medium text-white/80 sm:mt-1.5 sm:text-sm">Study. Grow. Move forward.</p>
               </div>
             </div>
-            <div className="absolute -left-2 top-8 rounded-2xl bg-white p-4 shadow-[0_12px_30px_rgba(0,0,0,0.12)] sm:-left-8 backdrop-blur-md">
-              <div className="flex flex-col items-center justify-center rounded-xl bg-ksc-red px-5 py-3 text-white">
-                <span className="block text-[10px] font-bold uppercase tracking-[.2em] text-white/90">Now open</span>
-                <span className="font-heading text-2xl font-black uppercase tracking-tight">{SITE_CONFIG.admissionYear}</span>
+            <div className="absolute left-3 top-3 sm:-left-8 sm:top-8 rounded-xl sm:rounded-2xl bg-white/95 sm:bg-white p-2 sm:p-4 shadow-[0_12px_30px_rgba(0,0,0,0.15)] backdrop-blur-md transition-all">
+              <div className="flex flex-col items-center justify-center rounded-lg sm:rounded-xl bg-ksc-red px-3 py-1.5 sm:px-5 sm:py-3 text-white">
+                <span className="block text-[9px] sm:text-[10px] font-bold uppercase tracking-[.15em] sm:tracking-[.2em] text-white/90">Now open</span>
+                <span className="font-heading text-xs sm:text-lg md:text-2xl font-black uppercase tracking-tight">{SITE_CONFIG.admissionYear}</span>
               </div>
             </div>
           </div>

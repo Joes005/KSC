@@ -32,7 +32,7 @@ import { CustomCursor, MagneticButton, useScrollReveal } from "./SharedHooks";
 
 export function VisionMissionValues() {
   const { data: { pages, vision_mission: fallbackIntro } } = useSiteData();
-  const intro = pages?.home?.vision_mission || fallbackIntro;
+  const intro = (pages?.home?.vision_mission || fallbackIntro) as any;
 
   return (
     <section className="relative bg-slate-50 py-12 sm:py-16 lg:py-16 border-t border-slate-100">
@@ -65,7 +65,7 @@ export function VisionMissionValues() {
               if (activeId === "mission") {
                 return (
                   <div className="grid gap-4 sm:grid-cols-2 animate-fade-in-up">
-                    {intro.mission.map((m) => (
+                    {intro.mission.map((m: any) => (
                       <div key={m.slice(0, 20)} className="group relative overflow-hidden rounded-2xl bg-white p-4 sm:p-5 shadow-sm border border-slate-100 transition-all duration-300 hover:shadow-md hover:border-ksc-red/30 hover:-translate-y-1">
                         {/* Decorative corner shape */}
                         <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-ksc-sky/30 to-transparent rounded-bl-full -mr-8 -mt-8 transition-transform duration-500 group-hover:scale-150 pointer-events-none" />
@@ -83,7 +83,7 @@ export function VisionMissionValues() {
               }
               return (
                 <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-3 animate-fade-in-up">
-                  {intro.values.map((v, i) => (
+                  {intro.values.map((v: any, i: number) => (
                     <div key={v.title} className="group relative overflow-hidden rounded-2xl bg-white p-6 sm:p-8 shadow-sm border border-slate-100 transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
                       {/* Shadow Number */}
                       <div className="absolute -bottom-2 right-4 text-[100px] font-black text-slate-100/80 transition-colors duration-500 group-hover:text-white/10 pointer-events-none select-none leading-none z-0">

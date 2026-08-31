@@ -32,8 +32,8 @@ import { CustomCursor, MagneticButton, useScrollReveal } from "./SharedHooks";
 
 export function AdmissionSteps() {
   const { data: { pages, admission_steps: fallbackAdmissionSteps } } = useSiteData();
-  const ADMISSION_STEPS = pages?.home?.admission_steps || fallbackAdmissionSteps;
-  const STEPS = ADMISSION_STEPS.map((s, i) => ({ ...s, icon: [FileDown, ClipboardList, Wallet, Package][i] }));
+  const ADMISSION_STEPS = (pages?.home?.admission_steps || fallbackAdmissionSteps) as any[];
+  const STEPS = ADMISSION_STEPS.map((s: any, i: number) => ({ ...s, icon: [FileDown, ClipboardList, Wallet, Package][i] }));
 
   return (
     <section className="bg-slate-50 py-10 lg:py-16 border-t-4 border-ksc-yellow">
@@ -47,7 +47,7 @@ export function AdmissionSteps() {
           {/* Connecting Line for Desktop */}
           <div className="hidden lg:block absolute top-12 left-[10%] right-[10%] h-0.5 bg-slate-200 border-t-2 border-dashed border-slate-300" />
 
-          {STEPS.map((step) => {
+          {STEPS.map((step: any) => {
             const Icon = step.icon;
             return (
               <div key={step.step} className="group relative flex flex-col items-center text-center">

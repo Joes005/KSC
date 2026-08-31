@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { BookOpen, FileText, ExternalLink, Info } from "lucide-react";
+import { BookOpen, FileText, Download, Info } from "lucide-react";
 import { useSiteData } from "../services/SiteDataContext";
 import { Accordion } from "../components/common/Accordion";
 import { PageHeader } from "../components/common/PageHeader";
@@ -21,7 +21,7 @@ export function Curriculum() {
       />
 
       {/* How it works */}
-      <section className="bg-white py-10 lg:py-10 lg:py-16 reveal-section">
+      <section className="bg-white py-10 lg:py-16 reveal-section">
         <div className="container-site">
           <SectionHeading kicker="Study Pattern" title="How distance-education courses are structured" />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 mt-10">
@@ -41,67 +41,78 @@ export function Curriculum() {
       </section>
 
       {/* Per-university syllabus links */}
-      <section className="bg-slate-50/50 bg-dot-pattern py-10 lg:py-10 lg:py-16 reveal-section">
+      <section className="bg-slate-50/50 bg-dot-pattern py-10 lg:py-16 reveal-section">
         <div className="container-site">
           <SectionHeading
             kicker="Official Resources"
             title="Syllabus downloads by university"
-            subtitle="The definitive syllabus for every programme is published by the parent university. Use the links below to download the PDFs."
+            subtitle="Download the official syllabus and prospectus PDFs for each university directly below."
           />
           <div className="opacity-0 translate-y-12 transition-all duration-700 [.is-visible_&]:opacity-100 [.is-visible_&]:translate-y-0 delay-200 mt-10">
             <Accordion
               className="mx-auto max-w-3xl"
-            items={UNIVERSITIES.map((uni) => ({
-              id: uni.id,
-              title: `${uni.name} (${uni.shortName})`,
-              badge: "Syllabus",
-              content: (
-                <div className="space-y-4">
-                  <p className="text-sm text-ksc-ink/85">
-                    Official syllabus pages for programmes offered under {uni.academicYear}. Download
-                    the syllabus PDF for the programme you plan to pursue, or collect a printed copy at
-                    our centre.
-                  </p>
-                  <ul className="space-y-2 text-sm">
-                    <li>
-                      <a
-                        href={uni.exam.syllabusUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 font-semibold text-primary hover:text-ksc-green-mid"
-                      >
-                        <FileText className="h-4 w-4" /> {uni.name} — Syllabus PDFs
-                        <ExternalLink className="h-3.5 w-3.5" />
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href={uni.website ? `https://${uni.website}` : "#"}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 font-semibold text-primary hover:text-ksc-green-mid"
-                      >
-                        <ExternalLink className="h-4 w-4" /> Official website{uni.website ? "" : " (coming soon)"}
-                      </a>
-                    </li>
-                  </ul>
-                  {uni.id === "bdu" && (
-                    <p className="flex items-start gap-2 rounded-lg bg-white p-3 text-xs text-ksc-ink/70">
-                      <Info className="mt-0.5 h-4 w-4 shrink-0 text-ksc-gold" />
-                      BDU — course list &amp; eligibility for AY 2026-27 is also available as a PDF in
-                      the Downloads section on the Admissions page.
-                    </p>
-                  )}
-                  {uni.id === "alagappa" && (
-                    <p className="flex items-start gap-2 rounded-lg bg-white p-3 text-xs text-ksc-ink/70">
-                      <Info className="mt-0.5 h-4 w-4 shrink-0 text-ksc-gold" />
-                      ALU — the full CDOE prospectus (programmes, eligibility, syllabus, fee structure)
-                      is available as a PDF in the Downloads section on the Admissions page.
-                    </p>
-                  )}
-                </div>
-              ),
-            }))}
+              items={UNIVERSITIES.map((uni) => {
+                let downloadPdfPath = uni.exam.syllabusUrl || "/pdf/ALU-CDOE-Prospectus-AY-2026.pdf";
+                let downloadFilename = `${uni.shortName.replace(/\s+/g, "_")}_Syllabus_AY_2026.pdf`;
+
+                if (uni.id === "alagappa") {
+                  downloadPdfPath = "/pdf/ALU-CDOE-Prospectus-AY-2026.pdf";
+                  downloadFilename = "Alagappa_University_CDOE_Prospectus_Syllabus_AY_2026.pdf";
+                } else if (uni.id === "bdu") {
+                  downloadPdfPath = "/pdf/BDU-New-Sem-Pattern-Courses.pdf";
+                  downloadFilename = "BDU_New_Semester_Pattern_Courses_Syllabus.pdf";
+                }
+
+                return {
+                  id: uni.id,
+                  title: `${uni.name} (${uni.shortName})`,
+                  badge: "Syllabus PDF",
+                  content: (
+                    <div className="space-y-4">
+                      <p className="text-sm text-slate-700 leading-relaxed font-medium">
+                        Download the official syllabus and course prospectus PDF for {uni.name} ({uni.academicYear}). Collect printed copies at Karur Study Centre.
+                      </p>
+                      
+                      <div className="pt-2 flex flex-wrap gap-3">
+                        <a
+                          href={downloadPdfPath}
+                          download={downloadFilename}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn-gold inline-flex items-center gap-2.5 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-white shadow-md hover:shadow-lg transition-all"
+                        >
+                          <Download className="h-4 w-4" /> Download {uni.shortName} Syllabus &amp; Prospectus PDF
+                        </a>
+
+                        {uni.id === "bdu" && (
+                          <a
+                            href="/pdf/Bharathidasan_University_AY_2026-27_Admission_HD.pdf"
+                            download="Bharathidasan_University_AY_2026-27_Admission_Guide.pdf"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="btn-outline inline-flex items-center gap-2.5 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold shadow-sm hover:shadow-md transition-all"
+                          >
+                            <Download className="h-4 w-4" /> Download BDU Admission &amp; Course Guide PDF
+                          </a>
+                        )}
+                      </div>
+
+                      {uni.id === "bdu" && (
+                        <p className="flex items-start gap-2 rounded-xl bg-blue-50/70 border border-blue-100 p-3.5 text-xs text-slate-700 font-medium">
+                          <Info className="mt-0.5 h-4 w-4 shrink-0 text-ksc-royal" />
+                          BDU — Course list &amp; eligibility for AY 2026-27 is available for direct download using the buttons above.
+                        </p>
+                      )}
+                      {uni.id === "alagappa" && (
+                        <p className="flex items-start gap-2 rounded-xl bg-blue-50/70 border border-blue-100 p-3.5 text-xs text-slate-700 font-medium">
+                          <Info className="mt-0.5 h-4 w-4 shrink-0 text-ksc-royal" />
+                          Alagappa University (CDOE) — The complete prospectus with all programme syllabi, eligibility criteria, and fee structure is included in the PDF download above.
+                        </p>
+                      )}
+                    </div>
+                  ),
+                };
+              })}
             />
           </div>
 

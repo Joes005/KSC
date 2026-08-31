@@ -32,7 +32,7 @@ import { CustomCursor, MagneticButton, useScrollReveal } from "./SharedHooks";
 
 export function AboutSnapshot() {
   const { data: { pages, about_snapshot: fallbackAboutSnapshot } } = useSiteData();
-  const ABOUT_SNAPSHOT = pages?.home?.about_snapshot || fallbackAboutSnapshot;
+  const ABOUT_SNAPSHOT = (pages?.home?.about_snapshot || fallbackAboutSnapshot) as any;
 
   return (
     <section className="relative overflow-hidden bg-[#fff8e7] py-12 sm:py-16">
@@ -42,7 +42,7 @@ export function AboutSnapshot() {
           <div>
             <SectionHeading align="left" kicker="The value of learning" title="Education opens more than doors" subtitle="A recognised qualification can create confidence, independence and opportunity at every stage of life." />
             <div className="grid gap-4">
-              {ABOUT_SNAPSHOT.text?.map((para: string, i: number) => (
+              {ABOUT_SNAPSHOT.text?.map((para: any, i: number) => (
                 <div key={i} className="flex items-start gap-3 rounded-xl border border-ksc-navy/10 bg-white px-4 py-4 shadow-sm">
                   <span className="text-sm font-medium leading-6 text-slate-700">{para}</span>
                 </div>

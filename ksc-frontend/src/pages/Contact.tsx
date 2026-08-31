@@ -8,7 +8,7 @@ import { useScrollReveal } from "../components/home/SharedHooks";
 export function Contact() {
   const { data: { settings: SITE_CONFIG, pages } } = useSiteData();
   const { contact } = SITE_CONFIG;
-  const reach_centre = pages?.contact?.reach_centre;
+  const reach_centre = (pages?.contact?.reach_centre || {}) as any;
   
   useScrollReveal();
 

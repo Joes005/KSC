@@ -3,11 +3,12 @@ import { BookOpen, FileText, ExternalLink, Info } from "lucide-react";
 import { useSiteData } from "../services/SiteDataContext";
 import { Accordion } from "../components/common/Accordion";
 import { PageHeader } from "../components/common/PageHeader";
+import { SectionHeading } from "../components/common/SectionHeading";
 import { useScrollReveal } from "../components/home/SharedHooks";
 
 export function Curriculum() {
   const { data: { pages, curriculum: fallbackCurriculum, universities: UNIVERSITIES } } = useSiteData();
-  const CURRICULUM = pages?.curriculum?.content || fallbackCurriculum;
+  const CURRICULUM = (pages?.curriculum?.content || fallbackCurriculum) as any;
   
   useScrollReveal();
   
@@ -24,7 +25,7 @@ export function Curriculum() {
         <div className="container-site">
           <SectionHeading kicker="Study Pattern" title="How distance-education courses are structured" />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 mt-10">
-            {CURRICULUM.points.map(({ title, description }, i) => (
+            {CURRICULUM.points.map(({ title, description }: any, i: number) => (
               <div key={title} className="card-hover flex gap-4 p-6 opacity-0 translate-y-12 transition-all duration-700 [.is-visible_&]:opacity-100 [.is-visible_&]:translate-y-0" style={{ transitionDelay: `${i * 150}ms` }}>
                 <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-ksc-red/10 text-ksc-red">
                   <BookOpen className="h-5 w-5" />

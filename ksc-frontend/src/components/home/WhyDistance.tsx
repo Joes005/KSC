@@ -32,7 +32,7 @@ import { CustomCursor, MagneticButton, useScrollReveal } from "./SharedHooks";
 
 export function WhyDistance() {
   const { data: { pages, why_distance: fallbackWhyDistance } } = useSiteData();
-  const WHY_DISTANCE = pages?.home?.why_distance || fallbackWhyDistance;
+  const WHY_DISTANCE = (pages?.home?.why_distance || fallbackWhyDistance) as any;
   const [activeIndex, setActiveIndex] = useState(0);
   
   useScrollReveal();
@@ -54,7 +54,7 @@ export function WhyDistance() {
           </div>
 
           <div className="flex flex-col rounded-3xl bg-[#f8fbff] p-3 lg:col-span-7 border border-ksc-navy/5 shadow-soft">
-            {WHY_DISTANCE.map((item, index) => {
+            {WHY_DISTANCE.map((item: any, index: number) => {
               const isActive = index === activeIndex;
               return (
                 <div key={item.title} className="border-b border-slate-200 last:border-b-0 group">

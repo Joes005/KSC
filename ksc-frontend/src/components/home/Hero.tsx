@@ -108,7 +108,7 @@ export function UserUpdatePopup() {
 
 export function Hero() {
   const { data: { settings: SITE_CONFIG, pages, hero: fallbackHero } } = useSiteData();
-  const heroData = pages?.home?.hero || fallbackHero;
+  const heroData = (pages?.home?.hero || fallbackHero) as any;
   const [currentImage, setCurrentImage] = useState(0);
 
   useEffect(() => {

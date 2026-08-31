@@ -8,7 +8,7 @@ import { useScrollReveal } from "../components/home/SharedHooks";
 
 export function About() {
   const { data: { pages, about_snapshot: fallbackAboutPage } } = useSiteData();
-  const ABOUT_PAGE = pages?.about?.about_page || fallbackAboutPage;
+  const ABOUT_PAGE = (pages?.about?.about_page || fallbackAboutPage) as any;
   
   useScrollReveal();
   
@@ -41,7 +41,7 @@ export function About() {
                 />
               </div>
 
-              {ABOUT_PAGE.body.slice(1).map((para) => (
+              {ABOUT_PAGE.body.slice(1).map((para: any) => (
                 <p key={para.slice(0, 24)}>{para}</p>
               ))}
             </div>
@@ -83,7 +83,7 @@ export function About() {
             <div className="glass-panel p-6">
               <h3 className="text-xl font-bold text-ksc-navy mb-5">Membership &amp; Recognition</h3>
               <ul className="flex flex-col gap-4">
-                {ABOUT_PAGE.membership.map((m) => (
+                {ABOUT_PAGE.membership.map((m: any) => (
                   <li key={m} className="flex items-start gap-3 text-sm font-medium text-slate-600">
                     <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-ksc-yellow" />
                     <span className="leading-relaxed">{m}</span>
@@ -103,7 +103,7 @@ export function About() {
 
 function AboutDetail() {
   const { data: { pages, vision_mission: fallbackIntro } } = useSiteData();
-  const intro = pages?.home?.vision_mission || fallbackIntro;
+  const intro = (pages?.home?.vision_mission || fallbackIntro) as any;
 
   return (
     <section className="relative bg-white py-10 lg:py-10 lg:py-16 bg-dot-pattern reveal-section">
@@ -136,7 +136,7 @@ function AboutDetail() {
               if (activeId === "mission") {
                 return (
                   <div className="grid gap-4 sm:grid-cols-2 animate-fade-in-up">
-                    {intro.mission.map((m) => (
+                    {intro.mission.map((m: any) => (
                       <div key={m.slice(0, 20)} className="group relative overflow-hidden rounded-2xl bg-white p-4 sm:p-5 shadow-sm border border-slate-100 transition-all duration-300 hover:shadow-md hover:border-ksc-red/30 hover:-translate-y-1">
                         {/* Decorative corner shape */}
                         <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-ksc-sky/30 to-transparent rounded-bl-full -mr-8 -mt-8 transition-transform duration-500 group-hover:scale-150 pointer-events-none" />
@@ -154,7 +154,7 @@ function AboutDetail() {
               }
               return (
                 <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-3 animate-fade-in-up">
-                  {intro.values.map((v, i) => (
+                  {intro.values.map((v: any, i: number) => (
                     <div key={v.title} className="group relative overflow-hidden rounded-2xl bg-white p-6 sm:p-8 shadow-sm border border-slate-100 transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
                       {/* Shadow Number */}
                       <div className="absolute -bottom-2 right-4 text-[100px] font-black text-slate-100/80 transition-colors duration-500 group-hover:text-white/10 pointer-events-none select-none leading-none z-0">

@@ -1,39 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import { useSiteData } from "../../services/SiteDataContext";
-import { Link, useNavigate } from "react-router-dom";
-import {
-  ArrowRight,
-  CheckCircle2,
-  FileDown,
-  ClipboardList,
-  Wallet,
-  Package,
-  MapPin,
-  Phone,
-  X,
-  CalendarRange,
-  BookOpen,
-  Library,
-  Headphones,
-  MonitorPlay,
-  MapPinned,
-  MonitorSmartphone,
-  Building2,
-  Award,
-  Globe
-} from "lucide-react";
-import type { LucideIcon } from "lucide-react";
-import { SectionHeading } from "../../components/common/SectionHeading";
-import { StatCounter } from "../../components/common/StatCounter";
-import { Tabs } from "../../components/common/Tabs";
-import { Button } from "../../components/ui/Button";
-import { cn } from "../../utils/cn";
-import { CustomCursor, MagneticButton, useScrollReveal } from "./SharedHooks";
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 
-export function UniversityStrip() {
-  const { data: { universities: UNIVERSITIES } } = useSiteData();
-  return (
-    <section className="bg-slate-50 py-16 lg:py-16 border-t border-slate-200">
 export function UniversityStrip() {
   const { data: { universities: UNIVERSITIES } } = useSiteData();
   return (

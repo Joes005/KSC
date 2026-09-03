@@ -395,10 +395,10 @@ export const UNIVERSITY_LOGOS = [
 ];
 
 /* =========================================================================== */
-/* FORMS — placeholder submission endpoint (wire real endpoint later)          */
+/* FORMS                                                                        */
 /* =========================================================================== */
 
-export const FORM_ENDPOINT = "/api/contact"; // TODO: wire real backend endpoint
+export const FORM_ENDPOINT = "/api/contact"; // submissions land in the admin panel's "Enquiries" section
 
 export interface FormField {
   name: string;

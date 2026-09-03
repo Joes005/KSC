@@ -43,7 +43,8 @@ const ICON_MAP: Record<string, LucideIcon> = {
 };
 
 export function FacilitiesSpotlight() {
-  const { data: { facilities: FACILITIES } } = useSiteData();
+  const { data: { facilities: FACILITIES, pages } } = useSiteData();
+  const heading = ((pages?.home?.section_headings as any)?.facilities_spotlight || {}) as { kicker?: string; title?: string; subtitle?: string };
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const navigate = useNavigate();
@@ -103,9 +104,9 @@ export function FacilitiesSpotlight() {
       <div className="absolute top-0 right-0 w-1/3 h-full bg-ksc-navy/5 -skew-x-12 transform origin-top" />
       <div className="container-site relative z-10">
         <SectionHeading
-          kicker="Facilities & Services"
-          title="Everything you need under one roof"
-          subtitle="Admission guidance, study material, exam support — all from your local study centre."
+          kicker={heading.kicker || "Facilities & Services"}
+          title={heading.title || "Everything you need under one roof"}
+          subtitle={heading.subtitle || "Admission guidance, study material, exam support — all from your local study centre."}
         />
 
         <div className="mt-14 grid lg:grid-cols-2 gap-10 lg:gap-16 items-start max-w-7xl mx-auto">

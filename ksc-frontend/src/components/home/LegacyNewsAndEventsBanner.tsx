@@ -59,27 +59,6 @@ export function CtaBand() {
   );
 }
 
-export function UpdatesBar() {
-  const { data: { news_events: news } } = useSiteData();
-  const latest = news.slice(0, 2);
-  return (
-    <section className="border-b border-slate-200 bg-white">
-      <div className="container-site flex flex-col gap-4 py-5 lg:flex-row lg:items-center">
-        <div className="flex shrink-0 items-center gap-3">
-          <span className="rounded-full bg-ksc-red px-3 py-1.5 text-[10px] font-black uppercase tracking-[.2em] text-white">Latest updates</span>
-          <span className="hidden h-7 w-px bg-slate-200 lg:block" />
-        </div>
-        <div className="grid flex-1 gap-2 md:grid-cols-2">
-          {latest.map((item, index) => (
-            <p key={index} className="flex items-start gap-2 text-sm font-semibold text-slate-600"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-ksc-yellow" />{item.text}</p>
-          ))}
-        </div>
-        <Link to="/exam-update" className="inline-flex shrink-0 items-center gap-2 text-xs font-black uppercase tracking-wider text-ksc-navy hover:text-ksc-red">View all <ArrowRight className="h-4 w-4" /></Link>
-      </div>
-    </section>
-  );
-}
-
 export function NewsAndEventsBanner() {
   const { data: { news_events: newsEvents } } = useSiteData();
 
@@ -136,82 +115,4 @@ export function NewsAndEventsBanner() {
   );
 }
 
-export function LegacyNewsAndEventsBanner() {
-  const { data: { news_events: NEWS_EVENTS } } = useSiteData();
-
-  return (
-    <section className="bg-ksc-navy py-8 sm:py-12 border-y border-white/10 shadow-inner relative z-20">
-      <div className="w-full max-w-[96%] 2xl:max-w-[1400px] mx-auto px-2 sm:px-4 grid grid-cols-1 gap-8 lg:gap-12 md:grid-cols-12 md:items-center">
-
-        {/* Left: Poster */}
-        <div className="md:col-span-4 lg:col-span-3 flex justify-center md:justify-start pl-0 xl:pl-8">
-          <div className="relative overflow-hidden rounded-md shadow-xl bg-[#0070bc] text-white w-full max-w-[280px] p-4 text-center transform transition-transform hover:scale-105 border-4 border-white cursor-pointer">
-            <h4 className="text-yellow-400 font-black text-2xl leading-tight mb-2 uppercase drop-shadow-md tracking-tighter">
-              ADMISSION<br />OPEN <span className="text-3xl">2025-26</span>
-            </h4>
-            <div className="text-[10px] text-white/90 mb-3 tracking-widest uppercase font-semibold">Explore Top UG & PG Courses</div>
-            <div className="space-y-1 mt-2">
-              <div className="bg-yellow-400 text-blue-900 text-[10px] font-bold px-2 py-0.5 rounded-sm inline-block shadow mb-1">
-                UG Courses
-              </div>
-              <p className="text-[11px] font-bold tracking-widest border-b border-white/20 pb-2 mb-2">BA • B.Com • B.Sc • BBA</p>
-
-              <div className="bg-yellow-400 text-blue-900 text-[10px] font-bold px-2 py-0.5 rounded-sm inline-block shadow mb-1 mt-1">
-                PG Courses
-              </div>
-              <p className="text-[11px] font-bold tracking-widest pb-3">MBA • MA • M.Com • M.Sc</p>
-            </div>
-            <div className="mt-2 pb-2">
-              <span className="bg-yellow-400 text-blue-900 text-xs font-black px-6 py-1.5 rounded-full uppercase shadow-lg shadow-black/20 hover:bg-white/5 transition-colors">
-                Apply Now
-              </span>
-            </div>
-          </div>
-        </div>
-
-        {/* Center: News List */}
-        <div className="md:col-span-4 lg:col-span-6 flex flex-col items-center text-center space-y-4 px-2 xl:px-8">
-          <h2 className="text-2xl sm:text-[32px] font-extrabold text-white tracking-tight drop-shadow-sm pb-3 border-b-2 border-white/10 w-full sm:w-4/5">
-            News & Events
-          </h2>
-          <div className="relative w-full h-[140px] overflow-hidden group">
-            {/* Gradient masks for smooth fading at top and bottom */}
-            <div className="absolute top-0 left-0 w-full h-8 bg-gradient-to-b from-ksc-navy to-transparent z-10 pointer-events-none"></div>
-            <div className="absolute bottom-0 left-0 w-full h-8 bg-gradient-to-t from-ksc-navy to-transparent z-10 pointer-events-none"></div>
-
-            <div className="space-y-6 w-full flex flex-col items-center animate-marqueeVertical hover:[animation-play-state:paused] pt-8 pb-8">
-              {[...NEWS_EVENTS, ...NEWS_EVENTS].map((news, i) => (
-                <p key={i} className={`text-base sm:text-[18px] lg:text-[19px] leading-relaxed cursor-pointer hover:underline underline-offset-4 px-4 sm:px-8 max-w-2xl ${i % NEWS_EVENTS.length === 0 ? "text-white font-bold" : "text-white/80 font-semibold"}`}>
-                  {news.text}
-                </p>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Right: Notice Board */}
-        <div className="md:col-span-4 lg:col-span-3 flex justify-center md:justify-end pr-0 xl:pr-8">
-          <div className="relative flex flex-col items-center transform transition-transform hover:rotate-2 hover:scale-105 cursor-pointer mt-4 md:mt-0">
-            {/* Pin */}
-            <div className="absolute -top-1.5 z-20 w-3.5 h-3.5 rounded-full bg-red-600 shadow-[2px_3px_5px_rgba(0,0,0,0.4)] border border-red-800">
-              <div className="absolute top-[2px] left-[2px] w-1 h-1 bg-white/5/60 rounded-full"></div>
-            </div>
-            {/* Strings */}
-            <svg className="absolute top-0 z-10 w-[120px] h-[45px]" viewBox="0 0 100 50">
-              <path d="M50 0 L15 45" stroke="#737373" strokeWidth="2" fill="none" />
-              <path d="M50 0 L85 45" stroke="#737373" strokeWidth="2" fill="none" />
-            </svg>
-            {/* Board */}
-            <div className="mt-[36px] bg-gradient-to-br from-[#2E4A22] to-[#1E3016] border-[8px] border-[#a3a3a3] rounded-lg p-5 shadow-2xl relative z-10 min-w-[160px] shadow-black/30">
-              <h3 className="text-[#f1f5f9] font-serif font-bold text-center leading-snug drop-shadow-md text-[18px] tracking-wide">
-                NEWS<br />&amp; EVENTS
-              </h3>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-  );
-}
 

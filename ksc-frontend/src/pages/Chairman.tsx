@@ -9,11 +9,12 @@ export function Chairman() {
   const displayImage = imageUrl?.startsWith('http') || imageUrl?.startsWith('/assets') 
     ? imageUrl 
     : `${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/storage/${imageUrl}`;
+  const bannerImage = (pages?.chairman?.banner as any)?.image || "/assets/gallery/ksc-06.jpg";
 
   return (
     <>
       {/* Page header */}
-      <PageHeader bgImage="/assets/gallery/ksc-06.jpg" 
+      <PageHeader bgImage={bannerImage}
         title="Chairman Message" 
         breadcrumb={[{ label: "Home", to: "/" }, { label: "Chairman Message" }]} 
       />
@@ -34,7 +35,7 @@ export function Chairman() {
 
           {/* Message */}
           <div className="md:col-span-2">
-            <SectionHeading align="left" kicker="Chairman Message" title="With the community, for the community" />
+            <SectionHeading align="left" kicker={chairmanMsg.title || "Chairman Message"} title={chairmanMsg.subtitle || "With the community, for the community"} />
             <blockquote className="rounded-r-2xl border-l-4 border-ksc-yellow bg-white p-7 shadow-sm">
               <p className="text-base sm:text-lg leading-relaxed text-slate-800 font-medium">{chairmanMsg.message || chairmanMsg.content}</p>
             </blockquote>

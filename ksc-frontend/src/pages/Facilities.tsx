@@ -28,11 +28,17 @@ const ICON_MAP: Record<string, LucideIcon> = {
 };
 
 export function Facilities() {
-  const { data: { facilities: FACILITIES, settings: SITE_CONFIG } } = useSiteData();
+  const { data: { facilities: FACILITIES, settings: SITE_CONFIG, pages } } = useSiteData();
+  const banner = (pages?.facilities?.banner as any) || {};
+  const photoStrip: string[] = Array.isArray(banner.strip) && banner.strip.length
+    ? banner.strip
+    : ["/assets/gallery/ksc-06.jpg", "/assets/gallery/ksc-07.jpg", "/assets/gallery/ksc-09.jpg", "/assets/gallery/ksc-11.jpg"];
+  const gridHeading = (pages?.facilities?.grid_heading as any) || {};
+  const stripHeading = (pages?.facilities?.strip_heading as any) || {};
   return (
     <>
       {/* Page header */}
-      <PageHeader bgImage="/assets/gallery/ksc-11.jpg" 
+      <PageHeader bgImage={banner.image || "/assets/gallery/ksc-11.jpg"}
         title={`Facilities & Services at ${SITE_CONFIG.shortName}`} 
         breadcrumb={[{ label: "Home", to: "/" }, { label: "Facilities" }]} 
       />
@@ -41,9 +47,9 @@ export function Facilities() {
       <section className="bg-slate-50 py-10 sm:py-12 lg:py-16 border-b-4 border-ksc-red">
         <div className="container-site">
           <SectionHeading
-            kicker="What We Provide"
-            title="Support that follows you through the whole degree"
-            subtitle="From the day you walk in to the day your degree is conferred, our centre is with you."
+            kicker={gridHeading.kicker || "What We Provide"}
+            title={gridHeading.title || "Support that follows you through the whole degree"}
+            subtitle={gridHeading.subtitle || "From the day you walk in to the day your degree is conferred, our centre is with you."}
           />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 mt-10">
             {FACILITIES.map(({ icon, image, title, description }) => {
@@ -72,17 +78,12 @@ export function Facilities() {
       <section className="bg-white py-10 sm:py-12 lg:py-16 border-b-4 border-ksc-yellow">
         <div className="container-site">
           <SectionHeading
-            kicker="Inside Our Center"
-            title="Walk through Karur Study Center"
-            subtitle="Front office, study-material storage, counselling and learning spaces — everything you need is close at hand."
+            kicker={stripHeading.kicker || "Inside Our Center"}
+            title={stripHeading.title || "Walk through Karur Study Center"}
+            subtitle={stripHeading.subtitle || "Front office, study-material storage, counselling and learning spaces — everything you need is close at hand."}
           />
           <div className="grid grid-cols-2 gap-6 md:grid-cols-4 mt-12">
-            {[
-              "/assets/gallery/ksc-06.jpg",
-              "/assets/gallery/ksc-07.jpg",
-              "/assets/gallery/ksc-09.jpg",
-              "/assets/gallery/ksc-11.jpg",
-            ].map((src, i) => (
+            {photoStrip.map((src, i) => (
               <div key={i} className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-md">
                 <div className="aspect-[4/3] overflow-hidden">
                   <img

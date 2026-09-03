@@ -151,7 +151,7 @@ function mapUniversities(list: any[]): University[] {
         note: u.exam_note || "",
         hallTicketUrl: u.exam_hall_ticket_url || "",
         timetableUrl: u.exam_timetable_url || "",
-        syllabusUrl: u.exam_syllabus_url || "",
+        syllabusUrl: u.exam_syllabus_url ? toAsset(u.exam_syllabus_url) : "",
       },
     };
   });
@@ -177,6 +177,23 @@ export async function fetchSiteData() {
   const flat = api.settings ?? {};
   const pages = api.pages ?? {};
 
+  // Every PageContent section that has a plain `image` string field (banners,
+  // message photos, etc.) needs its storage-relative path resolved to a URL.
+  for (const pageSlug of Object.keys(pages)) {
+    for (const sectionKey of Object.keys(pages[pageSlug] ?? {})) {
+      const section = pages[pageSlug][sectionKey] as any;
+      if (!section || typeof section !== "object" || Array.isArray(section)) continue;
+      for (const imageKey of ["image", "secondary_image"]) {
+        if (typeof section[imageKey] === "string" && section[imageKey]) {
+          section[imageKey] = toAsset(section[imageKey]);
+        }
+      }
+      if (Array.isArray(section.strip)) {
+        section.strip = section.strip.map((p: string) => toAsset(p)).filter(Boolean);
+      }
+    }
+  }
+
   const universitiesApi = Array.isArray(api.universities) && api.universities.length
     ? mapUniversities(api.universities)
     : UNIVERSITIES;
@@ -199,8 +216,29 @@ export async function fetchSiteData() {
   });
   if (reachCentre?.image) reachCentre.image = toAsset(reachCentre.image);
 
+  const settings: any = applySettings(SITE_CONFIG, flat);
+  const logoPathRaw = flat["site.branding.logo_source"];
+  if (logoPathRaw) {
+    settings.branding.logoSource = toAsset(logoPathRaw);
+    settings.branding.useImage = true;
+  }
+  if (Array.isArray(flat["site.nav_items"]) && flat["site.nav_items"].length) {
+    settings.navItems = flat["site.nav_items"];
+  }
+  settings.footer = {
+    quickLinks: Array.isArray(flat["footer.quick_links"]) ? flat["footer.quick_links"] : [],
+    programmeLinks: Array.isArray(flat["footer.programme_links"]) ? flat["footer.programme_links"] : [],
+    supportLinks: Array.isArray(flat["footer.support_links"]) ? flat["footer.support_links"] : [],
+  };
+
+  // Hero banner photos are a list (not a single `image` field), so resolve separately.
+  const heroSection = pages?.home?.hero as any;
+  if (Array.isArray(heroSection?.images)) {
+    heroSection.images = heroSection.images.map((p: string) => toAsset(p)).filter(Boolean);
+  }
+
   return {
-    settings: applySettings(SITE_CONFIG, flat),
+    settings,
     news_events: Array.isArray(api.news_events) && api.news_events.length
       ? mapNews(api.news_events)
       : NEWS_EVENTS,

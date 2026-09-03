@@ -9,13 +9,14 @@ import { useScrollReveal } from "../components/home/SharedHooks";
 export function About() {
   const { data: { pages, about_snapshot: fallbackAboutPage } } = useSiteData();
   const ABOUT_PAGE = (pages?.about?.about_page || fallbackAboutPage) as any;
-  
+  const bannerImage = (pages?.about?.banner as any)?.image || "/assets/images/about-students.png";
+
   useScrollReveal();
-  
+
   return (
     <>
       {/* Page header */}
-      <PageHeader bgImage="/assets/images/about-students.png"
+      <PageHeader bgImage={bannerImage}
         title="About Us"
         breadcrumb={[{ label: "Home", to: "/" }, { label: "About Us" }]}
       />
@@ -27,15 +28,15 @@ export function About() {
           <div className="lg:col-span-2 opacity-0 translate-x-[-20px] transition-all duration-700 [.is-visible_&]:opacity-100 [.is-visible_&]:translate-x-0 delay-100">
             <SectionHeading
               align="left"
-              kicker="Who We Are"
-              title="Your local bridge to open-university education"
+              kicker={ABOUT_PAGE.heading?.kicker || "Who We Are"}
+              title={ABOUT_PAGE.heading?.title || "Your local bridge to open-university education"}
             />
             <div className="space-y-5 leading-relaxed text-slate-700 font-medium text-sm sm:text-base mt-6">
               <p>{ABOUT_PAGE.body[0]}</p>
 
               <div className="my-10 overflow-hidden rounded-3xl shadow-lift border border-slate-200 p-2 bg-white">
                 <img
-                  src="/assets/images/about-students.png"
+                  src={ABOUT_PAGE.image || "/assets/images/about-students.png"}
                   alt="Happy students at Karur Study Centre"
                   className="w-full h-auto rounded-2xl object-cover transform hover:scale-105 transition-transform duration-700"
                 />
@@ -104,11 +105,12 @@ export function About() {
 function AboutDetail() {
   const { data: { pages, vision_mission: fallbackIntro } } = useSiteData();
   const intro = (pages?.home?.vision_mission || fallbackIntro) as any;
+  const heading = ((pages?.home?.section_headings as any)?.vision_mission || {}) as { kicker?: string; title?: string };
 
   return (
     <section className="relative bg-white py-10 lg:py-10 lg:py-16 bg-dot-pattern reveal-section">
       <div className="container-site opacity-0 translate-y-12 transition-all duration-700 [.is-visible_&]:opacity-100 [.is-visible_&]:translate-y-0">
-        <SectionHeading kicker="Our Foundation" title="Vision · Mission · Values" />
+        <SectionHeading kicker={heading.kicker || "Our Foundation"} title={heading.title || "Vision · Mission · Values"} />
         <div className="mx-auto max-w-6xl mt-8">
           <Tabs
             tabs={[

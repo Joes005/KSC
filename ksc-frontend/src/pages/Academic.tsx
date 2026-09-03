@@ -102,16 +102,17 @@ function UniversityProgrammes({ uni }: { uni: University }) {
 }
 
 export function Academic() {
-  const { data: { universities: UNIVERSITIES } } = useSiteData();
-  
+  const { data: { universities: UNIVERSITIES, pages } } = useSiteData();
+  const banner = (pages?.academic?.banner as any) || {};
+
   useScrollReveal();
-  
+
   return (
     <>
       {/* Page header */}
-      <PageHeader bgImage="/assets/gallery/ksc-09.jpg" 
-        title="Programmes by University" 
-        breadcrumb={[{ label: "Home", to: "/" }, { label: "Academic Programmes" }]} 
+      <PageHeader bgImage={banner.image || "/assets/gallery/ksc-09.jpg"}
+        title="Programmes by University"
+        breadcrumb={[{ label: "Home", to: "/" }, { label: "Academic Programmes" }]}
       />
 
       {/* Quick university jump nav */}
@@ -166,9 +167,9 @@ export function Academic() {
             </div>
             <div className="order-1 lg:order-2">
               <div className="overflow-hidden rounded-2xl shadow-xl">
-                <img loading="lazy" 
-                  src="/assets/user-photos/study-materials.jpg" 
-                  alt="Study Materials" 
+                <img loading="lazy"
+                  src={banner.secondary_image || "/assets/user-photos/study-materials.jpg"}
+                  alt="Study Materials"
                   className="w-full h-[300px] object-cover transform hover:scale-105 transition-transform duration-700" 
                 />
               </div>

@@ -26,8 +26,19 @@ class SiteDataController extends Controller
             return [$pageSlug => $sections];
         });
 
+        $settings = SiteSetting::all()->mapWithKeys(function ($setting) {
+            $value = $setting->value;
+            if (is_string($value) && in_array(substr(trim($value), 0, 1), ['[', '{'], true)) {
+                $decoded = json_decode($value, true);
+                if (json_last_error() === JSON_ERROR_NONE) {
+                    $value = $decoded;
+                }
+            }
+            return [$setting->key => $value];
+        });
+
         return response()->json([
-            'settings' => SiteSetting::pluck('value', 'key'),
+            'settings' => $settings,
             'news_events' => NewsEvent::where('is_active', true)->orderByDesc('created_at')->get(),
             'facilities' => Facility::orderBy('id')->get(),
             'gallery_images' => GalleryImage::orderBy('sort_order')->get(),

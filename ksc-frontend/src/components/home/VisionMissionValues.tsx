@@ -33,11 +33,12 @@ import { CustomCursor, MagneticButton, useScrollReveal } from "./SharedHooks";
 export function VisionMissionValues() {
   const { data: { pages, vision_mission: fallbackIntro } } = useSiteData();
   const intro = (pages?.home?.vision_mission || fallbackIntro) as any;
+  const heading = ((pages?.home?.section_headings as any)?.vision_mission || {}) as { kicker?: string; title?: string };
 
   return (
     <section className="relative bg-slate-50 py-12 sm:py-16 lg:py-16 border-t border-slate-100">
       <div className="container-site">
-        <SectionHeading kicker="Our Foundation" title="Vision · Mission · Values" />
+        <SectionHeading kicker={heading.kicker || "Our Foundation"} title={heading.title || "Vision · Mission · Values"} />
         <div className="mx-auto max-w-6xl">
           <Tabs
             tabs={[

@@ -16,8 +16,9 @@ import { ProgrammeCards } from "../components/common/ProgrammeCards";
 
 export function University() {
   const { id } = useParams<{ id: string }>();
-  const { data: { universities: UNIVERSITIES, settings: SITE_CONFIG } } = useSiteData();
+  const { data: { universities: UNIVERSITIES, settings: SITE_CONFIG, pages } } = useSiteData();
   const uni = UNIVERSITIES.find((u) => u.id === id);
+  const bannerImage = (pages?.university?.banner as any)?.image || "/assets/gallery/tnou-ay2026.jpg";
 
   if (!uni) {
     return <Navigate to="/academic" replace />;
@@ -26,7 +27,7 @@ export function University() {
   return (
     <>
       {/* Page header */}
-      <PageHeader bgImage="/assets/gallery/tnou-ay2026.jpg"
+      <PageHeader bgImage={bannerImage}
         title={uni.shortName}
         breadcrumb={[
           { label: "Home", to: "/" },

@@ -18,9 +18,9 @@ class UserUpdatePosterResource extends Resource
     protected static ?string $model = UserUpdatePoster::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-megaphone';
-    protected static ?string $navigationGroup = 'Page Contents';
-    protected static ?int $navigationSort = 1;
-    protected static ?string $navigationLabel = 'User Update Posters';
+    protected static ?string $navigationGroup = 'Home Page';
+    protected static ?int $navigationSort = 3;
+    protected static ?string $navigationLabel = 'Homepage Popup Posters';
     protected static ?string $modelLabel = 'User Update Poster';
 
     public static function form(Form $form): Form

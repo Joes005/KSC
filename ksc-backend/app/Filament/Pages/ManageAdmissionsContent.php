@@ -11,6 +11,10 @@ use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Toggle;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TagsInput;
 use Filament\Notifications\Notification;
 
 class ManageAdmissionsContent extends Page implements HasForms
@@ -28,10 +32,14 @@ class ManageAdmissionsContent extends Page implements HasForms
     {
         $header = PageContent::where('page_slug', 'admissions')->where('section_key', 'header')->first();
         $eligibility = PageContent::where('page_slug', 'admissions')->where('section_key', 'eligibility_summary')->first();
+        $sectionHeadings = PageContent::where('page_slug', 'admissions')->where('section_key', 'section_headings')->first();
+        $applicationFields = PageContent::where('page_slug', 'admissions')->where('section_key', 'application_fields')->first();
 
         $this->form->fill([
             'header' => $header ? $header->content : [],
             'eligibility_summary' => $eligibility ? $eligibility->content : [],
+            'section_headings' => $sectionHeadings ? $sectionHeadings->content : [],
+            'application_fields' => $applicationFields ? $applicationFields->content : [],
         ]);
     }
 
@@ -57,6 +65,62 @@ class ManageAdmissionsContent extends Page implements HasForms
                                 ->collapsible()
                                 ->columnSpanFull(),
                         ]),
+                    Tabs\Tab::make('Other Section Headings')
+                        ->schema([
+                            Section::make('Admission Steps Section')
+                                ->schema([
+                                    TextInput::make('section_headings.steps.kicker')->label('Kicker'),
+                                    TextInput::make('section_headings.steps.title')->label('Title'),
+                                ])->columns(2)->collapsible(),
+                            Section::make('Prospectus Downloads Section')
+                                ->schema([
+                                    TextInput::make('section_headings.downloads.kicker')->label('Kicker'),
+                                    TextInput::make('section_headings.downloads.title')->label('Title'),
+                                    Textarea::make('section_headings.downloads.subtitle')->label('Subtitle')->rows(2),
+                                ])->columns(3)->collapsible(),
+                            Section::make('Eligibility Section')
+                                ->schema([
+                                    TextInput::make('section_headings.eligibility.kicker')->label('Kicker'),
+                                    TextInput::make('section_headings.eligibility.title')->label('Title'),
+                                ])->columns(2)->collapsible(),
+                            Section::make('Application Form Section')
+                                ->schema([
+                                    TextInput::make('section_headings.apply_form.kicker')->label('Kicker'),
+                                    TextInput::make('section_headings.apply_form.title')->label('Title'),
+                                    Textarea::make('section_headings.apply_form.subtitle')->label('Subtitle')->rows(2),
+                                ])->columns(3)->collapsible(),
+                            Section::make('Universities Sidebar Section')
+                                ->schema([
+                                    TextInput::make('section_headings.universities_sidebar.kicker')->label('Kicker'),
+                                    TextInput::make('section_headings.universities_sidebar.title')->label('Title'),
+                                ])->columns(2)->collapsible(),
+                        ]),
+                    Tabs\Tab::make('Application Form Fields')
+                        ->schema([
+                            Repeater::make('application_fields')
+                                ->label('Form Fields')
+                                ->helperText('The fields shown in the "Start your application" form on this page.')
+                                ->schema([
+                                    TextInput::make('name')->required(),
+                                    TextInput::make('label')->required(),
+                                    Select::make('type')
+                                        ->options([
+                                            'text' => 'Text',
+                                            'tel' => 'Telephone',
+                                            'email' => 'Email',
+                                            'textarea' => 'Textarea',
+                                            'select' => 'Select Dropdown',
+                                        ])->required(),
+                                    TextInput::make('placeholder'),
+                                    Toggle::make('required')->inline(false),
+                                    TagsInput::make('options')
+                                        ->label('Dropdown Options (if type is select)')
+                                        ->columnSpanFull(),
+                                ])
+                                ->columns(2)
+                                ->collapsible()
+                                ->columnSpanFull(),
+                        ]),
                 ])
             ])
             ->statePath('data');
@@ -78,6 +142,20 @@ class ManageAdmissionsContent extends Page implements HasForms
             PageContent::updateOrCreate(
                 ['page_slug' => 'admissions', 'section_key' => 'eligibility_summary'],
                 ['content' => $data['eligibility_summary']]
+            );
+        }
+
+        if (isset($data['section_headings'])) {
+            PageContent::updateOrCreate(
+                ['page_slug' => 'admissions', 'section_key' => 'section_headings'],
+                ['content' => $data['section_headings']]
+            );
+        }
+
+        if (isset($data['application_fields'])) {
+            PageContent::updateOrCreate(
+                ['page_slug' => 'admissions', 'section_key' => 'application_fields'],
+                ['content' => array_values($data['application_fields'])]
             );
         }
 

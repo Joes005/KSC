@@ -30,6 +30,23 @@ const TwitterXIcon = (props: React.SVGProps<SVGSVGElement>) => (
 export function Footer() {
   const { data: { settings: SITE_CONFIG, universities: UNIVERSITIES, branches: BRANCHES } } = useSiteData();
   const { contact, socials } = SITE_CONFIG;
+  const footerLinks = (SITE_CONFIG as any).footer as { quickLinks: Array<{ label: string; to: string }>; programmeLinks: Array<{ label: string; to: string }>; supportLinks: Array<{ label: string; to: string }> };
+  const quickLinks = footerLinks?.quickLinks?.length ? footerLinks.quickLinks : [
+    { label: "Home", to: "/" },
+    { label: "About Us", to: "/about" },
+    { label: "Gallery", to: "/gallery" },
+    { label: "Contact Us", to: "/contact" },
+  ];
+  const programmeLinks = footerLinks?.programmeLinks?.length ? footerLinks.programmeLinks : [
+    { label: "TNOU Courses", to: "/academic#tnou" },
+    { label: "BDU Courses", to: "/academic#bdu" },
+    { label: "ALU Courses", to: "/academic#alagappa" },
+    { label: `Admissions ${new Date().getFullYear()}`, to: "/admissions" },
+  ];
+  const supportLinks = footerLinks?.supportLinks?.length ? footerLinks.supportLinks : [
+    { label: "Exam Updates", to: "/exam-update" },
+    { label: "Facilities", to: "/facilities" },
+  ];
 
   return (
     <footer className="bg-ksc-navy text-white animate-fade-in-up delay-200">
@@ -154,26 +171,25 @@ export function Footer() {
           <div>
             <h4 className="mb-6 text-sm font-bold uppercase tracking-wider text-ksc-yellow">Quick Links</h4>
             <ul className="space-y-4 text-sm text-slate-300">
-              <li><Link to="/" className="transition-colors hover:text-white flex items-center gap-2"><span className="text-ksc-red">▶</span> Home</Link></li>
-              <li><Link to="/about" className="transition-colors hover:text-white flex items-center gap-2"><span className="text-ksc-red">▶</span> About Us</Link></li>
-              <li><Link to="/gallery" className="transition-colors hover:text-white flex items-center gap-2"><span className="text-ksc-red">▶</span> Gallery</Link></li>
-              <li><Link to="/contact" className="transition-colors hover:text-white flex items-center gap-2"><span className="text-ksc-red">▶</span> Contact Us</Link></li>
+              {quickLinks.map((link) => (
+                <li key={link.to}><Link to={link.to} className="transition-colors hover:text-white flex items-center gap-2"><span className="text-ksc-red">▶</span> {link.label}</Link></li>
+              ))}
             </ul>
           </div>
           <div>
             <h4 className="mb-6 text-sm font-bold uppercase tracking-wider text-ksc-yellow">Programmes</h4>
             <ul className="space-y-4 text-sm text-slate-300">
-              <li><Link to="/academic#tnou" className="transition-colors hover:text-white flex items-center gap-2"><span className="text-ksc-red">▶</span> TNOU Courses</Link></li>
-              <li><Link to="/academic#bdu" className="transition-colors hover:text-white flex items-center gap-2"><span className="text-ksc-red">▶</span> BDU Courses</Link></li>
-              <li><Link to="/academic#alagappa" className="transition-colors hover:text-white flex items-center gap-2"><span className="text-ksc-red">▶</span> ALU Courses</Link></li>
-              <li><Link to="/admissions" className="transition-colors hover:text-white text-white font-bold flex items-center gap-2"><span className="text-ksc-yellow">▶</span> Admissions {new Date().getFullYear()}</Link></li>
+              {programmeLinks.map((link) => (
+                <li key={link.to}><Link to={link.to} className="transition-colors hover:text-white flex items-center gap-2"><span className="text-ksc-red">▶</span> {link.label}</Link></li>
+              ))}
             </ul>
           </div>
           <div className="col-span-2 sm:col-span-1">
             <h4 className="mb-6 text-sm font-bold uppercase tracking-wider text-ksc-yellow">Support</h4>
             <ul className="space-y-4 text-sm text-slate-300">
-              <li><Link to="/exam-update" className="transition-colors hover:text-white flex items-center gap-2"><span className="text-ksc-red">▶</span> Exam Updates</Link></li>
-              <li><Link to="/facilities" className="transition-colors hover:text-white flex items-center gap-2"><span className="text-ksc-red">▶</span> Facilities</Link></li>
+              {supportLinks.map((link) => (
+                <li key={link.to}><Link to={link.to} className="transition-colors hover:text-white flex items-center gap-2"><span className="text-ksc-red">▶</span> {link.label}</Link></li>
+              ))}
               <li>
                 <a href={`https://wa.me/${contact.whatsapp}`} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 transition-all bg-ksc-red hover:bg-red-700 rounded-lg px-4 py-2.5 mt-2 text-white shadow-sm hover:-translate-y-0.5">
                   <MessageCircle className="h-4 w-4" /> WhatsApp Help

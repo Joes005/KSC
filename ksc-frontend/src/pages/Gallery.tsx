@@ -5,15 +5,16 @@ import { PageHeader } from "../components/common/PageHeader";
 import { useScrollReveal } from "../components/home/SharedHooks";
 
 export function Gallery() {
-  const { data: { gallery_images: GALLERY, settings: SITE_CONFIG } } = useSiteData();
+  const { data: { gallery_images: GALLERY, settings: SITE_CONFIG, pages } } = useSiteData();
   const [lightbox, setLightbox] = useState<number | null>(null);
-  
+  const bannerImage = (pages?.gallery?.banner as any)?.image || "/assets/gallery/ksc-01.jpg";
+
   useScrollReveal();
 
   return (
     <>
       {/* Page header */}
-      <PageHeader bgImage="/assets/gallery/ksc-01.jpg" 
+      <PageHeader bgImage={bannerImage}
         title={`Inside ${SITE_CONFIG.shortName}`} 
         breadcrumb={[{ label: "Home", to: "/" }, { label: "Gallery" }]} 
       />

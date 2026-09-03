@@ -25,7 +25,8 @@ class ManageContactContent extends Page implements HasForms
     protected static ?string $navigationIcon = 'heroicon-o-phone';
     protected static string $view = 'filament.pages.manage-contact-content';
     protected static ?string $navigationGroup = 'Contact Page';
-    protected static ?string $navigationLabel = 'Contact Content';
+    protected static ?string $navigationLabel = 'Contact Page Content';
+    protected static ?int $navigationSort = 1;
 
     public ?array $data = [];
 

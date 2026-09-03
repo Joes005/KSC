@@ -6,6 +6,7 @@ use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationGroup;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -34,6 +35,24 @@ class AdminPanelProvider extends PanelProvider
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
                 Pages\Dashboard::class,
+            ])
+            // Ordered to match the live site's actual page order (Home -> About ->
+            // Academic -> Facilities -> Curriculum -> Gallery -> Exam Update ->
+            // Contact -> Admissions), with Enquiries and the two cross-page setup
+            // screens pinned to the top. Filament sorts groups alphabetically otherwise.
+            ->navigationGroups([
+                NavigationGroup::make('Enquiries'),
+                NavigationGroup::make('Global Settings'),
+                NavigationGroup::make('Page Banner Photos'),
+                NavigationGroup::make('Home Page'),
+                NavigationGroup::make('About Page'),
+                NavigationGroup::make('Academic Page'),
+                NavigationGroup::make('Facilities Page'),
+                NavigationGroup::make('Curriculum Page'),
+                NavigationGroup::make('Gallery Page'),
+                NavigationGroup::make('Exam Update Page'),
+                NavigationGroup::make('Contact Page'),
+                NavigationGroup::make('Admissions Page'),
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([

@@ -10,7 +10,7 @@ interface NavItem {
   path: string;
 }
 
-const NAV_ITEMS: NavItem[] = [
+const DEFAULT_NAV_ITEMS: NavItem[] = [
   { label: "Home", path: "/" },
   { label: "About", path: "/about" },
   { label: "Academics", path: "/academic" },
@@ -20,6 +20,9 @@ const NAV_ITEMS: NavItem[] = [
 
 export function Header() {
   const { data: { settings: SITE_CONFIG } } = useSiteData();
+  const navItems: NavItem[] = Array.isArray((SITE_CONFIG as any).navItems) && (SITE_CONFIG as any).navItems.length
+    ? (SITE_CONFIG as any).navItems
+    : DEFAULT_NAV_ITEMS;
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -95,7 +98,7 @@ export function Header() {
 
         {/* Desktop nav */}
         <nav className="hidden items-center justify-center gap-1 2xl:gap-2 xl:flex" aria-label="Primary">
-          {NAV_ITEMS.map((item) => {
+          {navItems.map((item) => {
             return (
               <NavLink 
                 key={item.label} 
@@ -155,7 +158,7 @@ export function Header() {
       {mobileOpen && (
         <div className="xl:hidden border-t border-white/10 bg-ksc-navy/95 backdrop-blur-md absolute left-0 top-full w-full shadow-2xl">
           <nav className="container-site flex flex-col py-4" aria-label="Mobile">
-            {NAV_ITEMS.map((item) => {
+            {navItems.map((item) => {
               return (
                 <NavLink
                   key={item.label}

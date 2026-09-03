@@ -31,15 +31,16 @@ import { cn } from "../../utils/cn";
 import { CustomCursor, MagneticButton, useScrollReveal } from "./SharedHooks";
 
 export function UniversityCourses() {
-  const { data: { universities: UNIVERSITIES } } = useSiteData();
+  const { data: { universities: UNIVERSITIES, pages } } = useSiteData();
+  const heading = ((pages?.home?.section_headings as any)?.university_courses || {}) as { kicker?: string; title?: string; subtitle?: string };
   useScrollReveal();
   return (
     <section className="bg-slate-50 py-10 lg:py-16 border-t border-slate-100 reveal-section" id="programmes">
       <div className="container-site">
         <SectionHeading
-          kicker="Programmes Offered"
-          title="Choose your university, choose your course"
-          subtitle="One tab per affiliated university. Browse the programme categories each university offers under distance education."
+          kicker={heading.kicker || "Programmes Offered"}
+          title={heading.title || "Choose your university, choose your course"}
+          subtitle={heading.subtitle || "One tab per affiliated university. Browse the programme categories each university offers under distance education."}
         />
         <Tabs
           tabs={UNIVERSITIES.map((u) => ({ id: u.id, label: u.shortName }))}

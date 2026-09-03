@@ -18,7 +18,7 @@ class GalleryImageResource extends Resource
     protected static ?string $model = GalleryImage::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    protected static ?string $navigationGroup = 'About Page';
+    protected static ?string $navigationGroup = 'Gallery Page';
 
     public static function form(Form $form): Form
     {

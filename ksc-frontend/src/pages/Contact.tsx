@@ -11,6 +11,11 @@ export function Contact() {
   const { data: { settings: SITE_CONFIG, pages, branches } } = useSiteData();
   const { contact } = SITE_CONFIG;
   const reach_centre = (pages?.contact?.reach_centre || {}) as any;
+  const bannerImage = (pages?.contact?.banner as any)?.image || "/assets/user-photos/branch-exterior.jpg";
+  const enquiryFormHeading = (pages?.contact?.enquiry_form as any) || {};
+  const contactFields = (Array.isArray(pages?.contact?.contact_fields) && (pages!.contact!.contact_fields as any[]).length
+    ? pages!.contact!.contact_fields
+    : CONTACT_FORM_FIELDS) as typeof CONTACT_FORM_FIELDS;
 
   const officeBranches = (Array.isArray(branches) ? branches : []) as Array<{ name: string; address: string; phone?: string; isHead?: boolean }>;
   const [activeBranchIdx, setActiveBranchIdx] = useState(() => {
@@ -34,7 +39,7 @@ export function Contact() {
       <section className="relative overflow-hidden border-b-4 border-ksc-red bg-white py-16 text-ksc-navy lg:py-12 lg:py-16">
         {/* Background Image */}
         <img loading="lazy"
-          src="/assets/user-photos/branch-exterior.jpg"
+          src={bannerImage}
           alt=""
           className="absolute inset-0 w-full h-full object-cover opacity-20 pointer-events-none mix-blend-multiply"
         />
@@ -138,14 +143,14 @@ export function Contact() {
           <div className="opacity-0 translate-x-[20px] transition-all duration-700 [.is-visible_&]:opacity-100 [.is-visible_&]:translate-x-0 delay-300">
             <SectionHeading
               align="left"
-              kicker="Send an Enquiry"
-              title="Tell us what you're looking for"
-              subtitle="Fill in the form and we'll get back to you with programme options and admission guidance."
+              kicker={enquiryFormHeading?.kicker || "Send an Enquiry"}
+              title={enquiryFormHeading?.title || "Tell us what you're looking for"}
+              subtitle={enquiryFormHeading?.subtitle || "Fill in the form and we'll get back to you with programme options and admission guidance."}
             />
             <div className="glass-panel shadow-lift rounded-2xl p-6 sm:p-10 mt-8 relative overflow-hidden">
               {/* Form background decorative glow */}
               <div className="absolute top-0 right-0 w-64 h-64 bg-ksc-yellow/20 rounded-full blur-[80px] pointer-events-none" />
-              <EnquiryForm fields={CONTACT_FORM_FIELDS} submitLabel="Send Enquiry" idPrefix="contact" className="relative z-10" />
+              <EnquiryForm fields={contactFields} submitLabel={enquiryFormHeading?.submitLabel || "Send Enquiry"} idPrefix="contact" className="relative z-10" formType="contact" />
             </div>
           </div>
         </div>

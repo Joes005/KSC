@@ -9,11 +9,12 @@ export function Founder() {
   const displayImage = imageUrl?.startsWith('http') || imageUrl?.startsWith('/assets') 
     ? imageUrl 
     : `${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/storage/${imageUrl}`;
+  const bannerImage = (pages?.founder?.banner as any)?.image || "/assets/gallery/ksc-05.jpg";
 
   return (
     <>
       {/* Page header */}
-      <PageHeader bgImage="/assets/gallery/ksc-05.jpg" 
+      <PageHeader bgImage={bannerImage}
         title="Founder Message" 
         breadcrumb={[{ label: "Home", to: "/" }, { label: "Founder Message" }]} 
       />
@@ -34,7 +35,7 @@ export function Founder() {
 
           {/* Message */}
           <div className="md:col-span-2">
-            <SectionHeading align="left" kicker="Founder Message" title="To every learner who walks through our doors" />
+            <SectionHeading align="left" kicker={founderMsg.title || "Founder Message"} title={founderMsg.subtitle || "To every learner who walks through our doors"} />
             <blockquote className="rounded-r-2xl border-l-4 border-ksc-yellow bg-white p-7 shadow-sm">
               <p className="text-base sm:text-lg leading-relaxed text-slate-800 font-medium">{founderMsg.message || founderMsg.content}</p>
             </blockquote>

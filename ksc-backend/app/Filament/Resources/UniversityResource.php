@@ -42,10 +42,18 @@ class UniversityResource extends Resource
                     ->image()
                     ->directory('logos'),
                 Forms\Components\Textarea::make('exam_note')
+                    ->label('Exam Note')
                     ->columnSpanFull(),
-                Forms\Components\TextInput::make('exam_hall_ticket_url'),
-                Forms\Components\TextInput::make('exam_timetable_url'),
-                Forms\Components\TextInput::make('exam_syllabus_url'),
+                Forms\Components\TextInput::make('exam_hall_ticket_url')
+                    ->label('Hall Ticket Link (URL)'),
+                Forms\Components\TextInput::make('exam_timetable_url')
+                    ->label('Exam Timetable Link (URL)'),
+                Forms\Components\FileUpload::make('exam_syllabus_url')
+                    ->label('Syllabus & Prospectus PDF')
+                    ->helperText('Shown as the download link on both the Admissions and Curriculum pages for this university.')
+                    ->acceptedFileTypes(['application/pdf'])
+                    ->directory('syllabus')
+                    ->columnSpanFull(),
             ]);
     }
 

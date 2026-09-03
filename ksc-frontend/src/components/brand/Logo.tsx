@@ -1,4 +1,4 @@
-import { SITE_CONFIG } from "../../data/site-content";
+import { useSiteData } from "../../services/SiteDataContext";
 
 /**
  * Circular KSC emblem — built as an inline SVG placeholder so the site works
@@ -18,6 +18,7 @@ interface LogoProps {
 }
 
 export function Logo({ className = "h-14 w-14" }: LogoProps) {
+  const { data: { settings: SITE_CONFIG } } = useSiteData();
   const { branding } = SITE_CONFIG;
 
   if (branding.useImage) {

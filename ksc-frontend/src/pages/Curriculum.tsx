@@ -9,13 +9,15 @@ import { useScrollReveal } from "../components/home/SharedHooks";
 export function Curriculum() {
   const { data: { pages, curriculum: fallbackCurriculum, universities: UNIVERSITIES } } = useSiteData();
   const CURRICULUM = (pages?.curriculum?.content || fallbackCurriculum) as any;
-  
+  const bannerImage = (pages?.curriculum?.banner as any)?.image || "/assets/gallery/ksc-10.jpg";
+  const downloadsHeading = (pages?.curriculum?.downloads_heading as any) || {};
+
   useScrollReveal();
-  
+
   return (
     <>
       {/* Page header */}
-      <PageHeader bgImage="/assets/gallery/ksc-10.jpg" 
+      <PageHeader bgImage={bannerImage}
         title="Curriculum & Syllabus" 
         breadcrumb={[{ label: "Home", to: "/" }, { label: "Curriculum" }]} 
       />
@@ -23,7 +25,7 @@ export function Curriculum() {
       {/* How it works */}
       <section className="bg-white py-10 lg:py-16 reveal-section">
         <div className="container-site">
-          <SectionHeading kicker="Study Pattern" title="How distance-education courses are structured" />
+          <SectionHeading kicker={CURRICULUM.heading?.kicker || "Study Pattern"} title={CURRICULUM.heading?.title || "How distance-education courses are structured"} />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 mt-10">
             {CURRICULUM.points.map(({ title, description }: any, i: number) => (
               <div key={title} className="card-hover flex gap-4 p-6 opacity-0 translate-y-12 transition-all duration-700 [.is-visible_&]:opacity-100 [.is-visible_&]:translate-y-0" style={{ transitionDelay: `${i * 150}ms` }}>
@@ -44,24 +46,23 @@ export function Curriculum() {
       <section className="bg-slate-50/50 bg-dot-pattern py-10 lg:py-16 reveal-section">
         <div className="container-site">
           <SectionHeading
-            kicker="Official Resources"
-            title="Syllabus downloads by university"
-            subtitle="Download the official syllabus and prospectus PDFs for each university directly below."
+            kicker={downloadsHeading.kicker || "Official Resources"}
+            title={downloadsHeading.title || "Syllabus downloads by university"}
+            subtitle={downloadsHeading.subtitle || "Download the official syllabus and prospectus PDFs for each university directly below."}
           />
           <div className="opacity-0 translate-y-12 transition-all duration-700 [.is-visible_&]:opacity-100 [.is-visible_&]:translate-y-0 delay-200 mt-10">
             <Accordion
               className="mx-auto max-w-3xl"
               items={UNIVERSITIES.map((uni) => {
-                let downloadPdfPath = uni.exam.syllabusUrl || "/pdf/ALU-CDOE-Prospectus-AY-2026.pdf";
-                let downloadFilename = `${uni.shortName.replace(/\s+/g, "_")}_Syllabus_AY_2026.pdf`;
-
-                if (uni.id === "alagappa") {
-                  downloadPdfPath = "/pdf/ALU-CDOE-Prospectus-AY-2026.pdf";
-                  downloadFilename = "Alagappa_University_CDOE_Prospectus_Syllabus_AY_2026.pdf";
-                } else if (uni.id === "bdu") {
-                  downloadPdfPath = "/pdf/BDU-New-Sem-Pattern-Courses.pdf";
-                  downloadFilename = "BDU_New_Semester_Pattern_Courses_Syllabus.pdf";
-                }
+                // Prefer the syllabus PDF uploaded via the admin panel for this
+                // university; only fall back to the bundled legacy PDFs (for the
+                // two universities that shipped with one) when nothing is set.
+                const legacyFallback: Record<string, string> = {
+                  alagappa: "/pdf/ALU-CDOE-Prospectus-AY-2026.pdf",
+                  bdu: "/pdf/BDU-New-Sem-Pattern-Courses.pdf",
+                };
+                const downloadPdfPath = uni.exam.syllabusUrl || legacyFallback[uni.id] || "";
+                const downloadFilename = `${uni.shortName.replace(/\s+/g, "_")}_Syllabus_AY_2026.pdf`;
 
                 return {
                   id: uni.id,
@@ -74,15 +75,24 @@ export function Curriculum() {
                       </p>
                       
                       <div className="pt-2 flex flex-wrap gap-3">
-                        <a
-                          href={downloadPdfPath}
-                          download={downloadFilename}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="btn-gold inline-flex items-center gap-2.5 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-white shadow-md hover:shadow-lg transition-all"
-                        >
-                          <Download className="h-4 w-4" /> Download {uni.shortName} Syllabus &amp; Prospectus PDF
-                        </a>
+                        {downloadPdfPath ? (
+                          <a
+                            href={downloadPdfPath}
+                            download={downloadFilename}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="btn-gold inline-flex items-center gap-2.5 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-white shadow-md hover:shadow-lg transition-all"
+                          >
+                            <Download className="h-4 w-4" /> Download {uni.shortName} Syllabus &amp; Prospectus PDF
+                          </a>
+                        ) : (
+                          <Link
+                            to="/contact"
+                            className="btn-outline inline-flex items-center gap-2.5 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold shadow-sm hover:shadow-md transition-all"
+                          >
+                            Syllabus PDF not uploaded yet — contact us
+                          </Link>
+                        )}
 
                         {uni.id === "bdu" && (
                           <a

@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import { CheckCircle2, Send, Loader2 } from "lucide-react";
+import { CheckCircle2, Send, Loader2, AlertCircle } from "lucide-react";
 import { FORM_ENDPOINT, type FormField } from "../../data/site-content";
 import { Input } from "../ui/Input";
 import { Select } from "../ui/Select";
@@ -10,15 +10,18 @@ interface EnquiryFormProps {
   submitLabel: string;
   idPrefix: string;
   className?: string;
+  formType?: "contact" | "admissions";
 }
+
+const API_URL = import.meta.env.VITE_BACKEND_URL ?? "";
 
 /**
  * Data-driven enquiry form. Fields are driven by the config arrays in
- * site-content.ts. Submits to FORM_ENDPOINT (placeholder — wire the real
- * backend endpoint later).
+ * site-content.ts. Submits to the backend enquiries endpoint, which stores
+ * the submission for the admin to see under Enquiries in the admin panel.
  */
-export function EnquiryForm({ fields, submitLabel, idPrefix, className }: EnquiryFormProps) {
-  const [status, setStatus] = useState<"idle" | "submitting" | "done">("idle");
+export function EnquiryForm({ fields, submitLabel, idPrefix, className, formType = "contact" }: EnquiryFormProps) {
+  const [status, setStatus] = useState<"idle" | "submitting" | "done" | "error">("idle");
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -26,21 +29,14 @@ export function EnquiryForm({ fields, submitLabel, idPrefix, className }: Enquir
     setStatus("submitting");
 
     try {
-      // TODO: swap FORM_ENDPOINT by navigating to /api/contact to a real
-      // backend route. For now we simulate success so the UI is testable.
-      if (FORM_ENDPOINT === "/api/contact") {
-        await new Promise((r) => setTimeout(r, 700));
-        console.info("KSC enquiry payload:", formData);
-      } else {
-        await fetch(FORM_ENDPOINT, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
-        });
-      }
-      setStatus("done");
+      const response = await fetch(`${API_URL}${FORM_ENDPOINT}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...formData, form_type: formType }),
+      });
+      setStatus(response.ok ? "done" : "error");
     } catch {
-      setStatus("done");
+      setStatus("error");
     }
   };
 
@@ -65,6 +61,12 @@ export function EnquiryForm({ fields, submitLabel, idPrefix, className }: Enquir
 
   return (
     <form onSubmit={handleSubmit} className={cn("space-y-5", className)}>
+      {status === "error" && (
+        <div className="flex items-start gap-3 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-ksc-red">
+          <AlertCircle className="mt-0.5 h-5 w-5 shrink-0" />
+          <span>Something went wrong sending your request. Please try again, or contact us directly by phone/WhatsApp.</span>
+        </div>
+      )}
       {fields.map((field) => {
         const id = `${idPrefix}-${field.name}`;
         // Poster Theme Input Styling

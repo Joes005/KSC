@@ -27,9 +27,11 @@ class ManageCurriculumContent extends Page implements HasForms
     public function mount(): void
     {
         $curriculum = PageContent::where('page_slug', 'curriculum')->where('section_key', 'content')->first();
+        $downloadsHeading = PageContent::where('page_slug', 'curriculum')->where('section_key', 'downloads_heading')->first();
 
         $this->form->fill([
             'content' => $curriculum ? $curriculum->content : [],
+            'downloads_heading' => $downloadsHeading ? $downloadsHeading->content : [],
         ]);
     }
 
@@ -40,6 +42,8 @@ class ManageCurriculumContent extends Page implements HasForms
                 Tabs::make('Curriculum Content')->tabs([
                     Tabs\Tab::make('Overview & Study Pattern')
                         ->schema([
+                            TextInput::make('content.heading.kicker')->label('Section Kicker (e.g. Study Pattern)'),
+                            TextInput::make('content.heading.title')->label('Section Title')->columnSpanFull(),
                             Textarea::make('content.intro')
                                 ->label('Introductory Text')
                                 ->rows(3)
@@ -58,6 +62,12 @@ class ManageCurriculumContent extends Page implements HasForms
                                 ->rows(2)
                                 ->columnSpanFull(),
                         ]),
+                    Tabs\Tab::make('Syllabus Downloads Section')
+                        ->schema([
+                            TextInput::make('downloads_heading.kicker')->label('Section Kicker (e.g. Official Resources)'),
+                            TextInput::make('downloads_heading.title')->label('Section Title'),
+                            Textarea::make('downloads_heading.subtitle')->label('Section Subtitle')->rows(2)->columnSpanFull(),
+                        ])->columns(2),
                 ])
             ])
             ->statePath('data');
@@ -74,6 +84,13 @@ class ManageCurriculumContent extends Page implements HasForms
             PageContent::updateOrCreate(
                 ['page_slug' => 'curriculum', 'section_key' => 'content'],
                 ['content' => $data['content']]
+            );
+        }
+
+        if (isset($data['downloads_heading'])) {
+            PageContent::updateOrCreate(
+                ['page_slug' => 'curriculum', 'section_key' => 'downloads_heading'],
+                ['content' => $data['downloads_heading']]
             );
         }
 

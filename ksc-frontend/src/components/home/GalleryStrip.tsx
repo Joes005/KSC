@@ -31,7 +31,8 @@ import { cn } from "../../utils/cn";
 import { CustomCursor, MagneticButton, useScrollReveal } from "./SharedHooks";
 
 export function GalleryStrip() {
-  const { data: { gallery_images: GALLERY } } = useSiteData();
+  const { data: { gallery_images: GALLERY, pages } } = useSiteData();
+  const heading = ((pages?.home?.section_headings as any)?.gallery_strip || {}) as { kicker?: string; title?: string; subtitle?: string };
   const [isHovering, setIsHovering] = useState(false);
 
   return (
@@ -39,9 +40,9 @@ export function GalleryStrip() {
       <CustomCursor isHovering={isHovering} />
       <div className="container-site">
         <SectionHeading
-          kicker="Life at KSC"
-          title="Take a look inside"
-          subtitle="Real photos from our centre — front office, study materials, counselling and more."
+          kicker={heading.kicker || "Life at KSC"}
+          title={heading.title || "Take a look inside"}
+          subtitle={heading.subtitle || "Real photos from our centre — front office, study materials, counselling and more."}
         />
       </div>
 

@@ -33,22 +33,24 @@ import { CustomCursor, MagneticButton, useScrollReveal } from "./SharedHooks";
 export function WhyDistance() {
   const { data: { pages, why_distance: fallbackWhyDistance } } = useSiteData();
   const WHY_DISTANCE = (pages?.home?.why_distance || fallbackWhyDistance) as any;
+  const whyDistanceImage = (pages?.home?.why_distance_image as any)?.image || "/assets/user-photos/distance-student.png";
+  const heading = ((pages?.home?.section_headings as any)?.why_distance || {}) as { kicker?: string; title?: string; subtitle?: string };
   const [activeIndex, setActiveIndex] = useState(0);
-  
+
   useScrollReveal();
 
   return (
     <section className="relative bg-white py-12 sm:py-16 lg:py-16 border-t border-slate-100 bg-wavy-pattern reveal-section">
       <div className="container-site relative z-10">
         <SectionHeading
-          kicker="Why Distance Education"
-          title="Road to a degree, without leaving home"
-          subtitle="Affordable, flexible and recognised — distance education fits around your life, not the other way around."
+          kicker={heading.kicker || "Why Distance Education"}
+          title={heading.title || "Road to a degree, without leaving home"}
+          subtitle={heading.subtitle || "Affordable, flexible and recognised — distance education fits around your life, not the other way around."}
         />
         <div className="grid gap-10 lg:grid-cols-12 lg:items-start mt-12 opacity-0 translate-y-12 transition-all duration-700 [.is-visible_&]:opacity-100 [.is-visible_&]:translate-y-0 delay-100">
           <div className="lg:col-span-5 hidden lg:block sticky top-28">
             <div className="relative overflow-hidden rounded-3xl shadow-xl h-full min-h-[500px] border-4 border-white">
-              <img src="/assets/user-photos/distance-student.png" alt="Student studying distance education" loading="lazy" className="absolute inset-0 w-full h-full object-cover transform transition-transform duration-700 hover:scale-105" />
+              <img src={whyDistanceImage} alt="Student studying distance education" loading="lazy" className="absolute inset-0 w-full h-full object-cover transform transition-transform duration-700 hover:scale-105" />
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ksc-navy via-ksc-navy/80 to-transparent p-7 pt-24 text-white"><p className="font-heading text-3xl font-black uppercase drop-shadow-md">Learn on your terms</p></div>
             </div>
           </div>

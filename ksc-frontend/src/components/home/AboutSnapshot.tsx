@@ -33,6 +33,7 @@ import { CustomCursor, MagneticButton, useScrollReveal } from "./SharedHooks";
 export function AboutSnapshot() {
   const { data: { pages, about_snapshot: fallbackAboutSnapshot } } = useSiteData();
   const ABOUT_SNAPSHOT = (pages?.home?.about_snapshot || fallbackAboutSnapshot) as any;
+  const heading = ((pages?.home?.section_headings as any)?.about_snapshot || {}) as { kicker?: string; title?: string; subtitle?: string };
 
   return (
     <section className="relative overflow-hidden bg-[#fff8e7] py-12 sm:py-16">
@@ -40,7 +41,7 @@ export function AboutSnapshot() {
       <div className="container-site">
         <div className="relative grid items-center gap-12 lg:grid-cols-[1.05fr_.95fr] lg:gap-20">
           <div>
-            <SectionHeading align="left" kicker="The value of learning" title="Education opens more than doors" subtitle="A recognised qualification can create confidence, independence and opportunity at every stage of life." />
+            <SectionHeading align="left" kicker={heading.kicker || "The value of learning"} title={heading.title || "Education opens more than doors"} subtitle={heading.subtitle || "A recognised qualification can create confidence, independence and opportunity at every stage of life."} />
             <div className="grid gap-4">
               {ABOUT_SNAPSHOT.text?.map((para: any, i: number) => (
                 <div key={i} className="flex items-start gap-3 rounded-xl border border-ksc-navy/10 bg-white px-4 py-4 shadow-sm">
@@ -62,7 +63,7 @@ export function AboutSnapshot() {
               <div className="relative aspect-[4/3] w-full rounded-[1.4rem] overflow-hidden bg-slate-200">
                 {/* Cinematic Image Reveal via is-visible class */}
                 <div className="absolute inset-0 transition-all duration-1000 [clip-path:inset(15%_15%_15%_15%_round_2rem)] [.is-visible_&]:[clip-path:inset(0%_0%_0%_0%_round_1.4rem)]">
-                  <img src="/assets/gallery/ksc-01.jpg" alt="Study materials at Karur Study Centre" loading="lazy" className="h-full w-full object-cover transition-transform duration-[1.5s] scale-125 [.is-visible_&]:scale-100" />
+                  <img src={ABOUT_SNAPSHOT.image || "/assets/gallery/ksc-01.jpg"} alt="Study materials at Karur Study Centre" loading="lazy" className="h-full w-full object-cover transition-transform duration-[1.5s] scale-125 [.is-visible_&]:scale-100" />
                 </div>
               </div>
             </div>

@@ -34,14 +34,15 @@ export function AdmissionSteps() {
   const { data: { pages, admission_steps: fallbackAdmissionSteps } } = useSiteData();
   const ADMISSION_STEPS = (pages?.home?.admission_steps || fallbackAdmissionSteps) as any[];
   const STEPS = ADMISSION_STEPS.map((s: any, i: number) => ({ ...s, icon: [FileDown, ClipboardList, Wallet, Package][i] }));
+  const heading = ((pages?.home?.section_headings as any)?.admission_steps || {}) as { kicker?: string; title?: string; subtitle?: string };
 
   return (
     <section className="bg-slate-50 py-10 lg:py-16 border-t-4 border-ksc-yellow">
       <div className="container-site">
         <SectionHeading
-          kicker="How It Works"
-          title="Four simple steps to begin"
-          subtitle="Download the form, submit documents, pay the fee, and start learning."
+          kicker={heading.kicker || "How It Works"}
+          title={heading.title || "Four simple steps to begin"}
+          subtitle={heading.subtitle || "Download the form, submit documents, pay the fee, and start learning."}
         />
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4 mt-16 relative">
           {/* Connecting Line for Desktop */}

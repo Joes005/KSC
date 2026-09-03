@@ -40,6 +40,16 @@ export function Admissions() {
   const headerData = (pages?.admissions?.header || {}) as any;
   const stepsData = (pages?.home?.admission_steps || fallbackSteps) as any[];
   const eligibilityData = (pages?.admissions?.eligibility_summary || ELIGIBILITY_SUMMARY) as any[];
+  const bannerImage = (pages?.admissions?.banner as any)?.image || "/assets/user-photos/distance-student.png";
+  const sectionHeadings = ((pages?.admissions?.section_headings as any) || {}) as Record<string, { kicker?: string; title?: string; subtitle?: string }>;
+  const stepsHeading = sectionHeadings.steps || {};
+  const downloadsHeading = sectionHeadings.downloads || {};
+  const eligibilityHeading = sectionHeadings.eligibility || {};
+  const applyFormHeading = sectionHeadings.apply_form || {};
+  const universitiesSidebarHeading = sectionHeadings.universities_sidebar || {};
+  const applicationFields = (Array.isArray(pages?.admissions?.application_fields) && (pages!.admissions!.application_fields as any[]).length
+    ? pages!.admissions!.application_fields
+    : ADMISSIONS_FORM_FIELDS) as typeof ADMISSIONS_FORM_FIELDS;
 
   useScrollReveal();
 
@@ -49,7 +59,7 @@ export function Admissions() {
       <section className="relative overflow-hidden border-b border-ksc-red/20 bg-ksc-navy/5 py-16 lg:py-20 text-ksc-navy">
         {/* Background Image */}
         <img loading="lazy"
-          src="/assets/user-photos/distance-student.png"
+          src={bannerImage}
           alt=""
           className="absolute inset-0 w-full h-full object-cover opacity-15 pointer-events-none mix-blend-multiply"
         />
@@ -72,7 +82,7 @@ export function Admissions() {
       <section className="relative overflow-hidden bg-slate-50/50 bg-dot-pattern py-10 lg:py-16 border-b border-slate-100 reveal-section">
         <div className="absolute top-0 right-0 w-96 h-96 bg-ksc-sky/10 rounded-full blur-[100px] pointer-events-none animate-ambient-drift" />
         <div className="container-site relative z-10">
-          <SectionHeading kicker="How to Apply" title="Your admission journey in four steps" />
+          <SectionHeading kicker={stepsHeading.kicker || "How to Apply"} title={stepsHeading.title || "Your admission journey in four steps"} />
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4 mt-12">
             {stepsData.map((step, i) => {
               const Icon = stepIcons[i] ?? FileDown;
@@ -99,69 +109,42 @@ export function Admissions() {
           <div>
             <SectionHeading
               align="center"
-              kicker="Download"
-              title="University prospectus & admission details"
-              subtitle="Bring the flyers and prospectus below, or download them here. All four universities admit through our centre."
+              kicker={downloadsHeading.kicker || "Download"}
+              title={downloadsHeading.title || "University prospectus & admission details"}
+              subtitle={downloadsHeading.subtitle || "Bring the flyers and prospectus below, or download them here. All four universities admit through our centre."}
             />
             <div className="mt-12 grid gap-5 sm:grid-cols-2 opacity-0 scale-95 transition-all duration-700 [.is-visible_&]:opacity-100 [.is-visible_&]:scale-100 delay-200">
-              <a
-                href="/pdf/ALU-CDOE-Prospectus-AY-2026.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="card-hover flex items-center gap-4 p-5 bg-slate-50 border-2 border-slate-100"
-              >
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white text-ksc-red border-2 border-slate-200 shadow-sm">
-                  <Download className="h-6 w-6" />
-                </span>
-                <span>
-                  <span className="block font-bold text-ksc-navy uppercase text-sm">Alagappa University</span>
-                  <span className="text-xs font-bold text-slate-500 tracking-widest">CDOE Prospectus — AY 2026 (PDF)</span>
-                </span>
-              </a>
-              <a
-                href="/pdf/Bharathidasan_University_AY_2026-27_Admission_HD.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="card-hover flex items-center gap-4 p-5 bg-slate-50 border-2 border-slate-100"
-              >
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white text-ksc-red border-2 border-slate-200 shadow-sm">
-                  <Download className="h-6 w-6" />
-                </span>
-                <span>
-                  <span className="block font-bold text-ksc-navy uppercase text-sm">Bharathidasan University</span>
-                  <span className="text-xs font-bold text-slate-500 tracking-widest">AY 2026-27 Admission (PDF)</span>
-                </span>
-              </a>
-
-              <a
-                href="/pdf/ALU-CDOE-Prospectus-AY-2026.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="card-hover flex items-center gap-4 p-5 bg-slate-50 border-2 border-slate-100"
-              >
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white text-ksc-red border-2 border-slate-200 shadow-sm">
-                  <Download className="h-6 w-6" />
-                </span>
-                <span>
-                  <span className="block font-bold text-ksc-navy uppercase text-sm">Manonmaniam Sundaranar</span>
-                  <span className="text-xs font-bold text-slate-500 tracking-widest">AY 2026 Admission Flyer (PDF)</span>
-                </span>
-              </a>
-
-              <a
-                href="/pdf/ALU-CDOE-Prospectus-AY-2026.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="card-hover flex items-center gap-4 p-5 bg-slate-50 border-2 border-slate-100"
-              >
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white text-ksc-red border-2 border-slate-200 shadow-sm">
-                  <Download className="h-6 w-6" />
-                </span>
-                <span>
-                  <span className="block font-bold text-ksc-navy uppercase text-sm">Tamilnadu Open University</span>
-                  <span className="text-xs font-bold text-slate-500 tracking-widest">AY 2026 Admission Flyer (PDF)</span>
-                </span>
-              </a>
+              {UNIVERSITIES.map((uni) => {
+                // Prefer the PDF uploaded via the admin panel; fall back to the
+                // bundled legacy PDFs (for the two universities that shipped with
+                // one) before finally falling back to the university's website.
+                const legacyFallback: Record<string, string> = {
+                  alagappa: "/pdf/ALU-CDOE-Prospectus-AY-2026.pdf",
+                  bdu: "/pdf/Bharathidasan_University_AY_2026-27_Admission_HD.pdf",
+                };
+                const pdfHref = uni.exam.syllabusUrl || legacyFallback[uni.id] || "";
+                const hasPdf = Boolean(pdfHref);
+                const href = hasPdf ? pdfHref : (uni.website || "/contact");
+                return (
+                  <a
+                    key={uni.id}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="card-hover flex items-center gap-4 p-5 bg-slate-50 border-2 border-slate-100"
+                  >
+                    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white text-ksc-red border-2 border-slate-200 shadow-sm">
+                      <Download className="h-6 w-6" />
+                    </span>
+                    <span>
+                      <span className="block font-bold text-ksc-navy uppercase text-sm">{uni.name}</span>
+                      <span className="text-xs font-bold text-slate-500 tracking-widest">
+                        {hasPdf ? `Prospectus — ${uni.academicYear} (PDF)` : "Visit official website"}
+                      </span>
+                    </span>
+                  </a>
+                );
+              })}
             </div>
             <p className="mt-10 text-center text-sm font-medium text-slate-600 max-w-2xl mx-auto bg-slate-50 border-2 border-slate-100 p-4 rounded-xl">
               Not sure which programme suits you? Talk to our counsellors — we'll point you to the right
@@ -175,7 +158,7 @@ export function Admissions() {
       <section className="relative bg-slate-50/80 bg-dot-pattern py-10 lg:py-16 border-t border-slate-100 reveal-section overflow-hidden">
         <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-ksc-yellow/5 rounded-full blur-[100px] pointer-events-none animate-ambient-drift" style={{ animationDelay: '-10s' }} />
         <div className="container-site relative z-10">
-          <SectionHeading kicker="Eligibility at a Glance" title="Who can apply" />
+          <SectionHeading kicker={eligibilityHeading.kicker || "Eligibility at a Glance"} title={eligibilityHeading.title || "Who can apply"} />
           <div className="mx-auto grid max-w-4xl gap-5 sm:grid-cols-2 mt-12">
             {eligibilityData.map((item, i) => (
               <div key={item.level} className="card-hover p-6 opacity-0 translate-y-12 transition-all duration-700 [.is-visible_&]:opacity-100 [.is-visible_&]:translate-y-0" style={{ transitionDelay: `${i * 150}ms` }}>
@@ -204,17 +187,17 @@ export function Admissions() {
           <div className="lg:col-span-2">
             <SectionHeading
               align="left"
-              kicker="Apply Now"
-              title="Start your application"
-              subtitle="Share your details and we'll call you back with the exact documents, fees and next steps for your chosen course."
+              kicker={applyFormHeading.kicker || "Apply Now"}
+              title={applyFormHeading.title || "Start your application"}
+              subtitle={applyFormHeading.subtitle || "Share your details and we'll call you back with the exact documents, fees and next steps for your chosen course."}
             />
             <div className="glass-panel p-6 sm:p-8 mt-10 opacity-0 translate-x-[-20px] transition-all duration-700 [.is-visible_&]:opacity-100 [.is-visible_&]:translate-x-0 delay-200">
-              <EnquiryForm fields={ADMISSIONS_FORM_FIELDS} submitLabel="Submit Application Request" idPrefix="admission" />
+              <EnquiryForm fields={applicationFields} submitLabel="Submit Application Request" idPrefix="admission" formType="admissions" />
             </div>
           </div>
 
           <aside className="opacity-0 translate-x-[20px] transition-all duration-700 [.is-visible_&]:opacity-100 [.is-visible_&]:translate-x-0 delay-300">
-            <SectionHeading align="left" kicker="Universities" title="Programmes available" />
+            <SectionHeading align="left" kicker={universitiesSidebarHeading.kicker || "Universities"} title={universitiesSidebarHeading.title || "Programmes available"} />
             <ul className="space-y-4 mt-8">
               {UNIVERSITIES.map((uni) => (
                 <li key={uni.id}>

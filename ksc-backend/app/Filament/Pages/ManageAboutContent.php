@@ -57,8 +57,8 @@ class ManageAboutContent extends Page implements HasForms
                 Tabs::make('About Content')->tabs([
                     Tabs\Tab::make('Founder Message')
                         ->schema([
-                            TextInput::make('founder.title'),
-                            TextInput::make('founder.subtitle'),
+                            TextInput::make('founder.title')->label('Section Kicker (small text above heading)'),
+                            TextInput::make('founder.subtitle')->label('Section Heading'),
                             FileUpload::make('founder.image')->image()->directory('about'),
                             Textarea::make('founder.content')->columnSpanFull()->rows(5),
                             TextInput::make('founder.name'),
@@ -66,8 +66,8 @@ class ManageAboutContent extends Page implements HasForms
                         ]),
                     Tabs\Tab::make('Chairman Message')
                         ->schema([
-                            TextInput::make('chairman.title'),
-                            TextInput::make('chairman.subtitle'),
+                            TextInput::make('chairman.title')->label('Section Kicker (small text above heading)'),
+                            TextInput::make('chairman.subtitle')->label('Section Heading'),
                             FileUpload::make('chairman.image')->image()->directory('about'),
                             Textarea::make('chairman.content')->columnSpanFull()->rows(5),
                             TextInput::make('chairman.name'),
@@ -75,6 +75,8 @@ class ManageAboutContent extends Page implements HasForms
                         ]),
                     Tabs\Tab::make('About Page Details')
                         ->schema([
+                            TextInput::make('about_page.heading.kicker')->label('Section Kicker (e.g. Who We Are)'),
+                            TextInput::make('about_page.heading.title')->label('Section Title'),
                             TextInput::make('about_page.establishedYear')->label('Established Year'),
                             FileUpload::make('about_page.image')->label('Main Image')->image()->directory('about'),
                             TagsInput::make('about_page.membership')->label('Membership & Recognitions')->columnSpanFull(),

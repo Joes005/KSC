@@ -4,14 +4,15 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 
 export function UniversityStrip() {
-  const { data: { universities: UNIVERSITIES } } = useSiteData();
+  const { data: { universities: UNIVERSITIES, pages } } = useSiteData();
+  const heading = ((pages?.home?.section_headings as any)?.university_strip || {}) as { kicker?: string; title?: string; subtitle?: string };
   return (
     <section className="bg-slate-50 py-16 lg:py-16 border-t border-slate-200">
       <div className="container-site">
         <div className="text-center animate-fade-in-up">
-          <p className="section-kicker text-ksc-red bg-white inline-block px-3 py-1 rounded-md mb-4 shadow-sm border border-slate-100 uppercase tracking-widest">Authorised Centre</p>
-          <h2 className="text-4xl font-heading font-black tracking-tight text-ksc-navy sm:text-5xl lg:text-5xl">Top universities in Tamil Nadu</h2>
-          <p className="mt-6 max-w-2xl mx-auto text-lg font-medium text-slate-600 leading-relaxed bg-white/50 p-4 rounded-xl border border-white shadow-sm backdrop-blur-sm">We are the official admissions, study and exam centre for highly ranked state universities.</p>
+          <p className="section-kicker text-ksc-red bg-white inline-block px-3 py-1 rounded-md mb-4 shadow-sm border border-slate-100 uppercase tracking-widest">{heading.kicker || "Authorised Centre"}</p>
+          <h2 className="text-4xl font-heading font-black tracking-tight text-ksc-navy sm:text-5xl lg:text-5xl">{heading.title || "Top universities in Tamil Nadu"}</h2>
+          <p className="mt-6 max-w-2xl mx-auto text-lg font-medium text-slate-600 leading-relaxed bg-white/50 p-4 rounded-xl border border-white shadow-sm backdrop-blur-sm">{heading.subtitle || "We are the official admissions, study and exam centre for highly ranked state universities."}</p>
         </div>
         <div className="mx-auto mt-16 flex flex-wrap justify-center gap-6 sm:gap-8 max-w-7xl animate-fade-in-up delay-100">
           {UNIVERSITIES.map((uni) => (

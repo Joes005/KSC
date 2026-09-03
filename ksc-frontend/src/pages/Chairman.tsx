@@ -25,6 +25,7 @@ export function Chairman() {
             <img
               src={displayImage}
               alt={`${chairmanMsg.name || 'Chairman'} — Chairman of ${SITE_CONFIG.shortName}`}
+              loading="lazy"
               className="mx-auto aspect-[4/5] w-full max-w-xs rounded-2xl object-cover shadow-md"
             />
             <p className="mt-5 text-xl font-extrabold text-ksc-dark">{chairmanMsg.name || 'Chairman'}</p>

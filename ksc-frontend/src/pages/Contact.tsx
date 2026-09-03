@@ -1,15 +1,27 @@
+import { useState } from "react";
 import { MapPin, Phone, Mail, MessageCircle } from "lucide-react";
 import { CONTACT_FORM_FIELDS } from "../data/site-content";
 import { useSiteData } from "../services/SiteDataContext";
 import { SectionHeading } from "../components/common/SectionHeading";
 import { EnquiryForm } from "../components/common/EnquiryForm";
 import { useScrollReveal } from "../components/home/SharedHooks";
+import { cn } from "../utils/cn";
 
 export function Contact() {
-  const { data: { settings: SITE_CONFIG, pages } } = useSiteData();
+  const { data: { settings: SITE_CONFIG, pages, branches } } = useSiteData();
   const { contact } = SITE_CONFIG;
   const reach_centre = (pages?.contact?.reach_centre || {}) as any;
-  
+
+  const officeBranches = (Array.isArray(branches) ? branches : []) as Array<{ name: string; address: string; phone?: string; isHead?: boolean }>;
+  const [activeBranchIdx, setActiveBranchIdx] = useState(() => {
+    const headIdx = officeBranches.findIndex((b) => b.isHead);
+    return headIdx >= 0 ? headIdx : 0;
+  });
+  const activeBranch = officeBranches[activeBranchIdx];
+  const branchMapSrc = activeBranch
+    ? `https://maps.google.com/maps?q=${encodeURIComponent(`${activeBranch.name}, ${activeBranch.address}`)}&t=&z=15&ie=UTF8&iwloc=&output=embed`
+    : (reach_centre?.mapEmbedUrl || contact.mapEmbedUrl);
+
   useScrollReveal();
 
   const waUrl = `https://wa.me/${contact.whatsapp}?text=${encodeURIComponent(
@@ -85,14 +97,40 @@ export function Contact() {
             </div>
 
             {/* Embedded map */}
-            <div className="mt-8 overflow-hidden rounded-2xl glass-panel shadow-lift p-2">
-              <iframe
-                title={`${SITE_CONFIG.name} location map`}
-                src={reach_centre?.mapEmbedUrl || contact.mapEmbedUrl}
-                className="h-72 sm:h-96 w-full rounded-xl"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
+            <div className="mt-8">
+              {officeBranches.length > 1 && (
+                <div className="mb-3 flex flex-wrap gap-2">
+                  {officeBranches.map((branch, idx) => (
+                    <button
+                      key={branch.name}
+                      type="button"
+                      onClick={() => setActiveBranchIdx(idx)}
+                      aria-pressed={idx === activeBranchIdx}
+                      className={cn(
+                        "rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-wide transition-colors",
+                        idx === activeBranchIdx
+                          ? "border-ksc-red bg-ksc-red text-white shadow-sm"
+                          : "border-slate-200 bg-white text-ksc-navy hover:border-ksc-red/40 hover:text-ksc-red"
+                      )}
+                    >
+                      {branch.name}
+                    </button>
+                  ))}
+                </div>
+              )}
+              <div className="overflow-hidden rounded-2xl glass-panel shadow-lift p-2">
+                <iframe
+                  key={branchMapSrc}
+                  title={activeBranch ? `${activeBranch.name} location map` : `${SITE_CONFIG.name} location map`}
+                  src={branchMapSrc}
+                  className="h-72 sm:h-96 w-full rounded-xl"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
+              {activeBranch && (
+                <p className="mt-2 px-1 text-xs font-semibold text-slate-500">{activeBranch.address}</p>
+              )}
             </div>
           </div>
 

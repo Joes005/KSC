@@ -113,6 +113,7 @@ export function Footer() {
                   <img
                     src={uni.logo}
                     alt={uni.name}
+                    loading="lazy"
                     className="h-full w-full object-contain p-1.5"
                   />
                 </div>

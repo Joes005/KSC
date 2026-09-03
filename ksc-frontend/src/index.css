@@ -1,4 +1,4 @@
-@import "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Merriweather:wght@700;900&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Merriweather:wght@700;900&family=Noto+Sans+Tamil:wght@400;500;600;700;800&display=swap";
 @import "tailwindcss";
 @config "../tailwind.config.js";
 
@@ -382,7 +382,7 @@ main .card-hover[class*="p-12"] {
   padding: clamp(1.25rem, 3vw, 2rem);
 }
 
-main>section:not(.gradient-head):not([class*="bg-ksc-navy"]):not([class*="bg-gradient"]) {
+main>section:not(.gradient-head):not([class*="bg-"]) {
   background-color: #edf5ff;
   background-image:
     radial-gradient(ellipse at 100% 0%, rgba(20, 155, 224, .18), transparent 34rem),

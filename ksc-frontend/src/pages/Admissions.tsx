@@ -40,7 +40,7 @@ export function Admissions() {
   const headerData = (pages?.admissions?.header || {}) as any;
   const stepsData = (pages?.home?.admission_steps || fallbackSteps) as any[];
   const eligibilityData = (pages?.admissions?.eligibility_summary || ELIGIBILITY_SUMMARY) as any[];
-  const bannerImage = (pages?.admissions?.banner as any)?.image || "/assets/user-photos/distance-student.png";
+  const bannerImage = (pages?.admissions?.banner as any)?.image || "/assets/campus/convocation-alagappa.jpg";
   const sectionHeadings = ((pages?.admissions?.section_headings as any) || {}) as Record<string, { kicker?: string; title?: string; subtitle?: string }>;
   const stepsHeading = sectionHeadings.steps || {};
   const downloadsHeading = sectionHeadings.downloads || {};

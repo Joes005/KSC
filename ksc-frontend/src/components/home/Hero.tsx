@@ -43,7 +43,7 @@ const ICON_MAP: Record<string, LucideIcon> = {
 };
 
 const HERO_IMAGES = [
-  "/assets/user-photos/students.png",
+  "/assets/campus/lecture-hall.jpg",
   "/assets/gallery/ksc-10.jpg",
   "/assets/gallery/ksc-09.jpg",
 ];

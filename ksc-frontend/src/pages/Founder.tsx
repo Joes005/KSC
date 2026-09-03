@@ -9,7 +9,7 @@ export function Founder() {
   const displayImage = imageUrl?.startsWith('http') || imageUrl?.startsWith('/assets') 
     ? imageUrl 
     : `${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/storage/${imageUrl}`;
-  const bannerImage = (pages?.founder?.banner as any)?.image || "/assets/gallery/ksc-05.jpg";
+  const bannerImage = (pages?.founder?.banner as any)?.image || "/assets/campus/building-exterior.jpg";
 
   return (
     <>

@@ -32,7 +32,7 @@ export function Facilities() {
   const banner = (pages?.facilities?.banner as any) || {};
   const photoStrip: string[] = Array.isArray(banner.strip) && banner.strip.length
     ? banner.strip
-    : ["/assets/gallery/ksc-06.jpg", "/assets/gallery/ksc-07.jpg", "/assets/gallery/ksc-09.jpg", "/assets/gallery/ksc-11.jpg"];
+    : ["/assets/campus/computer-lab.jpg", "/assets/campus/library-shelves.jpg", "/assets/gallery/ksc-09.jpg", "/assets/gallery/ksc-11.jpg"];
   const gridHeading = (pages?.facilities?.grid_heading as any) || {};
   const stripHeading = (pages?.facilities?.strip_heading as any) || {};
   return (

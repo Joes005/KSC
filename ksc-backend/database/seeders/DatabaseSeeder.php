@@ -199,16 +199,29 @@ class DatabaseSeeder extends Seeder
             return;
         }
 
+        // ksc-05..ksc-08 were removed: those files were internal reference photos
+        // (photocopied course-eligibility sheets and a handwritten notes page that
+        // included a Gmail password) mistakenly seeded as public gallery photos.
+        // They must never be re-added here.
         $images = [
-            ['file' => 'ksc-05.jpg', 'caption' => 'Counselling and Admission Desk', 'alt' => 'Admission guidance desk at Karur Study Center', 'sort' => 1],
-            ['file' => 'ksc-06.jpg', 'caption' => 'Study Material Distribution', 'alt' => 'Study materials arranged for student distribution', 'sort' => 2],
-            ['file' => 'ksc-07.jpg', 'caption' => 'Student Interaction', 'alt' => 'Students interacting at the centre', 'sort' => 3],
-            ['file' => 'ksc-08.jpg', 'caption' => 'Exams & Evaluation Team', 'alt' => 'Examinations support team', 'sort' => 4],
             ['file' => 'ksc-09.jpg', 'caption' => 'Study Center Overview', 'alt' => 'Karur Study Center — wider view of the centre', 'sort' => 5],
             ['file' => 'ksc-10.jpg', 'caption' => 'Center Interior', 'alt' => 'Karur Study Center — interior and seating area', 'sort' => 6],
             ['file' => 'ksc-11.jpg', 'caption' => 'Center Front & Exterior', 'alt' => 'Karur Study Center — front and exterior', 'sort' => 7],
             ['file' => 'tnou-ay2026.jpg', 'caption' => 'TNOU — AY 2026 Admission Flyer', 'alt' => 'Tamil Nadu Open University — Academic Year 2026 admission flyer', 'sort' => 8],
+            ['file' => 'ksc-12.jpg', 'caption' => 'Our Computer Lab', 'alt' => 'Karur Study Center computer lab with students at workstations', 'sort' => 9],
+            ['file' => 'ksc-13.jpg', 'caption' => 'Contact Class in Session', 'alt' => 'A management studies class in session at Karur Study Center', 'sort' => 10],
+            ['file' => 'ksc-14.jpg', 'caption' => 'Alagappa University Convocation — Our Graduates', 'alt' => 'KSC students at the Alagappa University convocation ceremony', 'sort' => 11],
+            ['file' => 'ksc-15.jpg', 'caption' => 'Study Material Library', 'alt' => 'Shelves of study material and student records at Karur Study Center', 'sort' => 12],
+            ['file' => 'ksc-16.jpg', 'caption' => 'MRS Plaza, Karur — Our Building', 'alt' => 'MRS Plaza — Karur Study Center signage on the building front', 'sort' => 13],
         ];
+
+        // Prune any gallery row that is no longer in the list above (in particular,
+        // this removes the ksc-05..ksc-08 rows described above from the live DB).
+        $keepPaths = collect($images)->map(fn ($i) => 'gallery/'.$i['file'])->all();
+        GalleryImage::whereNotIn('image_path', $keepPaths)->get()->each(function ($stale) {
+            Storage::disk('public')->delete($stale->image_path);
+            $stale->delete();
+        });
 
         foreach ($images as $image) {
             $path = $source.'/'.$image['file'];
@@ -259,12 +272,12 @@ class DatabaseSeeder extends Seeder
                     'readMoreLink' => '/about',
                     'body' => [
                         'Karur Study Center (KSC) is a dedicated distance-education study and admission centre based in Karur, Tamil Nadu. Since our inception we have been bridging the gap between open universities and students — helping you pick the right programme, submit a correct application, and stay supported through exams and results.',
-                        'Our services are designed for working professionals, homemakers and students from remote areas who want recognised degrees without relocating or abandoning their commitments. We are affiliated with Alagappa University, Bharathiar University, Manonmaniam Sundaranar University, and Tamilnadu Open University, and guide learners through every stage of their academic journey.',
+                        'Our services are designed for working professionals, homemakers and students from remote areas who want recognised degrees without relocating or abandoning their commitments. We are affiliated with Alagappa University, Bharathidasan University, Manonmaniam Sundaranar University, and Tamilnadu Open University, and guide learners through every stage of their academic journey.',
                         'From programme counselling and document verification to study-material support, exam updates and result guidance, our team walks with you until you earn your degree. With more than 50,000 learners served, KSC has grown into a trusted name for open and distance education in the region.',
                     ],
                     'membership' => [
                         'Partner study centre of Alagappa University',
-                        'Recognised centre of Bharathiar University',
+                        'Recognised centre of Bharathidasan University',
                         'Authorised study centre of Manonmaniam Sundaranar University',
                         'Authorised study centre of Tamilnadu Open University',
                         'Affiliated with UGC-DEB recognised distance education',
@@ -485,8 +498,8 @@ class DatabaseSeeder extends Seeder
 
             [
                 'slug' => 'bdu',
-                'name' => 'Bharathiar University',
-                'short_name' => 'Bharathiar University',
+                'name' => 'Bharathidasan University',
+                'short_name' => 'Bharathidasan University',
                 'academic_year' => '2026-27',
                 'pattern' => 'Semester Pattern',
                 'recognition' => 'UGC-DEB approved distance education · Accredited by NAAC',
@@ -494,7 +507,7 @@ class DatabaseSeeder extends Seeder
                 'website' => 'www.bdu.ac.in',
                 'logo' => 'https://upload.wikimedia.org/wikipedia/en/b/b3/Bharathidasan_University_logo.png',
                 'exam' => [
-                    'note' => 'Bharathiar University publishes hall tickets and semester time-tables on its official university portal for distance-education learners.',
+                    'note' => 'Bharathidasan University publishes hall tickets and semester time-tables on its official university portal for distance-education learners.',
                     'hallTicketUrl' => 'https://bdu.ac.in/cde/ht24w/',
                     'timetableUrl' => '/pdf/BDU-New-Sem-Pattern-Courses.pdf',
                     'syllabusUrl' => 'https://www.bdu.ac.in',
@@ -547,17 +560,49 @@ class DatabaseSeeder extends Seeder
                 'short_name' => 'Manonmaniam Sundaranar University',
                 'academic_year' => '2026',
                 'pattern' => 'Semester / Non-Semester',
-                'recognition' => 'State University · UGC-DEB Approved',
+                'recognition' => 'State University, Tirunelveli · UGC-DEB Approved',
                 'address' => 'Tirunelveli, Tamil Nadu',
                 'website' => 'www.msuniv.ac.in',
-                'logo' => 'https://upload.wikimedia.org/wikipedia/en/f/f6/Manonmaniam_Sundaranar_University_logo.png',
+                'logo' => 'https://upload.wikimedia.org/wikipedia/en/0/0e/Manonmaniam_Sundaranar_University_logo.jpeg',
                 'exam' => [
                     'note' => 'Manonmaniam Sundaranar University publishes exam details on its official distance education portal.',
                     'hallTicketUrl' => 'https://www.msuniv.ac.in/Distance-Education',
                     'timetableUrl' => 'https://www.msuniv.ac.in/Distance-Education',
                     'syllabusUrl' => 'https://www.msuniv.ac.in/Distance-Education',
                 ],
-                'categories' => [],
+                'categories' => [
+                    ['slug' => 'ug', 'label' => 'UG Programmes', 'count' => 10, 'programmes' => [
+                        ['name' => 'B.A. (Hons) Tamil', 'medium' => 'Tamil'],
+                        ['name' => 'B.A. (Hons) English', 'medium' => 'English'],
+                        ['name' => 'B.A. (Hons) Economics', 'medium' => 'English'],
+                        ['name' => 'B.A. History', 'medium' => 'Tamil / English'],
+                        ['name' => 'Bachelor of Business Administration', 'medium' => 'Tamil / English'],
+                        ['name' => 'B.Com', 'medium' => 'Tamil / English'],
+                        ['name' => 'Bachelor of Library & Information Science', 'medium' => 'English'],
+                        ['name' => 'B.Sc. Mathematics', 'medium' => 'English'],
+                        ['name' => 'B.Sc. Physics', 'medium' => 'English'],
+                        ['name' => 'B.Sc. Chemistry', 'medium' => 'English'],
+                    ]],
+                    ['slug' => 'pg', 'label' => 'PG Programmes', 'count' => 11, 'programmes' => [
+                        ['name' => 'M.A. Tamil', 'medium' => 'Tamil'],
+                        ['name' => 'M.A. English', 'medium' => 'English'],
+                        ['name' => 'M.A. Economics', 'medium' => 'English'],
+                        ['name' => 'Master of Library & Information Science', 'medium' => 'English'],
+                        ['name' => 'M.A. Journalism & Mass Communication', 'medium' => 'English'],
+                        ['name' => 'M.A. History', 'medium' => 'Tamil / English'],
+                        ['name' => 'M.Com', 'medium' => 'Tamil / English'],
+                        ['name' => 'M.Sc. Mathematics', 'medium' => 'English'],
+                        ['name' => 'M.Sc. Physics', 'medium' => 'English'],
+                        ['name' => 'M.Sc. Chemistry', 'medium' => 'English'],
+                        ['name' => 'M.A. Criminology and Police Science', 'medium' => 'English'],
+                    ]],
+                    ['slug' => 'diploma', 'label' => 'Diploma & Certificate', 'count' => 4, 'programmes' => [
+                        ['name' => 'PGDCA (Post Graduate Diploma in Computer Applications)', 'medium' => 'English'],
+                        ['name' => 'Diploma in Yoga for Human Excellence', 'medium' => 'English'],
+                        ['name' => 'Certificate Course in Yoga for Human Excellence', 'medium' => 'English'],
+                        ['name' => 'Certificate Course in Library and Information Science', 'medium' => 'English'],
+                    ]],
+                ],
             ],
             [
                 'slug' => 'tnou',

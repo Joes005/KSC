@@ -1,7 +1,12 @@
 /**
  * KSC — GALLERY DATA
- * Real photos are served from /public/assets/gallery/ (ksc-01..ksc-11).
+ * Real photos are served from /public/assets/gallery/.
  * Captions/order can be swapped freely — keep the image files under public/.
+ *
+ * ksc-05..ksc-08 were removed on purpose: those files were internal reference
+ * photos (photocopied course-eligibility sheets and a handwritten notes page
+ * that included a Gmail password) that had been mistakenly placed in the
+ * public gallery folder. Do not re-add files with those names here.
  */
 
 export interface GalleryItem {
@@ -12,30 +17,6 @@ export interface GalleryItem {
 }
 
 export const GALLERY: GalleryItem[] = [
-  {
-    id: "ksc-05",
-    src: "/assets/gallery/ksc-05.jpg",
-    alt: "Admission guidance desk at Karur Study Center",
-    caption: "Counselling and Admission Desk",
-  },
-  {
-    id: "ksc-06",
-    src: "/assets/gallery/ksc-06.jpg",
-    alt: "Study materials arranged for student distribution",
-    caption: "Study Material Distribution",
-  },
-  {
-    id: "ksc-07",
-    src: "/assets/gallery/ksc-07.jpg",
-    alt: "Students interacting at the centre",
-    caption: "Student Interaction",
-  },
-  {
-    id: "ksc-08",
-    src: "/assets/gallery/ksc-08.jpg",
-    alt: "Examinations support team",
-    caption: "Exams & Evaluation Team",
-  },
   {
     id: "ksc-09",
     src: "/assets/gallery/ksc-09.jpg",
@@ -59,5 +40,35 @@ export const GALLERY: GalleryItem[] = [
     src: "/assets/gallery/tnou-ay2026.jpg",
     alt: "Tamil Nadu Open University — Academic Year 2026 admission flyer",
     caption: "TNOU — AY 2026 Admission Flyer",
+  },
+  {
+    id: "ksc-12",
+    src: "/assets/gallery/ksc-12.jpg",
+    alt: "Karur Study Center computer lab with students at workstations",
+    caption: "Our Computer Lab",
+  },
+  {
+    id: "ksc-13",
+    src: "/assets/gallery/ksc-13.jpg",
+    alt: "A management studies class in session at Karur Study Center",
+    caption: "Contact Class in Session",
+  },
+  {
+    id: "ksc-14",
+    src: "/assets/gallery/ksc-14.jpg",
+    alt: "KSC students at the Alagappa University convocation ceremony",
+    caption: "Alagappa University Convocation — Our Graduates",
+  },
+  {
+    id: "ksc-15",
+    src: "/assets/gallery/ksc-15.jpg",
+    alt: "Shelves of study material and student records at Karur Study Center",
+    caption: "Study Material Library",
+  },
+  {
+    id: "ksc-16",
+    src: "/assets/gallery/ksc-16.jpg",
+    alt: "MRS Plaza — Karur Study Center signage on the building front",
+    caption: "MRS Plaza, Karur — Our Building",
   },
 ];

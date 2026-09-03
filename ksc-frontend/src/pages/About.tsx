@@ -9,7 +9,7 @@ import { useScrollReveal } from "../components/home/SharedHooks";
 export function About() {
   const { data: { pages, about_snapshot: fallbackAboutPage } } = useSiteData();
   const ABOUT_PAGE = (pages?.about?.about_page || fallbackAboutPage) as any;
-  const bannerImage = (pages?.about?.banner as any)?.image || "/assets/images/about-students.png";
+  const bannerImage = (pages?.about?.banner as any)?.image || "/assets/campus/building-exterior.jpg";
 
   useScrollReveal();
 
@@ -36,7 +36,7 @@ export function About() {
 
               <div className="my-10 overflow-hidden rounded-3xl shadow-lift border border-slate-200 p-2 bg-white">
                 <img
-                  src={ABOUT_PAGE.image || "/assets/images/about-students.png"}
+                  src={ABOUT_PAGE.image || "/assets/campus/convocation-alagappa.jpg"}
                   alt="Happy students at Karur Study Centre"
                   className="w-full h-auto rounded-2xl object-cover transform hover:scale-105 transition-transform duration-700"
                 />

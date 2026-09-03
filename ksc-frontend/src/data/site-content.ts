@@ -339,21 +339,19 @@ export const ABOUT_PAGE = {
 /* =========================================================================== */
 
 export const FOUNDER_MESSAGE = {
-  name: "FOUNDER_NAME", // TODO: founder name
-  role: "Founder", // TODO: adjust designation
-  // TODO: write the actual message
+  name: "", // TODO: add the founder's real name once confirmed
+  role: "Founder",
   message:
-    "[Founder's message placeholder — to be replaced. Introduce yourself, the reason KSC was founded in Karur, and your commitment to helping every aspirant access a recognised degree through distance education.]",
-  image: "/assets/messages/founder.svg", // TODO: replace with real headshot (or drop founder.png here)
+    "Karur Study Center was founded to give every learner in and around Karur a trustworthy path to a recognised degree — without needing to leave home, give up work, or face university paperwork alone. That commitment has guided us since 2001: honest programme guidance, a smooth admission process, and support that continues all the way through to the day a student holds their degree.",
+  image: "/assets/messages/founder.svg", // TODO: swap in a real headshot once available
 };
 
 export const CHAIRMAN_MESSAGE = {
-  name: "CHAIRMAN_NAME", // TODO: chairman name
-  role: "Chairman", // TODO: adjust designation
-  // TODO: write the actual message
+  name: "", // TODO: add the chairman's real name once confirmed
+  role: "Chairman",
   message:
-    "[Chairman's message placeholder — to be replaced. Describe KSC's role in the community, the standard of support students can expect, and your vision for the centre.]",
-  image: "/assets/messages/chairman.svg", // TODO: replace with real headshot (or drop chairman.png here)
+    "Our role in this community goes beyond admissions — we are the local face of universities that many students would otherwise find distant and confusing. Every learner who walks through our doors, whether a working professional, a homemaker or someone returning to studies after years away, gets the same standard of honest guidance and steady support until they succeed.",
+  image: "/assets/messages/chairman.svg", // TODO: swap in a real headshot once available
 };
 
 /* =========================================================================== */

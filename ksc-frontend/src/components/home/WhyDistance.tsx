@@ -33,7 +33,7 @@ import { CustomCursor, MagneticButton, useScrollReveal } from "./SharedHooks";
 export function WhyDistance() {
   const { data: { pages, why_distance: fallbackWhyDistance } } = useSiteData();
   const WHY_DISTANCE = (pages?.home?.why_distance || fallbackWhyDistance) as any;
-  const whyDistanceImage = (pages?.home?.why_distance_image as any)?.image || "/assets/user-photos/distance-student.png";
+  const whyDistanceImage = (pages?.home?.why_distance_image as any)?.image || "/assets/campus/computer-lab.jpg";
   const heading = ((pages?.home?.section_headings as any)?.why_distance || {}) as { kicker?: string; title?: string; subtitle?: string };
   const [activeIndex, setActiveIndex] = useState(0);
 

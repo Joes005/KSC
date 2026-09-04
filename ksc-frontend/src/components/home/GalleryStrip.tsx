@@ -36,7 +36,7 @@ export function GalleryStrip() {
   const [isHovering, setIsHovering] = useState(false);
 
   return (
-    <section className="gallery-showcase overflow-hidden bg-slate-50 py-12 lg:py-16 border-t border-slate-100 cursor-none">
+    <section className="gallery-showcase overflow-hidden bg-slate-50 py-12 lg:py-16 border-t border-slate-100 lg:cursor-none">
       <CustomCursor isHovering={isHovering} />
       <div className="container-site">
         <SectionHeading
@@ -48,17 +48,17 @@ export function GalleryStrip() {
 
       {/* Marquee Container */}
       <div
-        className="relative mt-12 flex w-full overflow-hidden"
+        className="relative mt-10 sm:mt-12 flex w-full overflow-hidden"
         onMouseEnter={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}
       >
         {/* Fade gradients for smooth entry/exit */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-slate-50 to-transparent sm:w-40" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-slate-50 to-transparent sm:w-40" />
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-slate-50 to-transparent sm:w-40" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-slate-50 to-transparent sm:w-40" />
 
-        <div className="flex w-max animate-marqueeHorizontal gap-5 px-5 hover:[animation-play-state:paused]">
+        <div className="flex w-max animate-marqueeHorizontal gap-4 sm:gap-5 px-4 sm:px-5 hover:[animation-play-state:paused]">
           {[...GALLERY, ...GALLERY].map((item, index) => (
-            <Link key={`${item.caption}-${index}`} to="/gallery" className="group relative block h-[220px] w-[320px] shrink-0 overflow-hidden rounded-[2rem] border-4 border-white bg-slate-200 shadow-md sm:h-[300px] sm:w-[450px] transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+            <Link key={`${item.caption}-${index}`} to="/gallery" className="group relative block h-[190px] w-[280px] shrink-0 overflow-hidden rounded-2xl sm:rounded-[2rem] border-3 sm:border-4 border-white bg-slate-200 shadow-md sm:h-[300px] sm:w-[450px] transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
               <div className="absolute inset-0">
                 <img
                   src={item.src}

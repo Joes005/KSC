@@ -129,7 +129,7 @@ export function Logo({ className = "h-14 w-14" }: LogoProps) {
         fontFamily="Inter, Arial, sans-serif"
         letterSpacing="0.5"
       >
-        KARUR STUDY CENTER
+        KARUR STUDY CENTRE
       </text>
     </svg>
   );

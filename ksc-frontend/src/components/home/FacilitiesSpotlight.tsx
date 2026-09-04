@@ -135,19 +135,19 @@ export function FacilitiesSpotlight() {
             })}
 
             {/* Floating Glass Badge Overlay */}
-            <div className="absolute bottom-8 left-8 right-8 z-20 flex items-center gap-4 rounded-2xl bg-white/10 p-5 backdrop-blur-xl border border-white/20 shadow-xl transition-all duration-500">
+            <div className="absolute bottom-4 left-4 right-4 sm:bottom-8 sm:left-8 sm:right-8 z-20 flex items-center gap-3 sm:gap-4 rounded-2xl bg-white/10 p-3.5 sm:p-5 backdrop-blur-xl border border-white/20 shadow-xl transition-all duration-500">
               {FACILITIES.map((facility, index) => {
                 const isActive = index === activeIndex;
                 const Icon = typeof facility.icon === "string" ? ICON_MAP[facility.icon] ?? Building2 : facility.icon;
                 if (!isActive) return null;
                 return (
-                  <div key={index} className="flex items-center gap-5 w-full animate-fade-in">
-                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-ksc-yellow text-ksc-navy shadow-lg">
-                      <Icon className="h-7 w-7 stroke-[2]" />
+                  <div key={index} className="flex items-center gap-3 sm:gap-5 w-full animate-fade-in">
+                    <div className="flex h-11 w-11 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-xl bg-ksc-yellow text-ksc-navy shadow-lg">
+                      <Icon className="h-5 w-5 sm:h-7 sm:w-7 stroke-[2]" />
                     </div>
                     <div>
-                      <h4 className="text-xl font-bold text-white tracking-tight">{facility.title}</h4>
-                      <p className="text-sm font-medium text-white/80 mt-1 uppercase tracking-wider">Highlight Feature</p>
+                      <h4 className="text-base sm:text-xl font-bold text-white tracking-tight">{facility.title}</h4>
+                      <p className="text-xs sm:text-sm font-medium text-white/80 mt-0.5 sm:mt-1 uppercase tracking-wider">Highlight Feature</p>
                     </div>
                   </div>
                 );
@@ -180,7 +180,7 @@ export function FacilitiesSpotlight() {
                       }
                     }}
                     className={cn(
-                      "group relative flex w-full flex-col items-start rounded-2xl p-5 sm:p-6 text-left transition-all duration-500 ease-in-out border overflow-hidden shrink-0 scroll-mt-4 lg:scroll-mt-6",
+                      "group relative flex w-full flex-col items-start rounded-2xl p-4 sm:p-6 text-left transition-all duration-500 ease-in-out border overflow-hidden shrink-0 scroll-mt-4 lg:scroll-mt-6",
                       isActive
                         ? "bg-white shadow-lift border-ksc-navy/10 ring-1 ring-ksc-navy/5"
                         : "bg-transparent border-transparent hover:bg-white/60"
@@ -202,15 +202,15 @@ export function FacilitiesSpotlight() {
                       </div>
                     )}
 
-                    <div className="flex items-center gap-5 w-full relative z-10">
+                    <div className="flex items-center gap-3.5 sm:gap-5 w-full relative z-10">
                       <div className={cn(
-                        "flex h-12 w-12 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-xl transition-all duration-500",
+                        "flex h-11 w-11 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-xl transition-all duration-500",
                         isActive ? "bg-ksc-navy text-white shadow-md rotate-3 scale-110" : "bg-white text-slate-400 border border-slate-100 group-hover:text-ksc-red group-hover:scale-105"
                       )}>
-                        <Icon className="h-6 w-6 sm:h-7 sm:w-7 stroke-[1.5]" />
+                        <Icon className="h-5 w-5 sm:h-7 sm:w-7 stroke-[1.5]" />
                       </div>
                       <h4 className={cn(
-                        "text-lg sm:text-xl font-bold transition-colors duration-300 tracking-tight",
+                        "text-base sm:text-xl font-bold transition-colors duration-300 tracking-tight",
                         isActive ? "text-ksc-navy" : "text-slate-500 group-hover:text-slate-700"
                       )}>
                         {facility.title}
@@ -220,14 +220,14 @@ export function FacilitiesSpotlight() {
                     {/* Accordion Content */}
                     <div className={cn(
                       "grid transition-all duration-500 ease-in-out w-full",
-                      isActive ? "grid-rows-[1fr] opacity-100 mt-4 sm:mt-5" : "grid-rows-[0fr] opacity-0"
+                      isActive ? "grid-rows-[1fr] opacity-100 mt-3 sm:mt-5" : "grid-rows-[0fr] opacity-0"
                     )}>
                       <div className="overflow-hidden">
-                        <p className="text-sm sm:text-base font-medium leading-relaxed text-slate-600 pl-[4.5rem] pr-2">
+                        <p className="text-xs sm:text-base font-medium leading-relaxed text-slate-600 pl-2 sm:pl-[4.5rem] pr-2">
                           {facility.description}
                         </p>
-                        <div className="pl-[4.5rem] mt-4 pb-2">
-                          <Link to="/facilities" className="inline-flex items-center gap-1.5 text-sm font-bold text-ksc-navy hover:text-ksc-red transition-colors group/link">
+                        <div className="pl-2 sm:pl-[4.5rem] mt-3 sm:mt-4 pb-2">
+                          <Link to="/facilities" className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-ksc-navy hover:text-ksc-red transition-colors group/link">
                             Read full details
                             <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover/link:translate-x-1" />
                           </Link>

@@ -12,7 +12,7 @@ export function UniversityStrip() {
         <div className="text-center animate-fade-in-up">
           <p className="section-kicker text-ksc-red bg-white inline-block px-3 py-1 rounded-md mb-4 shadow-sm border border-slate-100 uppercase tracking-widest">{heading.kicker || "Authorised Centre"}</p>
           <h2 className="text-4xl font-heading font-black tracking-tight text-ksc-navy sm:text-5xl lg:text-5xl">{heading.title || "Top universities in Tamil Nadu"}</h2>
-          <p className="mt-6 max-w-2xl mx-auto text-lg font-medium text-slate-600 leading-relaxed bg-white/50 p-4 rounded-xl border border-white shadow-sm backdrop-blur-sm">{heading.subtitle || "We are the official admissions, study and exam centre for highly ranked state universities."}</p>
+          <p className="mt-6 max-w-2xl mx-auto text-lg font-bold text-slate-800 leading-relaxed bg-white/50 p-4 rounded-xl border border-white shadow-sm backdrop-blur-sm">{heading.subtitle || "We are the official admissions, study and exam centre for highly ranked state universities."}</p>
         </div>
         <div className="mx-auto mt-16 flex flex-wrap justify-center gap-6 sm:gap-8 max-w-7xl animate-fade-in-up delay-100">
           {UNIVERSITIES.map((uni) => (
@@ -35,13 +35,13 @@ export function UniversityStrip() {
               <h3 className="mt-6 text-lg sm:text-xl font-black leading-tight text-ksc-navy uppercase transition-colors group-hover:text-ksc-red">
                 {uni.name}
               </h3>
-              <p className="mt-3 text-xs font-bold uppercase tracking-widest text-ksc-red bg-red-50 px-2.5 py-1 rounded-md">
+              <p className="mt-3 text-xs font-black uppercase tracking-widest text-ksc-red bg-red-50 px-2.5 py-1 rounded-md">
                 {uni.academicYear} admissions
               </p>
-              <p className="mt-4 text-sm text-slate-600 leading-relaxed font-medium">
+              <p className="mt-4 text-sm text-slate-700 leading-relaxed font-bold">
                 {uni.categories.length} programmes across UG, PG, Diploma and Certificate courses.
               </p>
-              <span className="mt-auto pt-6 flex items-center text-xs font-bold uppercase tracking-wider text-ksc-navy group-hover:text-ksc-red transition-colors">
+              <span className="mt-auto pt-6 flex items-center text-xs font-black uppercase tracking-wider text-ksc-navy group-hover:text-ksc-red transition-colors">
                 View Programmes <ArrowRight className="ml-1.5 h-4 w-4" />
               </span>
             </Link>

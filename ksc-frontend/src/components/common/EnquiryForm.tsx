@@ -70,7 +70,7 @@ export function EnquiryForm({ fields, submitLabel, idPrefix, className, formType
       {fields.map((field) => {
         const id = `${idPrefix}-${field.name}`;
         // Poster Theme Input Styling
-        const base = "w-full rounded-xl border border-slate-200/60 bg-white/60 px-4 py-3 text-sm font-bold text-ksc-navy placeholder-slate-400 focus:border-ksc-royal/40 focus:bg-white focus:outline-none focus:ring-2 focus:ring-ksc-royal/20 transition-all shadow-inner";
+        const base = "w-full rounded-xl border border-slate-200/60 bg-white/60 px-4 py-3 text-base sm:text-sm font-bold text-ksc-navy placeholder-slate-400 focus:border-ksc-royal/40 focus:bg-white focus:outline-none focus:ring-2 focus:ring-ksc-royal/20 transition-all shadow-inner";
         return (
           <div key={field.name}>
             <label htmlFor={id} className="mb-2 block text-sm font-black uppercase tracking-widest text-ksc-navy">

@@ -19,19 +19,19 @@ import { useScrollReveal } from "../components/home/SharedHooks";
 const ELIGIBILITY_SUMMARY = [
   {
     level: "UG Programmes",
-    detail: "Pass in Higher Secondary (10+2). Science courses need the corresponding core subject in 10+2 (e.g. Mathematics for B.Sc. Maths / BCA).",
+    detail: "A pass in Higher Secondary Examination (10+2) or equivalent / 3-year Diploma from a recognized board or institution.",
   },
   {
     level: "PG Programmes",
-    detail: "A relevant Bachelor's degree (e.g. B.Sc. Chemistry for M.Sc. Chemistry). Specific prerequisites appear under each course on the Academic page.",
+    detail: "A relevant Bachelor's degree from a recognized university. Specific prerequisites are available under each course on the Academic page.",
   },
   {
     level: "Diploma / Certificate / Vocational",
-    detail: "A pass in 12th (HSLC) is sufficient for most programmes. Confirm your specific case with our counsellors.",
+    detail: "A pass in Higher Secondary Examination (10+2) or equivalent from a recognized board.",
   },
   {
     level: "Distance & Open learning",
-    detail: "Programmes are UGC-DEB recognised where applicable; no regular attendance required — study from home with our support.",
+    detail: "Programmes are UGC-DEB recognised where applicable; no regular attendance required — study comfortably with our complete guidance.",
   },
 ];
 
@@ -84,18 +84,18 @@ export function Admissions() {
         <div className="absolute top-0 right-0 w-96 h-96 bg-ksc-sky/10 rounded-full blur-[100px] pointer-events-none animate-ambient-drift" />
         <div className="container-site relative z-10">
           <SectionHeading kicker={stepsHeading.kicker || "How to Apply"} title={stepsHeading.title || "Your admission journey in four steps"} />
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4 mt-12">
+          <div className="grid gap-4 sm:gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mt-8 sm:mt-12">
             {stepsData.map((step, i) => {
               const Icon = stepIcons[i] ?? FileDown;
               return (
-                <div key={step.step || i} className="card-hover group p-6 text-center opacity-0 translate-y-12 transition-all duration-700 [.is-visible_&]:opacity-100 [.is-visible_&]:translate-y-0" style={{ transitionDelay: `${i * 150}ms` }}>
-                  <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-50 text-ksc-navy border border-slate-200 shadow-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-ksc-red group-hover:text-white">
-                    <Icon className="h-8 w-8 stroke-[2]" />
+                <div key={step.step || i} className="card-hover group p-4 sm:p-6 text-center opacity-0 translate-y-12 transition-all duration-700 [.is-visible_&]:opacity-100 [.is-visible_&]:translate-y-0" style={{ transitionDelay: `${i * 150}ms` }}>
+                  <span className="mx-auto flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-2xl bg-slate-50 text-ksc-navy border border-slate-200 shadow-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-ksc-red group-hover:text-white">
+                    <Icon className="h-7 w-7 sm:h-8 sm:w-8 stroke-[2]" />
                   </span>
-                  <h3 className="mt-5 font-black uppercase text-ksc-navy">
+                  <h3 className="mt-4 sm:mt-5 font-black uppercase text-ksc-navy text-base sm:text-lg">
                     {step.step}. {step.title}
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed font-medium text-slate-500">{step.description}</p>
+                  <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm leading-relaxed font-bold text-slate-700">{step.description}</p>
                 </div>
               );
             })}
@@ -138,8 +138,8 @@ export function Admissions() {
                       <Download className="h-6 w-6" />
                     </span>
                     <span>
-                      <span className="block font-bold text-ksc-navy uppercase text-sm">{uni.name}</span>
-                      <span className="text-xs font-bold text-slate-500 tracking-widest">
+                      <span className="block font-black text-ksc-navy uppercase text-sm">{uni.name}</span>
+                      <span className="text-xs font-bold text-slate-600 tracking-widest">
                         {hasPdf ? `Prospectus — ${uni.academicYear} (PDF)` : "Visit official website"}
                       </span>
                     </span>
@@ -147,7 +147,7 @@ export function Admissions() {
                 );
               })}
             </div>
-            <p className="mt-10 text-center text-sm font-medium text-slate-600 max-w-2xl mx-auto bg-slate-50 border-2 border-slate-100 p-4 rounded-xl">
+            <p className="mt-10 text-center text-sm font-bold text-slate-800 max-w-2xl mx-auto bg-slate-50 border-2 border-slate-100 p-4 rounded-xl">
               Not sure which programme suits you? Talk to our counsellors — we'll point you to the right
               course and documents before you apply.
             </p>
@@ -167,13 +167,13 @@ export function Admissions() {
                   <BadgeCheck className="h-6 w-6 shrink-0 text-ksc-red" />
                   <h3 className="font-black uppercase text-ksc-navy">{item.level}</h3>
                 </div>
-                <p className="mt-3 text-sm leading-relaxed font-medium text-slate-600">{item.detail}</p>
+                <p className="mt-3 text-sm leading-relaxed font-bold text-slate-700">{item.detail}</p>
               </div>
             ))}
           </div>
-          <p className="mx-auto mt-8 max-w-4xl text-center text-sm font-medium text-slate-600">
+          <p className="mx-auto mt-8 max-w-4xl text-center text-sm font-bold text-slate-700">
             Final eligibility is decided by the respective university. Not sure you qualify?{" "}
-            <Link to="/contact" className="font-bold text-ksc-royal hover:text-ksc-red hover:underline">
+            <Link to="/contact" className="font-black text-ksc-royal hover:text-ksc-red hover:underline">
               Ask our counsellors
             </Link>{" "}
             — we verify every case before you apply.
@@ -234,7 +234,7 @@ export function Admissions() {
             <div className="glass-panel mt-8 p-8">
               <CheckCircle2 className="h-10 w-10 text-ksc-red" />
               <h3 className="mt-4 text-lg font-black uppercase text-ksc-navy">Documents you'll usually need</h3>
-              <ul className="mt-4 space-y-2 text-sm font-medium text-slate-700">
+              <ul className="mt-4 space-y-2 text-sm font-bold text-slate-800">
                 <li className="flex gap-2 items-start"><span className="text-ksc-red font-bold">·</span> 10th / 12th mark sheets &amp; certificates</li>
                 <li className="flex gap-2 items-start"><span className="text-ksc-red font-bold">·</span> Degree certificates (for PG applicants)</li>
                 <li className="flex gap-2 items-start"><span className="text-ksc-red font-bold">·</span> Passport-size photographs</li>

@@ -23,9 +23,13 @@ export function Contact() {
     return headIdx >= 0 ? headIdx : 0;
   });
   const activeBranch = officeBranches[activeBranchIdx];
-  const branchMapSrc = activeBranch
-    ? `https://maps.google.com/maps?q=${encodeURIComponent(`${activeBranch.name}, ${activeBranch.address}`)}&t=&z=15&ie=UTF8&iwloc=&output=embed`
-    : (reach_centre?.mapEmbedUrl || contact.mapEmbedUrl);
+  const branchMapSrc = (activeBranch as any)?.mapEmbedUrl || (activeBranch
+    ? (activeBranch.name.includes("Karur") || (activeBranch as any).location === "Karur"
+      ? "https://maps.google.com/maps?q=Karur+Study+Centre,+M.R.S.+Plaza,+Covai+Road,+Ramakrishna+Puram,+Karur,+Tamil+Nadu+639001&t=&z=16&ie=UTF8&iwloc=&output=embed"
+      : activeBranch.name.includes("Dindigul") || (activeBranch as any).location === "Dindigul"
+      ? "https://maps.google.com/maps?q=S.S.+Institute,+75/38,+Scheme+Road,+2nd+Floor,+Raja+Complex,+Dindigul&t=&z=16&ie=UTF8&iwloc=&output=embed"
+      : `https://maps.google.com/maps?q=${encodeURIComponent(`${activeBranch.name}, ${activeBranch.address}`)}&t=&z=15&ie=UTF8&iwloc=&output=embed`)
+    : (reach_centre?.mapEmbedUrl || contact.mapEmbedUrl));
 
   useScrollReveal();
 
@@ -52,8 +56,8 @@ export function Contact() {
         <div className="container-site relative z-10 text-center lg:text-left">
           <p className="section-kicker text-ksc-red bg-white inline-block px-3 py-1 rounded-md mb-4 shadow-sm uppercase tracking-widest">Contact Us</p>
           <h1 className="text-4xl font-heading font-black sm:text-5xl lg:text-6xl tracking-tight uppercase drop-shadow-md text-gradient-navy">We're here to help</h1>
-          <p className="mt-6 max-w-2xl text-lg font-bold text-slate-700 leading-relaxed mx-auto lg:mx-0 bg-white/70 p-4 rounded-xl backdrop-blur-md border-2 border-white shadow-sm">
-            Visit us in Karur, call, WhatsApp or send an enquiry — our counsellors respond quickly and are ready to guide your future.
+          <p className="mt-6 max-w-2xl text-base sm:text-lg font-bold text-slate-700 leading-relaxed mx-auto lg:mx-0 bg-white/80 p-4 sm:p-5 rounded-2xl backdrop-blur-md border-2 border-white shadow-sm">
+            Visit us across our centres in <span className="font-extrabold text-ksc-red">Karur</span>, <span className="font-extrabold text-ksc-red">Dindigul</span>, and <span className="font-extrabold text-ksc-red">Kangeyam</span> — or connect with us via phone, WhatsApp, or enquiry form. Our expert counsellors are ready to guide your academic future.
           </p>
         </div>
       </section>
@@ -72,7 +76,8 @@ export function Contact() {
               {reach_centre?.items?.map((item: any, idx: number) => {
                 const IconComponent = { MapPin, Phone, MessageCircle, Mail }[item.icon as string] || MapPin;
                 const isWa = item.icon === 'MessageCircle';
-                const linkHref = isWa ? waUrl : item.link || '#';
+                const isMap = item.icon === 'MapPin';
+                const linkHref = isWa ? waUrl : isMap ? "https://maps.app.goo.gl/MJFWjrveBV3DQhi4A" : item.link || '#';
                 return (
                   <div key={idx} className="card-hover flex items-start gap-4 p-6 rounded-xl shadow-soft">
                     <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-white/60 text-ksc-red border border-white/50 shadow-inner">
@@ -80,12 +85,12 @@ export function Contact() {
                     </span>
                     <div>
                       <p className="font-black text-ksc-navy text-lg uppercase tracking-wide">{item.title}</p>
-                      {item.link ? (
-                        <a href={linkHref} target={isWa ? "_blank" : undefined} rel={isWa ? "noopener noreferrer" : undefined} className="mt-2 block text-sm font-bold text-ksc-royal hover:text-ksc-red hover:underline transition-colors tracking-widest">
+                      {item.link || isMap ? (
+                        <a href={linkHref} target={isWa || isMap ? "_blank" : undefined} rel={isWa || isMap ? "noopener noreferrer" : undefined} className="mt-2 block text-sm font-bold text-ksc-royal hover:text-ksc-red hover:underline transition-colors tracking-widest">
                           {item.button_label || item.value}
                         </a>
                       ) : (
-                        <p className="mt-2 text-sm font-medium text-slate-600 leading-relaxed">{item.value}</p>
+                        <p className="mt-2 text-sm font-bold text-slate-800 leading-relaxed">{item.value}</p>
                       )}
                     </div>
                   </div>
@@ -105,22 +110,31 @@ export function Contact() {
             <div className="mt-8">
               {officeBranches.length > 1 && (
                 <div className="mb-3 flex flex-wrap gap-2">
-                  {officeBranches.map((branch, idx) => (
-                    <button
-                      key={branch.name}
-                      type="button"
-                      onClick={() => setActiveBranchIdx(idx)}
-                      aria-pressed={idx === activeBranchIdx}
-                      className={cn(
-                        "rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-wide transition-colors",
-                        idx === activeBranchIdx
-                          ? "border-ksc-red bg-ksc-red text-white shadow-sm"
-                          : "border-slate-200 bg-white text-ksc-navy hover:border-ksc-red/40 hover:text-ksc-red"
-                      )}
-                    >
-                      {branch.name}
-                    </button>
-                  ))}
+                  {officeBranches.map((branch, idx) => {
+                    const loc = (branch as any).location || (branch.name.includes("Dindigul") || branch.address.includes("Dindigul") ? "Dindigul" : (branch.name.includes("Kang") || branch.address.includes("Kang")) ? "Kangeyam" : "Karur");
+                    return (
+                      <button
+                        key={branch.name}
+                        type="button"
+                        onClick={() => setActiveBranchIdx(idx)}
+                        aria-pressed={idx === activeBranchIdx}
+                        className={cn(
+                          "rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-wide transition-colors flex items-center gap-1.5",
+                          idx === activeBranchIdx
+                            ? "border-ksc-red bg-ksc-red text-white shadow-sm"
+                            : "border-slate-200 bg-white text-ksc-navy hover:border-ksc-red/40 hover:text-ksc-red"
+                        )}
+                      >
+                        <span>{branch.name}</span>
+                        <span className={cn(
+                          "text-[10px] px-1.5 py-0.2 rounded font-extrabold",
+                          idx === activeBranchIdx ? "bg-white/20 text-white" : "bg-red-50 text-ksc-red border border-red-200"
+                        )}>
+                          {loc}
+                        </span>
+                      </button>
+                    );
+                  })}
                 </div>
               )}
               <div className="overflow-hidden rounded-2xl glass-panel shadow-lift p-2">
@@ -134,7 +148,17 @@ export function Contact() {
                 />
               </div>
               {activeBranch && (
-                <p className="mt-2 px-1 text-xs font-semibold text-slate-500">{activeBranch.address}</p>
+                <div className="mt-3 px-1 flex flex-wrap items-center justify-between gap-3">
+                  <p className="text-xs font-bold text-slate-700">{activeBranch.address}</p>
+                  <a
+                    href={(activeBranch as any).mapUrl || (activeBranch.name.includes("Karur") || (activeBranch as any).location === "Karur" ? "https://maps.app.goo.gl/MJFWjrveBV3DQhi4A" : activeBranch.name.includes("Dindigul") || (activeBranch as any).location === "Dindigul" ? "https://maps.app.goo.gl/5MT1b3oKCiyhkxos6" : `https://maps.google.com/maps?q=${encodeURIComponent(`${activeBranch.name}, ${activeBranch.address}`)}`)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 rounded-lg bg-ksc-red text-white px-3 py-1.5 text-xs font-bold hover:bg-ksc-navy transition-colors shadow-xs shrink-0"
+                  >
+                    <MapPin className="h-3.5 w-3.5" /> Open Google Maps ↗
+                  </a>
+                </div>
               )}
             </div>
           </div>

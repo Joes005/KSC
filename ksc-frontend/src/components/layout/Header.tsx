@@ -50,6 +50,17 @@ export function Header() {
     return () => window.removeEventListener("popstate", handleRoute);
   }, []);
 
+  /* Lock body scroll when mobile menu is open */
+  useEffect(() => {
+    if (mobileOpen) {
+      const prev = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = prev;
+      };
+    }
+  }, [mobileOpen]);
+
   return (
     <header className={cn(
       "sticky top-0 z-50 w-full transition-all duration-300",
@@ -104,16 +115,16 @@ export function Header() {
       </div>
 
       {/* Main bar */}
-      <div className="container-site flex min-h-20 items-center justify-between gap-6 py-3 xl:grid xl:grid-cols-[minmax(260px,1fr)_auto_minmax(260px,1fr)] xl:py-2">
-        <Link to="/" className="group flex min-w-0 items-center gap-3 justify-self-start" aria-label={`${SITE_CONFIG.name} home`}>
-          <div className="shrink-0 p-1">
-            <Logo className="h-12 w-12 flex-shrink-0 drop-shadow-md sm:h-14 sm:w-14" />
+      <div className="container-site flex min-h-16 sm:min-h-20 items-center justify-between gap-3 sm:gap-6 py-2.5 sm:py-3 xl:grid xl:grid-cols-[minmax(260px,1fr)_auto_minmax(260px,1fr)] xl:py-2">
+        <Link to="/" className="group flex min-w-0 items-center gap-2.5 sm:gap-3 justify-self-start" aria-label={`${SITE_CONFIG.name} home`}>
+          <div className="shrink-0 p-0.5 sm:p-1">
+            <Logo className="h-10 w-10 flex-shrink-0 drop-shadow-md sm:h-14 sm:w-14" />
           </div>
           <span className="flex min-w-0 flex-col leading-tight">
-            <span className="truncate font-heading text-lg font-extrabold text-white sm:text-xl drop-shadow-sm">
+            <span className="truncate font-heading text-sm sm:text-lg lg:text-xl font-extrabold text-white drop-shadow-sm tracking-tight">
               {SITE_CONFIG.name}
             </span>
-            <span className="text-[11px] font-medium uppercase tracking-wider text-white/70">
+            <span className="text-[10px] sm:text-[11px] font-medium uppercase tracking-wider text-white/70">
               {SITE_CONFIG.shortName}
             </span>
           </span>
@@ -168,43 +179,76 @@ export function Header() {
 
         {/* Mobile toggle */}
         <button
-          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/20 text-white hover:bg-white/10 hover:text-ksc-yellow xl:hidden"
+          className="flex h-10 w-10 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-xl border border-white/20 text-white hover:bg-white/10 hover:text-ksc-yellow xl:hidden"
           onClick={() => setMobileOpen((v) => !v)}
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileOpen}
         >
-          {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          {mobileOpen ? <X className="h-5 w-5 sm:h-6 sm:w-6" /> : <Menu className="h-5 w-5 sm:h-6 sm:w-6" />}
         </button>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile menu backdrop overlay & drawer */}
       {mobileOpen && (
-        <div className="xl:hidden border-t border-white/10 bg-ksc-navy/95 backdrop-blur-md absolute left-0 top-full w-full shadow-2xl">
-          <nav className="container-site flex flex-col py-4" aria-label="Mobile">
-            {navItems.map((item) => {
-              return (
-                <NavLink
-                  key={item.label}
-                  to={item.path}
-                  end={item.path === "/"}
+        <>
+          <div
+            className="fixed inset-0 top-[60px] z-40 bg-black/60 backdrop-blur-xs xl:hidden animate-fade-in"
+            onClick={() => setMobileOpen(false)}
+            aria-hidden="true"
+          />
+          <div className="xl:hidden border-t border-white/10 bg-ksc-navy/98 backdrop-blur-2xl absolute left-0 top-full w-full shadow-2xl animate-fade-in-up z-50 max-h-[calc(100vh-70px)] overflow-y-auto">
+            <nav className="container-site flex flex-col py-4" aria-label="Mobile">
+              <div className="space-y-1">
+                {navItems.map((item) => {
+                  return (
+                    <NavLink
+                      key={item.label}
+                      to={item.path}
+                      end={item.path === "/"}
+                      onClick={() => setMobileOpen(false)}
+                      className={({ isActive }) =>
+                        cn(
+                          "px-4 py-3 text-base font-bold transition-all block w-full text-left rounded-xl",
+                          isActive
+                            ? "text-ksc-yellow bg-white/15 shadow-inner"
+                            : "text-white/85 hover:text-white hover:bg-white/10"
+                        )
+                      }
+                    >
+                      {item.label}
+                    </NavLink>
+                  );
+                })}
+              </div>
+
+              <div className="mt-4 pt-4 border-t border-white/10 flex flex-col gap-2.5 px-1">
+                <Link
+                  to="/admissions"
                   onClick={() => setMobileOpen(false)}
-                  className={({ isActive }) =>
-                    cn(
-                      "border-b border-white/10 px-4 py-4 text-base font-semibold transition-colors block w-full text-left",
-                      isActive ? "text-ksc-yellow font-bold" : "text-white/80 hover:text-white",
-                      "hover:bg-white/5"
-                    )
-                  }
+                  className="btn-gold w-full justify-center py-3.5 text-sm font-bold shadow-lg"
                 >
-                  {item.label}
-                </NavLink>
-              );
-            })}
-            <Link to="/admissions" onClick={() => setMobileOpen(false)} className="btn-gold mt-6 w-full py-3 shadow-md">
-              Apply Now
-            </Link>
-          </nav>
-        </div>
+                  Apply for Admission
+                </Link>
+                <div className="grid grid-cols-2 gap-2 mt-1">
+                  <a
+                    href={`tel:${SITE_CONFIG.contact.phone}`}
+                    className="flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/10 py-2.5 text-xs font-bold text-white hover:bg-white/20 transition-colors"
+                  >
+                    <Phone className="h-3.5 w-3.5 text-ksc-yellow" /> Call Us
+                  </a>
+                  <a
+                    href={`https://wa.me/${SITE_CONFIG.contact.whatsapp}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 rounded-xl border border-emerald-500/40 bg-emerald-600/30 py-2.5 text-xs font-bold text-emerald-300 hover:bg-emerald-600/40 transition-colors"
+                  >
+                    <MessageCircle className="h-3.5 w-3.5 text-emerald-400" /> WhatsApp
+                  </a>
+                </div>
+              </div>
+            </nav>
+          </div>
+        </>
       )}
     </header>
   );

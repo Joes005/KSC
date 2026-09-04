@@ -70,7 +70,7 @@ export function Curriculum() {
                   badge: "Syllabus PDF",
                   content: (
                     <div className="space-y-4">
-                      <p className="text-sm text-slate-700 leading-relaxed font-medium">
+                      <p className="text-sm text-slate-800 leading-relaxed font-bold">
                         Download the official syllabus and course prospectus PDF for {uni.name} ({uni.academicYear}). Collect printed copies at Karur Study Centre.
                       </p>
                       
@@ -108,13 +108,13 @@ export function Curriculum() {
                       </div>
 
                       {uni.id === "bdu" && (
-                        <p className="flex items-start gap-2 rounded-xl bg-blue-50/70 border border-blue-100 p-3.5 text-xs text-slate-700 font-medium">
+                        <p className="flex items-start gap-2 rounded-xl bg-blue-50/70 border border-blue-100 p-3.5 text-xs text-slate-800 font-bold">
                           <Info className="mt-0.5 h-4 w-4 shrink-0 text-ksc-royal" />
                           BDU — Course list &amp; eligibility for AY 2026-27 is available for direct download using the buttons above.
                         </p>
                       )}
                       {uni.id === "alagappa" && (
-                        <p className="flex items-start gap-2 rounded-xl bg-blue-50/70 border border-blue-100 p-3.5 text-xs text-slate-700 font-medium">
+                        <p className="flex items-start gap-2 rounded-xl bg-blue-50/70 border border-blue-100 p-3.5 text-xs text-slate-800 font-bold">
                           <Info className="mt-0.5 h-4 w-4 shrink-0 text-ksc-royal" />
                           Alagappa University (CDOE) — The complete prospectus with all programme syllabi, eligibility criteria, and fee structure is included in the PDF download above.
                         </p>
@@ -126,7 +126,7 @@ export function Curriculum() {
             />
           </div>
 
-          <div className="mx-auto mt-12 max-w-3xl text-center text-sm text-slate-600 font-medium opacity-0 translate-y-8 transition-all duration-700 [.is-visible_&]:opacity-100 [.is-visible_&]:translate-y-0 delay-300">
+          <div className="mx-auto mt-12 max-w-3xl text-center text-sm text-slate-700 font-bold opacity-0 translate-y-8 transition-all duration-700 [.is-visible_&]:opacity-100 [.is-visible_&]:translate-y-0 delay-300">
             {CURRICULUM.note}
             <div className="mt-4">
               <Link to="/academic" className="btn-outline">

@@ -153,6 +153,201 @@ const TNOU_SHORT_TERM: Programme[] = [
   { name: "Theatre Arts", medium: "Tamil" },
 ];
 
+/* =========================================================================== */
+/* MANONMANIAM SUNDARANAR UNIVERSITY (MSU) PROGRAMMES                          */
+/* =========================================================================== */
+
+const MSU_UG: Programme[] = [
+  {
+    name: "Bachelor of Arts (Hons) Tamil",
+    medium: "Tamil",
+    pattern: "Semester",
+    eligibility: "A pass in Higher Secondary Examination (10+2) or equivalent",
+    syllabusUrl: "/pdf/ALU-CDOE-Prospectus-AY-2026.pdf",
+  },
+  {
+    name: "Bachelor of Arts (Hons) English",
+    medium: "English",
+    pattern: "Semester",
+    eligibility: "A pass in Higher Secondary Examination (10+2) or equivalent",
+    syllabusUrl: "/pdf/ALU-CDOE-Prospectus-AY-2026.pdf",
+  },
+  {
+    name: "Bachelor of Arts (Hons) Economics",
+    medium: "English",
+    pattern: "Semester",
+    eligibility: "A pass in Higher Secondary Examination (10+2) or equivalent",
+    syllabusUrl: "/pdf/ALU-CDOE-Prospectus-AY-2026.pdf",
+  },
+  {
+    name: "B.A. History",
+    medium: "Tamil / English",
+    pattern: "Semester",
+    eligibility: "A pass in Higher Secondary Examination (10+2) or equivalent",
+    syllabusUrl: "/pdf/ALU-CDOE-Prospectus-AY-2026.pdf",
+  },
+  {
+    name: "Bachelor of Business Administration (BBA)",
+    medium: "English",
+    pattern: "Semester",
+    eligibility: "A pass in Higher Secondary Examination (10+2) or equivalent",
+    syllabusUrl: "/pdf/ALU-CDOE-Prospectus-AY-2026.pdf",
+  },
+  {
+    name: "B.Com.",
+    medium: "Tamil / English",
+    pattern: "Semester",
+    eligibility: "10+2 with Commerce / Accountancy / Business Studies",
+    syllabusUrl: "/pdf/ALU-CDOE-Prospectus-AY-2026.pdf",
+  },
+  {
+    name: "Bachelor of Library & Information Science (B.L.I.Sc.)",
+    medium: "English",
+    pattern: "Non-Semester",
+    eligibility: "Any Bachelor's Degree (10+2+3) from a recognised university",
+    syllabusUrl: "/pdf/ALU-CDOE-Prospectus-AY-2026.pdf",
+  },
+  {
+    name: "B.Sc. Mathematics",
+    medium: "Tamil / English",
+    pattern: "Semester",
+    eligibility: "10+2 with Mathematics as a core subject",
+    syllabusUrl: "/pdf/ALU-CDOE-Prospectus-AY-2026.pdf",
+  },
+  {
+    name: "B.Sc. Physics",
+    medium: "English",
+    pattern: "Semester",
+    eligibility: "10+2 with Physics and Mathematics",
+    syllabusUrl: "/pdf/ALU-CDOE-Prospectus-AY-2026.pdf",
+  },
+  {
+    name: "B.Sc. Chemistry",
+    medium: "English",
+    pattern: "Semester",
+    eligibility: "10+2 with Chemistry as a core subject",
+    syllabusUrl: "/pdf/ALU-CDOE-Prospectus-AY-2026.pdf",
+  },
+];
+
+const MSU_PG: Programme[] = [
+  {
+    name: "M.A. Tamil",
+    medium: "Tamil",
+    pattern: "Semester",
+    eligibility: "B.A. Tamil / B.Lit. or any Bachelor's degree with Tamil under Part-I",
+    syllabusUrl: "/pdf/ALU-CDOE-Prospectus-AY-2026.pdf",
+  },
+  {
+    name: "M.A. English",
+    medium: "English",
+    pattern: "Semester",
+    eligibility: "B.A. English or any Bachelor's degree with English under Part-II",
+    syllabusUrl: "/pdf/ALU-CDOE-Prospectus-AY-2026.pdf",
+  },
+  {
+    name: "M.A. Economics",
+    medium: "English",
+    pattern: "Semester",
+    eligibility: "B.A. Economics / Econometrics / relevant Bachelor's degree",
+    syllabusUrl: "/pdf/ALU-CDOE-Prospectus-AY-2026.pdf",
+  },
+  {
+    name: "Master of Library & Information Sciences (M.L.I.Sc.)",
+    medium: "English",
+    pattern: "Non-Semester",
+    eligibility: "B.L.I.Sc. degree from a recognised university",
+    syllabusUrl: "/pdf/ALU-CDOE-Prospectus-AY-2026.pdf",
+  },
+  {
+    name: "M.A. Journalism & Mass Communication",
+    medium: "English",
+    pattern: "Semester",
+    eligibility: "Any Bachelor's Degree from a recognised university",
+    syllabusUrl: "/pdf/ALU-CDOE-Prospectus-AY-2026.pdf",
+  },
+  {
+    name: "M.A. History",
+    medium: "Tamil / English",
+    pattern: "Semester",
+    eligibility: "Any Bachelor's Degree from a recognised university",
+    syllabusUrl: "/pdf/ALU-CDOE-Prospectus-AY-2026.pdf",
+  },
+  {
+    name: "M.Com. (TM / EM)",
+    medium: "Tamil / English",
+    pattern: "Semester",
+    eligibility: "B.Com / B.Com (CA) / BBA / Corporate Secretaryship / relevant degree",
+    syllabusUrl: "/pdf/ALU-CDOE-Prospectus-AY-2026.pdf",
+  },
+  {
+    name: "M.Com. (EM)",
+    medium: "English",
+    pattern: "Semester",
+    eligibility: "B.Com / B.Com (CA) / BBA or equivalent Bachelor's degree",
+    syllabusUrl: "/pdf/ALU-CDOE-Prospectus-AY-2026.pdf",
+  },
+  {
+    name: "M.Sc. Mathematics",
+    medium: "English",
+    pattern: "Semester",
+    eligibility: "B.Sc. Mathematics / Applied Mathematics",
+    syllabusUrl: "/pdf/ALU-CDOE-Prospectus-AY-2026.pdf",
+  },
+  {
+    name: "M.Sc. Physics",
+    medium: "English",
+    pattern: "Semester",
+    eligibility: "B.Sc. Physics with Mathematics as ancillary subject",
+    syllabusUrl: "/pdf/ALU-CDOE-Prospectus-AY-2026.pdf",
+  },
+  {
+    name: "M.Sc. Chemistry",
+    medium: "English",
+    pattern: "Semester",
+    eligibility: "B.Sc. Chemistry with Physics / Mathematics as ancillary subject",
+    syllabusUrl: "/pdf/ALU-CDOE-Prospectus-AY-2026.pdf",
+  },
+  {
+    name: "M.A. Criminology and Police Science",
+    medium: "English",
+    pattern: "Semester",
+    eligibility: "Any Bachelor's Degree from a recognised university",
+    syllabusUrl: "/pdf/ALU-CDOE-Prospectus-AY-2026.pdf",
+  },
+];
+
+const MSU_DIPLOMA_CERT: Programme[] = [
+  {
+    name: "PGDCA (Post Graduate Diploma in Computer Applications)",
+    medium: "English",
+    pattern: "Non-Semester",
+    eligibility: "Any Bachelor's Degree from a recognised university",
+    syllabusUrl: "/pdf/ALU-CDOE-Prospectus-AY-2026.pdf",
+  },
+  {
+    name: "Diploma in Yoga for Human Excellence",
+    medium: "Tamil / English",
+    pattern: "Non-Semester",
+    eligibility: "A pass in Higher Secondary Examination (10+2) or equivalent",
+    syllabusUrl: "/pdf/ALU-CDOE-Prospectus-AY-2026.pdf",
+  },
+  {
+    name: "Certificate Course in Yoga for Human Excellence",
+    medium: "Tamil / English",
+    pattern: "Non-Semester",
+    eligibility: "10th Standard (SSLC) or equivalent",
+    syllabusUrl: "/pdf/ALU-CDOE-Prospectus-AY-2026.pdf",
+  },
+  {
+    name: "Certificate Course in Library and Information Science",
+    medium: "English",
+    pattern: "Non-Semester",
+    eligibility: "10th Standard (SSLC) / 10+2 pass",
+    syllabusUrl: "/pdf/ALU-CDOE-Prospectus-AY-2026.pdf",
+  },
+];
+
 export const UNIVERSITIES: University[] = [
   /* =========================================================================== */
   /* ALAGAPPA UNIVERSITY (ALU) — CDOE                                            */
@@ -382,7 +577,29 @@ export const UNIVERSITIES: University[] = [
     pattern: "Semester / Non-Semester",
     recognition: "State University · UGC-DEB Approved",
     logo: "/assets/logo/Periyar_University_Logo_HD.png",
-    categories: [],
+    categories: [
+      {
+        id: "ug",
+        label: "UG Programmes",
+        count: MSU_UG.length,
+        note: "Semester Pattern · Recognized by UGC-DEB",
+        programmes: MSU_UG,
+      },
+      {
+        id: "pg",
+        label: "PG Programmes",
+        count: MSU_PG.length,
+        note: "Semester Pattern · Recognized by UGC-DEB",
+        programmes: MSU_PG,
+      },
+      {
+        id: "diploma-cert",
+        label: "Diploma & Certificate",
+        count: MSU_DIPLOMA_CERT.length,
+        note: "Non-Semester / 1-Year & 6-Month Programmes",
+        programmes: MSU_DIPLOMA_CERT,
+      },
+    ],
     exam: {
       note: "Manonmaniam Sundaranar University publishes exam details on its official distance education portal.",
       hallTicketUrl: "#",

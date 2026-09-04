@@ -50,14 +50,14 @@ export function UniversityCourses() {
             const uni = UNIVERSITIES.find((u) => u.id === activeId) ?? UNIVERSITIES[0];
             return (
               <div className="opacity-0 translate-y-12 transition-all duration-700 [.is-visible_&]:opacity-100 [.is-visible_&]:translate-y-0 delay-100">
-                <div className="mb-6 rounded-2xl bg-ksc-navy p-6 shadow-md border-l-4 border-ksc-yellow relative overflow-hidden group">
+                <div className="mb-6 rounded-2xl bg-ksc-navy p-4 sm:p-6 shadow-md border-l-4 border-ksc-yellow relative overflow-hidden group">
                   <div className="absolute top-0 right-0 w-48 h-48 bg-ksc-yellow/5 rounded-full blur-[40px] pointer-events-none transition-transform duration-700 group-hover:scale-150" />
-                  <h3 className="text-2xl font-black text-white uppercase relative z-10">{uni.name}</h3>
-                  <p className="mt-1 text-sm font-bold text-slate-400 uppercase tracking-widest">
+                  <h3 className="text-lg sm:text-2xl font-black text-white uppercase relative z-10 leading-snug">{uni.name}</h3>
+                  <p className="mt-1 text-xs sm:text-sm font-bold text-slate-300 uppercase tracking-widest">
                     {uni.academicYear} · {uni.pattern}
                   </p>
                   {uni.recognition && (
-                    <p className="mt-2 inline-block rounded-md bg-red-50 border border-red-100 px-3 py-1 text-xs font-bold uppercase tracking-widest text-ksc-red">
+                    <p className="mt-2.5 inline-block rounded-md bg-red-50 border border-red-100 px-3 py-1 text-[11px] sm:text-xs font-bold uppercase tracking-wider text-ksc-red">
                       {uni.recognition}
                     </p>
                   )}

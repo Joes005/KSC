@@ -67,7 +67,7 @@ export function WhyDistance() {
                     </div>
                     <span className={`ml-4 text-2xl font-light transition-transform duration-300 ${isActive ? 'text-ksc-yellow rotate-180' : 'text-ksc-navy rotate-0'}`}>{isActive ? '−' : '+'}</span>
                   </button>
-                  <div className={`overflow-hidden px-4 transition-all duration-500 ${isActive ? 'max-h-40 pb-6 opacity-100' : 'max-h-0 opacity-0'}`}><p className="pl-15 pr-8 text-sm font-medium leading-7 text-slate-600 sm:text-base">{item.description}</p></div>
+                  <div className={`overflow-hidden px-4 transition-all duration-500 ${isActive ? 'max-h-56 pb-6 opacity-100' : 'max-h-0 opacity-0'}`}><p className="pl-2 sm:pl-15 pr-2 sm:pr-8 text-sm font-bold leading-relaxed text-slate-800 sm:text-base">{item.description}</p></div>
                 </div>
               );
             })}

@@ -45,7 +45,7 @@ export function AboutSnapshot() {
             <div className="grid gap-4">
               {ABOUT_SNAPSHOT.text?.map((para: any, i: number) => (
                 <div key={i} className="flex items-start gap-3 rounded-xl border border-ksc-navy/10 bg-white px-4 py-4 shadow-sm">
-                  <span className="text-sm font-medium leading-6 text-slate-700">{para}</span>
+                  <span className="text-sm sm:text-base font-bold leading-relaxed text-slate-800">{para}</span>
                 </div>
               ))}
               {ABOUT_SNAPSHOT.readMoreLink && (
@@ -67,10 +67,10 @@ export function AboutSnapshot() {
                 </div>
               </div>
             </div>
-            <div className="relative -mt-14 ml-5 max-w-sm rounded-2xl bg-ksc-navy p-6 text-white shadow-xl sm:ml-12 transition-all duration-700 opacity-0 translate-y-12 [.is-visible_&]:opacity-100 [.is-visible_&]:translate-y-0 delay-300">
-              <BookOpen className="mb-4 h-8 w-8 text-ksc-yellow" aria-hidden="true" />
-              <p className="font-heading text-2xl font-bold leading-tight">Education is the most powerful weapon you can use to change the world.</p>
-              <p className="mt-4 text-xs font-black uppercase tracking-[.2em] text-ksc-yellow">— Kamarajar</p>
+            <div className="relative -mt-8 sm:-mt-14 mx-3 sm:mx-0 sm:ml-12 max-w-sm rounded-2xl bg-ksc-navy p-5 sm:p-6 text-white shadow-xl transition-all duration-700 opacity-0 translate-y-12 [.is-visible_&]:opacity-100 [.is-visible_&]:translate-y-0 delay-300">
+              <BookOpen className="mb-3 sm:mb-4 h-7 w-7 sm:h-8 sm:w-8 text-ksc-yellow" aria-hidden="true" />
+              <p className="font-heading text-lg sm:text-2xl font-bold leading-tight">Education is the most powerful weapon you can use to change the world.</p>
+              <p className="mt-3 sm:mt-4 text-[10px] sm:text-xs font-black uppercase tracking-[.2em] text-ksc-yellow">— Kamarajar</p>
             </div>
           </div>
         </div>

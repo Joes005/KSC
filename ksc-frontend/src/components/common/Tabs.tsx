@@ -8,6 +8,8 @@ interface TabsProps {
   onChange?: (id: string) => void;
   children: (activeId: string) => ReactNode;
   className?: string;
+  tabListClassName?: string;
+  centerTabs?: boolean;
 }
 
 /**
@@ -15,7 +17,7 @@ interface TabsProps {
  * so each panel decides what to show (keep children components mounted if you
  * want to preserve state across tab switches).
  */
-export function Tabs({ tabs, defaultActive, onChange, children, className }: TabsProps) {
+export function Tabs({ tabs, defaultActive, onChange, children, className, tabListClassName, centerTabs }: TabsProps) {
   const [active, setActive] = useState(defaultActive ?? tabs[0]?.id ?? "");
   useEffect(() => {
     if (defaultActive) {
@@ -40,8 +42,12 @@ export function Tabs({ tabs, defaultActive, onChange, children, className }: Tab
     <div className={className}>
       <div
         role="tablist"
-        aria-label="Programme categories"
-        className="scrollbar-none flex items-center gap-2 overflow-x-auto pb-2 pt-1"
+        aria-label="Categories"
+        className={cn(
+          "scrollbar-none flex items-center gap-2 overflow-x-auto pb-2 pt-1 -mx-4 px-4 sm:mx-0 sm:px-0 snap-x snap-mandatory touch-pan-x",
+          centerTabs ? "justify-start sm:justify-center" : "justify-start",
+          tabListClassName
+        )}
       >
         {tabs.map((tab, index) => {
           const isActive = active === tab.id;
@@ -56,18 +62,18 @@ export function Tabs({ tabs, defaultActive, onChange, children, className }: Tab
               onClick={() => select(tab.id)}
               onKeyDown={(event) => handleKeys(event, index)}
               className={cn(
-                "flex min-h-11 shrink-0 items-center justify-center gap-1.5 rounded-xl border px-4 py-2.5 text-sm font-semibold transition duration-200",
+                "flex min-h-11 shrink-0 snap-start items-center justify-center gap-2 rounded-xl border-2 px-4 py-2.5 text-sm sm:text-base font-bold transition duration-200 shadow-xs active:scale-95",
                 isActive
-                  ? "border-ksc-royal bg-ksc-royal text-white shadow-sm"
-                  : "border-slate-200 bg-white text-slate-600 hover:border-ksc-sky/60 hover:text-ksc-royal"
+                  ? "border-ksc-navy bg-ksc-navy text-white shadow-md"
+                  : "border-slate-300 bg-white text-slate-800 hover:border-ksc-royal hover:text-ksc-royal hover:bg-slate-50"
               )}
             >
-              <span className="leading-none mt-0.5">{tab.label}</span>
+              <span className="leading-none mt-0.5 font-extrabold">{tab.label}</span>
               {tab.badge !== undefined && (
                 <span
                   className={cn(
-                    "inline-flex h-5 min-w-5 items-center justify-center rounded-full px-1.5 text-[11px] font-bold shadow-sm",
-                    isActive ? "bg-white/15 text-white" : "bg-slate-100 text-slate-500"
+                    "inline-flex h-5 min-w-5 items-center justify-center rounded-full px-1.5 text-xs font-black shadow-xs",
+                    isActive ? "bg-white/20 text-white" : "bg-slate-200 text-slate-800"
                   )}
                 >
                   {tab.badge}

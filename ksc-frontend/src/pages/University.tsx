@@ -58,7 +58,7 @@ export function University() {
                     <Award className="h-4 w-4" /> {uni.recognition}
                   </p>
                 )}
-                <div className="mt-6 flex flex-wrap gap-x-8 gap-y-3 text-xs sm:text-sm font-medium text-slate-600">
+                <div className="mt-6 flex flex-wrap gap-x-8 gap-y-3 text-xs sm:text-sm font-bold text-slate-700">
                   {uni.address && (
                     <span className="inline-flex items-center gap-2">
                       <MapPin className="h-4 w-4 text-ksc-red" /> {uni.address}
@@ -99,7 +99,7 @@ export function University() {
                     {cat && (
                       <>
                         {cat.note && (
-                          <p className="mb-6 rounded-md border-2 border-slate-200 bg-white px-5 py-3 text-sm font-medium text-slate-600 shadow-sm">
+                          <p className="mb-6 rounded-md border-2 border-slate-200 bg-white px-5 py-3 text-sm font-bold text-slate-800 shadow-sm">
                             {cat.note}
                           </p>
                         )}
@@ -121,7 +121,7 @@ export function University() {
             <h2 className="text-2xl font-black uppercase text-ksc-navy">
               {uni.shortName} — Exam Resources
             </h2>
-            <p className="mt-2 text-sm leading-relaxed font-medium text-slate-600">{uni.exam.note}</p>
+            <p className="mt-2 text-sm leading-relaxed font-bold text-slate-700">{uni.exam.note}</p>
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
               <a
                 href={uni.exam.hallTicketUrl}
@@ -134,8 +134,8 @@ export function University() {
                     <TicketCheck className="h-6 w-6" />
                   </span>
                   <span>
-                    <span className="block font-bold text-ksc-navy uppercase text-sm">Hall Ticket Portal</span>
-                    <span className="text-xs font-bold text-slate-500">{uni.name}</span>
+                    <span className="block font-black text-ksc-navy uppercase text-sm">Hall Ticket Portal</span>
+                    <span className="text-xs font-bold text-slate-600">{uni.name}</span>
                   </span>
                 </span>
                 <ExternalLink className="h-5 w-5 shrink-0 text-slate-400" />
@@ -151,8 +151,8 @@ export function University() {
                     <FileText className="h-6 w-6" />
                   </span>
                   <span>
-                    <span className="block font-bold text-ksc-navy uppercase text-sm">Exam Timetable (PDF)</span>
-                    <span className="text-xs font-bold text-slate-500">{uni.name}</span>
+                    <span className="block font-black text-ksc-navy uppercase text-sm">Exam Timetable (PDF)</span>
+                    <span className="text-xs font-bold text-slate-600">{uni.name}</span>
                   </span>
                 </span>
                 <ExternalLink className="h-5 w-5 shrink-0 text-slate-400" />
@@ -162,7 +162,7 @@ export function University() {
 
           <div className="rounded-2xl border border-slate-200 bg-white p-8 text-ksc-navy shadow-soft">
             <h3 className="text-xl font-black uppercase">Need admission guidance?</h3>
-            <p className="mt-4 text-sm font-medium text-slate-700 leading-relaxed">
+            <p className="mt-4 text-sm font-bold text-slate-800 leading-relaxed">
               Walk into {SITE_CONFIG.name} in Karur and our counsellors will help you pick the
               right {uni.shortName} programme, complete the application and plan for exams.
             </p>

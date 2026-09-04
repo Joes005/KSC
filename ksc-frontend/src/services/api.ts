@@ -1,4 +1,4 @@
-import { SITE_CONFIG, HERO, WHY_DISTANCE, ABOUT_SNAPSHOT, VISION_MISSION_VALUES, NEWS_EVENTS, ADMISSION_STEPS, BRANCHES, FOUNDER_MESSAGE, CHAIRMAN_MESSAGE, CURRICULUM } from "../data/site-content";
+import { SITE_CONFIG, HERO, WHY_DISTANCE, ABOUT_SNAPSHOT, ABOUT_PAGE, VISION_MISSION_VALUES, NEWS_EVENTS, ADMISSION_STEPS, BRANCHES, FOUNDER_MESSAGE, CHAIRMAN_MESSAGE, CURRICULUM } from "../data/site-content";
 import { UNIVERSITIES } from "../data/universities";
 import { GALLERY } from "../data/gallery";
 import { FACILITIES } from "../data/facilities";
@@ -106,12 +106,30 @@ function mapGallery(list: any[]): GalleryItem[] {
 }
 
 function mapBranches(list: any[]): typeof BRANCHES {
-  return (list ?? []).map((b) => ({
-    name: b.name ?? "",
-    address: b.address ?? "",
-    phone: b.phone ?? "",
-    isHead: Boolean(b.is_head_office),
-  }));
+  return (list ?? []).map((b) => {
+    const loc = b.location ?? (b.name?.toLowerCase().includes("dindigul") ? "Dindigul" : b.name?.toLowerCase().includes("kangeyam") || b.name?.toLowerCase().includes("pace") ? "Kangeyam" : "Karur");
+    const defaultMapUrl = loc === "Karur" 
+      ? "https://maps.app.goo.gl/MJFWjrveBV3DQhi4A" 
+      : loc === "Dindigul" 
+      ? "https://maps.app.goo.gl/5MT1b3oKCiyhkxos6" 
+      : `https://maps.google.com/maps?q=${encodeURIComponent((b.name ?? "") + ", " + (b.address ?? ""))}`;
+
+    const defaultEmbedUrl = loc === "Karur"
+      ? "https://maps.google.com/maps?q=Karur+Study+Centre,+M.R.S.+Plaza,+Covai+Road,+Ramakrishna+Puram,+Karur,+Tamil+Nadu+639001&t=&z=16&ie=UTF8&iwloc=&output=embed"
+      : loc === "Dindigul"
+      ? "https://maps.google.com/maps?q=S.S.+Institute,+75/38,+Scheme+Road,+2nd+Floor,+Raja+Complex,+Dindigul&t=&z=16&ie=UTF8&iwloc=&output=embed"
+      : `https://maps.google.com/maps?q=${encodeURIComponent((b.name ?? "") + ", " + (b.address ?? ""))}&t=&z=16&ie=UTF8&iwloc=&output=embed`;
+
+    return {
+      name: b.name ?? "",
+      location: loc,
+      address: b.address ?? "",
+      phone: b.phone ?? "",
+      isHead: Boolean(b.is_head_office),
+      mapUrl: b.map_url || b.mapUrl || defaultMapUrl,
+      mapEmbedUrl: b.map_embed_url || b.mapEmbedUrl || defaultEmbedUrl,
+    };
+  });
 }
 
 function mapUniversities(list: any[]): University[] {
@@ -198,7 +216,7 @@ export async function fetchSiteData() {
     ? mapUniversities(api.universities)
     : UNIVERSITIES;
 
-  const afterAbout = pageSection(pages, "about", "about_page", ABOUT_SNAPSHOT);
+  const afterAbout = pageSection(pages, "about", "about_page", ABOUT_PAGE);
   if ((afterAbout as any)?.image) (afterAbout as any).image = toAsset((afterAbout as any).image);
 
   const founderMessage = pageSection(pages, "founder", "message", FOUNDER_MESSAGE);
@@ -258,6 +276,7 @@ export async function fetchSiteData() {
       ...ABOUT_SNAPSHOT,
       ...afterAbout,
     },
+    about_page: afterAbout,
     vision_mission: pageSection(pages, "home", "vision_mission", VISION_MISSION_VALUES),
     admission_steps: pageSection(pages, "home", "admission_steps", ADMISSION_STEPS),
     founder_message: founderMessage,

@@ -23,15 +23,15 @@ export function PageHeader({ title, breadcrumb, bgImage }: PageHeaderProps) {
       <div className="absolute bottom-0 left-0 h-1.5 w-32 bg-gradient-to-r from-ksc-yellow to-amber-500" aria-hidden="true" />
 
       {/* Content */}
-      <div className="container-site relative z-10 flex min-h-56 flex-col items-start justify-center py-9 text-left sm:min-h-64 sm:py-10">
-        <p className="mb-3 animate-fade-in text-xs font-bold uppercase tracking-[.2em] text-ksc-yellow">Karur Study Centre</p>
-        <h1 className="mb-6 max-w-4xl animate-fade-in-up text-4xl font-extrabold normal-case leading-tight tracking-tight text-white drop-shadow-md sm:text-5xl">
+      <div className="container-site relative z-10 flex min-h-48 sm:min-h-56 lg:min-h-64 flex-col items-start justify-center py-7 sm:py-9 lg:py-10 text-left">
+        <p className="mb-2 sm:mb-3 animate-fade-in text-[11px] sm:text-xs font-bold uppercase tracking-[.2em] text-ksc-yellow">Karur Study Centre</p>
+        <h1 className="mb-4 sm:mb-6 max-w-4xl animate-fade-in-up text-2xl sm:text-4xl lg:text-5xl font-extrabold normal-case leading-tight tracking-tight text-white drop-shadow-md">
           {title}
         </h1>
 
         {/* Breadcrumb Ribbon */}
         <nav aria-label="Breadcrumb" className="animate-fade-in-up delay-100">
-          <div className="flex flex-wrap items-center rounded-full border border-white/10 bg-white/10 px-5 py-2 text-xs font-medium text-white/70 backdrop-blur-md sm:text-sm shadow-sm">
+          <div className="flex flex-wrap items-center rounded-full border border-white/10 bg-white/10 px-3.5 py-1.5 sm:px-5 sm:py-2 text-[11px] font-medium text-white/70 backdrop-blur-md sm:text-sm shadow-sm">
             {breadcrumb.map((crumb, idx) => {
               const isLast = idx === breadcrumb.length - 1;
               return (

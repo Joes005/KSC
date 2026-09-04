@@ -50,8 +50,8 @@ export function Gallery() {
             ))}
           </div>
 
-          <p className="mt-12 text-center text-sm font-medium text-slate-500 max-w-2xl mx-auto bg-slate-100 border-2 border-slate-200 p-4 rounded-xl opacity-0 translate-y-8 transition-all duration-700 [.is-visible_&]:opacity-100 [.is-visible_&]:translate-y-0 delay-300">
-            Real photos from the Karur Study Center — walk in during working hours and see our services
+          <p className="mt-12 text-center text-sm font-bold text-slate-800 max-w-2xl mx-auto bg-slate-100 border-2 border-slate-200 p-4 rounded-xl opacity-0 translate-y-8 transition-all duration-700 [.is-visible_&]:opacity-100 [.is-visible_&]:translate-y-0 delay-300">
+            Real photos from the Karur Study Centre — walk in during working hours and see our services
             first-hand.
           </p>
         </div>
@@ -60,7 +60,7 @@ export function Gallery() {
       {/* Lightbox */}
       {lightbox !== null && GALLERY[lightbox] && (
         <div
-          className="fixed inset-0 z-[60] flex items-center justify-center bg-ksc-navy/95 p-4 backdrop-blur-sm"
+          className="fixed inset-0 z-[60] flex items-center justify-center bg-ksc-navy/95 p-3 sm:p-6 backdrop-blur-sm"
           onClick={() => setLightbox(null)}
           role="dialog"
           aria-modal="true"
@@ -68,18 +68,18 @@ export function Gallery() {
         >
           <button
             onClick={() => setLightbox(null)}
-            className="absolute right-4 top-4 flex h-12 w-12 items-center justify-center rounded-full bg-white text-ksc-red hover:bg-ksc-yellow hover:text-ksc-navy shadow-xl border-[3px] border-ksc-navy transition-colors"
+            className="absolute right-3 top-3 sm:right-6 sm:top-6 z-20 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-white text-ksc-red hover:bg-ksc-yellow hover:text-ksc-navy shadow-xl border-2 sm:border-[3px] border-ksc-navy transition-colors active:scale-95"
             aria-label="Close"
           >
-            <X className="h-6 w-6 stroke-[3]" />
+            <X className="h-5 w-5 sm:h-6 sm:w-6 stroke-[3]" />
           </button>
-          <figure className="max-h-full" onClick={(e) => e.stopPropagation()}>
+          <figure className="max-h-full max-w-4xl" onClick={(e) => e.stopPropagation()}>
             <img
               src={GALLERY[lightbox].src}
               alt={GALLERY[lightbox].alt}
-              className="max-h-[80vh] rounded-2xl object-contain shadow-2xl border-[6px] border-white"
+              className="max-h-[70vh] sm:max-h-[80vh] w-auto rounded-xl sm:rounded-2xl object-contain shadow-2xl border-2 sm:border-[6px] border-white mx-auto"
             />
-            <figcaption className="mt-4 text-center text-lg font-black uppercase tracking-widest text-white drop-shadow-md">
+            <figcaption className="mt-3 sm:mt-4 text-center text-sm sm:text-lg font-black uppercase tracking-wider text-white drop-shadow-md px-2">
               {GALLERY[lightbox].caption}
             </figcaption>
           </figure>

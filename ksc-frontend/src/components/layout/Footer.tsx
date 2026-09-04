@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Phone, MessageCircle } from "lucide-react";
+import { Phone, MessageCircle, MapPin, ArrowUpRight } from "lucide-react";
 import { useSiteData } from "../../services/SiteDataContext";
 import { Logo } from "../brand/Logo";
 
@@ -27,6 +27,7 @@ const TwitterXIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
+
 export function Footer() {
   const { data: { settings: SITE_CONFIG, universities: UNIVERSITIES, branches: BRANCHES } } = useSiteData();
   const { contact, socials } = SITE_CONFIG;
@@ -50,10 +51,10 @@ export function Footer() {
 
   return (
     <footer className="bg-ksc-navy text-white animate-fade-in-up delay-200">
-      <div className="relative overflow-hidden bg-[#fff8e7] py-6 text-ksc-navy sm:py-7">
-        <div className="absolute right-0 top-0 h-full w-1/3 bg-ksc-yellow/20 [clip-path:polygon(30%_0,100%_0,100%_100%,0_100%)]" />
+      <div className="relative overflow-hidden bg-gradient-to-r from-[#fffdf5] via-[#fffbf0] to-[#fffdf5] py-6 text-ksc-navy sm:py-7 border-b border-amber-200/50">
+        <div className="absolute right-0 top-0 h-full w-1/3 bg-ksc-yellow/15 [clip-path:polygon(30%_0,100%_0,100%_100%,0_100%)]" />
         <div className="container-site relative z-10 flex flex-col items-center justify-between gap-4 text-center md:flex-row md:text-left">
-           <div><p className="text-[10px] font-bold uppercase tracking-[.16em] text-ksc-red">Need help choosing a course?</p><h3 className="mt-1 text-xl font-bold text-ksc-navy sm:text-2xl">Talk to our education team</h3></div>
+           <div><p className="text-[11px] font-black uppercase tracking-[.18em] text-ksc-red">Need help choosing a course?</p><h3 className="mt-1 text-xl font-extrabold text-ksc-navy sm:text-2xl">Talk to our education team</h3></div>
            <div className="flex flex-row flex-wrap justify-center items-center gap-2 sm:gap-3">
              <a href={`tel:${contact.phone}`} className="flex min-h-10 items-center gap-2 rounded-lg bg-ksc-navy px-4 py-2 text-sm font-bold text-white transition-colors hover:bg-ksc-royal">
                <Phone className="h-4 w-4" /> {contact.phone}
@@ -66,46 +67,77 @@ export function Footer() {
       </div>
 
       {/* Branches Section */}
-      <div className="border-t border-slate-200 bg-gradient-to-br from-[#eef7ff] via-white to-[#fff8e5] py-7 sm:py-8">
+      <div className="border-t border-slate-200/80 bg-gradient-to-b from-white via-[#fcfdff] to-[#f4f8fd] py-6 sm:py-9 bg-dot-pattern">
           <div className="container-site mb-5 text-center">
-            <p className="text-[10px] font-bold uppercase tracking-[.16em] text-ksc-red">Visit Us</p>
-            <h4 className="mt-1 text-xl font-bold text-ksc-navy sm:text-2xl">Our Associated Branches</h4>
-            <p className="mt-1 text-sm text-slate-500">Meet our counsellors at the centre nearest to you.</p>
+            <p className="text-[11px] font-black uppercase tracking-[.2em] text-ksc-red">Visit Us</p>
+            <h4 className="mt-1 text-2xl font-black text-ksc-navy sm:text-3xl tracking-tight">Our Associated Branches</h4>
+            <p className="mt-1 text-xs sm:text-sm font-bold text-slate-600">Meet our counsellors at the centre nearest to you.</p>
           </div>
           <div className="container-site grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {BRANCHES.map((branch) => {
-              const mapUrl = `https://maps.google.com/maps?q=${encodeURIComponent(branch.name + ", " + branch.address)}`;
+              const mapUrl = (branch as any).mapUrl || (branch.location === "Karur" || branch.name.includes("Karur") ? "https://maps.app.goo.gl/MJFWjrveBV3DQhi4A" : branch.location === "Dindigul" || branch.name.includes("Dindigul") ? "https://maps.app.goo.gl/5MT1b3oKCiyhkxos6" : `https://maps.google.com/maps?q=${encodeURIComponent(branch.name + ", " + branch.address)}`);
               return (
                 <div 
                   key={branch.name}
-                  onClick={() => window.open(mapUrl, '_blank')}
-                  className="group relative cursor-pointer overflow-hidden rounded-2xl border border-slate-200 bg-white/90 p-5 pr-12 transition-all duration-300 hover:-translate-y-1 hover:border-ksc-red/30 hover:shadow-xl hover:bg-white"
+                  onClick={() => window.open(mapUrl, '_blank', 'noopener,noreferrer')}
+                  className="group relative flex flex-col justify-between cursor-pointer overflow-hidden rounded-2xl border-2 border-slate-200/90 bg-white p-4 sm:p-5 transition-all duration-300 hover:-translate-y-1 hover:border-ksc-red/50 hover:shadow-xl shadow-xs"
                 >
-                  {/* Hover Arrow */}
-                  <div className="absolute right-5 top-5 text-slate-300 transition-all duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-ksc-red">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+                  <div>
+                    <div className="mb-3 flex items-start gap-3">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-red-50 to-rose-100 text-xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6 shadow-xs border border-red-200/80">
+                        📍
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-1.5 flex-wrap mb-1">
+                          {branch.isHead && (
+                            <span className="text-[10px] font-black uppercase tracking-[.18em] text-white bg-ksc-red px-2 py-0.5 rounded-md shadow-xs">
+                              Head Office
+                            </span>
+                          )}
+                          <span className="text-[10px] font-black uppercase tracking-wider text-ksc-red bg-red-50 border border-red-200 px-2 py-0.5 rounded-full">
+                            {(branch as any).location || (branch.name.includes("Dindigul") || branch.address.includes("Dindigul") ? "Dindigul" : (branch.name.includes("Kang") || branch.address.includes("Kang")) ? "Kangeyam" : "Karur")}
+                          </span>
+                        </div>
+                        <h5 className="text-base sm:text-lg font-black leading-tight text-ksc-navy transition-colors group-hover:text-ksc-red">
+                          {branch.name}
+                        </h5>
+                      </div>
+                    </div>
+
+                    {/* Highlighted Address Box with Right Corner Arrow only (Flex layout prevents text overlap) */}
+                    <div className="rounded-xl bg-gradient-to-r from-red-50/70 via-white to-amber-50/40 p-3 sm:p-3.5 border border-red-200/90 transition-all duration-300 group-hover:bg-red-50 group-hover:border-red-300 shadow-2xs">
+                      <div className="flex items-start justify-between gap-2.5">
+                        <div className="flex items-start gap-2 flex-1 min-w-0">
+                          <MapPin className="h-4.5 w-4.5 text-ksc-red shrink-0 mt-0.5 stroke-[2.5]" />
+                          <p className="text-xs sm:text-sm font-extrabold leading-snug text-slate-900 tracking-tight">
+                            {branch.address}
+                          </p>
+                        </div>
+
+                        {/* Arrow mark in right side corner only of address */}
+                        <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-white/90 group-hover:bg-ksc-red text-slate-400 group-hover:text-white border border-red-200/70 shadow-2xs transition-all duration-200 group-hover:scale-105 mt-0.5">
+                          <ArrowUpRight className="h-3.5 w-3.5 stroke-[2.5]" />
+                        </span>
+                      </div>
+                    </div>
                   </div>
 
-                  <div className="mb-3 flex items-start gap-4">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-red-50 text-xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12 shadow-sm border border-red-100">
-                      📍
-                    </div>
-                    <div>
-                      {branch.isHead && <span className="mb-1 block text-[10px] font-black uppercase tracking-[.18em] text-ksc-red">Head Office</span>}
-                      <h5 className="text-base font-extrabold leading-tight text-ksc-navy transition-colors group-hover:text-ksc-red">{branch.name}</h5>
-                    </div>
-                  </div>
-                  <div className="ml-14 space-y-3 text-sm text-slate-600">
-                    <p className="leading-relaxed font-medium">{branch.address}</p>
-                    <div className="border-t border-slate-100 pt-3">
-                      <a 
-                        href={`tel:${branch.phone}`} 
-                        onClick={(e) => e.stopPropagation()}
-                        className="inline-flex items-center gap-2 font-bold text-ksc-navy transition-colors hover:text-ksc-red"
-                      >
-                        <Phone className="h-4 w-4 text-ksc-red" /> {branch.phone}
-                      </a>
-                    </div>
+                  {/* Mobile Numbers Highlighted Separately */}
+                  <div className="mt-3 border-t border-slate-100 pt-2.5 flex flex-wrap items-center gap-1.5">
+                    {branch.phone.split(',').map((phone, idx) => {
+                      const cleanPhone = phone.trim();
+                      return (
+                        <a 
+                          key={idx}
+                          href={`tel:${cleanPhone.replace(/\s+/g, '')}`} 
+                          onClick={(e) => e.stopPropagation()}
+                          className="inline-flex items-center gap-1 rounded-md bg-red-50/80 hover:bg-ksc-red text-ksc-navy hover:text-white border border-red-200/90 hover:border-ksc-red px-2.5 py-1 text-[11px] sm:text-xs font-black tracking-wide shadow-2xs transition-all duration-200 group/phone"
+                        >
+                          <Phone className="h-3 w-3 text-ksc-red group-hover/phone:text-white stroke-[2.5]" />
+                          <span>{cleanPhone}</span>
+                        </a>
+                      );
+                    })}
                   </div>
                 </div>
               );
@@ -201,7 +233,7 @@ export function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="bg-[#040e29] px-6 py-6 sm:px-12 border-t border-white/10">
+      <div className="bg-[#040e29] px-6 pt-6 pb-24 sm:pb-6 sm:px-12 border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 md:flex-row">
           <p className="text-xs text-slate-500 font-bold tracking-widest uppercase">
             © {new Date().getFullYear()} Karur Study Centre. Developed by <a href="https://www.digitaltactsolutions.com/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-slate-300 transition-colors">Digitaltactsolutions</a>.

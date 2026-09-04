@@ -79,33 +79,33 @@ export function NewsAndEventsBanner() {
           <p className="mt-1 text-xs text-white/70 font-medium hidden sm:block">Important admissions and examination notices.</p>
         </div>
 
-        <div className="group relative h-44 sm:h-48 overflow-hidden rounded-2xl border border-white/20 bg-white/[0.09] px-4 sm:px-6 shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),0_8px_24px_rgba(0,0,0,0.25)] backdrop-blur-md transition-all hover:bg-white/[0.12] hover:border-white/30">
-          <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-6 bg-gradient-to-b from-[#071B4A] via-[#071B4A]/60 to-transparent" />
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-6 bg-gradient-to-t from-[#071B4A] via-[#071B4A]/60 to-transparent" />
-          <div className="flex w-full animate-marqueeVertical flex-col items-start gap-5 py-5 hover:[animation-play-state:paused]">
+        <div className="group relative h-48 sm:h-52 overflow-hidden rounded-2xl border border-white/25 bg-[#071a4d]/80 px-4 sm:px-6 shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),0_8px_24px_rgba(0,0,0,0.3)] backdrop-blur-md transition-all hover:bg-[#071a4d]/90 hover:border-white/35">
+          <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-8 bg-gradient-to-b from-[#071a4d] via-[#071a4d]/80 to-transparent" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-8 bg-gradient-to-t from-[#071a4d] via-[#071a4d]/80 to-transparent" />
+          <div className="flex w-full animate-marqueeVertical flex-col items-start gap-5 py-6 hover:[animation-play-state:paused]">
             {[...newsEvents, ...newsEvents].map((news, index) => (
-              <div key={`${news.text}-${index}`} className="flex w-full items-start gap-3 text-sm font-semibold leading-relaxed text-white/95 sm:text-base transition-colors hover:text-ksc-yellow group/item">
+              <div key={`${news.text}-${index}`} className="flex w-full items-start gap-3.5 text-sm font-semibold leading-relaxed text-white sm:text-base transition-colors hover:text-ksc-yellow group/item">
                 <span className="relative flex h-2.5 w-2.5 shrink-0 mt-1.5">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-ksc-yellow opacity-75"></span>
                   <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-ksc-yellow shadow-[0_0_8px_rgba(245,196,0,0.8)]"></span>
                 </span>
                 <div className="flex-1 min-w-0">
                   {news.date && (
-                    <span className="inline-block mb-1 px-2 py-0.5 rounded bg-white/10 text-[10px] font-bold uppercase tracking-wider text-ksc-yellow border border-white/10">
+                    <span className="inline-block mb-1 px-2.5 py-0.5 rounded-md bg-white/15 text-[10px] font-black uppercase tracking-wider text-ksc-yellow border border-white/20 shadow-xs">
                       {news.date}
                     </span>
                   )}
-                  <p className="leading-snug text-white/90 drop-shadow-sm">{news.text}</p>
+                  <div className="leading-snug text-white font-bold text-sm sm:text-[15px] drop-shadow-sm">{news.text}</div>
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="flex justify-start md:justify-end">
+        <div className="flex justify-start md:justify-end w-full md:w-auto">
           <Link
             to="/exam-update"
-            className="btn whitespace-nowrap border border-white/40 bg-white/10 text-white hover:bg-white hover:text-ksc-navy transition-all"
+            className="btn w-full md:w-auto justify-center whitespace-nowrap border-2 border-white/50 bg-white/15 text-white font-bold hover:bg-white hover:text-ksc-navy shadow-md transition-all"
           >
             View all updates <ArrowRight className="ml-2 h-4 w-4" />
           </Link>

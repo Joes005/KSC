@@ -79,7 +79,7 @@ export function Facilities() {
         <div className="container-site">
           <SectionHeading
             kicker={stripHeading.kicker || "Inside Our Center"}
-            title={stripHeading.title || "Walk through Karur Study Center"}
+            title={stripHeading.title || "Walk through Karur Study Centre"}
             subtitle={stripHeading.subtitle || "Front office, study-material storage, counselling and learning spaces — everything you need is close at hand."}
           />
           <div className="grid grid-cols-2 gap-6 md:grid-cols-4 mt-12">
@@ -88,7 +88,7 @@ export function Facilities() {
                 <div className="aspect-[4/3] overflow-hidden">
                   <img
                     src={src}
-                    alt="Karur Study Center facilities"
+                    alt="Karur Study Centre facilities"
                     loading="lazy"
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
@@ -103,7 +103,7 @@ export function Facilities() {
       <section className="bg-slate-50 py-16 border-b-4 border-ksc-navy">
         <div className="container-site flex flex-col items-center gap-6 text-center">
           <h2 className="text-3xl font-black uppercase tracking-tight text-ksc-navy">Want to see for yourself?</h2>
-          <p className="max-w-xl text-lg font-medium text-slate-600">
+          <p className="max-w-xl text-lg font-bold text-slate-800">
             Visit our Karur centre and let our
             counsellors walk you through the admission process.
           </p>

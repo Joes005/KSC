@@ -58,7 +58,7 @@ class DatabaseSeeder extends Seeder
             'contact.landline' => '04324 236107',
             'contact.whatsapp' => '919965107404',
             'contact.email' => 'Karurstudycentre1@gmail.com',
-            'contact.address' => 'M.R.S. Plaza, 3rd Floor, 57-59, J-S-PS Complex, Near Mini Bus Stand, Karur - 1',
+            'contact.address' => 'M.R.S. Plaza, 3rd Floor, Near Mini Bus Stand, Karur - 639001',
             'socials.facebook' => 'https://www.facebook.com/Karurstudycentre',
             'socials.instagram' => 'https://www.instagram.com/karur_study_centre',
             'socials.youtube' => 'https://www.youtube.com/@karurstudycentrecentre1507',
@@ -76,7 +76,7 @@ class DatabaseSeeder extends Seeder
         $branches = [
             [
                 'name' => 'Karur Study Centre',
-                'address' => 'M.R.S. Plaza, 3rd Floor, 57-59, J-S-PS Complex, Near Mini Bus Stand, Karur - 1',
+                'address' => 'M.R.S. Plaza, 3rd Floor, Near Mini Bus Stand, Karur - 639001',
                 'phone' => '04324 236107 · 99651 07404, 93622 23107',
                 'hours' => null,
                 'is_head_office' => true,
@@ -84,7 +84,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name' => 'Pace Computer College',
-                'address' => 'Near Bus Stand, Kangayam - 638 701',
+                'address' => '57-59, LS-PS Complex, Main Road, Near Bus Stand, Kangayam - 638 701',
                 'phone' => '98652 22107, 93622 24107',
                 'hours' => null,
                 'is_head_office' => false,
@@ -92,7 +92,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name' => 'S.S. Institute',
-                'address' => '75/38, Scheme Road, Raja Complex, 2nd Floor, Opposite Bus Stand, Dindigul - 3.',
+                'address' => '75/38, Scheme Road, Raju Complex, 2nd Floor, Opposite Bus Stand, Dindigul - 3.',
                 'phone' => '90872 22107, 90472 22107',
                 'hours' => null,
                 'is_head_office' => false,
@@ -361,7 +361,7 @@ class DatabaseSeeder extends Seeder
                     'image' => '/assets/user-photos/branch-exterior.jpg',
                     'mapEmbedUrl' => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15664.269411986427!2d78.0772274!3d10.9575936!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baa2fa1d5292eb5%3A0x6d8b2d4b9fa37b12!2sKarur%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1700000000000',
                     'items' => [
-                        ['icon' => 'MapPin', 'title' => 'Visit us', 'value' => 'M.R.S. Plaza, 3rd Floor, 57-59, J-S-PS Complex, Near Mini Bus Stand, Karur - 1', 'link' => null, 'button_label' => null],
+                        ['icon' => 'MapPin', 'title' => 'Visit us', 'value' => 'M.R.S. Plaza, 3rd Floor, Near Mini Bus Stand, Karur - 639001', 'link' => null, 'button_label' => null],
                         ['icon' => 'Phone', 'title' => 'Call us', 'value' => '99651 07404', 'link' => 'tel:9965107404', 'button_label' => null],
                         ['icon' => 'MessageCircle', 'title' => 'WhatsApp', 'value' => '', 'link' => 'https://wa.me/919965107404?text=Hello%20KARUR%20STUDY%20CENTER%2C%20I%20have%20a%20question%20about%20admissions.', 'button_label' => 'Chat on WhatsApp (919965107404)'],
                         ['icon' => 'Mail', 'title' => 'Email', 'value' => 'Karurstudycentre1@gmail.com', 'link' => 'mailto:Karurstudycentre1@gmail.com', 'button_label' => null],
@@ -405,7 +405,7 @@ class DatabaseSeeder extends Seeder
                 'eligibility_summary' => [
                     ['level' => 'UG Programmes', 'detail' => 'Pass in Higher Secondary (10+2). Science courses need the corresponding core subject in 10+2 (e.g. Mathematics for B.Sc. Maths / BCA).'],
                     ['level' => 'PG Programmes', 'detail' => 'A relevant Bachelor\'s degree (e.g. B.Sc. Chemistry for M.Sc. Chemistry). Specific prerequisites appear under each course on the Academic page.'],
-                    ['level' => 'Diploma / Certificate / Vocational', 'detail' => 'Varies by programme — 10th pass (SSLC) is sufficient for most. Confirm your case with our counsellors.'],
+                    ['level' => 'Diploma / Certificate / Vocational', 'detail' => 'A pass in 12th (HSLC) is sufficient for most programmes. Confirm your specific case with our counsellors.'],
                     ['level' => 'Distance & Open learning', 'detail' => 'Programmes are UGC-DEB recognised where applicable; no regular attendance required — study from home with our support.'],
                 ],
             ],

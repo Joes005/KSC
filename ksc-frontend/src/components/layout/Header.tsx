@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { Phone, MessageCircle, Menu, X, Mail } from "lucide-react";
+import { Phone, MessageCircle, Menu, X, Mail, MapPin } from "lucide-react";
 import { useSiteData } from "../../services/SiteDataContext";
 import { Logo } from "../brand/Logo";
 import { cn } from "../../utils/cn";
@@ -19,10 +19,19 @@ const DEFAULT_NAV_ITEMS: NavItem[] = [
 ];
 
 export function Header() {
-  const { data: { settings: SITE_CONFIG } } = useSiteData();
+  const { data: { settings: SITE_CONFIG, branches } } = useSiteData();
   const navItems: NavItem[] = Array.isArray((SITE_CONFIG as any).navItems) && (SITE_CONFIG as any).navItems.length
     ? (SITE_CONFIG as any).navItems
     : DEFAULT_NAV_ITEMS;
+  const BRANCH_CITY: Record<string, string> = {
+    "Karur Study Centre": "Karur",
+    "Pace Computer College": "Kangayam",
+    "S.S. Institute": "Dindigul",
+  };
+  const branchList = (Array.isArray(branches) ? branches : []).map((b: any) => ({
+    label: b.name,
+    city: BRANCH_CITY[b.name] || b.name,
+  }));
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -46,6 +55,20 @@ export function Header() {
       "sticky top-0 z-50 w-full transition-all duration-300",
       isScrolled ? "bg-ksc-navy/90 backdrop-blur-md shadow-lg" : "bg-ksc-navy/95 backdrop-blur-sm border-b border-white/10"
     )}>
+      {/* Branch ticker (running strip) */}
+      {branchList.length > 0 && (
+        <div className="relative z-20 overflow-hidden bg-gradient-to-r from-ksc-yellow via-amber-400 to-ksc-yellow py-1.5 text-ksc-navy">
+          <div className="flex w-max animate-marqueeHorizontal items-center gap-10 whitespace-nowrap">
+            {[...branchList, ...branchList, ...branchList].map((b, i) => (
+              <span key={`${b.label}-${i}`} className="flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-wider">
+                <MapPin className="h-3 w-3" />
+                {b.city} <span className="font-medium normal-case text-ksc-navy/70">— {b.label}</span>
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Top bar (Dark Blue) */}
       <div className="bg-ksc-navy text-white py-2.5 text-xs hidden md:block relative z-20">
         <div className="container-site flex justify-between items-center">

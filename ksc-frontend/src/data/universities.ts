@@ -165,6 +165,7 @@ export const UNIVERSITIES: University[] = [
     academicYear: "2026",
     pattern: "Semester Pattern",
     recognition: "State University, Karaikudi · Centre for Distance and Online Education (CDOE) · UGC-DEB approved",
+    website: "https://www.alagappauniversity.ac.in",
     logo: "/assets/logo/Alagappa_University_Logo_HD.png",
     categories: [
       {
@@ -253,8 +254,8 @@ export const UNIVERSITIES: University[] = [
     ],
     exam: {
       note: "Alagappa University publishes hall tickets and exam time-tables on its official MIS/distance student portal for CDOE learners.",
-      hallTicketUrl: "#",
-      timetableUrl: "#",
+      hallTicketUrl: "https://www.alagappauniversity.ac.in",
+      timetableUrl: "https://www.alagappauniversity.ac.in",
       syllabusUrl: "/pdf/ALU-CDOE-Prospectus-AY-2026.pdf",
     },
   },
@@ -270,6 +271,7 @@ export const UNIVERSITIES: University[] = [
     academicYear: "2026-27",
     pattern: "Semester Pattern",
     recognition: "UGC-DEB approved distance education · Accredited by NAAC",
+    website: "https://www.bdu.ac.in",
     logo: "/assets/logo/Bharathidasan_University_Logo_HD (5).png",
     categories: [
       {
@@ -364,9 +366,9 @@ export const UNIVERSITIES: University[] = [
     ],
     exam: {
       note: "Bharathidasan University publishes hall tickets and semester time-tables on its official university portal for distance-education learners.",
-      hallTicketUrl: "#",
-      timetableUrl: "#",
-      syllabusUrl: "/pdf/BDU-New-Sem-Pattern-Courses.pdf",
+      hallTicketUrl: "https://www.bdu.ac.in",
+      timetableUrl: "https://www.bdu.ac.in",
+      syllabusUrl: "/pdf/Bharathidasan_University_AY_2026-27_Admission_HD.pdf",
     },
   },
 
@@ -381,6 +383,7 @@ export const UNIVERSITIES: University[] = [
     academicYear: "2026",
     pattern: "Semester / Non-Semester",
     recognition: "State University, Tirunelveli · UGC-DEB Approved",
+    website: "https://www.msuniv.ac.in",
     logo: "/assets/logo/Manonmaniam_Sundaranar_University_Logo_HD.png",
     categories: [
       {
@@ -450,6 +453,7 @@ export const UNIVERSITIES: University[] = [
     pattern: "Semester & Non-Semester depending on programme",
     recognition:
       "State Open University, Govt. of Tamil Nadu · Approved by UGC-DEB · Accredited NAAC A+",
+    website: "https://www.tnou.ac.in",
     logo: "/assets/logo/Tamil_Nadu_Open_University_Logo_HD (2).png",
     categories: [
       {
@@ -504,9 +508,9 @@ export const UNIVERSITIES: University[] = [
     ],
     exam: {
       note: "TNOU publishes time-tables and hall tickets on its official student portal several weeks before each examination cycle.",
-      hallTicketUrl: "#",
-      timetableUrl: "#",
-      syllabusUrl: "/pdf/ALU-CDOE-Prospectus-AY-2026.pdf",
+      hallTicketUrl: "https://www.tnou.ac.in",
+      timetableUrl: "https://www.tnou.ac.in",
+      syllabusUrl: "https://www.tnou.ac.in",
     },
   },
 

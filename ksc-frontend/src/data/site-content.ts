@@ -43,7 +43,7 @@ export const SITE_CONFIG = {
     landline: "04324 236107", // landline (from poster footer)
     whatsapp: "919965107404", // KSC WhatsApp number (digits only, incl. country code)
     email: "Karurstudycentre1@gmail.com",
-    address: "M.R.S. Plaza, 3rd Floor, 57-59, J-S-PS Complex, Near Mini Bus Stand, Karur - 1", // from poster footer
+    address: "M.R.S. Plaza, 3rd Floor, Near Mini Bus Stand, Karur - 639001", // from KSC admission posters
     // TODO: replace with real Google Maps embed src (https://maps.google.com/maps?q=...&output=embed)
     mapEmbedUrl: "https://maps.google.com/maps?q=Karur%2CTamil%20Nadu&t=&z=12&ie=UTF8&iwloc=&output=embed",
   },
@@ -362,20 +362,20 @@ export const BRANCHES = [
   {
     name: "Karur Study Centre",
     // from KSC admission posters
-    address: "M.R.S. Plaza, 3rd Floor, 57-59, J-S-PS Complex, Near Mini Bus Stand, Karur - 1",
+    address: "M.R.S. Plaza, 3rd Floor, Near Mini Bus Stand, Karur - 639001",
     phone: "98652 23107, 93444 23107, 93622 23107",
     isHead: true,
   },
   {
     name: "Pace Computer College",
     // from KSC admission posters (footer)
-    address: "Near Bus Stand, Kangayam - 638 701",
+    address: "57-59, LS-PS Complex, Main Road, Near Bus Stand, Kangayam - 638 701",
     phone: "98652 22107, 93622 24107",
     isHead: false,
   },
   {
     name: "S.S. Institute",
-    address: "75/38, M.G.M Road, Raja Complex, 2nd Floor, Opposite Bus Stand, Dindigul - 3.",
+    address: "75/38, Scheme Road, Raju Complex, 2nd Floor, Opposite Bus Stand, Dindigul - 3.",
     phone: "90872 22107, 90472 22107",
     isHead: false,
   },

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ExternalLink, Building2, Award, MapPin, Globe, GraduationCap } from "lucide-react";
+import { ExternalLink, Building2, Award, MapPin, Globe, GraduationCap, Download } from "lucide-react";
 import type { University } from "../data/universities";
 import { useSiteData } from "../services/SiteDataContext";
 import { PageHeader } from "../components/common/PageHeader";
@@ -7,14 +7,26 @@ import { Tabs } from "../components/common/Tabs";
 import { ProgrammeCards } from "../components/common/ProgrammeCards";
 import { useScrollReveal } from "../components/home/SharedHooks";
 
+/** A distinct accent colour per university so each "Explore Programme" block reads as its own section. */
+const UNI_ACCENT: Record<string, { bar: string; badge: string; ring: string }> = {
+  alagappa: { bar: "from-ksc-red to-[#7a0d12]", badge: "border-ksc-red bg-red-50 text-ksc-red", ring: "hover:border-ksc-red" },
+  bdu: { bar: "from-ksc-royal to-[#0c245c]", badge: "border-ksc-royal bg-blue-50 text-ksc-royal", ring: "hover:border-ksc-royal" },
+  msu: { bar: "from-emerald-600 to-ksc-chalk", badge: "border-emerald-600 bg-emerald-50 text-emerald-700", ring: "hover:border-emerald-600" },
+  tnou: { bar: "from-ksc-gold to-amber-600", badge: "border-ksc-gold bg-amber-50 text-amber-700", ring: "hover:border-ksc-gold" },
+};
+const DEFAULT_ACCENT = { bar: "from-ksc-navy via-ksc-red to-ksc-gold", badge: "border-slate-300 bg-slate-50 text-slate-600", ring: "hover:border-ksc-navy" };
+
 function UniversityProgrammes({ uni }: { uni: University }) {
+  const accent = UNI_ACCENT[uni.id] || DEFAULT_ACCENT;
+  const prospectusHref = uni.exam?.syllabusUrl || uni.website || "/contact";
+  const isPdf = /\.pdf$/i.test(prospectusHref);
   return (
     <section id={uni.id} className="scroll-mt-28 relative overflow-hidden py-10 sm:py-12 lg:py-16 border-b border-slate-100 bg-white bg-dot-pattern reveal-section">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-blue-50/40 via-white to-white pointer-events-none" />
       <div className="container-site relative z-10">
         {/* University header */}
-        <div className="group relative overflow-hidden rounded-3xl border-2 border-slate-200 bg-white p-6 sm:p-8 shadow-xl transition-all duration-700 hover:shadow-2xl opacity-0 translate-y-12 [.is-visible_&]:opacity-100 [.is-visible_&]:translate-y-0 delay-100">
-          <div className="absolute top-0 left-0 h-1.5 w-0 bg-gradient-to-r from-ksc-navy via-ksc-red to-ksc-gold transition-all duration-700 ease-out group-hover:w-full" />
+        <div className={`group relative overflow-hidden rounded-3xl border-2 border-slate-200 bg-white p-6 sm:p-8 shadow-xl transition-all duration-700 hover:shadow-2xl opacity-0 translate-y-12 [.is-visible_&]:opacity-100 [.is-visible_&]:translate-y-0 delay-100 ${accent.ring}`}>
+          <div className={`absolute top-0 left-0 h-1.5 w-full bg-gradient-to-r ${accent.bar}`} />
           
           <div className="relative z-10 flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
@@ -39,8 +51,8 @@ function UniversityProgrammes({ uni }: { uni: University }) {
             </div>
             <div className="flex flex-wrap gap-2">
               {uni.recognition && (
-                <span className="inline-flex items-center gap-2 rounded-md border-2 border-ksc-red bg-red-50 px-4 py-2 text-xs sm:text-sm font-black uppercase tracking-widest text-ksc-red shadow-sm">
-                  <Award className="h-5 w-5 text-ksc-red shrink-0" /> {uni.recognition}
+                <span className={`inline-flex items-center gap-2 rounded-md border-2 px-4 py-2 text-xs sm:text-sm font-black uppercase tracking-widest shadow-sm ${accent.badge}`}>
+                  <Award className="h-5 w-5 shrink-0" /> {uni.recognition}
                 </span>
               )}
             </div>
@@ -55,16 +67,32 @@ function UniversityProgrammes({ uni }: { uni: University }) {
               )}
               {uni.website && (
                 <a
-                  href={`https://${uni.website}`}
+                  href={uni.website}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 font-bold text-ksc-royal hover:text-ksc-red hover:underline transition-colors"
                 >
-                  <Globe className="h-4 w-4" /> {uni.website}
+                  <Globe className="h-4 w-4" /> {uni.website.replace(/^https?:\/\//, "")}
                 </a>
               )}
             </div>
           )}
+
+          {/* Eligibility + prospectus callout */}
+          <div className="mt-6 flex flex-col gap-3 rounded-2xl bg-slate-50 border border-slate-200 p-4 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-xs sm:text-sm font-semibold text-slate-600">
+              Eligibility is shown against each programme below. For the full official {isPdf ? "prospectus" : "admission details"}, use the link.
+            </p>
+            <a
+              href={prospectusHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`inline-flex shrink-0 items-center gap-2 rounded-lg border-2 px-4 py-2 text-xs font-black uppercase tracking-widest shadow-sm transition-colors ${accent.badge} hover:text-white hover:bg-ksc-navy hover:border-ksc-navy`}
+            >
+              {isPdf ? <Download className="h-4 w-4" /> : <ExternalLink className="h-4 w-4" />}
+              {isPdf ? "Download Prospectus" : "Eligibility & Admission Details"}
+            </a>
+          </div>
         </div>
 
         {/* Category tabs + programme tables */}

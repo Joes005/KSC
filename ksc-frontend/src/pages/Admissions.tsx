@@ -8,6 +8,7 @@ import {
   BadgeCheck,
   ArrowRight,
   Download,
+  Phone,
 } from "lucide-react";
 import { ADMISSIONS_FORM_FIELDS } from "../data/site-content";
 import { useSiteData } from "../services/SiteDataContext";
@@ -26,7 +27,7 @@ const ELIGIBILITY_SUMMARY = [
   },
   {
     level: "Diploma / Certificate / Vocational",
-    detail: "Varies by programme — 10th pass (SSLC) is sufficient for most. Confirm your case with our counsellors.",
+    detail: "A pass in 12th (HSLC) is sufficient for most programmes. Confirm your specific case with our counsellors.",
   },
   {
     level: "Distance & Open learning",
@@ -123,8 +124,8 @@ export function Admissions() {
                   bdu: "/pdf/Bharathidasan_University_AY_2026-27_Admission_HD.pdf",
                 };
                 const pdfHref = uni.exam.syllabusUrl || legacyFallback[uni.id] || "";
-                const hasPdf = Boolean(pdfHref);
-                const href = hasPdf ? pdfHref : (uni.website || "/contact");
+                const hasPdf = /\.pdf$/i.test(pdfHref);
+                const href = pdfHref || uni.website || "/contact";
                 return (
                   <a
                     key={uni.id}
@@ -217,6 +218,19 @@ export function Admissions() {
               ))}
             </ul>
 
+            <a
+              href="tel:9865223107"
+              className="mt-6 flex items-center gap-4 rounded-2xl bg-gradient-to-r from-ksc-navy to-ksc-royal p-5 text-white shadow-lift transition-transform hover:-translate-y-0.5"
+            >
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-ksc-yellow text-ksc-navy">
+                <Phone className="h-5 w-5" />
+              </span>
+              <span>
+                <span className="block text-xs font-bold uppercase tracking-widest text-white/70">UG / PG programme guidance</span>
+                <span className="block text-lg font-black">98652 23107</span>
+              </span>
+            </a>
+
             <div className="glass-panel mt-8 p-8">
               <CheckCircle2 className="h-10 w-10 text-ksc-red" />
               <h3 className="mt-4 text-lg font-black uppercase text-ksc-navy">Documents you'll usually need</h3>
@@ -225,6 +239,7 @@ export function Admissions() {
                 <li className="flex gap-2 items-start"><span className="text-ksc-red font-bold">·</span> Degree certificates (for PG applicants)</li>
                 <li className="flex gap-2 items-start"><span className="text-ksc-red font-bold">·</span> Passport-size photographs</li>
                 <li className="flex gap-2 items-start"><span className="text-ksc-red font-bold">·</span> Aadhaar / ID proof</li>
+                <li className="flex gap-2 items-start"><span className="text-ksc-red font-bold">·</span> Community Certificate (if applicable)</li>
               </ul>
             </div>
           </aside>

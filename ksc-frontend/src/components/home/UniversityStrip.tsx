@@ -12,7 +12,7 @@ export function UniversityStrip() {
         <div className="text-center animate-fade-in-up">
           <p className="section-kicker text-ksc-red bg-white inline-block px-3 py-1 rounded-md mb-4 shadow-sm border border-slate-100 uppercase tracking-widest">{heading.kicker || "Authorised Centre"}</p>
           <h2 className="text-4xl font-heading font-black tracking-tight text-ksc-navy sm:text-5xl lg:text-5xl">{heading.title || "Top universities in Tamil Nadu"}</h2>
-          <p className="mt-6 max-w-2xl mx-auto text-lg font-bold text-slate-800 leading-relaxed bg-white/50 p-4 rounded-xl border border-white shadow-sm backdrop-blur-sm">{heading.subtitle || "We are the official admissions, study and exam centre for highly ranked state universities."}</p>
+          <p className="mt-6 max-w-2xl mx-auto text-lg font-bold text-slate-800 leading-relaxed bg-white/50 p-4 rounded-xl border border-white shadow-sm backdrop-blur-sm">{heading.subtitle || "We are the authorised admissions, study and exam centre for highly ranked state universities."}</p>
         </div>
         <div className="mx-auto mt-16 flex flex-wrap justify-center gap-6 sm:gap-8 max-w-7xl animate-fade-in-up delay-100">
           {UNIVERSITIES.map((uni) => (

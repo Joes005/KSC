@@ -54,7 +54,7 @@ export const SITE_CONFIG = {
     youtube: "https://www.youtube.com/@karurstudycentrecentre1507",
     twitterX: "X_URL", // TODO
     maps: "https://maps.app.goo.gl/MJFWjrveBV3DQhi4A",
-    website: "https://distanceeducationstudycentre.com/edu",
+
   },
 
   /* === STATS COUNTERS === */
@@ -273,7 +273,7 @@ export const ADMISSION_STEPS = [
 
 export const CURRICULUM = {
   intro:
-    "Every affiliated university follows its own curriculum structure, examination pattern and syllabus. As a study centre we help you understand what to study, how it is assessed and where to find the official syllabus.",
+    "Every affiliated university follows its own curriculum structure, examination pattern and syllabus. As a study centre we help you understand what to study, how it is assessed and provide syllabus copies.",
   points: [
     {
       title: "Self-Learning Material (SLM)",
@@ -296,13 +296,13 @@ export const CURRICULUM = {
         "Science and vocational courses include practical-oriented components. Practical records are evaluated by the university during examinations.",
     },
     {
-      title: "Official Syllabus Downloads",
+      title: "Syllabus Downloads",
       description:
-        "The full syllabus for every programme is published by the respective university. Use the syllabus links below to download the PDFs for the programme you are interested in.",
+        "The syllabus for each programme is curated for students. Use the syllabus links below to download the PDFs for the programme you are interested in.",
     },
   ],
   note:
-    "This page links out to the official university syllabus PDFs for reference. If a link is missing or out of date, contact our centre for the latest copy.",
+    "This page provides syllabus PDFs for reference. If a copy is missing or out of date, contact our centre for the latest copy.",
 };
 
 /* =========================================================================== */
@@ -317,18 +317,22 @@ export const FACILITIES_INTRO =
 /* =========================================================================== */
 
 export const ABOUT_PAGE = {
+  heading: {
+    kicker: "Who We Are",
+    title: "Everyone encourages the successful, but only you can encourage yourself on the way to it",
+  },
   establishedYear: "2001",
   intro:
-    "Established in 2001 in Karur, Tamil Nadu, Karur Study Centre (KSC) is a premier distance education learning centre operating through our branches: Karur Coaching Centre in Karur, Pace Computers in Kangeyam, and S.S. Institute in Dindigul.",
+    "Established in 2001 in Karur, Tamil Nadu, Karur Study Centre (KSC) is a premier distance education learning centre operating through our branches: Karur Study Centre in Karur, Pace Computers in Kangeyam, and S.S. Institute in Dindigul.",
   body: [
-    "Established in 2001 in Karur, Tamil Nadu, Karur Study Centre (KSC) is a dedicated distance education learning centre. We operate through our network of branches: Karur Coaching Centre in Karur, Pace Computers in Kangeyam, and S.S. Institute in Dindigul. Since our inception, we have served as a vital bridge for students pursuing distance education programmes—including UG, PG, MBA, MCA, MSW, and Diploma courses offered by Alagappa University, Bharathidasan University, Tamil Nadu Open University, and Manonmaniam Sundaranar University. Our comprehensive services include guiding students to choose the right course, ensuring accurate application submissions, and providing continuous support from examinations through to final results.",
+    "Established in 2001 in Karur, Tamil Nadu, Karur Study Centre (KSC) is a dedicated distance education learning centre. We operate through our network of branches: Karur Study Centre in Karur, Pace Computers in Kangeyam, and S.S. Institute in Dindigul. Since our inception, we have served as a vital bridge for students pursuing distance education programmes—including UG, PG, MBA, MCA, MSW, and Diploma courses offered by Alagappa University, Bharathidasan University, Tamil Nadu Open University, and Manonmaniam Sundaranar University. Our comprehensive services include guiding students to choose the right course, ensuring accurate application submissions, and providing continuous support from examinations through to final results.",
     "Our services are thoughtfully designed for working professionals, homemakers, and rural students seeking to pursue their desired degrees through accredited universities without disrupting their daily responsibilities. We facilitate admissions across premier UGC-recognized universities in Tamil Nadu via online and distance education modes, making quality higher education accessible and achievable.",
     "Our dedicated team accompanies you throughout your academic journey until graduation, offering personalised guidance, study material support, admission notifications, and timely examination result updates. Having guided over 50,000 students, Karur Study Centre (KSC) has grown into the region's most trusted name in distance education. All programmes are structured with flexible schedules to accommodate working professionals, homemakers, and anyone unable to attend regular college classes.",
   ],
   image: "/assets/images/ksc-founder-poster.jpg",
   membership: [
     "Admission-support relationship with Alagappa University (NAAC A++)",
-    "Admission-support relationship with Bharathidasan University (NAAC A)",
+    "Admission-support relationship with Bharathidasan University (NAAC A+)",
     "Admission-support relationship with Manonmaniam Sundaranar University",
     "Recognised study-centre partnership with Tamilnadu Open University",
     "UGC-DEB recognised distance-education programmes (as applicable per university)",

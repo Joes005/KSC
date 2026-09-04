@@ -46,9 +46,9 @@ export function Curriculum() {
       <section className="bg-slate-50/50 bg-dot-pattern py-10 lg:py-16 reveal-section">
         <div className="container-site">
           <SectionHeading
-            kicker={downloadsHeading.kicker || "Official Resources"}
+            kicker={downloadsHeading.kicker || "Curriculum & Syllabus"}
             title={downloadsHeading.title || "Syllabus downloads by university"}
-            subtitle={downloadsHeading.subtitle || "Download the official syllabus and prospectus PDFs for each university directly below."}
+            subtitle={downloadsHeading.subtitle || "Download syllabus and prospectus PDFs for each university directly below."}
           />
           <div className="opacity-0 translate-y-12 transition-all duration-700 [.is-visible_&]:opacity-100 [.is-visible_&]:translate-y-0 delay-200 mt-10">
             <Accordion
@@ -71,7 +71,7 @@ export function Curriculum() {
                   content: (
                     <div className="space-y-4">
                       <p className="text-sm text-slate-800 leading-relaxed font-bold">
-                        Download the official syllabus and course prospectus PDF for {uni.name} ({uni.academicYear}). Collect printed copies at Karur Study Centre.
+                        Download the syllabus and course prospectus PDF for {uni.name} ({uni.academicYear}). Collect printed copies at Karur Study Centre.
                       </p>
                       
                       <div className="pt-2 flex flex-wrap gap-3">

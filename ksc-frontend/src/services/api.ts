@@ -149,7 +149,6 @@ function mapUniversities(list: any[]): University[] {
       pattern: u.pattern || undefined,
       recognition: u.recognition || undefined,
       address: u.address || undefined,
-      website: u.website || undefined,
       logo: finalLogo,
       categories: (u.categories ?? []).map((c: any) => ({
         id: c.slug ?? "",

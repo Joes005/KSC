@@ -29,7 +29,7 @@ export function About() {
             <SectionHeading
               align="left"
               kicker={ABOUT_PAGE.heading?.kicker || "Who We Are"}
-              title={ABOUT_PAGE.heading?.title || "Your local bridge to open-university education"}
+              title={ABOUT_PAGE.heading?.title || "Everyone encourages the successful, but only you can encourage yourself on the way to it"}
             />
             <div className="space-y-5 leading-relaxed text-slate-800 font-bold text-sm sm:text-base mt-6">
               <p>{ABOUT_PAGE.body?.[0]}</p>

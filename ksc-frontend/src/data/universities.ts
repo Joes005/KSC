@@ -577,7 +577,7 @@ export const UNIVERSITIES: University[] = [
     academicYear: "2026",
     pattern: "Semester / Non-Semester",
     recognition: "State University · UGC-DEB Approved",
-    logo: "/assets/logo/Periyar_University_Logo_HD.png",
+    logo: "/assets/logo/Manonmaniam_Sundaranar_University_Logo_HD.png",
     categories: [
       {
         id: "ug",

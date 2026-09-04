@@ -147,8 +147,9 @@ export function Footer() {
 
       {/* University logo strip */}
       <div className="bg-ksc-navy border-b border-white/10">
-        <div className="container-site flex flex-wrap items-center justify-center gap-x-8 gap-y-6 py-6 mx-auto px-4 sm:px-6">
-          {UNIVERSITIES.map((uni) => (
+        <div className="container-site py-6 mx-auto px-4 sm:px-6">
+          <div className="flex flex-col sm:flex-row flex-wrap sm:justify-center sm:items-center gap-x-8 gap-y-6 w-fit sm:w-full mx-auto">
+            {UNIVERSITIES.map((uni) => (
             <Link
               key={uni.id}
               to={`/university/${uni.id}`}
@@ -174,6 +175,7 @@ export function Footer() {
               <span className="text-sm font-semibold tracking-wide text-white/80 group-hover:text-white transition-colors">{uni.name}</span>
             </Link>
           ))}
+          </div>
         </div>
       </div>
 

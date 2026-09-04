@@ -37,6 +37,7 @@ export interface University {
   pattern?: string; // e.g. "Semester Pattern"
   recognition?: string; // UGC-DEB / NAAC accreditation notes
   address?: string;
+  website?: string;
   logo: string;
   categories: ProgrammeCategory[];
   exam: {

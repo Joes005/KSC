@@ -2,10 +2,8 @@ import { Link, Navigate, useParams } from "react-router-dom";
 import {
   Award,
   MapPin,
-  Globe,
   TicketCheck,
   FileText,
-  ExternalLink,
   ArrowRight,
   GraduationCap,
 } from "lucide-react";
@@ -58,23 +56,13 @@ export function University() {
                     <Award className="h-4 w-4" /> {uni.recognition}
                   </p>
                 )}
-                <div className="mt-6 flex flex-wrap gap-x-8 gap-y-3 text-xs sm:text-sm font-bold text-slate-700">
-                  {uni.address && (
+                {uni.address && (
+                  <div className="mt-6 flex flex-wrap gap-x-8 gap-y-3 text-xs sm:text-sm font-bold text-slate-700">
                     <span className="inline-flex items-center gap-2">
                       <MapPin className="h-4 w-4 text-ksc-red" /> {uni.address}
                     </span>
-                  )}
-                  {uni.website && (
-                    <a
-                      href={`https://${uni.website}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 font-bold text-ksc-royal hover:text-ksc-red hover:underline"
-                    >
-                      <Globe className="h-4 w-4" /> {uni.website}
-                    </a>
-                  )}
-                </div>
+                  </div>
+                )}
               </div>
               <div className="flex flex-col gap-4 sm:flex-row lg:flex-col lg:justify-center">
                 <Link to="/admissions" className="btn-gold whitespace-nowrap">
@@ -123,10 +111,8 @@ export function University() {
             </h2>
             <p className="mt-2 text-sm leading-relaxed font-bold text-slate-700">{uni.exam.note}</p>
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
-              <a
-                href={uni.exam.hallTicketUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                to="/exam-update"
                 className="card-hover flex items-center justify-between gap-3 p-5 bg-slate-50 border-2 border-slate-100"
               >
                 <span className="inline-flex items-center gap-4">
@@ -134,16 +120,14 @@ export function University() {
                     <TicketCheck className="h-6 w-6" />
                   </span>
                   <span>
-                    <span className="block font-black text-ksc-navy uppercase text-sm">Hall Ticket Portal</span>
+                    <span className="block font-black text-ksc-navy uppercase text-sm">Hall Ticket Assistance</span>
                     <span className="text-xs font-bold text-slate-600">{uni.name}</span>
                   </span>
                 </span>
-                <ExternalLink className="h-5 w-5 shrink-0 text-slate-400" />
-              </a>
-              <a
-                href={uni.exam.timetableUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+                <ArrowRight className="h-5 w-5 shrink-0 text-slate-400" />
+              </Link>
+              <Link
+                to="/exam-update"
                 className="card-hover flex items-center justify-between gap-3 p-5 bg-slate-50 border-2 border-slate-100"
               >
                 <span className="inline-flex items-center gap-4">
@@ -151,12 +135,12 @@ export function University() {
                     <FileText className="h-6 w-6" />
                   </span>
                   <span>
-                    <span className="block font-black text-ksc-navy uppercase text-sm">Exam Timetable (PDF)</span>
+                    <span className="block font-black text-ksc-navy uppercase text-sm">Exam Timetable &amp; Updates</span>
                     <span className="text-xs font-bold text-slate-600">{uni.name}</span>
                   </span>
                 </span>
-                <ExternalLink className="h-5 w-5 shrink-0 text-slate-400" />
-              </a>
+                <ArrowRight className="h-5 w-5 shrink-0 text-slate-400" />
+              </Link>
             </div>
           </div>
 

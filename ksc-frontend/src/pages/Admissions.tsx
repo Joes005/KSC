@@ -117,21 +117,20 @@ export function Admissions() {
             <div className="mt-12 grid gap-5 sm:grid-cols-2 opacity-0 scale-95 transition-all duration-700 [.is-visible_&]:opacity-100 [.is-visible_&]:scale-100 delay-200">
               {UNIVERSITIES.map((uni) => {
                 // Prefer the PDF uploaded via the admin panel; fall back to the
-                // bundled legacy PDFs (for the two universities that shipped with
-                // one) before finally falling back to the university's website.
+                // bundled legacy PDFs before falling back to contact enquiry.
                 const legacyFallback: Record<string, string> = {
                   alagappa: "/pdf/ALU-CDOE-Prospectus-AY-2026.pdf",
                   bdu: "/pdf/Bharathidasan_University_AY_2026-27_Admission_HD.pdf",
                 };
                 const pdfHref = uni.exam.syllabusUrl || legacyFallback[uni.id] || "";
-                const hasPdf = /\.pdf$/i.test(pdfHref);
-                const href = pdfHref || uni.website || "/contact";
+                const hasPdf = Boolean(pdfHref);
+                const href = hasPdf ? pdfHref : "/contact";
                 return (
                   <a
                     key={uni.id}
                     href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    target={hasPdf ? "_blank" : undefined}
+                    rel={hasPdf ? "noopener noreferrer" : undefined}
                     className="card-hover flex items-center gap-4 p-5 bg-slate-50 border-2 border-slate-100"
                   >
                     <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white text-ksc-red border-2 border-slate-200 shadow-sm">
@@ -140,7 +139,7 @@ export function Admissions() {
                     <span>
                       <span className="block font-black text-ksc-navy uppercase text-sm">{uni.name}</span>
                       <span className="text-xs font-bold text-slate-600 tracking-widest">
-                        {hasPdf ? `Prospectus — ${uni.academicYear} (PDF)` : "Visit official website"}
+                        {hasPdf ? `Prospectus — ${uni.academicYear} (PDF)` : "Enquire at Centre"}
                       </span>
                     </span>
                   </a>

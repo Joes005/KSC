@@ -44,7 +44,7 @@ export function WhyDistance() {
       <div className="container-site relative z-10">
         <SectionHeading
           kicker={heading.kicker || "Why Distance Education"}
-          title={heading.title || "Road to a degree, without leaving home"}
+          title={heading.title || "Go confidently in the direction of your dreams, live the life you have imagined"}
           subtitle={heading.subtitle || "Affordable, flexible and recognised — distance education fits around your life, not the other way around."}
         />
         <div className="grid gap-10 lg:grid-cols-12 lg:items-start mt-12 opacity-0 translate-y-12 transition-all duration-700 [.is-visible_&]:opacity-100 [.is-visible_&]:translate-y-0 delay-100">

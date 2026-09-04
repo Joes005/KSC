@@ -314,6 +314,10 @@ class DatabaseSeeder extends Seeder
             ],
             'about' => [
                 'about_page' => [
+                    'heading' => [
+                        'kicker' => 'Who We Are',
+                        'title' => 'Everyone encourages the successful, but only you can encourage yourself on the way to it',
+                    ],
                     'establishedYear' => '2001',
                     'intro' => 'Established in 2001 in Karur, Tamil Nadu, Karur Study Centre (KSC) is a premier distance education learning centre operating through our branches: Karur Coaching Centre in Karur, Pace Computers in Kangeyam, and S.S. Institute in Dindigul.',
                     'body' => [
@@ -450,13 +454,13 @@ class DatabaseSeeder extends Seeder
                 'pattern' => 'Semester Pattern',
                 'recognition' => 'State University, Karaikudi · Centre for Distance and Online Education (CDOE) · UGC-DEB approved',
                 'address' => 'Alagappa Nagar, Karaikudi – 630003, Tamil Nadu',
-                'website' => 'www.alagappauniversity.ac.in',
+                'website' => null,
                 'logo' => 'https://upload.wikimedia.org/wikipedia/en/e/ec/Alagappa_University_logo.png',
                 'exam' => [
-                    'note' => 'Alagappa University publishes hall tickets and exam time-tables on its official MIS/distance student portal for CDOE learners.',
-                    'hallTicketUrl' => 'https://mis.alagappauniversity.ac.in/distance/student_main.php',
-                    'timetableUrl' => '/pdf/ALU-CDOE-Prospectus-AY-2026.pdf',
-                    'syllabusUrl' => 'https://www.alagappauniversity.ac.in',
+                    'note' => 'Exam hall tickets, time-tables and examination guidance for Alagappa University students are provided directly at Karur Study Centre.',
+                    'hallTicketUrl' => '/exam-update',
+                    'timetableUrl' => '/exam-update',
+                    'syllabusUrl' => '/pdf/ALU-CDOE-Prospectus-AY-2026.pdf',
                 ],
                 'categories' => [
                     ['slug' => 'ug', 'label' => 'UG Programmes', 'count' => 7, 'note' => 'Duration: 3 Years · A pass in HSC (10+2), or 3-year Diploma, or ITI (2-year programme)', 'programmes' => [
@@ -513,13 +517,13 @@ class DatabaseSeeder extends Seeder
                 'pattern' => 'Semester Pattern',
                 'recognition' => 'UGC-DEB approved distance education · Accredited by NAAC',
                 'address' => 'Palkalaiperur, Tiruchirappalli – 620024, Tamil Nadu',
-                'website' => 'www.bdu.ac.in',
+                'website' => null,
                 'logo' => 'https://upload.wikimedia.org/wikipedia/en/b/b3/Bharathidasan_University_logo.png',
                 'exam' => [
-                    'note' => 'Bharathidasan University publishes hall tickets and semester time-tables on its official university portal for distance-education learners.',
-                    'hallTicketUrl' => 'https://bdu.ac.in/cde/ht24w/',
-                    'timetableUrl' => '/pdf/BDU-New-Sem-Pattern-Courses.pdf',
-                    'syllabusUrl' => 'https://www.bdu.ac.in',
+                    'note' => 'Bharathidasan University exam hall tickets, semester time-tables and updates are available directly at Karur Study Centre.',
+                    'hallTicketUrl' => '/exam-update',
+                    'timetableUrl' => '/exam-update',
+                    'syllabusUrl' => '/pdf/BDU-New-Sem-Pattern-Courses.pdf',
                 ],
                 'categories' => [
                     ['slug' => 'ug', 'label' => 'UG Courses', 'count' => 18, 'note' => 'Semester Pattern (AY 2026-27) · General eligibility: Pass in 10+2 with subject-specific core requirements as noted', 'programmes' => [
@@ -571,13 +575,13 @@ class DatabaseSeeder extends Seeder
                 'pattern' => 'Semester / Non-Semester',
                 'recognition' => 'State University, Tirunelveli · UGC-DEB Approved',
                 'address' => 'Tirunelveli, Tamil Nadu',
-                'website' => 'www.msuniv.ac.in',
-                'logo' => 'https://upload.wikimedia.org/wikipedia/en/0/0e/Manonmaniam_Sundaranar_University_logo.jpeg',
+                'website' => null,
+                'logo' => 'https://upload.wikimedia.org/wikipedia/en/f/f6/Manonmaniam_Sundaranar_University_logo.png',
                 'exam' => [
-                    'note' => 'Manonmaniam Sundaranar University publishes exam details on its official distance education portal.',
-                    'hallTicketUrl' => 'https://www.msuniv.ac.in/Distance-Education',
-                    'timetableUrl' => 'https://www.msuniv.ac.in/Distance-Education',
-                    'syllabusUrl' => 'https://www.msuniv.ac.in/Distance-Education',
+                    'note' => 'Manonmaniam Sundaranar University exam details, time-tables and hall ticket assistance are provided at Karur Study Centre.',
+                    'hallTicketUrl' => '/exam-update',
+                    'timetableUrl' => '/exam-update',
+                    'syllabusUrl' => '/pdf/ALU-CDOE-Prospectus-AY-2026.pdf',
                 ],
                 'categories' => [
                     ['slug' => 'ug', 'label' => 'UG Programmes', 'count' => 10, 'note' => 'Semester Pattern · Recognized by UGC-DEB', 'programmes' => [
@@ -622,13 +626,13 @@ class DatabaseSeeder extends Seeder
                 'pattern' => 'Semester & Non-Semester depending on programme',
                 'recognition' => 'State Open University, Govt. of Tamil Nadu · Approved by UGC-DEB · Accredited NAAC A+',
                 'address' => 'No. 577, Anna Salai, Saidapet, Chennai – 600015, Tamil Nadu',
-                'website' => 'www.tnou.ac.in',
+                'website' => null,
                 'logo' => 'https://upload.wikimedia.org/wikipedia/en/2/23/Tamil_Nadu_Open_University_Logo.png',
                 'exam' => [
-                    'note' => 'TNOU publishes time-tables and hall tickets on its official student portal several weeks before each examination cycle.',
-                    'hallTicketUrl' => 'https://tnou.ac.in/hall-ticket-portal',
-                    'timetableUrl' => 'https://tnou.ac.in/exam-time-table',
-                    'syllabusUrl' => 'https://tnou.ac.in/syllabus',
+                    'note' => 'TNOU exam time-tables, hall ticket collection and exam updates are supported directly through Karur Study Centre.',
+                    'hallTicketUrl' => '/exam-update',
+                    'timetableUrl' => '/exam-update',
+                    'syllabusUrl' => '/pdf/ALU-CDOE-Prospectus-AY-2026.pdf',
                 ],
                 'categories' => [
                     ['slug' => 'ug', 'label' => 'UG Programmes', 'count' => 14, 'note' => 'Duration: Min 3 Yrs to Max 6 Yrs', 'programmes' => [

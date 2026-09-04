@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ExternalLink, Building2, Award, MapPin, Globe, GraduationCap, Download } from "lucide-react";
+import { ExternalLink, Building2, Award, MapPin, GraduationCap, Download } from "lucide-react";
 import type { University } from "../data/universities";
 import { useSiteData } from "../services/SiteDataContext";
 import { PageHeader } from "../components/common/PageHeader";
@@ -58,23 +58,11 @@ function UniversityProgrammes({ uni }: { uni: University }) {
             </div>
           </div>
 
-          {(uni.address || uni.website) && (
+          {uni.address && (
             <div className="mt-6 flex flex-wrap gap-x-8 gap-y-3 text-xs sm:text-sm font-bold text-slate-700">
-              {uni.address && (
-                <span className="inline-flex items-center gap-2">
-                  <MapPin className="h-4 w-4 text-ksc-red" /> {uni.address}
-                </span>
-              )}
-              {uni.website && (
-                <a
-                  href={uni.website}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 font-extrabold text-ksc-royal hover:text-ksc-red hover:underline transition-colors"
-                >
-                  <Globe className="h-4 w-4" /> {uni.website.replace(/^https?:\/\//, "")}
-                </a>
-              )}
+              <span className="inline-flex items-center gap-2">
+                <MapPin className="h-4 w-4 text-ksc-red" /> {uni.address}
+              </span>
             </div>
           )}
 

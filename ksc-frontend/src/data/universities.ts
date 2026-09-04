@@ -447,15 +447,9 @@ export const UNIVERSITIES: University[] = [
       },
     ],
     exam: {
-<<<<<<< Updated upstream
-      note: "Alagappa University publishes hall tickets and exam time-tables on its official MIS/distance student portal for CDOE learners.",
-      hallTicketUrl: "https://www.alagappauniversity.ac.in",
-      timetableUrl: "https://www.alagappauniversity.ac.in",
-=======
       note: "Exam hall tickets, time-tables and examination guidance for Alagappa University students are provided directly at Karur Study Centre.",
       hallTicketUrl: "/exam-update",
       timetableUrl: "/exam-update",
->>>>>>> Stashed changes
       syllabusUrl: "/pdf/ALU-CDOE-Prospectus-AY-2026.pdf",
     },
   },
@@ -565,17 +559,10 @@ export const UNIVERSITIES: University[] = [
       },
     ],
     exam: {
-<<<<<<< Updated upstream
-      note: "Bharathidasan University publishes hall tickets and semester time-tables on its official university portal for distance-education learners.",
-      hallTicketUrl: "https://www.bdu.ac.in",
-      timetableUrl: "https://www.bdu.ac.in",
-      syllabusUrl: "/pdf/Bharathidasan_University_AY_2026-27_Admission_HD.pdf",
-=======
       note: "Bharathidasan University exam hall tickets, semester time-tables and updates are available directly at Karur Study Centre.",
       hallTicketUrl: "/exam-update",
       timetableUrl: "/exam-update",
       syllabusUrl: "/pdf/BDU-New-Sem-Pattern-Courses.pdf",
->>>>>>> Stashed changes
     },
   },
 
@@ -615,17 +602,10 @@ export const UNIVERSITIES: University[] = [
       },
     ],
     exam: {
-<<<<<<< Updated upstream
-      note: "Manonmaniam Sundaranar University publishes exam details on its official distance education portal.",
-      hallTicketUrl: "https://www.msuniv.ac.in/Distance-Education",
-      timetableUrl: "https://www.msuniv.ac.in/Distance-Education",
-      syllabusUrl: "https://www.msuniv.ac.in/Distance-Education",
-=======
       note: "Manonmaniam Sundaranar University exam details, time-tables and hall ticket assistance are provided at Karur Study Centre.",
       hallTicketUrl: "/exam-update",
       timetableUrl: "/exam-update",
       syllabusUrl: "/pdf/ALU-CDOE-Prospectus-AY-2026.pdf",
->>>>>>> Stashed changes
     },
   },
 
@@ -695,17 +675,10 @@ export const UNIVERSITIES: University[] = [
       },
     ],
     exam: {
-<<<<<<< Updated upstream
-      note: "TNOU publishes time-tables and hall tickets on its official student portal several weeks before each examination cycle.",
-      hallTicketUrl: "https://www.tnou.ac.in",
-      timetableUrl: "https://www.tnou.ac.in",
-      syllabusUrl: "https://www.tnou.ac.in",
-=======
       note: "TNOU exam time-tables, hall ticket collection and exam updates are supported directly through Karur Study Centre.",
       hallTicketUrl: "/exam-update",
       timetableUrl: "/exam-update",
       syllabusUrl: "/pdf/ALU-CDOE-Prospectus-AY-2026.pdf",
->>>>>>> Stashed changes
     },
   },
 

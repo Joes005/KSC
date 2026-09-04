@@ -123,13 +123,8 @@ export function Admissions() {
                   bdu: "/pdf/Bharathidasan_University_AY_2026-27_Admission_HD.pdf",
                 };
                 const pdfHref = uni.exam.syllabusUrl || legacyFallback[uni.id] || "";
-<<<<<<< Updated upstream
-                const hasPdf = /\.pdf$/i.test(pdfHref);
-                const href = pdfHref || uni.website || "/contact";
-=======
                 const hasPdf = Boolean(pdfHref);
                 const href = hasPdf ? pdfHref : "/contact";
->>>>>>> Stashed changes
                 return (
                   <a
                     key={uni.id}

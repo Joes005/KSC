@@ -520,17 +520,10 @@ class DatabaseSeeder extends Seeder
                 'website' => null,
                 'logo' => 'https://upload.wikimedia.org/wikipedia/en/b/b3/Bharathidasan_University_logo.png',
                 'exam' => [
-<<<<<<< Updated upstream
-                    'note' => 'Bharathidasan University publishes hall tickets and semester time-tables on its official university portal for distance-education learners.',
-                    'hallTicketUrl' => 'https://bdu.ac.in/cde/ht24w/',
-                    'timetableUrl' => '/pdf/BDU-New-Sem-Pattern-Courses.pdf',
-                    'syllabusUrl' => 'https://www.bdu.ac.in',
-=======
                     'note' => 'Bharathidasan University exam hall tickets, semester time-tables and updates are available directly at Karur Study Centre.',
                     'hallTicketUrl' => '/exam-update',
                     'timetableUrl' => '/exam-update',
                     'syllabusUrl' => '/pdf/BDU-New-Sem-Pattern-Courses.pdf',
->>>>>>> Stashed changes
                 ],
                 'categories' => [
                     ['slug' => 'ug', 'label' => 'UG Courses', 'count' => 18, 'note' => 'Semester Pattern (AY 2026-27) · General eligibility: Pass in 10+2 with subject-specific core requirements as noted', 'programmes' => [
@@ -582,13 +575,8 @@ class DatabaseSeeder extends Seeder
                 'pattern' => 'Semester / Non-Semester',
                 'recognition' => 'State University, Tirunelveli · UGC-DEB Approved',
                 'address' => 'Tirunelveli, Tamil Nadu',
-<<<<<<< Updated upstream
-                'website' => 'www.msuniv.ac.in',
-                'logo' => 'https://upload.wikimedia.org/wikipedia/en/0/0e/Manonmaniam_Sundaranar_University_logo.jpeg',
-=======
                 'website' => null,
                 'logo' => 'https://upload.wikimedia.org/wikipedia/en/f/f6/Manonmaniam_Sundaranar_University_logo.png',
->>>>>>> Stashed changes
                 'exam' => [
                     'note' => 'Manonmaniam Sundaranar University exam details, time-tables and hall ticket assistance are provided at Karur Study Centre.',
                     'hallTicketUrl' => '/exam-update',

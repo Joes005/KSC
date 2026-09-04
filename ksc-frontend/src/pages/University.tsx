@@ -18,7 +18,7 @@ export function University() {
   const { id } = useParams<{ id: string }>();
   const { data: { universities: UNIVERSITIES, settings: SITE_CONFIG, pages } } = useSiteData();
   const uni = UNIVERSITIES.find((u) => u.id === id);
-  const bannerImage = (pages?.university?.banner as any)?.image || "/assets/gallery/tnou-ay2026.jpg";
+  const bannerImage = (pages?.university?.banner as any)?.image || "/assets/campus/lecture-hall.jpg";
 
   if (!uni) {
     return <Navigate to="/academic" replace />;

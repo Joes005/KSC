@@ -199,6 +199,10 @@ class DatabaseSeeder extends Seeder
             return;
         }
 
+        // ksc-05..ksc-08 were removed: those files were internal reference photos
+        // (photocopied course-eligibility sheets and a handwritten notes page that
+        // included a Gmail password) mistakenly seeded as public gallery photos.
+        // They must never be re-added here.
         $images = [
             ['file' => 'ksc-mba-orientation.jpg', 'caption' => 'MBA Orientation by Dr. S. Chandramohan (Alagappa University)', 'alt' => 'MBA Orientation Program conducted by Dr. S. Chandramohan, Dean & Director, Alagappa Institute of Management', 'sort' => 1],
             ['file' => 'ksc-computer-lab.jpg', 'caption' => 'Karur Study Centre — Computer Lab', 'alt' => 'Students attending practical sessions in the Karur Study Centre Computer Lab', 'sort' => 2],
@@ -214,6 +218,14 @@ class DatabaseSeeder extends Seeder
             ['file' => 'ksc-11.jpg', 'caption' => 'Center Front & Exterior', 'alt' => 'Karur Study Center — front and exterior', 'sort' => 12],
             ['file' => 'tnou-ay2026.jpg', 'caption' => 'TNOU — AY 2026 Admission Flyer', 'alt' => 'Tamil Nadu Open University — Academic Year 2026 admission flyer', 'sort' => 13],
         ];
+
+        // Prune any gallery row that is no longer in the list above (in particular,
+        // this removes the ksc-05..ksc-08 rows described above from the live DB).
+        $keepPaths = collect($images)->map(fn ($i) => 'gallery/'.$i['file'])->all();
+        GalleryImage::whereNotIn('image_path', $keepPaths)->get()->each(function ($stale) {
+            Storage::disk('public')->delete($stale->image_path);
+            $stale->delete();
+        });
 
         foreach ($images as $image) {
             $path = $source.'/'.$image['file'];
@@ -358,7 +370,7 @@ class DatabaseSeeder extends Seeder
                     'image' => '/assets/user-photos/branch-exterior.jpg',
                     'mapEmbedUrl' => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15664.269411986427!2d78.0772274!3d10.9575936!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baa2fa1d5292eb5%3A0x6d8b2d4b9fa37b12!2sKarur%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1700000000000',
                     'items' => [
-                        ['icon' => 'MapPin', 'title' => 'Visit us', 'value' => 'M.R.S. Plaza, 3rd Floor, 57-59, J-S-PS Complex, Near Mini Bus Stand, Karur - 1', 'link' => null, 'button_label' => null],
+                        ['icon' => 'MapPin', 'title' => 'Visit us', 'value' => 'M.R.S. Plaza, 3rd Floor, Near Mini Bus Stand, Karur - 639001', 'link' => null, 'button_label' => null],
                         ['icon' => 'Phone', 'title' => 'Call us', 'value' => '99651 07404', 'link' => 'tel:9965107404', 'button_label' => null],
                         ['icon' => 'MessageCircle', 'title' => 'WhatsApp', 'value' => '', 'link' => 'https://wa.me/919965107404?text=Hello%20KARUR%20STUDY%20CENTER%2C%20I%20have%20a%20question%20about%20admissions.', 'button_label' => 'Chat on WhatsApp (919965107404)'],
                         ['icon' => 'Mail', 'title' => 'Email', 'value' => 'Karurstudycentre1@gmail.com', 'link' => 'mailto:Karurstudycentre1@gmail.com', 'button_label' => null],
@@ -495,8 +507,8 @@ class DatabaseSeeder extends Seeder
 
             [
                 'slug' => 'bdu',
-                'name' => 'Bharathiar University',
-                'short_name' => 'Bharathiar University',
+                'name' => 'Bharathidasan University',
+                'short_name' => 'Bharathidasan University',
                 'academic_year' => '2026-27',
                 'pattern' => 'Semester Pattern',
                 'recognition' => 'UGC-DEB approved distance education · Accredited by NAAC',
@@ -504,7 +516,7 @@ class DatabaseSeeder extends Seeder
                 'website' => 'www.bdu.ac.in',
                 'logo' => 'https://upload.wikimedia.org/wikipedia/en/b/b3/Bharathidasan_University_logo.png',
                 'exam' => [
-                    'note' => 'Bharathiar University publishes hall tickets and semester time-tables on its official university portal for distance-education learners.',
+                    'note' => 'Bharathidasan University publishes hall tickets and semester time-tables on its official university portal for distance-education learners.',
                     'hallTicketUrl' => 'https://bdu.ac.in/cde/ht24w/',
                     'timetableUrl' => '/pdf/BDU-New-Sem-Pattern-Courses.pdf',
                     'syllabusUrl' => 'https://www.bdu.ac.in',
@@ -557,10 +569,10 @@ class DatabaseSeeder extends Seeder
                 'short_name' => 'Manonmaniam Sundaranar University',
                 'academic_year' => '2026',
                 'pattern' => 'Semester / Non-Semester',
-                'recognition' => 'State University · UGC-DEB Approved',
+                'recognition' => 'State University, Tirunelveli · UGC-DEB Approved',
                 'address' => 'Tirunelveli, Tamil Nadu',
                 'website' => 'www.msuniv.ac.in',
-                'logo' => 'https://upload.wikimedia.org/wikipedia/en/f/f6/Manonmaniam_Sundaranar_University_logo.png',
+                'logo' => 'https://upload.wikimedia.org/wikipedia/en/0/0e/Manonmaniam_Sundaranar_University_logo.jpeg',
                 'exam' => [
                     'note' => 'Manonmaniam Sundaranar University publishes exam details on its official distance education portal.',
                     'hallTicketUrl' => 'https://www.msuniv.ac.in/Distance-Education',

@@ -26,13 +26,11 @@ export interface Facility {
 export const FACILITIES: Facility[] = [
   {
     icon: Wallet,
-    image: "/assets/images/low_fees_icon.png",
     title: "Low Fees",
     description: "Distance-education fee structures that fit an ordinary family budget, with no hidden charges.",
   },
   {
     icon: CalendarRange,
-    image: "/assets/images/flexible_payment_icon.png",
     title: "Flexible Payment",
     description: "Pay in convenient instalments spread across the academic year.",
   },
@@ -44,7 +42,7 @@ export const FACILITIES: Facility[] = [
   },
   {
     icon: Library,
-    image: "/assets/images/bookshelf-bg.png",
+    image: "/assets/campus/library-shelves.jpg",
     title: "Digital Library",
     description: "e-resources and reference access to support self-study from home.",
   },
@@ -56,7 +54,7 @@ export const FACILITIES: Facility[] = [
   },
   {
     icon: MonitorPlay,
-    image: "/assets/gallery/ksc-05.jpg",
+    image: "/assets/campus/computer-lab.jpg",
     title: "Online Admission",
     description: "Guided online application filling at our centre for candidates who need help.",
   },
@@ -68,7 +66,7 @@ export const FACILITIES: Facility[] = [
   },
   {
     icon: MonitorSmartphone,
-    image: "/assets/user-photos/distance-student.png",
+    image: "/assets/campus/lecture-hall.jpg",
     title: "Offline / Online Classes",
     description: "Optional contact classes and online sessions to supplement self-study.",
   },

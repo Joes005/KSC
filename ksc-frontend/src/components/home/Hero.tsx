@@ -182,7 +182,7 @@ export function Hero() {
                 <Link
                   key={branch.name}
                   to="/contact"
-                  className="inline-flex items-center gap-1 rounded-full border border-red-200 bg-gradient-to-r from-red-50 to-rose-50 px-2.5 py-0.5 sm:px-3.5 sm:py-1 text-[11px] sm:text-xs font-bold text-ksc-red shadow-xs transition-all duration-300 hover:bg-ksc-red hover:text-white hover:border-ksc-red hover:shadow-md hover:-translate-y-0.5 group"
+                  className="inline-flex items-center gap-1 rounded-full border border-red-200 bg-gradient-to-r from-red-50 to-rose-50 px-2.5 py-0.5 sm:px-3.5 sm:py-1 text-[11px] sm:text-xs font-bold text-ksc-red shadow-xs transition-all duration-300 hover:from-ksc-red hover:to-ksc-red hover:text-white hover:border-ksc-red hover:shadow-md hover:-translate-y-0.5 group"
                 >
                   <span className="h-1.5 w-1.5 rounded-full bg-ksc-red group-hover:bg-white animate-pulse" />
                   <span className="tracking-wide">{branch.name}</span>

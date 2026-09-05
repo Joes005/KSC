@@ -32,7 +32,6 @@ class BranchResource extends Resource
                 Forms\Components\Textarea::make('address')
                     ->columnSpanFull(),
                 Forms\Components\TextInput::make('phone')
-                    ->tel()
                     ->maxLength(255)
                     ->default(null),
                 Forms\Components\TextInput::make('hours')

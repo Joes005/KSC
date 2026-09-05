@@ -54,15 +54,16 @@ class DatabaseSeeder extends Seeder
             'site.admission_year' => 'Academic Year 2026',
             'site.admission_open' => 'Admissions Open — Academic Year 2026',
             'site.last_date' => 'Last date for admission: 31 July 2026',
-            'contact.phone' => '99651 07404',
+            'contact.phone' => '98652 23107',
             'contact.landline' => '04324 236107',
             'contact.whatsapp' => '919965107404',
             'contact.email' => 'Karurstudycentre1@gmail.com',
             'contact.address' => 'M.R.S. Plaza, 3rd Floor, Near Mini Bus Stand, Karur - 639001',
+            'contact.map_embed_url' => 'https://maps.google.com/maps?q=Karur+Study+Centre,+M.R.S.+Plaza,+Covai+Road,+Ramakrishna+Puram,+Karur,+Tamil+Nadu+639001&t=&z=16&ie=UTF8&iwloc=&output=embed',
             'socials.facebook' => 'https://www.facebook.com/Karurstudycentre',
             'socials.instagram' => 'https://www.instagram.com/karur_study_centre',
             'socials.youtube' => 'https://www.youtube.com/@karurstudycentrecentre1507',
-            'socials.website' => 'https://distanceeducationstudycentre.com/edu',
+            'socials.maps' => 'https://maps.app.goo.gl/MJFWjrveBV3DQhi4A',
         ];
 
         foreach ($settings as $key => $value) {
@@ -77,7 +78,7 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'Karur Study Centre',
                 'address' => 'M.R.S. Plaza, 3rd Floor, Near Mini Bus Stand, Karur - 639001',
-                'phone' => '04324 236107 · 99651 07404, 93622 23107',
+                'phone' => '98652 23107, 93444 23107, 93622 23107',
                 'hours' => null,
                 'is_head_office' => true,
                 'sort_order' => 0,
@@ -111,13 +112,13 @@ class DatabaseSeeder extends Seeder
         $facilities = [
             ['title' => 'Low Fees', 'icon' => 'Wallet', 'description' => 'Distance-education fee structures that fit an ordinary family budget, with no hidden charges.'],
             ['title' => 'Flexible Payment', 'icon' => 'CalendarRange', 'description' => 'Pay in convenient instalments spread across the academic year.'],
-            ['title' => 'Study Materials', 'icon' => 'BookOpen', 'description' => 'Printed and digital Self-Learning Materials from the university, collected at our centre.'],
-            ['title' => 'Digital Library', 'icon' => 'Library', 'description' => 'e-resources and reference access to support self-study from home.'],
-            ['title' => 'Student Support', 'icon' => 'Headphones', 'description' => 'A dedicated local team to answer queries on admissions, exams and results.'],
-            ['title' => 'Online Admission', 'icon' => 'MonitorPlay', 'description' => 'Guided online application filling at our centre for candidates who need help.'],
-            ['title' => 'Easy Access', 'icon' => 'MapPinned', 'description' => 'Located in the heart of Karur with convenient timings for working learners.'],
-            ['title' => 'Offline / Online Classes', 'icon' => 'MonitorSmartphone', 'description' => 'Optional contact classes and online sessions to supplement self-study.'],
-            ['title' => 'Infrastructure', 'icon' => 'Building2', 'description' => 'Well-maintained premises for counselling, document processing and study-material distribution.'],
+            ['title' => 'Study Materials', 'icon' => 'BookOpen', 'image_path' => '/assets/user-photos/study-materials.jpg', 'description' => 'Printed and digital Self-Learning Materials from the university, collected at our centre.'],
+            ['title' => 'Digital Library', 'icon' => 'Library', 'image_path' => '/assets/campus/library-shelves.jpg', 'description' => 'e-resources and reference access to support self-study from home.'],
+            ['title' => 'Student Support', 'icon' => 'Headphones', 'image_path' => '/assets/gallery/ksc-10.jpg', 'description' => 'A dedicated local team to answer queries on admissions, exams and results.'],
+            ['title' => 'Online Admission', 'icon' => 'MonitorPlay', 'image_path' => '/assets/campus/computer-lab.jpg', 'description' => 'Guided online application filling at our centre for candidates who need help.'],
+            ['title' => 'Easy Access', 'icon' => 'MapPinned', 'image_path' => '/assets/gallery/ksc-11.jpg', 'description' => 'Located in the heart of Karur with convenient timings for working learners.'],
+            ['title' => 'Offline / Online Classes', 'icon' => 'MonitorSmartphone', 'image_path' => '/assets/campus/lecture-hall.jpg', 'description' => 'Optional contact classes and online sessions to supplement self-study.'],
+            ['title' => 'Infrastructure', 'icon' => 'Building2', 'image_path' => '/assets/user-photos/branch-exterior.jpg', 'description' => 'Well-maintained premises for counselling, document processing and study-material distribution.'],
         ];
 
         foreach ($facilities as $facility) {
@@ -217,6 +218,11 @@ class DatabaseSeeder extends Seeder
             ['file' => 'ksc-10.jpg', 'caption' => 'Center Interior', 'alt' => 'Karur Study Center — interior and seating area', 'sort' => 11],
             ['file' => 'ksc-11.jpg', 'caption' => 'Center Front & Exterior', 'alt' => 'Karur Study Center — front and exterior', 'sort' => 12],
             ['file' => 'tnou-ay2026.jpg', 'caption' => 'TNOU — AY 2026 Admission Flyer', 'alt' => 'Tamil Nadu Open University — Academic Year 2026 admission flyer', 'sort' => 13],
+            ['file' => 'ksc-12.jpg', 'caption' => 'Our Computer Lab', 'alt' => 'Karur Study Center computer lab with students at workstations', 'sort' => 14],
+            ['file' => 'ksc-13.jpg', 'caption' => 'Contact Class in Session', 'alt' => 'A management studies class in session at Karur Study Center', 'sort' => 15],
+            ['file' => 'ksc-14.jpg', 'caption' => 'Alagappa University Convocation — Our Graduates', 'alt' => 'KSC students at the Alagappa University convocation ceremony', 'sort' => 16],
+            ['file' => 'ksc-15.jpg', 'caption' => 'Study Material Library', 'alt' => 'Shelves of study material and student records at Karur Study Center', 'sort' => 17],
+            ['file' => 'ksc-16.jpg', 'caption' => 'MRS Plaza, Karur — Our Building', 'alt' => 'MRS Plaza — Karur Study Center signage on the building front', 'sort' => 18],
         ];
 
         // Prune any gallery row that is no longer in the list above (in particular,
@@ -270,18 +276,18 @@ class DatabaseSeeder extends Seeder
                 ],
                 'about_snapshot' => [
                     'text' => [
-                        'Established in 2001 in Karur, Tamil Nadu, Karur Study Centre (KSC) is a dedicated distance education learning centre operating through our network of branches: Karur Coaching Centre in Karur, Pace Computers in Kangeyam, and S.S. Institute in Dindigul.',
-                        'Our services are thoughtfully designed for working professionals, homemakers, and rural students seeking to pursue accredited university degrees without disrupting their daily commitments.',
+                        'Karur Study Centre (KSC) is a dedicated distance-education study and admission centre with branches in Karur, Dindigul, and Kangeyam. We bridge the gap between open universities and students — helping you pick the right programme, submit a correct application, and stay supported through exams and results.',
+                        'Our services are designed for working professionals, homemakers and students from remote areas who want recognised degrees without relocating or abandoning their commitments.',
                     ],
                     'readMoreLink' => '/about',
                     'body' => [
-                        'Established in 2001 in Karur, Tamil Nadu, Karur Study Centre (KSC) is a dedicated distance education learning centre. We operate through our network of branches: Karur Coaching Centre in Karur, Pace Computers in Kangeyam, and S.S. Institute in Dindigul. Since our inception, we have served as a vital bridge for students pursuing distance education programmes—including UG, PG, MBA, MCA, MSW, and Diploma courses offered by Alagappa University, Bharathidasan University, Tamil Nadu Open University, and Manonmaniam Sundaranar University. Our comprehensive services include guiding students to choose the right course, ensuring accurate application submissions, and providing continuous support from examinations through to final results.',
-                        'Our services are thoughtfully designed for working professionals, homemakers, and rural students seeking to pursue their desired degrees through accredited universities without disrupting their daily responsibilities. We facilitate admissions across premier UGC-recognized universities in Tamil Nadu via online and distance education modes, making quality higher education accessible and achievable.',
-                        'Our dedicated team accompanies you throughout your academic journey until graduation, offering personalised guidance, study material support, admission notifications, and timely examination result updates. Having guided over 50,000 students, Karur Study Centre (KSC) has grown into the region\'s most trusted name in distance education. All programmes are structured with flexible schedules to accommodate working professionals, homemakers, and anyone unable to attend regular college classes.',
+                        'Karur Study Centre (KSC) is a dedicated distance-education study and admission centre with branches in Karur, Dindigul, and Kangeyam. Since our inception we have been bridging the gap between open universities and students — helping you pick the right programme, submit a correct application, and stay supported through exams and results.',
+                        'Our services are designed for working professionals, homemakers and students from remote areas who want recognised degrees without relocating or abandoning their commitments. We are affiliated with Alagappa University, Bharathidasan University, Manonmaniam Sundaranar University, and Tamilnadu Open University, and guide learners through every stage of their academic journey.',
+                        'From programme counselling and document verification to study-material support, exam updates and result guidance, our team walks with you until you earn your degree. With more than 50,000 learners served, KSC has grown into a trusted name for open and distance education in the region.',
                     ],
                     'membership' => [
-                        'Partner study centre of Alagappa University (NAAC A++)',
-                        'Recognised centre of Bharathidasan University (NAAC A)',
+                        'Partner study centre of Alagappa University',
+                        'Recognised centre of Bharathidasan University',
                         'Authorised study centre of Manonmaniam Sundaranar University',
                         'Authorised study centre of Tamilnadu Open University',
                         'Affiliated with UGC-DEB recognised distance education',
@@ -289,7 +295,7 @@ class DatabaseSeeder extends Seeder
                     'establishedYear' => '2001',
                 ],
                 'vision_mission' => [
-                    'vision' => 'To be the premier and most trusted distance education study centre in Tamil Nadu—making accredited, affordable, and high-quality higher education accessible to every aspiring learner across Karur, Dindigul, and Kangeyam.',
+                    'vision' => 'To become the most trusted study centre in Tamil Nadu for distance education — making recognised, affordable, and quality higher education accessible to every learner across Karur, Dindigul, and Kangeyam.',
                     'mission' => [
                         'Provide clear, unbiased information about programmes offered by our affiliated open universities.',
                         'Guide every applicant through a smooth, transparent admission process.',
@@ -319,18 +325,19 @@ class DatabaseSeeder extends Seeder
                         'title' => 'Everyone encourages the successful, but only you can encourage yourself on the way to it',
                     ],
                     'establishedYear' => '2001',
-                    'intro' => 'Established in 2001 in Karur, Tamil Nadu, Karur Study Centre (KSC) is a premier distance education learning centre operating through our branches: Karur Coaching Centre in Karur, Pace Computers in Kangeyam, and S.S. Institute in Dindigul.',
+                    'intro' => 'Established in 2001 in Karur, Tamil Nadu, Karur Study Centre (KSC) is a premier distance education learning centre operating through our branches: Karur Study Centre in Karur, Pace Computers in Kangeyam, and S.S. Institute in Dindigul.',
                     'body' => [
-                        'Established in 2001 in Karur, Tamil Nadu, Karur Study Centre (KSC) is a dedicated distance education learning centre. We operate through our network of branches: Karur Coaching Centre in Karur, Pace Computers in Kangeyam, and S.S. Institute in Dindigul. Since our inception, we have served as a vital bridge for students pursuing distance education programmes—including UG, PG, MBA, MCA, MSW, and Diploma courses offered by Alagappa University, Bharathidasan University, Tamil Nadu Open University, and Manonmaniam Sundaranar University. Our comprehensive services include guiding students to choose the right course, ensuring accurate application submissions, and providing continuous support from examinations through to final results.',
+                        'Established in 2001 in Karur, Tamil Nadu, Karur Study Centre (KSC) is a dedicated distance education learning centre. We operate through our network of branches: Karur Study Centre in Karur, Pace Computers in Kangeyam, and S.S. Institute in Dindigul. Since our inception, we have served as a vital bridge for students pursuing distance education programmes—including UG, PG, MBA, MCA, MSW, and Diploma courses offered by Alagappa University, Bharathidasan University, Tamil Nadu Open University, and Manonmaniam Sundaranar University. Our comprehensive services include guiding students to choose the right course, ensuring accurate application submissions, and providing continuous support from examinations through to final results.',
                         'Our services are thoughtfully designed for working professionals, homemakers, and rural students seeking to pursue their desired degrees through accredited universities without disrupting their daily responsibilities. We facilitate admissions across premier UGC-recognized universities in Tamil Nadu via online and distance education modes, making quality higher education accessible and achievable.',
                         'Our dedicated team accompanies you throughout your academic journey until graduation, offering personalised guidance, study material support, admission notifications, and timely examination result updates. Having guided over 50,000 students, Karur Study Centre (KSC) has grown into the region\'s most trusted name in distance education. All programmes are structured with flexible schedules to accommodate working professionals, homemakers, and anyone unable to attend regular college classes.',
                     ],
+                    'image' => '/assets/images/ksc-founder-poster.jpg',
                     'membership' => [
-                        'Partner study centre of Alagappa University (NAAC A++)',
-                        'Recognised centre of Bharathidasan University (NAAC A)',
-                        'Authorised study centre of Manonmaniam Sundaranar University',
-                        'Authorised study centre of Tamilnadu Open University',
-                        'Affiliated with UGC-DEB recognised distance education',
+                        'Admission-support relationship with Alagappa University (NAAC A++)',
+                        'Admission-support relationship with Bharathidasan University (NAAC A+)',
+                        'Admission-support relationship with Manonmaniam Sundaranar University',
+                        'Recognised study-centre partnership with Tamilnadu Open University',
+                        'UGC-DEB recognised distance-education programmes (as applicable per university)',
                     ],
                 ],
             ],
@@ -356,15 +363,15 @@ class DatabaseSeeder extends Seeder
             ],
             'curriculum' => [
                 'content' => [
-                    'intro' => 'Every affiliated university follows its own curriculum structure, examination pattern and syllabus. As a study centre we help you understand what to study, how it is assessed and where to find the official syllabus.',
+                    'intro' => 'Every affiliated university follows its own curriculum structure, examination pattern and syllabus. As a study centre we help you understand what to study, how it is assessed and provide syllabus copies.',
                     'points' => [
                         ['title' => 'Self-Learning Material (SLM)', 'description' => 'Each course is built around printed or digital Self-Learning Material written by the university\'s academic wing. You prepare from these units at your own pace.'],
                         ['title' => 'Semester vs Non-Semester', 'description' => 'Semester-pattern courses are assessed at the end of each semester; non-semester (yearly) courses are assessed once a year. Your programme table on the Academic page shows the pattern for each course.'],
                         ['title' => 'Assignments & Internal Components', 'description' => 'Courses may include assignments or internal components that contribute to the final grade, apart from the written university examination.'],
                         ['title' => 'Practical / Passed-Out Subjects', 'description' => 'Science and vocational courses include practical-oriented components. Practical records are evaluated by the university during examinations.'],
-                        ['title' => 'Official Syllabus Downloads', 'description' => 'The full syllabus for every programme is published by the respective university. Use the syllabus links below to download the PDFs for the programme you are interested in.'],
+                        ['title' => 'Syllabus Downloads', 'description' => 'The syllabus for each programme is curated for students. Use the syllabus links below to download the PDFs for the programme you are interested in.'],
                     ],
-                    'note' => 'This page links out to the official university syllabus PDFs for reference. If a link is missing or out of date, contact our centre for the latest copy.',
+                    'note' => 'This page provides syllabus PDFs for reference. If a copy is missing or out of date, contact our centre for the latest copy.',
                 ],
             ],
             'contact' => [
@@ -454,7 +461,7 @@ class DatabaseSeeder extends Seeder
                 'pattern' => 'Semester Pattern',
                 'recognition' => 'State University, Karaikudi · Centre for Distance and Online Education (CDOE) · UGC-DEB approved',
                 'address' => 'Alagappa Nagar, Karaikudi – 630003, Tamil Nadu',
-                'website' => null,
+                'website' => 'https://www.alagappauniversity.ac.in',
                 'logo' => 'https://upload.wikimedia.org/wikipedia/en/e/ec/Alagappa_University_logo.png',
                 'exam' => [
                     'note' => 'Exam hall tickets, time-tables and examination guidance for Alagappa University students are provided directly at Karur Study Centre.',
@@ -517,7 +524,7 @@ class DatabaseSeeder extends Seeder
                 'pattern' => 'Semester Pattern',
                 'recognition' => 'UGC-DEB approved distance education · Accredited by NAAC',
                 'address' => 'Palkalaiperur, Tiruchirappalli – 620024, Tamil Nadu',
-                'website' => null,
+                'website' => 'https://www.bdu.ac.in',
                 'logo' => 'https://upload.wikimedia.org/wikipedia/en/b/b3/Bharathidasan_University_logo.png',
                 'exam' => [
                     'note' => 'Bharathidasan University exam hall tickets, semester time-tables and updates are available directly at Karur Study Centre.',
@@ -573,8 +580,8 @@ class DatabaseSeeder extends Seeder
                 'short_name' => 'Manonmaniam Sundaranar University',
                 'academic_year' => '2026',
                 'pattern' => 'Semester / Non-Semester',
-                'recognition' => 'State University, Tirunelveli · UGC-DEB Approved',
-                'address' => 'Tirunelveli, Tamil Nadu',
+                'recognition' => 'State University · UGC-DEB Approved',
+                'address' => null,
                 'website' => null,
                 'logo' => 'https://upload.wikimedia.org/wikipedia/en/f/f6/Manonmaniam_Sundaranar_University_logo.png',
                 'exam' => [
@@ -626,7 +633,7 @@ class DatabaseSeeder extends Seeder
                 'pattern' => 'Semester & Non-Semester depending on programme',
                 'recognition' => 'State Open University, Govt. of Tamil Nadu · Approved by UGC-DEB · Accredited NAAC A+',
                 'address' => 'No. 577, Anna Salai, Saidapet, Chennai – 600015, Tamil Nadu',
-                'website' => null,
+                'website' => 'https://www.tnou.ac.in',
                 'logo' => 'https://upload.wikimedia.org/wikipedia/en/2/23/Tamil_Nadu_Open_University_Logo.png',
                 'exam' => [
                     'note' => 'TNOU exam time-tables, hall ticket collection and exam updates are supported directly through Karur Study Centre.',

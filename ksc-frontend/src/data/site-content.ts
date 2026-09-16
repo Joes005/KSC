@@ -44,7 +44,8 @@ export const SITE_CONFIG = {
     whatsapp: "919965107404", // KSC WhatsApp number (digits only, incl. country code)
     email: "Karurstudycentre1@gmail.com",
     address: "M.R.S. Plaza, 3rd Floor, Near Mini Bus Stand, Karur - 639001",
-    mapEmbedUrl: "https://maps.google.com/maps?q=Karur+Study+Centre,+M.R.S.+Plaza,+Covai+Road,+Ramakrishna+Puram,+Karur,+Tamil+Nadu+639001&t=&z=16&ie=UTF8&iwloc=&output=embed",
+    mapEmbedUrl:
+      "https://maps.google.com/maps?q=Karur+Study+Centre,+M.R.S.+Plaza,+Covai+Road,+Ramakrishna+Puram,+Karur,+Tamil+Nadu+639001&t=&z=16&ie=UTF8&iwloc=&output=embed",
   },
 
   /* === SOCIAL LINKS === */
@@ -54,7 +55,6 @@ export const SITE_CONFIG = {
     youtube: "https://www.youtube.com/@karurstudycentrecentre1507",
     twitterX: "X_URL", // TODO
     maps: "https://maps.app.goo.gl/MJFWjrveBV3DQhi4A",
-
   },
 
   /* === STATS COUNTERS === */
@@ -152,11 +152,13 @@ export const VISION_MISSION_VALUES = {
   values: [
     {
       title: "Accessibility",
-      description: "Education within reach of every learner, irrespective of location or schedule.",
+      description:
+        "Education within reach of every learner, irrespective of location or schedule.",
     },
     {
       title: "Integrity",
-      description: "Honest, transparent information and ethical admission guidance.",
+      description:
+        "Honest, transparent information and ethical admission guidance.",
     },
     {
       title: "Student-First Support",
@@ -164,7 +166,8 @@ export const VISION_MISSION_VALUES = {
     },
     {
       title: "Academic Excellence",
-      description: "High standards in the guidance we offer and the outcomes we aim for.",
+      description:
+        "High standards in the guidance we offer and the outcomes we aim for.",
     },
     {
       title: "Flexibility",
@@ -172,7 +175,8 @@ export const VISION_MISSION_VALUES = {
     },
     {
       title: "Lifelong Learning",
-      description: "Encouraging skill development and continuing education at every age.",
+      description:
+        "Encouraging skill development and continuing education at every age.",
     },
   ],
 };
@@ -253,17 +257,20 @@ export const ADMISSION_STEPS = [
   {
     step: "02",
     title: "Submit Documents",
-    description: "Submit the filled form along with copies of mark sheets, photo and ID proof.",
+    description:
+      "Submit the filled form along with copies of mark sheets, photo and ID proof.",
   },
   {
     step: "03",
     title: "Pay Fees",
-    description: "Pay the prescribed course fee through the university/nominated bank channels.",
+    description:
+      "Pay the prescribed course fee through the university/nominated bank channels.",
   },
   {
     step: "04",
     title: "Receive Study Material",
-    description: "Receive your enrolment confirmation and study material to begin learning.",
+    description:
+      "Receive your enrolment confirmation and study material to begin learning.",
   },
 ];
 
@@ -301,8 +308,7 @@ export const CURRICULUM = {
         "The syllabus for each programme is curated for students. Use the syllabus links below to download the PDFs for the programme you are interested in.",
     },
   ],
-  note:
-    "This page provides syllabus PDFs for reference. If a copy is missing or out of date, contact our centre for the latest copy.",
+  note: "This page provides syllabus PDFs for reference. If a copy is missing or out of date, contact our centre for the latest copy.",
 };
 
 /* =========================================================================== */
@@ -319,7 +325,8 @@ export const FACILITIES_INTRO =
 export const ABOUT_PAGE = {
   heading: {
     kicker: "Who We Are",
-    title: "Everyone encourages the successful, but only you can encourage yourself on the way to it",
+    title:
+      "Everyone encourages the successful, but only you can encourage yourself on the way to it",
   },
   establishedYear: "2001",
   intro:
@@ -349,7 +356,7 @@ export const FOUNDER_MESSAGE = {
   title: "Founder Message",
   subtitle: "Our Organization’s Strengths & Services",
   message:
-    "For over 25 years, our organization has earned an outstanding reputation and deep trust among students through our centres: Karur Training Centre in Karur, Pace Computers in Kangeyam, and S.S. Institute in Dindigul. We offer expert guidance for distance education degree programmes in Science, Arts, Commerce, Management, and Information Technology through premier UGC-recognized universities. Placing your educational aspirations at the heart of our mission, we wholeheartedly wish you enduring success in your academic pursuits and future career.",
+    "For over 25 years, our organization has earned an outstanding reputation and deep trust among students through our centres: Karur study centre, Pace Computers in Kangeyam, and S.S. Institute in Dindigul. We offer expert guidance for distance education degree programmes in Science, Arts, Commerce, Management, and Information Technology through premier UGC-recognized universities. Placing your educational aspirations at the heart of our mission, we wholeheartedly wish you enduring success in your academic pursuits and future career.",
   image: "/assets/messages/founder.jpg",
 };
 
@@ -375,25 +382,31 @@ export const BRANCHES = [
     phone: "98652 23107, 93444 23107, 93622 23107",
     isHead: true,
     mapUrl: "https://maps.app.goo.gl/MJFWjrveBV3DQhi4A",
-    mapEmbedUrl: "https://maps.google.com/maps?q=Karur+Study+Centre,+M.R.S.+Plaza,+Covai+Road,+Ramakrishna+Puram,+Karur,+Tamil+Nadu+639001&t=&z=16&ie=UTF8&iwloc=&output=embed",
+    mapEmbedUrl:
+      "https://maps.google.com/maps?q=Karur+Study+Centre,+M.R.S.+Plaza,+Covai+Road,+Ramakrishna+Puram,+Karur,+Tamil+Nadu+639001&t=&z=16&ie=UTF8&iwloc=&output=embed",
   },
   {
     name: "S.S. Institute",
     location: "Dindigul",
-    address: "75/38, Scheme Road, 2nd Floor, Raja Complex, Opposite Bus Stand, Dindigul - 3",
+    address:
+      "75/38, Scheme Road, 2nd Floor, Raja Complex, Opposite Bus Stand, Dindigul - 3",
     phone: "90872 22107, 90472 22107",
     isHead: false,
     mapUrl: "https://maps.app.goo.gl/5MT1b3oKCiyhkxos6",
-    mapEmbedUrl: "https://maps.google.com/maps?q=S.S.+Institute,+75/38,+Scheme+Road,+2nd+Floor,+Raja+Complex,+Dindigul&t=&z=16&ie=UTF8&iwloc=&output=embed",
+    mapEmbedUrl:
+      "https://maps.google.com/maps?q=S.S.+Institute,+75/38,+Scheme+Road,+2nd+Floor,+Raja+Complex,+Dindigul&t=&z=16&ie=UTF8&iwloc=&output=embed",
   },
   {
     name: "Pace Computer",
     location: "Kangeyam",
-    address: "57-59, LS-PS Complex, Main Road, Near Bus Stand, Kangeyam - 638701",
+    address:
+      "57-59, LS-PS Complex, Main Road, Near Bus Stand, Kangeyam - 638701",
     phone: "98652 22107, 93622 24107",
     isHead: false,
-    mapUrl: "https://maps.google.com/maps?q=Pace+Computer,+57-59,+LS-PS+Complex,+Main+Road,+Near+Bus+Stand,+Kangeyam+-+638701",
-    mapEmbedUrl: "https://maps.google.com/maps?q=Pace+Computer,+57-59,+LS-PS+Complex,+Main+Road,+Near+Bus+Stand,+Kangeyam+-+638701&t=&z=16&ie=UTF8&iwloc=&output=embed",
+    mapUrl:
+      "https://maps.google.com/maps?q=Pace+Computer,+57-59,+LS-PS+Complex,+Main+Road,+Near+Bus+Stand,+Kangeyam+-+638701",
+    mapEmbedUrl:
+      "https://maps.google.com/maps?q=Pace+Computer,+57-59,+LS-PS+Complex,+Main+Road,+Near+Bus+Stand,+Kangeyam+-+638701&t=&z=16&ie=UTF8&iwloc=&output=embed",
   },
 ];
 
@@ -424,9 +437,27 @@ export interface FormField {
 }
 
 export const CONTACT_FORM_FIELDS: FormField[] = [
-  { name: "name", label: "Full Name", type: "text", placeholder: "Your full name", required: true },
-  { name: "phone", label: "Phone Number", type: "tel", placeholder: "10-digit mobile number", required: true },
-  { name: "email", label: "Email Address", type: "email", placeholder: "you@example.com", required: false },
+  {
+    name: "name",
+    label: "Full Name",
+    type: "text",
+    placeholder: "Your full name",
+    required: true,
+  },
+  {
+    name: "phone",
+    label: "Phone Number",
+    type: "tel",
+    placeholder: "10-digit mobile number",
+    required: true,
+  },
+  {
+    name: "email",
+    label: "Email Address",
+    type: "email",
+    placeholder: "you@example.com",
+    required: false,
+  },
   {
     name: "programme",
     label: "Programme Interested In",
@@ -443,13 +474,37 @@ export const CONTACT_FORM_FIELDS: FormField[] = [
       "Not sure yet — need guidance",
     ],
   },
-  { name: "message", label: "Message", type: "textarea", placeholder: "How can we help you?", required: false },
+  {
+    name: "message",
+    label: "Message",
+    type: "textarea",
+    placeholder: "How can we help you?",
+    required: false,
+  },
 ];
 
 export const ADMISSIONS_FORM_FIELDS: FormField[] = [
-  { name: "name", label: "Full Name", type: "text", placeholder: "Your full name", required: true },
-  { name: "phone", label: "Phone Number", type: "tel", placeholder: "10-digit mobile number", required: true },
-  { name: "email", label: "Email Address", type: "email", placeholder: "you@example.com", required: false },
+  {
+    name: "name",
+    label: "Full Name",
+    type: "text",
+    placeholder: "Your full name",
+    required: true,
+  },
+  {
+    name: "phone",
+    label: "Phone Number",
+    type: "tel",
+    placeholder: "10-digit mobile number",
+    required: true,
+  },
+  {
+    name: "email",
+    label: "Email Address",
+    type: "email",
+    placeholder: "you@example.com",
+    required: false,
+  },
   {
     name: "university",
     label: "University",
@@ -463,7 +518,13 @@ export const ADMISSIONS_FORM_FIELDS: FormField[] = [
       "Tamilnadu Open University",
     ],
   },
-  { name: "course", label: "Course / Programme", type: "text", placeholder: "e.g. B.A. Tamil, M.B.A., B.Com…", required: true },
+  {
+    name: "course",
+    label: "Course / Programme",
+    type: "text",
+    placeholder: "e.g. B.A. Tamil, M.B.A., B.Com…",
+    required: true,
+  },
 ];
 
 export const USER_UPDATE_MODAL = {

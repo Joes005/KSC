@@ -32,7 +32,7 @@ class Login extends BaseAuth
             ->autofocus()
             ->extraInputAttributes(['tabindex' => 1]);
     }
- 
+
     protected function getCredentialsFromFormData(array $data): array
     {
         return [

@@ -26,6 +26,7 @@ class GalleryImageResource extends Resource
             ->schema([
                 Forms\Components\FileUpload::make('image_path')
                     ->image()
+                    ->directory('gallery')
                     ->required(),
                 Forms\Components\TextInput::make('caption')
                     ->maxLength(255)

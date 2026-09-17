@@ -190,6 +190,6 @@ class HeaderFooterSettings extends Page implements HasForms
             Action::make('save')
                 ->label(__('filament-panels::resources/pages/edit-record.form.actions.save.label'))
                 ->submit('submit'),
-        ];
+        ];  
     }
 }

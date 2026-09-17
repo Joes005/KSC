@@ -32,7 +32,10 @@ class FacilityResource extends Resource
                     ->columnSpanFull(),
                 Forms\Components\FileUpload::make('image_path')
                     ->image()
-                    ->directory('facilities'),
+                    ->directory('facilities')
+                    ->disk('public')
+                    ->formatStateUsing(fn ($state) => $state ? \Illuminate\Support\Str::after($state, 'storage/app/public/') : null)
+                    ->mutateDehydratedStateUsing(fn ($state) => $state ? (\Illuminate\Support\Str::startsWith($state, 'storage/app/public/') ? $state : 'storage/app/public/' . ltrim($state, '/')) : null),
                 Forms\Components\TextInput::make('icon')
                     ->maxLength(255)
                     ->default(null),
@@ -45,7 +48,9 @@ class FacilityResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
-                Tables\Columns\ImageColumn::make('image_path'),
+                Tables\Columns\ImageColumn::make('image_path')
+                    ->disk('public')
+                    ->state(fn ($record) => $record->image_path ? \Illuminate\Support\Str::after($record->image_path, 'storage/app/public/') : null),
                 Tables\Columns\TextColumn::make('icon')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')

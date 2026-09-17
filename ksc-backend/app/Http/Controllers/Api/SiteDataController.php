@@ -41,10 +41,10 @@ class SiteDataController extends Controller
             'settings' => $settings,
             'news_events' => NewsEvent::where('is_active', true)->orderByDesc('created_at')->get(),
             'facilities' => Facility::orderBy('id')->get(),
-            'gallery_images' => GalleryImage::orderBy('sort_order')->get(),
+            'gallery_images' => GalleryImage::orderByDesc('created_at')->get(),
             'branches' => Branch::orderBy('sort_order')->get(),
             'universities' => University::with(['categories.programmes'])->get(),
-            'user_update_posters' => UserUpdatePoster::where('is_active', true)->orderBy('sort_order')->get(),
+            'user_update_posters' => UserUpdatePoster::where('is_active', true)->orderByDesc('created_at')->get(),
             'pages' => $pages,
         ]);
     }

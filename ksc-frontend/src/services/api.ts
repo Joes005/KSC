@@ -53,11 +53,13 @@ export function toAsset(path?: string | null): string {
   
   const backendUrl = API_URL || "http://localhost:8000";
   
-  if (path.startsWith("/storage/")) return `${backendUrl}${path}`;
-  if (path.startsWith("storage/")) return `${backendUrl}/storage/${path.slice("storage/".length)}`;
-  
-  const cleanPath = path.startsWith("/") ? path.slice(1) : path;
-  return `${backendUrl}/storage/${cleanPath}`;
+  // Strip 'storage/app/public/' or '/storage/app/public/' if stored in DB
+  let clean = path.replace(/^\/?storage\/app\/public\//, "");
+  // Strip 'storage/' or '/storage/' if present
+  clean = clean.replace(/^\/?storage\//, "");
+  clean = clean.startsWith("/") ? clean.slice(1) : clean;
+
+  return `${backendUrl}/storage/${clean}`;
 }
 
 /** Load a JSON section stored under pages[pageKey][sectionKey]. */

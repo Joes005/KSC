@@ -27,6 +27,9 @@ class GalleryImageResource extends Resource
                 Forms\Components\FileUpload::make('image_path')
                     ->image()
                     ->directory('gallery')
+                    ->disk('public')
+                    ->formatStateUsing(fn ($state) => $state ? \Illuminate\Support\Str::after($state, 'storage/app/public/') : null)
+                    ->mutateDehydratedStateUsing(fn ($state) => $state ? (\Illuminate\Support\Str::startsWith($state, 'storage/app/public/') ? $state : 'storage/app/public/' . ltrim($state, '/')) : null)
                     ->required(),
                 Forms\Components\TextInput::make('caption')
                     ->maxLength(255)
@@ -44,8 +47,11 @@ class GalleryImageResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->defaultSort('created_at', 'desc')
             ->columns([
-                Tables\Columns\ImageColumn::make('image_path'),
+                Tables\Columns\ImageColumn::make('image_path')
+                    ->disk('public')
+                    ->state(fn ($record) => $record->image_path ? \Illuminate\Support\Str::after($record->image_path, 'storage/app/public/') : null),
                 Tables\Columns\TextColumn::make('caption')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('alt')

@@ -11,3 +11,4 @@ Route::get('/user', function (Request $request) {
 
 Route::get('/site-data', [SiteDataController::class, 'index']);
 Route::post('/contact', [EnquiryController::class, 'store']);
+

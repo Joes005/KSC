@@ -20,6 +20,7 @@ class UserUpdatePoster extends Model
     protected function imagePath(): Attribute
     {
         return Attribute::make(
+            get: fn ($value) => $value ? Str::after($value, 'storage/app/public/') : null,
             set: fn ($value) => $value
                 ? (Str::startsWith($value, ['http://', 'https://', '/assets/'])
                     ? $value

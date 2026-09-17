@@ -31,8 +31,6 @@ class UserUpdatePosterResource extends Resource
                     ->image()
                     ->directory('user-update-posters')
                     ->disk('public')
-                    ->formatStateUsing(fn ($state) => $state ? \Illuminate\Support\Str::after($state, 'storage/app/public/') : null)
-                    ->mutateDehydratedStateUsing(fn ($state) => $state ? (\Illuminate\Support\Str::startsWith($state, 'storage/app/public/') ? $state : 'storage/app/public/' . ltrim($state, '/')) : null)
                     ->required(),
                 Forms\Components\Toggle::make('is_active')
                     ->default(true)
@@ -49,8 +47,7 @@ class UserUpdatePosterResource extends Resource
             ->defaultSort('sort_order')
             ->columns([
                 Tables\Columns\ImageColumn::make('image_path')
-                    ->disk('public')
-                    ->state(fn ($record) => $record->image_path ? \Illuminate\Support\Str::after($record->image_path, 'storage/app/public/') : null),
+                    ->disk('public'),
                 Tables\Columns\IconColumn::make('is_active')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('sort_order')

@@ -51,15 +51,23 @@ export function toAsset(path?: string | null): string {
   if (/^https?:\/\//.test(path)) return path;
   if (path.startsWith("/assets/")) return path;
   
-  const backendUrl = API_URL || "http://localhost:8000";
+  const backendUrl = (API_URL || "http://localhost:8000").replace(/\/+$/, "");
   
-  // Strip 'storage/app/public/' or '/storage/app/public/' if stored in DB
-  let clean = path.replace(/^\/?storage\/app\/public\//, "");
-  // Strip 'storage/' or '/storage/' if present
-  clean = clean.replace(/^\/?storage\//, "");
-  clean = clean.startsWith("/") ? clean.slice(1) : clean;
+  // If stored as "storage/app/public/..." or "/storage/app/public/..."
+  if (path.includes("storage/app/public/")) {
+    const clean = path.replace(/^\/+/, "");
+    return `${backendUrl}/${clean}`;
+  }
 
-  return `${backendUrl}/storage/${clean}`;
+  // If path starts with /storage/ or storage/
+  if (path.startsWith("/storage/") || path.startsWith("storage/")) {
+    const clean = path.replace(/^\/+/, "");
+    const sub = clean.replace(/^storage\//, "");
+    return `${backendUrl}/storage/app/public/${sub}`;
+  }
+  
+  const cleanPath = path.startsWith("/") ? path.slice(1) : path;
+  return `${backendUrl}/storage/app/public/${cleanPath}`;
 }
 
 /** Load a JSON section stored under pages[pageKey][sectionKey]. */

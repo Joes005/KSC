@@ -46,7 +46,7 @@ function applySettings<T>(defaults: T, flat: FlatSettings, prefix = "site"): T {
 }
 
 /** Convert a stored asset path to a browser-usable URL. */
-function toAsset(path?: string | null): string {
+export function toAsset(path?: string | null): string {
   if (!path) return "";
   if (/^https?:\/\//.test(path)) return path;
   if (path.startsWith("/assets/")) return path;
@@ -94,6 +94,12 @@ function mapFacilities(list: any[]): Facility[] {
       description: f.description ?? "",
     } as unknown as Facility;
   });
+}
+
+function mapPosters(list: any[]): { id: string; image_path: string }[] {
+  return (list ?? [])
+    .map((p) => ({ id: String(p.id ?? ""), image_path: toAsset(p.image_path) }))
+    .filter((p) => p.image_path);
 }
 
 function mapGallery(list: any[]): GalleryItem[] {
@@ -291,7 +297,7 @@ export async function fetchSiteData() {
       }),
       contact_fields: pageSection(pages, "contact", "contact_fields", []),
     },
-    user_update_posters: api.user_update_posters || [],
+    user_update_posters: mapPosters(api.user_update_posters),
     pages,
   };
 }

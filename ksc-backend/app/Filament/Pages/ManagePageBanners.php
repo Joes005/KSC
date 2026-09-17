@@ -34,6 +34,7 @@ class ManagePageBanners extends Page implements HasForms
         'chairman' => "Chairman's Message",
         'gallery' => 'Gallery',
         'university' => 'University Detail Pages',
+        'exam_update' => 'Exam Update',
     ];
 
     public ?array $data = [];

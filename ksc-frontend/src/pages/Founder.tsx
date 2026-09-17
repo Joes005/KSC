@@ -5,10 +5,7 @@ import { PageHeader } from "../components/common/PageHeader";
 export function Founder() {
   const { data: { settings: SITE_CONFIG, founder_message: fallbackFounder, pages } } = useSiteData();
   const founderMsg = (pages?.founder?.message || fallbackFounder) as any;
-  const imageUrl = founderMsg.image || fallbackFounder.image;
-  const displayImage = imageUrl?.startsWith('http') || imageUrl?.startsWith('/assets') 
-    ? imageUrl 
-    : `${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/storage/${imageUrl}`;
+  const displayImage = founderMsg.image || fallbackFounder.image;
   const bannerImage = (pages?.founder?.banner as any)?.image || "/assets/campus/building-exterior.jpg";
 
   return (

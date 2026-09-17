@@ -78,7 +78,7 @@ export function UserUpdatePopup() {
 
   // Fallback to static modal image if no API posters are present
   const displayImageUrl = posters.length > 0
-    ? (posters[currentPosterIndex].image_path.startsWith('http') ? posters[currentPosterIndex].image_path : `${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/storage/${posters[currentPosterIndex].image_path}`)
+    ? posters[currentPosterIndex].image_path
     : modalData.imageUrl;
 
   return (

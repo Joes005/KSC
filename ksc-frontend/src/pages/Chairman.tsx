@@ -5,10 +5,7 @@ import { PageHeader } from "../components/common/PageHeader";
 export function Chairman() {
   const { data: { settings: SITE_CONFIG, chairman_message: fallbackChairman, pages } } = useSiteData();
   const chairmanMsg = (pages?.chairman?.message || fallbackChairman) as any;
-  const imageUrl = chairmanMsg.image || fallbackChairman.image;
-  const displayImage = imageUrl?.startsWith('http') || imageUrl?.startsWith('/assets') 
-    ? imageUrl 
-    : `${import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'}/storage/${imageUrl}`;
+  const displayImage = chairmanMsg.image || fallbackChairman.image;
   const bannerImage = (pages?.chairman?.banner as any)?.image || "/assets/campus/lecture-hall.jpg";
 
   return (

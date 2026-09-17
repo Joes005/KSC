@@ -45,6 +45,7 @@ function highlightNoticeText(text: string) {
 export function ExamUpdate() {
   const { data: { news_events: NEWS_EVENTS, settings: SITE_CONFIG, pages } } = useSiteData();
   const headerData = (pages?.exam_update?.header || {}) as any;
+  const bannerImage = (pages?.exam_update?.banner as any)?.image || "/assets/gallery/ksc-08.jpg";
   const examNotices = NEWS_EVENTS.filter((n) => n.type === "exam");
 
   return (
@@ -53,7 +54,7 @@ export function ExamUpdate() {
       <PageHeader
         title={headerData.title || "Examinations, Hall Tickets & Timetables"}
         breadcrumb={[{ label: "Home", to: "/" }, { label: "Exam Update" }]}
-        bgImage="/assets/gallery/ksc-08.jpg"
+        bgImage={bannerImage}
       />
 
       {/* Quick notices */}

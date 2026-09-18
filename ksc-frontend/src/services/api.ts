@@ -123,7 +123,11 @@ function mapGallery(list: any[]): GalleryItem[] {
 
 function mapBranches(list: any[]): typeof BRANCHES {
   return (list ?? []).map((b) => {
-    const loc = b.location ?? (b.name?.toLowerCase().includes("dindigul") ? "Dindigul" : b.name?.toLowerCase().includes("kangeyam") || b.name?.toLowerCase().includes("pace") ? "Kangeyam" : "Karur");
+    const searchText = `${b.name ?? ""} ${b.address ?? ""}`.toLowerCase();
+    const loc = b.location
+      ?? (searchText.includes("dindigul") ? "Dindigul"
+        : searchText.includes("kangeyam") || searchText.includes("kangayam") ? "Kangeyam"
+        : "Karur");
     const defaultMapUrl = loc === "Karur" 
       ? "https://maps.app.goo.gl/MJFWjrveBV3DQhi4A" 
       : loc === "Dindigul" 

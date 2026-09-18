@@ -25,7 +25,7 @@ const fallbackData = {
   chairman_message: CHAIRMAN_MESSAGE,
   curriculum: CURRICULUM,
   user_update_modal: USER_UPDATE_MODAL,
-  user_update_posters: [] as Array<{ id: number; image_path: string; is_active: boolean; sort_order: number }>,
+  user_update_posters: [] as Array<{ id: string; image_path: string }>,
   pages: {
     about: { about_page: ABOUT_PAGE },
     founder: { message: FOUNDER_MESSAGE },

@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { Phone, MessageCircle, Menu, X, Mail, MapPin } from "lucide-react";
+import { Phone, MessageCircle, Menu, X, Mail, MapPin, ChevronDown } from "lucide-react";
 import { useSiteData } from "../../services/SiteDataContext";
 import { Logo } from "../brand/Logo";
 import { cn } from "../../utils/cn";
@@ -23,17 +23,34 @@ export function Header() {
   const navItems: NavItem[] = Array.isArray((SITE_CONFIG as any).navItems) && (SITE_CONFIG as any).navItems.length
     ? (SITE_CONFIG as any).navItems
     : DEFAULT_NAV_ITEMS;
-  const BRANCH_CITY: Record<string, string> = {
-    "Karur Study Centre": "Karur",
-    "Pace Computer College": "Kangayam",
-    "S.S. Institute": "Dindigul",
+  const BRANCH_META: Record<string, { city: string; label: string }> = {
+    "Karur Study Centre": { city: "Karur", label: "Karur Study Centre" },
+    "Pace Computer College": { city: "Kangeyam", label: "Pace Computer College" },
+    "S.S. Institute": { city: "Dindigul", label: "S.S. Institute" },
   };
   const branchList = (Array.isArray(branches) ? branches : []).map((b: any) => ({
-    label: b.name,
-    city: BRANCH_CITY[b.name] || b.name,
+    label: BRANCH_META[b.name]?.label || b.name,
+    city: BRANCH_META[b.name]?.city || b.name,
   }));
+  const previousQuestionLinks: { label: string; url: string }[] = Array.isArray((SITE_CONFIG as any).previousQuestionLinks)
+    ? (SITE_CONFIG as any).previousQuestionLinks
+    : [];
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [pqOpen, setPqOpen] = useState(false);
+  const [pqMobileOpen, setPqMobileOpen] = useState(false);
+  const pqRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!pqOpen) return;
+    const handleClickOutside = (e: MouseEvent) => {
+      if (pqRef.current && !pqRef.current.contains(e.target as Node)) {
+        setPqOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [pqOpen]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -49,6 +66,11 @@ export function Header() {
     window.addEventListener("popstate", handleRoute);
     return () => window.removeEventListener("popstate", handleRoute);
   }, []);
+
+  /* collapse the mobile "Previous Question" accordion whenever the drawer closes */
+  useEffect(() => {
+    if (!mobileOpen) setPqMobileOpen(false);
+  }, [mobileOpen]);
 
   /* Lock body scroll when mobile menu is open */
   useEffect(() => {
@@ -156,6 +178,38 @@ export function Header() {
               </NavLink>
             );
           })}
+          {previousQuestionLinks.length > 0 && (
+            <div className="relative" ref={pqRef}>
+              <button
+                type="button"
+                onClick={() => setPqOpen((v) => !v)}
+                aria-expanded={pqOpen}
+                className={cn(
+                  "flex items-center gap-1 whitespace-nowrap rounded-xl px-4 py-2.5 text-sm font-bold transition-all duration-300",
+                  pqOpen ? "text-ksc-yellow bg-white/10" : "text-white/80 hover:text-white hover:bg-white/5"
+                )}
+              >
+                Previous Question
+                <ChevronDown className={cn("h-4 w-4 transition-transform duration-200", pqOpen && "rotate-180")} />
+              </button>
+              {pqOpen && (
+                <div className="absolute left-0 top-full z-30 mt-2 w-64 overflow-hidden rounded-xl border border-white/10 bg-ksc-navy shadow-2xl animate-fade-in">
+                  {previousQuestionLinks.map((link, i) => (
+                    <a
+                      key={`${link.label}-${i}`}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setPqOpen(false)}
+                      className="block px-4 py-3 text-sm font-semibold text-white/85 transition-colors hover:bg-white/10 hover:text-ksc-yellow"
+                    >
+                      {link.label}
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
         </nav>
 
         {/* Desktop CTA */}
@@ -219,6 +273,38 @@ export function Header() {
                     </NavLink>
                   );
                 })}
+                {previousQuestionLinks.length > 0 && (
+                  <div>
+                    <button
+                      type="button"
+                      onClick={() => setPqMobileOpen((v) => !v)}
+                      aria-expanded={pqMobileOpen}
+                      className={cn(
+                        "flex w-full items-center justify-between px-4 py-3 text-base font-bold transition-all rounded-xl",
+                        pqMobileOpen ? "text-ksc-yellow bg-white/15 shadow-inner" : "text-white/85 hover:text-white hover:bg-white/10"
+                      )}
+                    >
+                      Previous Question
+                      <ChevronDown className={cn("h-4 w-4 transition-transform duration-200", pqMobileOpen && "rotate-180")} />
+                    </button>
+                    {pqMobileOpen && (
+                      <div className="ml-3 mt-1 flex flex-col gap-1 border-l border-white/10 pl-3">
+                        {previousQuestionLinks.map((link, i) => (
+                          <a
+                            key={`${link.label}-${i}`}
+                            href={link.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={() => setMobileOpen(false)}
+                            className="rounded-lg px-4 py-2.5 text-sm font-semibold text-white/75 hover:bg-white/10 hover:text-ksc-yellow transition-colors"
+                          >
+                            {link.label}
+                          </a>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
 
               <div className="mt-4 pt-4 border-t border-white/10 flex flex-col gap-2.5 px-1">

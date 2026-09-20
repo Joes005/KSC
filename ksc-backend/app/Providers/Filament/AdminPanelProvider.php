@@ -38,12 +38,13 @@ class AdminPanelProvider extends PanelProvider
             ])
             // Ordered to match the live site's actual page order (Home -> About ->
             // Academic -> Facilities -> Curriculum -> Gallery -> Exam Update ->
-            // Contact -> Admissions), with Enquiries and the two cross-page setup
+            // Contact -> Admissions), with Enquiries and the cross-page setup
             // screens pinned to the top. Filament sorts groups alphabetically otherwise.
             ->navigationGroups([
                 NavigationGroup::make('Enquiries'),
                 NavigationGroup::make('Global Settings'),
                 NavigationGroup::make('Page Banner Photos'),
+                NavigationGroup::make('Header & Footer'),
                 NavigationGroup::make('Home Page'),
                 NavigationGroup::make('About Page'),
                 NavigationGroup::make('Academic Page'),

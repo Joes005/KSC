@@ -8,6 +8,25 @@ interface ProgrammeCardsProps {
   className?: string;
 }
 
+function DownloadCell({ url, label }: { url?: string; label: string }) {
+  return url ? (
+    <a href={url} target="_blank" rel="noopener noreferrer" aria-label={`Download ${label}`} className="inline-flex h-9 w-9 items-center justify-center rounded-lg border-2 border-ksc-navy text-ksc-navy transition-all hover:bg-ksc-navy hover:text-white font-bold">
+      <Download className="h-4 w-4" />
+    </a>
+  ) : (
+    <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-slate-100 text-xs font-bold text-slate-400" title={`${label} not available`}>—</span>
+  );
+}
+
+function DownloadPill({ url, label }: { url?: string; label: string }) {
+  if (!url) return null;
+  return (
+    <a href={url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 rounded-lg border-2 border-ksc-navy px-3 py-1.5 text-[11px] font-black uppercase tracking-wider text-ksc-navy transition-colors hover:bg-ksc-navy hover:text-white">
+      <Download className="h-3 w-3" /> {label}
+    </a>
+  );
+}
+
 export function ProgrammeCards({ programmes, className }: ProgrammeCardsProps) {
   const [searchTerm, setSearchTerm] = useState("");
   const [mediumFilter, setMediumFilter] = useState("All");
@@ -84,14 +103,16 @@ export function ProgrammeCards({ programmes, className }: ProgrammeCardsProps) {
         <>
           {/* Desktop Table View */}
           <div className="relative hidden overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-lift sm:block">
-            <table className="w-full min-w-[780px] table-fixed text-left text-sm text-slate-800">
-              <colgroup><col className="w-[34%]" /><col className="w-[36%]" /><col className="w-[20%]" /><col className="w-[10%]" /></colgroup>
+            <table className="w-full min-w-[960px] table-fixed text-left text-sm text-slate-800">
+              <colgroup><col className="w-[24%]" /><col className="w-[24%]" /><col className="w-[15%]" /><col className="w-[12%]" /><col className="w-[12%]" /><col className="w-[13%]" /></colgroup>
               <thead className="bg-gradient-to-r from-ksc-navy to-ksc-royal text-xs uppercase tracking-[.12em] text-white">
                 <tr>
                   <th className="border-b border-white/10 px-5 py-4 font-black">Programme</th>
                   <th className="border-b border-white/10 px-5 py-4 font-black">Eligibility</th>
                   <th className="whitespace-nowrap border-b border-white/10 px-5 py-4 font-black">Medium &amp; Pattern</th>
                   <th className="border-b border-white/10 px-5 py-4 text-center font-black">Syllabus</th>
+                  <th className="border-b border-white/10 px-5 py-4 text-center font-black">Book</th>
+                  <th className="border-b border-white/10 px-5 py-4 text-center font-black">Assignment</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-200">
@@ -118,13 +139,13 @@ export function ProgrammeCards({ programmes, className }: ProgrammeCardsProps) {
                       </div>
                     </td>
                     <td className="px-4 py-4 text-center align-middle">
-                      {p.syllabusUrl ? (
-                        <a href={p.syllabusUrl} target="_blank" rel="noopener noreferrer" aria-label={`Download syllabus for ${p.name}`} className="inline-flex h-9 w-9 items-center justify-center rounded-lg border-2 border-ksc-navy text-ksc-navy transition-all hover:bg-ksc-navy hover:text-white font-bold">
-                          <Download className="h-4 w-4" />
-                        </a>
-                      ) : (
-                        <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-slate-100 text-xs font-bold text-slate-400" title="Syllabus not available">—</span>
-                      )}
+                      <DownloadCell url={p.syllabusUrl} label={`syllabus for ${p.name}`} />
+                    </td>
+                    <td className="px-4 py-4 text-center align-middle">
+                      <DownloadCell url={p.bookUrl} label={`book for ${p.name}`} />
+                    </td>
+                    <td className="px-4 py-4 text-center align-middle">
+                      <DownloadCell url={p.assignmentUrl} label={`assignment for ${p.name}`} />
                     </td>
                   </tr>
                 ))}
@@ -156,11 +177,11 @@ export function ProgrammeCards({ programmes, className }: ProgrammeCardsProps) {
                       {p.pattern}
                     </span>
                   )}
-                  {p.syllabusUrl && (
-                    <a href={p.syllabusUrl} target="_blank" rel="noopener noreferrer" className="ml-auto inline-flex items-center gap-1.5 rounded-lg border-2 border-ksc-navy px-3 py-1.5 text-[11px] font-black uppercase tracking-wider text-ksc-navy transition-colors hover:bg-ksc-navy hover:text-white">
-                      <Download className="h-3 w-3" /> Syllabus
-                    </a>
-                  )}
+                  <div className="ml-auto flex flex-wrap items-center justify-end gap-2">
+                    <DownloadPill url={p.syllabusUrl} label="Syllabus" />
+                    <DownloadPill url={p.bookUrl} label="Book" />
+                    <DownloadPill url={p.assignmentUrl} label="Assignment" />
+                  </div>
                 </div>
               </div>
             ))}

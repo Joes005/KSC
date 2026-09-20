@@ -39,7 +39,7 @@ class SiteDataController extends Controller
 
         return response()->json([
             'settings' => $settings,
-            'news_events' => NewsEvent::where('is_active', true)->orderByDesc('created_at')->get(),
+            'news_events' => NewsEvent::where('is_active', true)->orderBy('sort_order')->get(),
             'facilities' => Facility::orderBy('id')->get(),
             'gallery_images' => GalleryImage::orderByDesc('created_at')->get(),
             'branches' => Branch::orderBy('sort_order')->get(),

@@ -1,4 +1,4 @@
-import { Megaphone, ExternalLink, MessageCircle, Phone, ArrowRight } from "lucide-react";
+import { Megaphone, MessageCircle, Phone, ArrowRight } from "lucide-react";
 import { useSiteData } from "../services/SiteDataContext";
 import { PageHeader } from "../components/common/PageHeader";
 
@@ -73,20 +73,34 @@ export function ExamUpdate() {
             {examNotices.map((n, idx) => (
               <li
                 key={`${n.text}-${idx}`}
-                className="group relative overflow-hidden flex items-start gap-3 sm:gap-4 rounded-2xl border border-amber-200/90 bg-gradient-to-r from-[#fffdf5] via-[#fffdfa] to-white p-4 sm:p-5 shadow-xs transition-all duration-300 hover:border-ksc-red/40 hover:shadow-md hover:-translate-y-0.5"
+                className="group relative overflow-hidden flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 rounded-2xl border border-amber-200/90 bg-gradient-to-r from-[#fffdf5] via-[#fffdfa] to-white p-4 sm:p-5 shadow-xs transition-all duration-300 hover:border-ksc-red/40 hover:shadow-md hover:-translate-y-0.5"
               >
                 {/* Accent left highlight bar */}
                 <div className="absolute left-0 top-0 h-full w-1.5 bg-gradient-to-b from-ksc-red to-ksc-yellow" />
 
-                <div className="flex h-10 w-10 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-xl bg-amber-100/80 text-amber-700 border border-amber-300/70 transition-all duration-300 group-hover:bg-ksc-red group-hover:text-white group-hover:border-ksc-red shadow-2xs">
-                  <Megaphone className="h-4.5 w-4.5 sm:h-5 sm:w-5" />
+                <div className="flex items-start gap-3 sm:gap-4 flex-1 min-w-0">
+                  <div className="flex h-10 w-10 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-xl bg-amber-100/80 text-amber-700 border border-amber-300/70 transition-all duration-300 group-hover:bg-ksc-red group-hover:text-white group-hover:border-ksc-red shadow-2xs">
+                    <Megaphone className="h-4.5 w-4.5 sm:h-5 sm:w-5" />
+                  </div>
+
+                  <div className="flex-1 min-w-0 pt-0.5">
+                    <p className="text-sm sm:text-base md:text-lg font-bold leading-relaxed text-slate-900">
+                      {highlightNoticeText(n.text)}
+                    </p>
+                  </div>
                 </div>
-                
-                <div className="flex-1 min-w-0 pt-0.5">
-                  <p className="text-sm sm:text-base md:text-lg font-bold leading-relaxed text-slate-900">
-                    {highlightNoticeText(n.text)}
-                  </p>
-                </div>
+
+                {n.href && (
+                  <a
+                    href={n.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex shrink-0 items-center justify-center gap-1.5 self-start sm:self-center rounded-xl bg-ksc-navy px-4 py-2 text-xs sm:text-sm font-bold text-white shadow-xs transition-all hover:bg-ksc-red hover:shadow-md ml-[52px] sm:ml-0"
+                  >
+                    Click here
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </a>
+                )}
               </li>
             ))}
           </ul>

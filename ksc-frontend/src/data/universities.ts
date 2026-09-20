@@ -19,6 +19,10 @@ export interface Programme {
   eligibility?: string;
   /** Link to download syllabus/course material */
   syllabusUrl?: string;
+  /** Link to download the prescribed book PDF */
+  bookUrl?: string;
+  /** Link to download the assignment PDF */
+  assignmentUrl?: string;
 }
 
 export interface ProgrammeCategory {

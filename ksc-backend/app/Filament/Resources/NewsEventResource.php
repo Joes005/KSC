@@ -33,16 +33,27 @@ class NewsEventResource extends Resource
                     ->maxLength(255)
                     ->default(null),
                 Forms\Components\TextInput::make('link')
+                    ->label('Click Here Link (URL)')
+                    ->helperText('If set, a "Click here" button appears on this notice, linking to this page (e.g. the exam results site).')
+                    ->url()
                     ->maxLength(255)
                     ->default(null),
                 Forms\Components\Toggle::make('is_active')
                     ->required(),
+                Forms\Components\TextInput::make('sort_order')
+                    ->label('Display Order')
+                    ->helperText('Lower numbers show first. You can also drag rows to reorder them on the list page.')
+                    ->numeric()
+                    ->required()
+                    ->default(fn () => (NewsEvent::max('sort_order') ?? -1) + 1),
             ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
+            ->reorderable('sort_order')
+            ->defaultSort('sort_order')
             ->columns([
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
@@ -52,6 +63,9 @@ class NewsEventResource extends Resource
                     ->searchable(),
                 Tables\Columns\IconColumn::make('is_active')
                     ->boolean(),
+                Tables\Columns\TextColumn::make('sort_order')
+                    ->numeric()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

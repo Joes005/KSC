@@ -50,24 +50,19 @@ export function toAsset(path?: string | null): string {
   if (!path) return "";
   if (/^https?:\/\//.test(path)) return path;
   if (path.startsWith("/assets/")) return path;
-  
-  const backendUrl = (API_URL || "http://localhost:8000").replace(/\/+$/, "");
-  
-  // If stored as "storage/app/public/..." or "/storage/app/public/..."
-  if (path.includes("storage/app/public/")) {
-    const clean = path.replace(/^\/+/, "");
-    return `${backendUrl}/${clean}`;
-  }
 
-  // If path starts with /storage/ or storage/
-  if (path.startsWith("/storage/") || path.startsWith("storage/")) {
-    const clean = path.replace(/^\/+/, "");
-    const sub = clean.replace(/^storage\//, "");
-    return `${backendUrl}/storage/app/public/${sub}`;
-  }
-  
-  const cleanPath = path.startsWith("/") ? path.slice(1) : path;
-  return `${backendUrl}/storage/app/public/${cleanPath}`;
+  const backendUrl = (API_URL || "http://localhost:8000").replace(/\/+$/, "");
+
+  // Normalize any stored variant ("dir/file.ext", "storage/dir/file.ext",
+  // "/storage/dir/file.ext", or the legacy "storage/app/public/dir/file.ext")
+  // down to the path relative to the public disk root, then build the URL
+  // the public/storage symlink actually serves ("{backend}/storage/...").
+  const clean = path
+    .replace(/^\/+/, "")
+    .replace(/^storage\/app\/public\//, "")
+    .replace(/^storage\//, "");
+
+  return `${backendUrl}/storage/${clean}`;
 }
 
 /** Load a JSON section stored under pages[pageKey][sectionKey]. */
@@ -182,6 +177,8 @@ function mapUniversities(list: any[]): University[] {
           duration: p.duration,
           eligibility: p.eligibility,
           syllabusUrl: toAsset(p.syllabus_path),
+          bookUrl: toAsset(p.book_path),
+          assignmentUrl: toAsset(p.assignment_path),
         })),
       })),
       exam: {
@@ -262,6 +259,9 @@ export async function fetchSiteData() {
   if (Array.isArray(flat["site.nav_items"]) && flat["site.nav_items"].length) {
     settings.navItems = flat["site.nav_items"];
   }
+  settings.previousQuestionLinks = Array.isArray(flat["nav.previous_question_links"])
+    ? flat["nav.previous_question_links"]
+    : [];
   settings.footer = {
     quickLinks: Array.isArray(flat["footer.quick_links"]) ? flat["footer.quick_links"] : [],
     programmeLinks: Array.isArray(flat["footer.programme_links"]) ? flat["footer.programme_links"] : [],

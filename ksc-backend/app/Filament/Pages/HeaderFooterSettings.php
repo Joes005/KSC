@@ -31,10 +31,6 @@ class HeaderFooterSettings extends Page implements HasForms
      *  (not exploded into dotted index keys like "site.stats.0.value"). */
     public const LIST_KEYS = [
         'site.stats',
-        'site.nav_items',
-        'footer.quick_links',
-        'footer.programme_links',
-        'footer.support_links',
     ];
 
     public ?array $data = [];
@@ -84,54 +80,6 @@ class HeaderFooterSettings extends Page implements HasForms
                             ->columnSpanFull()
                             ->reorderable()
                             ->addActionLabel('Add stat'),
-                    ]),
-                Section::make('Header Navigation Menu')
-                    ->description('The links shown in the top navigation bar, in order.')
-                    ->schema([
-                        Repeater::make('site.nav_items')
-                            ->label('Menu Items')
-                            ->schema([
-                                TextInput::make('label')->label('Menu Text')->required(),
-                                TextInput::make('path')->label('Page Link (e.g. /about)')->required(),
-                            ])
-                            ->columns(2)
-                            ->columnSpanFull()
-                            ->reorderable()
-                            ->addActionLabel('Add menu item'),
-                    ]),
-                Section::make('Footer Link Columns')
-                    ->description('The three link lists shown in the site footer.')
-                    ->schema([
-                        Repeater::make('footer.quick_links')
-                            ->label('Quick Links column')
-                            ->schema([
-                                TextInput::make('label')->label('Link Text')->required(),
-                                TextInput::make('to')->label('Page Link')->required(),
-                            ])
-                            ->columns(2)
-                            ->columnSpanFull()
-                            ->reorderable()
-                            ->addActionLabel('Add link'),
-                        Repeater::make('footer.programme_links')
-                            ->label('Programmes column')
-                            ->schema([
-                                TextInput::make('label')->label('Link Text')->required(),
-                                TextInput::make('to')->label('Page Link')->required(),
-                            ])
-                            ->columns(2)
-                            ->columnSpanFull()
-                            ->reorderable()
-                            ->addActionLabel('Add link'),
-                        Repeater::make('footer.support_links')
-                            ->label('Support column')
-                            ->schema([
-                                TextInput::make('label')->label('Link Text')->required(),
-                                TextInput::make('to')->label('Page Link')->required(),
-                            ])
-                            ->columns(2)
-                            ->columnSpanFull()
-                            ->reorderable()
-                            ->addActionLabel('Add link'),
                     ]),
                 Section::make('Global Settings')
                     ->schema([

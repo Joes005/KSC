@@ -44,6 +44,16 @@ class ProgrammeResource extends Resource
                     ->acceptedFileTypes(['application/pdf'])
                     ->directory('syllabuses')
                     ->columnSpanFull(),
+                Forms\Components\FileUpload::make('book_path')
+                    ->label('Book PDF')
+                    ->acceptedFileTypes(['application/pdf'])
+                    ->directory('books')
+                    ->columnSpanFull(),
+                Forms\Components\FileUpload::make('assignment_path')
+                    ->label('Assignment PDF')
+                    ->acceptedFileTypes(['application/pdf'])
+                    ->directory('assignments')
+                    ->columnSpanFull(),
             ]);
     }
 

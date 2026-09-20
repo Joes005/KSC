@@ -11,6 +11,7 @@ class NewsEvent extends Model
         'badge',
         'link',
         'is_active',
+        'sort_order',
     ];
 
     protected $casts = [

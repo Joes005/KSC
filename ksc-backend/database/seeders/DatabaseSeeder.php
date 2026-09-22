@@ -92,7 +92,7 @@ class DatabaseSeeder extends Seeder
                 'sort_order' => 1,
             ],
             [
-                'name' => 'Pace Computer',
+                'name' => 'Pace Computer Center',
                 'address' => '57-59, LS-PS Complex, Main Road, Near Bus Stand, Kangeyam - 638701',
                 'phone' => '98652 22107, 93622 24107',
                 'hours' => null,

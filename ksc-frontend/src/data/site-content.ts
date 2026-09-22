@@ -397,7 +397,7 @@ export const BRANCHES = [
       "https://maps.google.com/maps?q=S.S.+Institute,+75/38,+Scheme+Road,+2nd+Floor,+Raja+Complex,+Dindigul&t=&z=16&ie=UTF8&iwloc=&output=embed",
   },
   {
-    name: "Pace Computer",
+    name: "Pace Computer Center",
     location: "Kangeyam",
     address:
       "57-59, LS-PS Complex, Main Road, Near Bus Stand, Kangeyam - 638701",

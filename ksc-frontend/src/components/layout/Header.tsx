@@ -25,13 +25,25 @@ export function Header() {
     : DEFAULT_NAV_ITEMS;
   const BRANCH_META: Record<string, { city: string; label: string }> = {
     "Karur Study Centre": { city: "Karur", label: "Karur Study Centre" },
-    "Pace Computer College": { city: "Kangeyam", label: "Pace Computer College" },
+    "Pace Computer": { city: "Kangeyam", label: "Pace Computer Center" },
+    "Pace Computer Center": { city: "Kangeyam", label: "Pace Computer Center" },
+    "Pace Computer Centre": { city: "Kangeyam", label: "Pace Computer Center" },
+    "Pace Computer College": { city: "Kangeyam", label: "Pace Computer Center" },
+    "Pace Computers": { city: "Kangeyam", label: "Pace Computer Center" },
     "S.S. Institute": { city: "Dindigul", label: "S.S. Institute" },
   };
-  const branchList = (Array.isArray(branches) ? branches : []).map((b: any) => ({
-    label: BRANCH_META[b.name]?.label || b.name,
-    city: BRANCH_META[b.name]?.city || b.name,
-  }));
+  const branchList = (Array.isArray(branches) ? branches : []).map((b: any) => {
+    const meta = BRANCH_META[b.name];
+    if (meta) return meta;
+    const nameLower = (b.name || "").toLowerCase();
+    const addrLower = (b.address || "").toLowerCase();
+    const isKangeyam = nameLower.includes("pace") || nameLower.includes("kang") || addrLower.includes("kang");
+    const isDindigul = nameLower.includes("dindigul") || nameLower.includes("ss") || addrLower.includes("dindigul");
+    return {
+      label: isKangeyam ? "Pace Computer Center" : (b.name || "Karur Study Centre"),
+      city: isKangeyam ? "Kangeyam" : isDindigul ? "Dindigul" : (b.location || "Karur"),
+    };
+  });
   const previousQuestionLinks: { label: string; url: string }[] = Array.isArray((SITE_CONFIG as any).previousQuestionLinks)
     ? (SITE_CONFIG as any).previousQuestionLinks
     : [];

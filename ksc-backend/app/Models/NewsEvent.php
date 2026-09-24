@@ -10,6 +10,7 @@ class NewsEvent extends Model
         'title',
         'badge',
         'link',
+        'pdf_path',
         'is_active',
         'sort_order',
     ];

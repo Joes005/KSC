@@ -189,6 +189,7 @@ export interface NewsEvent {
   text: string;
   type: "admission" | "deadline" | "exam" | "event";
   href?: string;
+  pdfUrl?: string;
   date?: string;
   badge?: string;
   tag?: string;

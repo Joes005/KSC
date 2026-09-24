@@ -84,6 +84,7 @@ function mapNews(list: any[]): NewsEventType[] {
       text: n.title ?? "",
       type,
       href: n.link || undefined,
+      pdfUrl: n.pdf_path ? toAsset(n.pdf_path) : undefined,
       date: n.badge || undefined,
     };
   });

@@ -90,11 +90,12 @@ export function ExamUpdate() {
                   </div>
                 </div>
 
-                {n.href && (
+                {(n.href || n.pdfUrl) && (
                   <a
-                    href={n.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href={n.href || n.pdfUrl}
+                    {...(n.href
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : { download: true })}
                     className="inline-flex shrink-0 items-center justify-center gap-1.5 self-start sm:self-center rounded-xl bg-ksc-navy px-4 py-2 text-xs sm:text-sm font-bold text-white shadow-xs transition-all hover:bg-ksc-red hover:shadow-md ml-[52px] sm:ml-0"
                   >
                     Click here

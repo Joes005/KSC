@@ -34,10 +34,17 @@ class NewsEventResource extends Resource
                     ->default(null),
                 Forms\Components\TextInput::make('link')
                     ->label('Click Here Link (URL)')
-                    ->helperText('If set, a "Click here" button appears on this notice, linking to this page (e.g. the exam results site).')
+                    ->helperText('If set, a "Click here" button appears on this notice, linking to this page (e.g. the exam results site). Leave empty if you are uploading a PDF below instead.')
                     ->url()
                     ->maxLength(255)
                     ->default(null),
+                Forms\Components\FileUpload::make('pdf_path')
+                    ->label('Notice PDF')
+                    ->helperText('Optional. Upload a PDF instead of a link — the "Click here" button will download this PDF. If both a link and a PDF are set, the link is used.')
+                    ->acceptedFileTypes(['application/pdf'])
+                    ->directory('news-events')
+                    ->disk('public')
+                    ->columnSpanFull(),
                 Forms\Components\Toggle::make('is_active')
                     ->required(),
                 Forms\Components\TextInput::make('sort_order')
@@ -61,6 +68,10 @@ class NewsEventResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('link')
                     ->searchable(),
+                Tables\Columns\IconColumn::make('pdf_path')
+                    ->label('PDF')
+                    ->boolean()
+                    ->getStateUsing(fn (NewsEvent $record): bool => filled($record->pdf_path)),
                 Tables\Columns\IconColumn::make('is_active')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('sort_order')

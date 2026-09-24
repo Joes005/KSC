@@ -31,7 +31,7 @@ export function About() {
               kicker={ABOUT_PAGE.heading?.kicker || "Who We Are"}
               title={ABOUT_PAGE.heading?.title || "Everyone encourages the successful, but only you can encourage yourself on the way to it"}
             />
-            <div className="space-y-5 leading-relaxed text-slate-800 font-bold text-sm sm:text-base mt-6">
+            <div className="space-y-5 leading-relaxed text-slate-800 font-bold text-sm sm:text-base mt-6 text-justify hyphens-auto break-words">
               <p>{ABOUT_PAGE.body?.[0]}</p>
 
               <div className="my-8 overflow-hidden rounded-3xl shadow-xl border border-slate-200/90 p-2 bg-white max-w-xl mx-auto">

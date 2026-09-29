@@ -25,7 +25,7 @@ export function Contact() {
   const activeBranch = officeBranches[activeBranchIdx];
   const branchMapSrc = (activeBranch as any)?.mapEmbedUrl || (activeBranch
     ? (activeBranch.name.includes("Karur") || (activeBranch as any).location === "Karur"
-      ? "https://maps.google.com/maps?q=Karur+Study+Centre,+M.R.S.+Plaza,+Covai+Road,+Ramakrishna+Puram,+Karur,+Tamil+Nadu+639001&t=&z=16&ie=UTF8&iwloc=&output=embed"
+      ? "https://maps.google.com/maps?q=Karur+Study+Centre,+M.R.S.+Plaza,+Near+Mini+Bus+Stand,+Karur,+Tamil+Nadu+639001&t=&z=16&ie=UTF8&iwloc=&output=embed"
       : activeBranch.name.includes("Dindigul") || (activeBranch as any).location === "Dindigul"
       ? "https://maps.google.com/maps?q=S.S.+Institute,+75/38,+Scheme+Road,+2nd+Floor,+Raja+Complex,+Dindigul&t=&z=16&ie=UTF8&iwloc=&output=embed"
       : `https://maps.google.com/maps?q=${encodeURIComponent(`${activeBranch.name}, ${activeBranch.address}`)}&t=&z=15&ie=UTF8&iwloc=&output=embed`)
@@ -77,7 +77,7 @@ export function Contact() {
                 const IconComponent = { MapPin, Phone, MessageCircle, Mail }[item.icon as string] || MapPin;
                 const isWa = item.icon === 'MessageCircle';
                 const isMap = item.icon === 'MapPin';
-                const linkHref = isWa ? waUrl : isMap ? "https://maps.app.goo.gl/MJFWjrveBV3DQhi4A" : item.link || '#';
+                const linkHref = isWa ? waUrl : isMap ? (item.link || "https://maps.app.goo.gl/X3snfWXnP526PSBM8") : item.link || '#';
                 return (
                   <div key={idx} className="card-hover flex items-start gap-4 p-6 rounded-xl shadow-soft">
                     <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-white/60 text-ksc-red border border-white/50 shadow-inner">
@@ -151,7 +151,7 @@ export function Contact() {
                 <div className="mt-3 px-1 flex flex-wrap items-center justify-between gap-3">
                   <p className="text-xs font-bold text-slate-700">{activeBranch.address}</p>
                   <a
-                    href={(activeBranch as any).mapUrl || (activeBranch.name.includes("Karur") || (activeBranch as any).location === "Karur" ? "https://maps.app.goo.gl/MJFWjrveBV3DQhi4A" : activeBranch.name.includes("Dindigul") || (activeBranch as any).location === "Dindigul" ? "https://maps.app.goo.gl/5MT1b3oKCiyhkxos6" : `https://maps.google.com/maps?q=${encodeURIComponent(`${activeBranch.name}, ${activeBranch.address}`)}`)}
+                    href={(activeBranch as any).mapUrl || (activeBranch.name.includes("Karur") || (activeBranch as any).location === "Karur" ? "https://maps.app.goo.gl/X3snfWXnP526PSBM8" : activeBranch.name.includes("Dindigul") || (activeBranch as any).location === "Dindigul" ? "https://maps.app.goo.gl/5MT1b3oKCiyhkxos6" : `https://maps.google.com/maps?q=${encodeURIComponent(`${activeBranch.name}, ${activeBranch.address}`)}`)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 rounded-lg bg-ksc-red text-white px-3 py-1.5 text-xs font-bold hover:bg-ksc-navy transition-colors shadow-xs shrink-0"

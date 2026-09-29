@@ -45,7 +45,7 @@ export const SITE_CONFIG = {
     email: "Karurstudycentre1@gmail.com",
     address: "M.R.S. Plaza, 3rd Floor, Near Mini Bus Stand, Karur - 639001",
     mapEmbedUrl:
-      "https://maps.google.com/maps?q=Karur+Study+Centre,+M.R.S.+Plaza,+Covai+Road,+Ramakrishna+Puram,+Karur,+Tamil+Nadu+639001&t=&z=16&ie=UTF8&iwloc=&output=embed",
+      "https://maps.google.com/maps?q=Karur+Study+Centre,+M.R.S.+Plaza,+Near+Mini+Bus+Stand,+Karur,+Tamil+Nadu+639001&t=&z=16&ie=UTF8&iwloc=&output=embed",
   },
 
   /* === SOCIAL LINKS === */
@@ -54,7 +54,7 @@ export const SITE_CONFIG = {
     instagram: "https://www.instagram.com/karur_study_centre",
     youtube: "https://www.youtube.com/@karurstudycentrecentre1507",
     twitterX: "X_URL", // TODO
-    maps: "https://maps.app.goo.gl/MJFWjrveBV3DQhi4A",
+    maps: "https://maps.app.goo.gl/X3snfWXnP526PSBM8",
   },
 
   /* === STATS COUNTERS === */
@@ -399,9 +399,9 @@ export const BRANCHES = [
     address: "M.R.S. Plaza, 3rd Floor, Near Mini Bus Stand, Karur - 639001",
     phone: "98652 23107, 93444 23107, 93622 23107",
     isHead: true,
-    mapUrl: "https://maps.app.goo.gl/MJFWjrveBV3DQhi4A",
+    mapUrl: "https://maps.app.goo.gl/X3snfWXnP526PSBM8",
     mapEmbedUrl:
-      "https://maps.google.com/maps?q=Karur+Study+Centre,+M.R.S.+Plaza,+Covai+Road,+Ramakrishna+Puram,+Karur,+Tamil+Nadu+639001&t=&z=16&ie=UTF8&iwloc=&output=embed",
+      "https://maps.google.com/maps?q=Karur+Study+Centre,+M.R.S.+Plaza,+Near+Mini+Bus+Stand,+Karur,+Tamil+Nadu+639001&t=&z=16&ie=UTF8&iwloc=&output=embed",
   },
   {
     name: "S.S. Institute",

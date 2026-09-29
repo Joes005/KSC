@@ -59,11 +59,11 @@ class DatabaseSeeder extends Seeder
             'contact.whatsapp' => '919965107404',
             'contact.email' => 'Karurstudycentre1@gmail.com',
             'contact.address' => 'M.R.S. Plaza, 3rd Floor, Near Mini Bus Stand, Karur - 639001',
-            'contact.map_embed_url' => 'https://maps.google.com/maps?q=Karur+Study+Centre,+M.R.S.+Plaza,+Covai+Road,+Ramakrishna+Puram,+Karur,+Tamil+Nadu+639001&t=&z=16&ie=UTF8&iwloc=&output=embed',
+            'contact.map_embed_url' => 'https://maps.google.com/maps?q=Karur+Study+Centre,+M.R.S.+Plaza,+Near+Mini+Bus+Stand,+Karur,+Tamil+Nadu+639001&t=&z=16&ie=UTF8&iwloc=&output=embed',
             'socials.facebook' => 'https://www.facebook.com/Karurstudycentre',
             'socials.instagram' => 'https://www.instagram.com/karur_study_centre',
             'socials.youtube' => 'https://www.youtube.com/@karurstudycentrecentre1507',
-            'socials.maps' => 'https://maps.app.goo.gl/MJFWjrveBV3DQhi4A',
+            'socials.maps' => 'https://maps.app.goo.gl/X3snfWXnP526PSBM8',
         ];
 
         foreach ($settings as $key => $value) {

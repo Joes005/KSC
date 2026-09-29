@@ -103,6 +103,7 @@ class HeaderFooterSettings extends Page implements HasForms
                         TextInput::make('socials.youtube')->label('YouTube URL')->url(),
                         TextInput::make('socials.twitterX')->label('X (Twitter) URL')->url(),
                         TextInput::make('socials.website')->label('Website URL')->url(),
+                        TextInput::make('socials.maps')->label('Google Maps URL')->url(),
                     ])->columns(2)
             ])
             ->statePath('data');

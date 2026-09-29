@@ -75,7 +75,7 @@ export function Footer() {
           </div>
           <div className="container-site grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {BRANCHES.map((branch) => {
-              const mapUrl = (branch as any).mapUrl || (branch.location === "Karur" || branch.name.includes("Karur") ? "https://maps.app.goo.gl/MJFWjrveBV3DQhi4A" : branch.location === "Dindigul" || branch.name.includes("Dindigul") ? "https://maps.app.goo.gl/5MT1b3oKCiyhkxos6" : `https://maps.google.com/maps?q=${encodeURIComponent(branch.name + ", " + branch.address)}`);
+              const mapUrl = (branch as any).mapUrl || (branch.location === "Karur" || branch.name.includes("Karur") ? "https://maps.app.goo.gl/X3snfWXnP526PSBM8" : branch.location === "Dindigul" || branch.name.includes("Dindigul") ? "https://maps.app.goo.gl/5MT1b3oKCiyhkxos6" : `https://maps.google.com/maps?q=${encodeURIComponent(branch.name + ", " + branch.address)}`);
               return (
                 <div 
                   key={branch.name}

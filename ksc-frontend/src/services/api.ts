@@ -125,13 +125,13 @@ function mapBranches(list: any[]): typeof BRANCHES {
         : searchText.includes("kangeyam") || searchText.includes("kangayam") ? "Kangeyam"
         : "Karur");
     const defaultMapUrl = loc === "Karur" 
-      ? "https://maps.app.goo.gl/MJFWjrveBV3DQhi4A" 
+      ? "https://maps.app.goo.gl/X3snfWXnP526PSBM8" 
       : loc === "Dindigul" 
       ? "https://maps.app.goo.gl/5MT1b3oKCiyhkxos6" 
       : `https://maps.google.com/maps?q=${encodeURIComponent((b.name ?? "") + ", " + (b.address ?? ""))}`;
 
     const defaultEmbedUrl = loc === "Karur"
-      ? "https://maps.google.com/maps?q=Karur+Study+Centre,+M.R.S.+Plaza,+Covai+Road,+Ramakrishna+Puram,+Karur,+Tamil+Nadu+639001&t=&z=16&ie=UTF8&iwloc=&output=embed"
+      ? "https://maps.google.com/maps?q=Karur+Study+Centre,+M.R.S.+Plaza,+Near+Mini+Bus+Stand,+Karur,+Tamil+Nadu+639001&t=&z=16&ie=UTF8&iwloc=&output=embed"
       : loc === "Dindigul"
       ? "https://maps.google.com/maps?q=S.S.+Institute,+75/38,+Scheme+Road,+2nd+Floor,+Raja+Complex,+Dindigul&t=&z=16&ie=UTF8&iwloc=&output=embed"
       : `https://maps.google.com/maps?q=${encodeURIComponent((b.name ?? "") + ", " + (b.address ?? ""))}&t=&z=16&ie=UTF8&iwloc=&output=embed`;

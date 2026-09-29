@@ -45,7 +45,7 @@ export const SITE_CONFIG = {
     email: "Karurstudycentre1@gmail.com",
     address: "M.R.S. Plaza, 3rd Floor, Near Mini Bus Stand, Karur - 639001",
     mapEmbedUrl:
-      "https://maps.google.com/maps?q=Karur+Study+Centre,+M.R.S.+Plaza,+Near+Mini+Bus+Stand,+Karur,+Tamil+Nadu+639001&t=&z=16&ie=UTF8&iwloc=&output=embed",
+      "https://maps.google.com/maps?cid=2531740777220645431&t=&z=17&ie=UTF8&iwloc=&output=embed",
   },
 
   /* === SOCIAL LINKS === */
@@ -401,7 +401,7 @@ export const BRANCHES = [
     isHead: true,
     mapUrl: "https://maps.app.goo.gl/X3snfWXnP526PSBM8",
     mapEmbedUrl:
-      "https://maps.google.com/maps?q=Karur+Study+Centre,+M.R.S.+Plaza,+Near+Mini+Bus+Stand,+Karur,+Tamil+Nadu+639001&t=&z=16&ie=UTF8&iwloc=&output=embed",
+      "https://maps.google.com/maps?cid=2531740777220645431&t=&z=17&ie=UTF8&iwloc=&output=embed",
   },
   {
     name: "S.S. Institute",
@@ -412,7 +412,7 @@ export const BRANCHES = [
     isHead: false,
     mapUrl: "https://maps.app.goo.gl/5MT1b3oKCiyhkxos6",
     mapEmbedUrl:
-      "https://maps.google.com/maps?q=S.S.+Institute,+75/38,+Scheme+Road,+2nd+Floor,+Raja+Complex,+Dindigul&t=&z=16&ie=UTF8&iwloc=&output=embed",
+      "https://maps.google.com/maps?q=10.3603889,77.9811389&t=&z=17&ie=UTF8&iwloc=&output=embed",
   },
   {
     name: "Pace Computer Center",

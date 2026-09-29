@@ -131,9 +131,9 @@ function mapBranches(list: any[]): typeof BRANCHES {
       : `https://maps.google.com/maps?q=${encodeURIComponent((b.name ?? "") + ", " + (b.address ?? ""))}`;
 
     const defaultEmbedUrl = loc === "Karur"
-      ? "https://maps.google.com/maps?q=Karur+Study+Centre,+M.R.S.+Plaza,+Near+Mini+Bus+Stand,+Karur,+Tamil+Nadu+639001&t=&z=16&ie=UTF8&iwloc=&output=embed"
+      ? "https://maps.google.com/maps?cid=2531740777220645431&t=&z=17&ie=UTF8&iwloc=&output=embed"
       : loc === "Dindigul"
-      ? "https://maps.google.com/maps?q=S.S.+Institute,+75/38,+Scheme+Road,+2nd+Floor,+Raja+Complex,+Dindigul&t=&z=16&ie=UTF8&iwloc=&output=embed"
+      ? "https://maps.google.com/maps?q=10.3603889,77.9811389&t=&z=17&ie=UTF8&iwloc=&output=embed"
       : `https://maps.google.com/maps?q=${encodeURIComponent((b.name ?? "") + ", " + (b.address ?? ""))}&t=&z=16&ie=UTF8&iwloc=&output=embed`;
 
     return {

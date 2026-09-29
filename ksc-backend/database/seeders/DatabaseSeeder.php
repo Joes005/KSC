@@ -59,7 +59,7 @@ class DatabaseSeeder extends Seeder
             'contact.whatsapp' => '919965107404',
             'contact.email' => 'Karurstudycentre1@gmail.com',
             'contact.address' => 'M.R.S. Plaza, 3rd Floor, Near Mini Bus Stand, Karur - 639001',
-            'contact.map_embed_url' => 'https://maps.google.com/maps?q=Karur+Study+Centre,+M.R.S.+Plaza,+Near+Mini+Bus+Stand,+Karur,+Tamil+Nadu+639001&t=&z=16&ie=UTF8&iwloc=&output=embed',
+            'contact.map_embed_url' => 'https://maps.google.com/maps?cid=2531740777220645431&t=&z=17&ie=UTF8&iwloc=&output=embed',
             'socials.facebook' => 'https://www.facebook.com/Karurstudycentre',
             'socials.instagram' => 'https://www.instagram.com/karur_study_centre',
             'socials.youtube' => 'https://www.youtube.com/@karurstudycentrecentre1507',
@@ -396,7 +396,7 @@ class DatabaseSeeder extends Seeder
                     'kicker' => 'Get in Touch',
                     'title' => 'Reach the centre',
                     'image' => '/assets/user-photos/branch-exterior.jpg',
-                    'mapEmbedUrl' => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15664.269411986427!2d78.0772274!3d10.9575936!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baa2fa1d5292eb5%3A0x6d8b2d4b9fa37b12!2sKarur%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1700000000000',
+                    'mapEmbedUrl' => 'https://maps.google.com/maps?cid=2531740777220645431&t=&z=17&ie=UTF8&iwloc=&output=embed',
                     'items' => [
                         ['icon' => 'MapPin', 'title' => 'Visit us', 'value' => 'M.R.S. Plaza, 3rd Floor, Near Mini Bus Stand, Karur - 639001', 'link' => null, 'button_label' => null],
                         ['icon' => 'Phone', 'title' => 'Call us', 'value' => '99651 07404', 'link' => 'tel:9965107404', 'button_label' => null],

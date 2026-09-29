@@ -104,7 +104,7 @@ export function Admissions() {
           <h1 className="mt-2 text-3xl font-black uppercase tracking-tight sm:text-4xl">
             {headerData.title || `Admissions — ${SITE_CONFIG.admissionYear}`}
           </h1>
-          <p className="mt-4 max-w-2xl text-slate-700 font-bold leading-relaxed">
+          <p className="mt-4 max-w-2xl text-slate-700 font-bold leading-relaxed text-justify hyphens-auto">
             {headerData.description ||
               "Apply for UG, PG, Diploma, Certificate, Vocational and Short-Term programmes through our centre. We guide you through every step — from form to study material."}
           </p>
@@ -134,7 +134,7 @@ export function Admissions() {
                   <h3 className="mt-4 sm:mt-5 font-black uppercase text-ksc-navy text-base sm:text-lg">
                     {step.step}. {step.title}
                   </h3>
-                  <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm leading-relaxed font-bold text-slate-700">
+                  <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm leading-relaxed font-bold text-slate-700 text-justify hyphens-auto">
                     {step.description}
                   </p>
                 </div>
@@ -234,7 +234,7 @@ export function Admissions() {
                     {item.level}
                   </h3>
                 </div>
-                <p className="mt-3 text-sm leading-relaxed font-bold text-slate-700">
+                <p className="mt-3 text-sm leading-relaxed font-bold text-slate-700 text-justify hyphens-auto">
                   {item.detail}
                 </p>
               </div>

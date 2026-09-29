@@ -45,7 +45,7 @@ export function AboutSnapshot() {
             <div className="grid gap-4">
               {ABOUT_SNAPSHOT.text?.map((para: any, i: number) => (
                 <div key={i} className="flex items-start gap-3 rounded-xl border border-ksc-navy/10 bg-white px-4 py-4 shadow-sm">
-                  <span className="text-sm sm:text-base font-bold leading-relaxed text-slate-800">{para}</span>
+                  <span className="text-sm sm:text-base font-bold leading-relaxed text-slate-800 text-justify hyphens-auto">{para}</span>
                 </div>
               ))}
               {ABOUT_SNAPSHOT.readMoreLink && (

@@ -34,7 +34,7 @@ export function Founder() {
           <div className="md:col-span-2">
             <SectionHeading align="left" kicker={founderMsg.title || "Founder Message"} title={founderMsg.subtitle || "To every learner who walks through our doors"} />
             <blockquote className="rounded-r-2xl border-l-4 border-ksc-yellow bg-white p-5 sm:p-7 shadow-sm">
-              <p className="text-sm sm:text-lg leading-relaxed text-slate-800 font-bold">{founderMsg.message || founderMsg.content}</p>
+              <p className="text-sm sm:text-lg leading-relaxed text-slate-800 font-bold text-justify hyphens-auto whitespace-pre-line">{founderMsg.message || founderMsg.content}</p>
             </blockquote>
             <p className="mt-6 text-sm text-slate-700 font-bold">
               — {founderMsg.name || 'Founder'}, {founderMsg.role || 'Founder'}, {SITE_CONFIG.name} ({SITE_CONFIG.shortName})

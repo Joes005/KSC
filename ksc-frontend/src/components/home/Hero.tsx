@@ -42,10 +42,28 @@ const ICON_MAP: Record<string, LucideIcon> = {
   Building2,
 };
 
-const HERO_IMAGES = [
-  "/assets/campus/lecture-hall.jpg",
-  "/assets/gallery/ksc-10.jpg",
-  "/assets/gallery/ksc-09.jpg",
+export interface HeroSlide {
+  image: string;
+  title?: string;
+  caption?: string;
+}
+
+const DEFAULT_SLIDES: HeroSlide[] = [
+  {
+    image: "/assets/campus/lecture-hall.jpg",
+    title: "Education that fits your life",
+    caption: "Study. Grow. Move forward.",
+  },
+  {
+    image: "/assets/gallery/ksc-10.jpg",
+    title: "Recognised Distance Programmes",
+    caption: "UG, PG, Diploma & Certificate Courses.",
+  },
+  {
+    image: "/assets/gallery/ksc-09.jpg",
+    title: "Karur Study Centre",
+    caption: "Karur · Dindigul · Kangeyam.",
+  },
 ];
 
 export function UserUpdatePopup() {
@@ -124,18 +142,43 @@ function highlightLocations(text: string) {
 export function Hero() {
   const { data: { settings: SITE_CONFIG, pages, hero: fallbackHero } } = useSiteData();
   const heroData = (pages?.home?.hero || fallbackHero) as any;
-  const heroImages: string[] = Array.isArray(heroData.images) && heroData.images.length
-    ? heroData.images
-    : HERO_IMAGES;
-  const [currentImage, setCurrentImage] = useState(0);
+
+  const heroSlides: HeroSlide[] = React.useMemo(() => {
+    if (Array.isArray(heroData?.slides) && heroData.slides.length > 0) {
+      const parsed = heroData.slides
+        .map((s: any) => ({
+          image: typeof s === "string" ? s : (s?.image || s?.image_path || ""),
+          title: s?.title ?? "",
+          caption: s?.caption ?? "",
+        }))
+        .filter((s: HeroSlide) => Boolean(s.image));
+      if (parsed.length > 0) return parsed;
+    }
+    if (Array.isArray(heroData?.images) && heroData.images.length > 0) {
+      const parsed = heroData.images
+        .filter(Boolean)
+        .map((img: string, idx: number) => ({
+          image: img,
+          title: idx === 0 ? "Education that fits your life" : "",
+          caption: idx === 0 ? "Study. Grow. Move forward." : "",
+        }));
+      if (parsed.length > 0) return parsed;
+    }
+    return DEFAULT_SLIDES;
+  }, [heroData?.slides, heroData?.images]);
+
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
 
   useEffect(() => {
-    setCurrentImage(0);
+    setCurrentSlideIndex(0);
+    if (heroSlides.length <= 1) return;
     const timer = setInterval(() => {
-      setCurrentImage((prev) => (prev + 1) % heroImages.length);
+      setCurrentSlideIndex((prev) => (prev + 1) % heroSlides.length);
     }, 5000);
     return () => clearInterval(timer);
-  }, [heroImages.length]);
+  }, [heroSlides.length]);
+
+  const currentSlide = heroSlides[currentSlideIndex] || heroSlides[0] || DEFAULT_SLIDES[0];
 
   return (
     <>
@@ -175,7 +218,7 @@ export function Hero() {
                 <MapPin className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-ksc-red" /> Branches:
               </span>
               {[
-                { name: "Karur", label: "Head Office" },
+                { name: "Karur", label: "Branch" },
                 { name: "Dindigul", label: "Branch" },
                 { name: "Kangeyam", label: "Branch" },
               ].map((branch) => (
@@ -193,7 +236,7 @@ export function Hero() {
               ))}
             </div>
 
-            <p className="mt-4 sm:mt-6 max-w-xl text-sm sm:text-base lg:text-[17px] font-semibold leading-relaxed sm:leading-8 text-slate-700 animate-fade-in-up" style={{ animationDelay: '300ms' }}>
+            <p className="mt-4 sm:mt-6 max-w-xl text-sm sm:text-base lg:text-[17px] font-semibold leading-relaxed sm:leading-8 text-slate-700 animate-fade-in-up text-justify hyphens-auto" style={{ animationDelay: '300ms' }}>
               {highlightLocations(heroData.description)}
             </p>
 
@@ -220,11 +263,55 @@ export function Hero() {
           <div className="relative mx-auto w-full max-w-xl lg:mx-0 lg:justify-self-end mt-2 sm:mt-0">
             <div className="absolute -right-2 -top-2 sm:-right-4 sm:-top-4 h-full w-full rounded-2xl sm:rounded-3xl bg-gradient-to-br from-ksc-red to-[#910a11] shadow-xl sm:shadow-2xl" />
             <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl border-2 sm:border-4 border-white/80 bg-ksc-navy shadow-[0_20px_50px_-12px_rgba(7,27,74,0.35)] backdrop-blur-sm transition-transform duration-500 hover:-translate-y-1 sm:hover:-translate-y-2">
-              <img key={currentImage} src={heroImages[currentImage]} alt="Students supported by Karur Study Centre" fetchPriority="high" className="hero-media h-64 sm:h-80 md:h-[420px] lg:h-[480px] w-full object-cover object-top animate-fade-in" />
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ksc-navy via-ksc-navy/80 to-transparent px-4 pb-4 pt-12 text-white sm:px-8 sm:pb-8 sm:pt-24">
-                <p className="text-lg font-black text-white drop-shadow-md sm:text-2xl">Education that fits your life</p>
-                <p className="mt-0.5 text-xs font-bold text-white/90 sm:mt-1.5 sm:text-sm">Study. Grow. Move forward.</p>
+              <img
+                key={currentSlide.image}
+                src={currentSlide.image}
+                alt={currentSlide.title || currentSlide.caption || "Students supported by Karur Study Centre"}
+                fetchPriority="high"
+                className="hero-media h-64 sm:h-80 md:h-[420px] lg:h-[480px] w-full object-cover object-top animate-fade-in"
+              />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ksc-navy via-ksc-navy/85 to-transparent px-4 pb-4 pt-12 text-white sm:px-8 sm:pb-8 sm:pt-24">
+                <div key={`caption-${currentSlideIndex}`} className="animate-fade-in pr-16 sm:pr-20">
+                  {currentSlide.title && (
+                    <p className="text-lg font-black text-white drop-shadow-md sm:text-2xl leading-tight">
+                      {currentSlide.title}
+                    </p>
+                  )}
+                  {currentSlide.caption && (
+                    <p className={cn(
+                      "font-bold text-white/90 drop-shadow-xs",
+                      currentSlide.title ? "mt-0.5 text-xs sm:mt-1.5 sm:text-sm" : "text-base sm:text-xl font-black"
+                    )}>
+                      {currentSlide.caption}
+                    </p>
+                  )}
+                  {!currentSlide.title && !currentSlide.caption && (
+                    <>
+                      <p className="text-lg font-black text-white drop-shadow-md sm:text-2xl">Education that fits your life</p>
+                      <p className="mt-0.5 text-xs font-bold text-white/90 sm:mt-1.5 sm:text-sm">Study. Grow. Move forward.</p>
+                    </>
+                  )}
+                </div>
               </div>
+
+              {/* Slide Navigation Indicators */}
+              {heroSlides.length > 1 && (
+                <div className="absolute right-4 bottom-4 z-10 flex items-center gap-1.5 sm:right-6 sm:bottom-6">
+                  {heroSlides.map((_, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setCurrentSlideIndex(idx)}
+                      aria-label={`Go to slide ${idx + 1}`}
+                      className={cn(
+                        "h-1.5 rounded-full transition-all duration-300 focus:outline-none",
+                        idx === currentSlideIndex
+                          ? "w-6 bg-ksc-yellow shadow-sm"
+                          : "w-2 bg-white/50 hover:bg-white/80"
+                      )}
+                    />
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* Floating Academic Badge */}

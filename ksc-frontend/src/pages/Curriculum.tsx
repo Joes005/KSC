@@ -34,7 +34,7 @@ export function Curriculum() {
                 </span>
                 <div>
                   <h3 className="font-bold text-ksc-dark">{title}</h3>
-                  <p className="mt-1.5 text-sm leading-relaxed text-ksc-ink/80">{description}</p>
+                  <p className="mt-1.5 text-sm leading-relaxed text-ksc-ink/80 text-justify hyphens-auto">{description}</p>
                 </div>
               </div>
             ))}
@@ -70,7 +70,7 @@ export function Curriculum() {
                   badge: "Syllabus PDF",
                   content: (
                     <div className="space-y-4">
-                      <p className="text-sm text-slate-800 leading-relaxed font-bold">
+                      <p className="text-sm text-slate-800 leading-relaxed font-bold text-justify hyphens-auto">
                         Download the syllabus and course prospectus PDF for {uni.name} ({uni.academicYear}). Collect printed copies at Karur Study Centre.
                       </p>
                       

@@ -87,7 +87,7 @@ export function University() {
                     {cat && (
                       <>
                         {cat.note && (
-                          <p className="mb-6 rounded-md border-2 border-slate-200 bg-white px-5 py-3 text-sm font-bold text-slate-800 shadow-sm">
+                          <p className="mb-6 rounded-md border-2 border-slate-200 bg-white px-5 py-3 text-sm font-bold text-slate-800 shadow-sm text-justify hyphens-auto">
                             {cat.note}
                           </p>
                         )}

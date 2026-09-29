@@ -121,7 +121,7 @@ export function ProgrammeCards({ programmes, className }: ProgrammeCardsProps) {
                     <td className="border-l-4 border-transparent px-5 py-4 align-middle text-base font-extrabold leading-6 text-ksc-navy transition-colors group-hover:border-ksc-red group-hover:text-ksc-red">
                       {p.name}
                     </td>
-                    <td className="px-5 py-4 align-middle text-xs sm:text-sm font-bold leading-relaxed text-slate-700">
+                    <td className="px-5 py-4 align-middle text-xs sm:text-sm font-bold leading-relaxed text-slate-700 text-justify hyphens-auto">
                       {p.eligibility || '—'}
                     </td>
                     <td className="px-5 py-4 align-middle">
@@ -160,7 +160,7 @@ export function ProgrammeCards({ programmes, className }: ProgrammeCardsProps) {
                 <div>
                   <h3 className="text-lg font-black leading-tight text-ksc-navy transition-colors group-hover:text-ksc-red">{p.name}</h3>
                   {p.eligibility && (
-                    <div className="mt-3.5 border-t border-slate-100 pt-3.5 text-xs sm:text-sm font-bold leading-relaxed text-slate-700">
+                    <div className="mt-3.5 border-t border-slate-100 pt-3.5 text-xs sm:text-sm font-bold leading-relaxed text-slate-700 text-justify hyphens-auto">
                       <span className="mb-1 block font-black uppercase text-[11px] tracking-wider text-slate-900">Eligibility:</span>
                       {p.eligibility}
                     </div>

@@ -85,6 +85,23 @@ export const HERO = {
     { label: "Explore Programmes", to: "/academic", primary: true },
     { label: "Apply Now", to: "/admissions", primary: false },
   ],
+  slides: [
+    {
+      image: "/assets/campus/lecture-hall.jpg",
+      title: "Education that fits your life",
+      caption: "Study. Grow. Move forward.",
+    },
+    {
+      image: "/assets/gallery/ksc-10.jpg",
+      title: "Karur Study Centre",
+      caption: "Your trusted distance education partner.",
+    },
+    {
+      image: "/assets/gallery/ksc-09.jpg",
+      title: "UG & PG Programmes",
+      caption: "Admissions Open for Academic Year 2026.",
+    },
+  ],
 };
 
 export const WHY_DISTANCE = [

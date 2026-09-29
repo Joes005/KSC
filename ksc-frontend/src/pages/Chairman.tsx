@@ -34,7 +34,7 @@ export function Chairman() {
           <div className="md:col-span-2">
             <SectionHeading align="left" kicker={chairmanMsg.title || "Chairman Message"} title={chairmanMsg.subtitle || "With the community, for the community"} />
             <blockquote className="rounded-r-2xl border-l-4 border-ksc-yellow bg-white p-5 sm:p-7 shadow-sm">
-              <p className="text-sm sm:text-lg leading-relaxed text-slate-800 font-bold">{chairmanMsg.message || chairmanMsg.content}</p>
+              <p className="text-sm sm:text-lg leading-relaxed text-slate-800 font-bold text-justify hyphens-auto whitespace-pre-line">{chairmanMsg.message || chairmanMsg.content}</p>
             </blockquote>
             <p className="mt-6 text-sm text-slate-700 font-bold">
               — {chairmanMsg.name || 'Chairman'}, {chairmanMsg.role || 'Chairman'}, {SITE_CONFIG.name} ({SITE_CONFIG.shortName})

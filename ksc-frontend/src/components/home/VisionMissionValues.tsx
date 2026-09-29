@@ -122,7 +122,7 @@ export function VisionMissionValues() {
                             <span className="text-[10px] font-black uppercase tracking-[0.16em] text-ksc-red">
                               Objective 0{idx + 1}
                             </span>
-                            <p className="text-sm sm:text-base text-slate-800 font-bold leading-relaxed mt-0.5">
+                            <p className="text-sm sm:text-base text-slate-800 font-bold leading-relaxed mt-0.5 text-justify hyphens-auto">
                               {m}
                             </p>
                           </div>
@@ -163,7 +163,7 @@ export function VisionMissionValues() {
                           <h4 className="font-extrabold text-base sm:text-lg text-ksc-navy uppercase tracking-wide group-hover:text-ksc-red transition-colors">
                             {v.title}
                           </h4>
-                          <p className="mt-2 text-xs sm:text-sm font-semibold leading-relaxed text-slate-600">
+                          <p className="mt-2 text-xs sm:text-sm font-semibold leading-relaxed text-slate-600 text-justify hyphens-auto">
                             {v.description}
                           </p>
                         </div>

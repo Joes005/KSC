@@ -269,10 +269,31 @@ export async function fetchSiteData() {
     supportLinks: Array.isArray(flat["footer.support_links"]) ? flat["footer.support_links"] : [],
   };
 
-  // Hero banner photos are a list (not a single `image` field), so resolve separately.
+  // Hero banner photos and slides (each slide has its own photo, title, and caption)
   const heroSection = pages?.home?.hero as any;
-  if (Array.isArray(heroSection?.images)) {
-    heroSection.images = heroSection.images.map((p: string) => toAsset(p)).filter(Boolean);
+  if (heroSection) {
+    if (Array.isArray(heroSection.slides) && heroSection.slides.length > 0) {
+      heroSection.slides = heroSection.slides
+        .map((slide: any) => ({
+          ...slide,
+          image: toAsset(slide.image || slide.image_path),
+          title: slide.title ?? "",
+          caption: slide.caption ?? "",
+        }))
+        .filter((slide: any) => Boolean(slide.image));
+    }
+
+    if (Array.isArray(heroSection.images) && heroSection.images.length > 0) {
+      heroSection.images = heroSection.images.map((p: string) => toAsset(p)).filter(Boolean);
+      // Fallback: If slides is not set yet in the DB, generate slides from images
+      if (!Array.isArray(heroSection.slides) || heroSection.slides.length === 0) {
+        heroSection.slides = heroSection.images.map((img: string, idx: number) => ({
+          image: img,
+          title: idx === 0 ? "Education that fits your life" : "",
+          caption: idx === 0 ? "Study. Grow. Move forward." : "",
+        }));
+      }
+    }
   }
 
   return {

@@ -47,10 +47,26 @@ class ManageHomeContent extends Page implements HasForms
             $aboutSnapshotContent['text'] = $formattedText;
         }
 
+        $heroContent = $hero ? $hero->content : [];
+        if (!isset($heroContent['slides']) || !is_array($heroContent['slides']) || empty($heroContent['slides'])) {
+            if (isset($heroContent['images']) && is_array($heroContent['images'])) {
+                $heroContent['slides'] = array_values(array_map(function ($img, $idx) {
+                    $imgPath = is_string($img) ? $img : ($img['image'] ?? '');
+                    return [
+                        'image' => $imgPath,
+                        'title' => $idx === 0 ? 'Education that fits your life' : '',
+                        'caption' => $idx === 0 ? 'Study. Grow. Move forward.' : '',
+                    ];
+                }, $heroContent['images'], array_keys($heroContent['images'])));
+            } else {
+                $heroContent['slides'] = [];
+            }
+        }
+
         $this->form->fill([
             'section_headings' => $sectionHeadings ? $sectionHeadings->content : [],
             'affiliations' => $affiliations ? $affiliations->content : [],
-            'hero' => $hero ? $hero->content : [],
+            'hero' => $heroContent,
             'why_distance' => $whyDistance ? $whyDistance->content : [],
             'why_distance_image' => $whyDistanceImage ? $whyDistanceImage->content : [],
             'about_snapshot' => $aboutSnapshotContent,
@@ -133,14 +149,36 @@ class ManageHomeContent extends Page implements HasForms
                             TextInput::make('hero.headline')->label('Headline')->required(),
                             TextInput::make('hero.subHeadline')->label('Sub-headline')->required(),
                             Textarea::make('hero.description')->label('Description')->rows(4)->required()->columnSpanFull(),
-                            FileUpload::make('hero.images')
-                                ->label('Rotating Banner Photos')
-                                ->helperText('These photos rotate automatically in the homepage banner. Upload 1-4 photos; they will be shown in the order below.')
-                                ->image()
-                                ->multiple()
+                            Repeater::make('hero.slides')
+                                ->label('Rotating Banner Photos & Captions')
+                                ->helperText('Add up to 4 banner photos. For each photo, you can add an individual title and caption line that appears on top of the image in the frame.')
+                                ->schema([
+                                    FileUpload::make('image')
+                                        ->label('Photo')
+                                        ->image()
+                                        ->directory('hero')
+                                        ->disk('public')
+                                        ->required()
+                                        ->columnSpan(1),
+                                    TextInput::make('title')
+                                        ->label('Title / Main Line')
+                                        ->placeholder('e.g. Education that fits your life')
+                                        ->columnSpan(1),
+                                    TextInput::make('caption')
+                                        ->label('Caption / Subtitle Line')
+                                        ->placeholder('e.g. Study. Grow. Move forward.')
+                                        ->columnSpan(1),
+                                ])
+                                ->columns(3)
+                                ->maxItems(4)
                                 ->reorderable()
-                                ->appendFiles()
-                                ->directory('hero')
+                                ->collapsible()
+                                ->itemLabel(fn (array $state): ?string => 
+                                    !empty($state['title']) 
+                                        ? ($state['title'] . (!empty($state['caption']) ? ' — ' . $state['caption'] : ''))
+                                        : (!empty($state['caption']) ? $state['caption'] : 'Banner Photo')
+                                )
+                                ->addActionLabel('Add Banner Photo & Caption')
                                 ->columnSpanFull(),
                             Repeater::make('hero.ctas')
                                 ->label('Call-to-Action Buttons')
@@ -222,6 +260,13 @@ class ManageHomeContent extends Page implements HasForms
             // Ensure CTAs are saved as a clean list of arrays
             if (isset($data['hero']['ctas'])) {
                 $data['hero']['ctas'] = array_values($data['hero']['ctas']);
+            }
+            if (isset($data['hero']['slides'])) {
+                $data['hero']['slides'] = array_values($data['hero']['slides']);
+                // Keep hero.images in sync as an array of paths for backward compatibility
+                $data['hero']['images'] = array_values(array_filter(array_map(function ($s) {
+                    return is_array($s) ? ($s['image'] ?? null) : $s;
+                }, $data['hero']['slides'])));
             }
             PageContent::updateOrCreate(
                 ['page_slug' => 'home', 'section_key' => 'hero'],

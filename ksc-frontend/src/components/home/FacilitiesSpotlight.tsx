@@ -223,7 +223,7 @@ export function FacilitiesSpotlight() {
                       isActive ? "grid-rows-[1fr] opacity-100 mt-3 sm:mt-5" : "grid-rows-[0fr] opacity-0"
                     )}>
                       <div className="overflow-hidden">
-                        <p className="text-xs sm:text-base font-medium leading-relaxed text-slate-600 pl-2 sm:pl-[4.5rem] pr-2">
+                        <p className="text-xs sm:text-base font-medium leading-relaxed text-slate-600 pl-2 sm:pl-[4.5rem] pr-2 text-justify hyphens-auto">
                           {facility.description}
                         </p>
                         <div className="pl-2 sm:pl-[4.5rem] mt-3 sm:mt-4 pb-2">

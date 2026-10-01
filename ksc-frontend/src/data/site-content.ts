@@ -41,7 +41,7 @@ export const SITE_CONFIG = {
   contact: {
     phone: "98652 23107", // primary cell number
     landline: "04324 236107", // landline (from poster footer)
-    whatsapp: "919965107404", // KSC WhatsApp number (digits only, incl. country code)
+    whatsapp: "919865223107", // KSC WhatsApp number (digits only, incl. country code)
     email: "Karurstudycentre1@gmail.com",
     address: "M.R.S. Plaza, 3rd Floor, Near Mini Bus Stand, Karur - 639001",
     mapEmbedUrl:

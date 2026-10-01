@@ -260,7 +260,7 @@ export function Hero() {
           </div>
 
           {/* Right Hero Image Card */}
-          <div className="relative mx-auto w-full max-w-xl lg:mx-0 lg:justify-self-end mt-2 sm:mt-0">
+          <div className="relative mx-auto w-full max-w-xl lg:mx-0 lg:justify-self-end mt-14 sm:mt-20">
             <div className="absolute -right-2 -top-2 sm:-right-4 sm:-top-4 h-full w-full rounded-2xl sm:rounded-3xl bg-gradient-to-br from-ksc-red to-[#910a11] shadow-xl sm:shadow-2xl" />
             <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl border-2 sm:border-4 border-white/80 bg-ksc-navy shadow-[0_20px_50px_-12px_rgba(7,27,74,0.35)] backdrop-blur-sm transition-transform duration-500 hover:-translate-y-1 sm:hover:-translate-y-2">
               <img
@@ -314,9 +314,9 @@ export function Hero() {
               )}
             </div>
 
-            {/* Floating Academic Badge */}
-            <div className="absolute left-2 top-2 sm:-left-6 sm:top-6 rounded-lg sm:rounded-2xl bg-white/95 sm:bg-white p-1.5 sm:p-3.5 shadow-lg sm:shadow-[0_12px_30px_rgba(0,0,0,0.15)] backdrop-blur-md transition-all">
-              <div className="flex flex-col items-center justify-center rounded-md sm:rounded-xl bg-ksc-red px-2.5 py-1 sm:px-4 sm:py-2 text-white">
+            {/* Floating Academic Badge — sits above the card so it never covers the slide image */}
+            <div className="absolute bottom-full left-0 mb-3 sm:mb-7 rounded-lg sm:rounded-2xl bg-white/95 sm:bg-white p-1 sm:p-2 shadow-lg sm:shadow-[0_12px_30px_rgba(0,0,0,0.15)] backdrop-blur-md transition-all">
+              <div className="flex flex-row items-center justify-center gap-2 sm:gap-3 rounded-md sm:rounded-xl bg-ksc-red px-3 py-1.5 sm:px-4 sm:py-2 text-white">
                 <span className="block text-[8px] sm:text-[10px] font-black uppercase tracking-[.15em] sm:tracking-[.2em] text-white/90">Now open</span>
                 <span className="font-heading text-xs sm:text-lg md:text-xl font-black uppercase tracking-tight">{SITE_CONFIG.admissionYear}</span>
               </div>

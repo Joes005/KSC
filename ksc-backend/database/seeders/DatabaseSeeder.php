@@ -56,7 +56,7 @@ class DatabaseSeeder extends Seeder
             'site.last_date' => 'Last date for admission: 31 July 2026',
             'contact.phone' => '98652 23107',
             'contact.landline' => '04324 236107',
-            'contact.whatsapp' => '919965107404',
+            'contact.whatsapp' => '919865223107',
             'contact.email' => 'Karurstudycentre1@gmail.com',
             'contact.address' => 'M.R.S. Plaza, 3rd Floor, Near Mini Bus Stand, Karur - 639001',
             'contact.map_embed_url' => 'https://maps.google.com/maps?cid=2531740777220645431&t=&z=17&ie=UTF8&iwloc=&output=embed',
@@ -400,7 +400,7 @@ class DatabaseSeeder extends Seeder
                     'items' => [
                         ['icon' => 'MapPin', 'title' => 'Visit us', 'value' => 'M.R.S. Plaza, 3rd Floor, Near Mini Bus Stand, Karur - 639001', 'link' => null, 'button_label' => null],
                         ['icon' => 'Phone', 'title' => 'Call us', 'value' => '99651 07404', 'link' => 'tel:9965107404', 'button_label' => null],
-                        ['icon' => 'MessageCircle', 'title' => 'WhatsApp', 'value' => '', 'link' => 'https://wa.me/919965107404?text=Hello%20KARUR%20STUDY%20CENTER%2C%20I%20have%20a%20question%20about%20admissions.', 'button_label' => 'Chat on WhatsApp (919965107404)'],
+                        ['icon' => 'MessageCircle', 'title' => 'WhatsApp', 'value' => '', 'link' => 'https://wa.me/919865223107?text=Hello%20KARUR%20STUDY%20CENTER%2C%20I%20have%20a%20question%20about%20admissions.', 'button_label' => 'Chat on WhatsApp (919865223107)'],
                         ['icon' => 'Mail', 'title' => 'Email', 'value' => 'Karurstudycentre1@gmail.com', 'link' => 'mailto:Karurstudycentre1@gmail.com', 'button_label' => null],
                     ],
                 ],

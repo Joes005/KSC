@@ -65,6 +65,23 @@ export function toAsset(path?: string | null): string {
   return `${backendUrl}/storage/${clean}`;
 }
 
+/**
+ * Turn a Google Drive share link ("…/file/d/<id>/view", "…/open?id=<id>",
+ * "…/uc?id=<id>") into a direct-download URL so clicking it downloads the
+ * file instead of opening Drive's preview. Anything else goes through toAsset.
+ */
+export function toDownloadUrl(link?: string | null): string {
+  if (!link) return "";
+  const trimmed = link.trim();
+  if (/drive\.google\.com/.test(trimmed)) {
+    const id =
+      trimmed.match(/\/file\/d\/([\w-]+)/)?.[1] ??
+      trimmed.match(/[?&]id=([\w-]+)/)?.[1];
+    if (id) return `https://drive.usercontent.google.com/download?id=${id}&export=download`;
+  }
+  return toAsset(trimmed);
+}
+
 /** Load a JSON section stored under pages[pageKey][sectionKey]. */
 function pageSection<T>(pages: PageMap, pageKey: string, sectionKey: string, fallback: T): T {
   const value = pages?.[pageKey]?.[sectionKey];
@@ -178,7 +195,7 @@ function mapUniversities(list: any[]): University[] {
           duration: p.duration,
           eligibility: p.eligibility,
           syllabusUrl: toAsset(p.syllabus_path),
-          bookUrl: toAsset(p.book_path),
+          bookUrl: toDownloadUrl(p.book_path),
           assignmentUrl: toAsset(p.assignment_path),
         })),
       })),

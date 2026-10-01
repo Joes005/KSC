@@ -31,10 +31,12 @@ class ProgrammesRelationManager extends RelationManager
                     ->acceptedFileTypes(['application/pdf'])
                     ->directory('syllabuses')
                     ->columnSpanFull(),
-                Forms\Components\FileUpload::make('book_path')
-                    ->label('Book PDF')
-                    ->acceptedFileTypes(['application/pdf'])
-                    ->directory('books')
+                Forms\Components\TextInput::make('book_path')
+                    ->label('Book Google Drive Link')
+                    ->placeholder('https://drive.google.com/file/d/.../view?usp=sharing')
+                    ->helperText('Upload the book PDF to Google Drive, set sharing to "Anyone with the link", then paste the link here. Visitors will get a direct download.')
+                    ->url()
+                    ->maxLength(255)
                     ->columnSpanFull(),
                 Forms\Components\FileUpload::make('assignment_path')
                     ->label('Assignment PDF')

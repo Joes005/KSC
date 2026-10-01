@@ -62,7 +62,7 @@ const DEFAULT_SLIDES: HeroSlide[] = [
   {
     image: "/assets/gallery/ksc-09.jpg",
     title: "Karur Study Centre",
-    caption: "Karur · Dindigul · Kangeyam.",
+    caption: "Karur · Dindigul · Kangayam.",
   },
 ];
 
@@ -126,9 +126,9 @@ export function UserUpdatePopup() {
 
 function highlightLocations(text: string) {
   if (!text) return null;
-  const parts = text.split(/(Karur|Dindigul|Kangeyam|Kangayam)/gi);
+  const parts = text.split(/(Karur|Dindigul|Kangayam|Kangeyam)/gi);
   return parts.map((part, idx) => {
-    if (/^(Karur|Dindigul|Kangeyam|Kangayam)$/i.test(part)) {
+    if (/^(Karur|Dindigul|Kangayam|Kangeyam)$/i.test(part)) {
       return (
         <span key={idx} className="font-bold text-ksc-red">
           {part}
@@ -220,7 +220,7 @@ export function Hero() {
               {[
                 { name: "Karur", label: "Branch" },
                 { name: "Dindigul", label: "Branch" },
-                { name: "Kangeyam", label: "Branch" },
+                { name: "Kangayam", label: "Branch" },
               ].map((branch) => (
                 <Link
                   key={branch.name}
@@ -315,7 +315,7 @@ export function Hero() {
             </div>
 
             {/* Floating Academic Badge — sits above the card so it never covers the slide image */}
-            <div className="absolute bottom-full left-0 mb-3 sm:mb-7 rounded-lg sm:rounded-2xl bg-white/95 sm:bg-white p-1 sm:p-2 shadow-lg sm:shadow-[0_12px_30px_rgba(0,0,0,0.15)] backdrop-blur-md transition-all">
+            <div className="absolute bottom-full left-0 lg:left-1/2 lg:-translate-x-1/2 mb-3 sm:mb-7 whitespace-nowrap rounded-lg sm:rounded-2xl bg-white/95 sm:bg-white p-1 sm:p-2 shadow-lg sm:shadow-[0_12px_30px_rgba(0,0,0,0.15)] backdrop-blur-md transition-all">
               <div className="flex flex-row items-center justify-center gap-2 sm:gap-3 rounded-md sm:rounded-xl bg-ksc-red px-3 py-1.5 sm:px-4 sm:py-2 text-white">
                 <span className="block text-[8px] sm:text-[10px] font-black uppercase tracking-[.15em] sm:tracking-[.2em] text-white/90">Now open</span>
                 <span className="font-heading text-xs sm:text-lg md:text-xl font-black uppercase tracking-tight">{SITE_CONFIG.admissionYear}</span>

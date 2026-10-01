@@ -28,9 +28,9 @@ const VALUE_ICONS: Record<string, LucideIcon> = {
 
 function highlightLocations(text: string) {
   if (!text) return null;
-  const parts = text.split(/(Karur|Dindigul|Kangeyam|Kangayam)/gi);
+  const parts = text.split(/(Karur|Dindigul|Kangayam|Kangeyam)/gi);
   return parts.map((part, idx) => {
-    if (/^(Karur|Dindigul|Kangeyam|Kangayam)$/i.test(part)) {
+    if (/^(Karur|Dindigul|Kangayam|Kangeyam)$/i.test(part)) {
       return (
         <span key={idx} className="font-extrabold text-ksc-red">
           {part}

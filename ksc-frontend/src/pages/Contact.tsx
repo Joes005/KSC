@@ -57,7 +57,7 @@ export function Contact() {
           <p className="section-kicker text-ksc-red bg-white inline-block px-3 py-1 rounded-md mb-4 shadow-sm uppercase tracking-widest">Contact Us</p>
           <h1 className="text-4xl font-heading font-black sm:text-5xl lg:text-6xl tracking-tight uppercase drop-shadow-md text-gradient-navy">We're here to help</h1>
           <p className="mt-6 max-w-2xl text-base sm:text-lg font-bold text-slate-700 leading-relaxed mx-auto lg:mx-0 bg-white/80 p-4 sm:p-5 rounded-2xl backdrop-blur-md border-2 border-white shadow-sm text-justify hyphens-auto">
-            Visit us across our centres in <span className="font-extrabold text-ksc-red">Karur</span>, <span className="font-extrabold text-ksc-red">Dindigul</span>, and <span className="font-extrabold text-ksc-red">Kangeyam</span> — or connect with us via phone, WhatsApp, or enquiry form. Our expert counsellors are ready to guide your academic future.
+            Visit us across our centres in <span className="font-extrabold text-ksc-red">Karur</span>, <span className="font-extrabold text-ksc-red">Dindigul</span>, and <span className="font-extrabold text-ksc-red">Kangayam</span> — or connect with us via phone, WhatsApp, or enquiry form. Our expert counsellors are ready to guide your academic future.
           </p>
         </div>
       </section>
@@ -111,7 +111,7 @@ export function Contact() {
               {officeBranches.length > 1 && (
                 <div className="mb-3 flex flex-wrap gap-2">
                   {officeBranches.map((branch, idx) => {
-                    const loc = (branch as any).location || (branch.name.includes("Dindigul") || branch.address.includes("Dindigul") ? "Dindigul" : (branch.name.includes("Kang") || branch.address.includes("Kang")) ? "Kangeyam" : "Karur");
+                    const loc = (branch as any).location || (branch.name.includes("Dindigul") || branch.address.includes("Dindigul") ? "Dindigul" : (branch.name.includes("Kang") || branch.address.includes("Kang")) ? "Kangayam" : "Karur");
                     return (
                       <button
                         key={branch.name}

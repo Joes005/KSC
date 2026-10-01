@@ -238,13 +238,6 @@ export function FacilitiesSpotlight() {
                 );
               })}
             </div>
-
-            {/* Fixed Bottom Button */}
-            <div className="mt-4 pt-4 border-t border-slate-200/60 pl-2">
-              <Link to="/facilities" className="btn-outline border-slate-300 text-slate-600 hover:border-ksc-navy hover:bg-ksc-navy hover:text-white transition-all text-sm h-10 px-6">
-                View all facilities <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </div>
           </div>
         </div>
       </div>

@@ -139,7 +139,7 @@ function mapBranches(list: any[]): typeof BRANCHES {
     const searchText = `${b.name ?? ""} ${b.address ?? ""}`.toLowerCase();
     const loc = b.location
       ?? (searchText.includes("dindigul") ? "Dindigul"
-        : searchText.includes("kangeyam") || searchText.includes("kangayam") ? "Kangeyam"
+        : searchText.includes("kangeyam") || searchText.includes("kangayam") ? "Kangayam"
         : "Karur");
     const defaultMapUrl = loc === "Karur" 
       ? "https://maps.app.goo.gl/X3snfWXnP526PSBM8" 

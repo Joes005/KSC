@@ -95,7 +95,7 @@ export function Footer() {
                             </span>
                           )}
                           <span className="text-[10px] font-black uppercase tracking-wider text-ksc-red bg-red-50 border border-red-200 px-2 py-0.5 rounded-full">
-                            {(branch as any).location || (branch.name.includes("Dindigul") || branch.address.includes("Dindigul") ? "Dindigul" : (branch.name.includes("Kang") || branch.address.includes("Kang")) ? "Kangeyam" : "Karur")}
+                            {(branch as any).location || (branch.name.includes("Dindigul") || branch.address.includes("Dindigul") ? "Dindigul" : (branch.name.includes("Kang") || branch.address.includes("Kang")) ? "Kangayam" : "Karur")}
                           </span>
                         </div>
                         <h5 className="text-base sm:text-lg font-black leading-tight text-ksc-navy transition-colors group-hover:text-ksc-red">

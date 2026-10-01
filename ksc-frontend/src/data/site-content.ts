@@ -19,7 +19,7 @@ export const SITE_CONFIG = {
   shortName: "KSC",
   tagline: "Distance Education Admissions & Study Centre",
   description:
-    "Karur Study Centre (KSC) is a distance-education study and admission centre with branches in Karur, Dindigul, and Kangeyam, helping students enrol in UG, PG, Diploma, Certificate and Vocational programmes offered by state open universities.",
+    "Karur Study Centre (KSC) is a distance-education study and admission centre with branches in Karur, Dindigul, and Kangayam, helping students enrol in UG, PG, Diploma, Certificate and Vocational programmes offered by state open universities.",
 
   /* === LOGO ===
    * The final circular emblem (quarter torch / book-on-lotus / grad-cap /
@@ -80,7 +80,7 @@ export const HERO = {
   headline: "Karur Study Centre",
   subHeadline: "Your trusted study centre for distance education",
   description:
-    "Get expert admission guidance for UG, PG, Diploma, Certificate and Vocational programmes from Alagappa University, Bharathidasan University, Manonmaniam Sundaranar University, and Tamilnadu Open University — available across our branches in Karur, Dindigul, and Kangeyam, with continuous support through exams and results.",
+    "Get expert admission guidance for UG, PG, Diploma, Certificate and Vocational programmes from Alagappa University, Bharathidasan University, Manonmaniam Sundaranar University, and Tamilnadu Open University — available across our branches in Karur, Dindigul, and Kangayam, with continuous support through exams and results.",
   ctas: [
     { label: "Explore Programmes", to: "/academic", primary: true },
     { label: "Apply Now", to: "/admissions", primary: false },
@@ -134,12 +134,12 @@ export const WHY_DISTANCE = [
 
 export const ABOUT_SNAPSHOT = {
   text: [
-    "Karur Study Centre (KSC) is a dedicated distance-education study and admission centre with branches in Karur, Dindigul, and Kangeyam. We bridge the gap between open universities and students — helping you pick the right programme, submit a correct application, and stay supported through exams and results.",
+    "Karur Study Centre (KSC) is a dedicated distance-education study and admission centre with branches in Karur, Dindigul, and Kangayam. We bridge the gap between open universities and students — helping you pick the right programme, submit a correct application, and stay supported through exams and results.",
     "Our services are designed for working professionals, homemakers and students from remote areas who want recognised degrees without relocating or abandoning their commitments.",
   ],
   readMoreLink: "/about",
   body: [
-    "Karur Study Centre (KSC) is a dedicated distance-education study and admission centre with branches in Karur, Dindigul, and Kangeyam. Since our inception we have been bridging the gap between open universities and students — helping you pick the right programme, submit a correct application, and stay supported through exams and results.",
+    "Karur Study Centre (KSC) is a dedicated distance-education study and admission centre with branches in Karur, Dindigul, and Kangayam. Since our inception we have been bridging the gap between open universities and students — helping you pick the right programme, submit a correct application, and stay supported through exams and results.",
     "Our services are designed for working professionals, homemakers and students from remote areas who want recognised degrees without relocating or abandoning their commitments. We are affiliated with Alagappa University, Bharathidasan University, Manonmaniam Sundaranar University, and Tamilnadu Open University, and guide learners through every stage of their academic journey.",
     "From programme counselling and document verification to study-material support, exam updates and result guidance, our team walks with you until you earn your degree. With more than 50,000 learners served, KSC has grown into a trusted name for open and distance education in the region.",
   ],
@@ -159,7 +159,7 @@ export const ABOUT_SNAPSHOT = {
 
 export const VISION_MISSION_VALUES = {
   vision:
-    "To become the most trusted study centre in Tamil Nadu for distance education — making recognised, affordable, and quality higher education accessible to every learner across Karur, Dindigul, and Kangeyam.",
+    "To become the most trusted study centre in Tamil Nadu for distance education — making recognised, affordable, and quality higher education accessible to every learner across Karur, Dindigul, and Kangayam.",
   mission: [
     "Provide clear, unbiased information about programmes offered by our affiliated open universities.",
     "Guide every applicant through a smooth, transparent admission process.",
@@ -259,7 +259,7 @@ export const MILESTONES = [
   { value: "26+", label: "Years of Experience" },
   { value: "50,000+", label: "Graduates" },
   { value: "4", label: "Affiliated Universities" },
-  { value: "3", label: "Branches (Karur, Dindigul, Kangeyam)" },
+  { value: "3", label: "Branches (Karur, Dindigul, Kangayam)" },
 ];
 
 /* =========================================================================== */
@@ -348,9 +348,9 @@ export const ABOUT_PAGE = {
   },
   establishedYear: "2001",
   intro:
-    "Established in 2001 in Karur, Tamil Nadu, Karur Study Centre (KSC) is a premier distance education learning centre operating through our branches: Karur Study Centre in Karur, Pace Computers in Kangeyam, and S.S. Institute in Dindigul.",
+    "Established in 2001 in Karur, Tamil Nadu, Karur Study Centre (KSC) is a premier distance education learning centre operating through our branches: Karur Study Centre in Karur, Pace Computers in Kangayam, and S.S. Institute in Dindigul.",
   body: [
-    "Established in 2001 in Karur, Tamil Nadu, Karur Study Centre (KSC) is a dedicated distance education learning centre. We operate through our network of branches: Karur Study Centre in Karur, Pace Computers in Kangeyam, and S.S. Institute in Dindigul. Since our inception, we have served as a vital bridge for students pursuing distance education programmes—including UG, PG, MBA, MCA, MSW, and Diploma courses offered by Alagappa University, Bharathidasan University, Tamil Nadu Open University, and Manonmaniam Sundaranar University. Our comprehensive services include guiding students to choose the right course, ensuring accurate application submissions, and providing continuous support from examinations through to final results.",
+    "Established in 2001 in Karur, Tamil Nadu, Karur Study Centre (KSC) is a dedicated distance education learning centre. We operate through our network of branches: Karur Study Centre in Karur, Pace Computers in Kangayam, and S.S. Institute in Dindigul. Since our inception, we have served as a vital bridge for students pursuing distance education programmes—including UG, PG, MBA, MCA, MSW, and Diploma courses offered by Alagappa University, Bharathidasan University, Tamil Nadu Open University, and Manonmaniam Sundaranar University. Our comprehensive services include guiding students to choose the right course, ensuring accurate application submissions, and providing continuous support from examinations through to final results.",
     "Our services are thoughtfully designed for working professionals, homemakers, and rural students seeking to pursue their desired degrees through accredited universities without disrupting their daily responsibilities. We facilitate admissions across premier UGC-recognized universities in Tamil Nadu via online and distance education modes, making quality higher education accessible and achievable.",
     "Our dedicated team accompanies you throughout your academic journey until graduation, offering personalised guidance, study material support, admission notifications, and timely examination result updates. Having guided over 50,000 students, Karur Study Centre (KSC) has grown into the region's most trusted name in distance education. All programmes are structured with flexible schedules to accommodate working professionals, homemakers, and anyone unable to attend regular college classes.",
   ],
@@ -374,7 +374,7 @@ export const FOUNDER_MESSAGE = {
   title: "Founder Message",
   subtitle: "Our Organization’s Strengths & Services",
   message:
-    "For over 25 years, our organization has earned an outstanding reputation and deep trust among students through our centres: Karur study centre, Pace Computers in Kangeyam, and S.S. Institute in Dindigul. We offer expert guidance for distance education degree programmes in Science, Arts, Commerce, Management, and Information Technology through premier UGC-recognized universities. Placing your educational aspirations at the heart of our mission, we wholeheartedly wish you enduring success in your academic pursuits and future career.",
+    "For over 25 years, our organization has earned an outstanding reputation and deep trust among students through our centres: Karur study centre, Pace Computers in Kangayam, and S.S. Institute in Dindigul. We offer expert guidance for distance education degree programmes in Science, Arts, Commerce, Management, and Information Technology through premier UGC-recognized universities. Placing your educational aspirations at the heart of our mission, we wholeheartedly wish you enduring success in your academic pursuits and future career.",
   image: "/assets/messages/founder.jpg",
 };
 
@@ -416,15 +416,15 @@ export const BRANCHES = [
   },
   {
     name: "Pace Computer Center",
-    location: "Kangeyam",
+    location: "Kangayam",
     address:
-      "57-59, LS-PS Complex, Main Road, Near Bus Stand, Kangeyam - 638701",
+      "57-59, LS-PS Complex, Main Road, Near Bus Stand, Kangayam - 638701",
     phone: "98652 22107, 93622 24107",
     isHead: false,
     mapUrl:
-      "https://maps.google.com/maps?q=Pace+Computer,+57-59,+LS-PS+Complex,+Main+Road,+Near+Bus+Stand,+Kangeyam+-+638701",
+      "https://maps.google.com/maps?q=Pace+Computer,+57-59,+LS-PS+Complex,+Main+Road,+Near+Bus+Stand,+Kangayam+-+638701",
     mapEmbedUrl:
-      "https://maps.google.com/maps?q=Pace+Computer,+57-59,+LS-PS+Complex,+Main+Road,+Near+Bus+Stand,+Kangeyam+-+638701&t=&z=16&ie=UTF8&iwloc=&output=embed",
+      "https://maps.google.com/maps?q=Pace+Computer,+57-59,+LS-PS+Complex,+Main+Road,+Near+Bus+Stand,+Kangayam+-+638701&t=&z=16&ie=UTF8&iwloc=&output=embed",
   },
 ];
 

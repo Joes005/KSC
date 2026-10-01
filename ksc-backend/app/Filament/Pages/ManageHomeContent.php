@@ -14,6 +14,8 @@ use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\ColorPicker;
 use Filament\Notifications\Notification;
 
 class ManageHomeContent extends Page implements HasForms
@@ -72,6 +74,25 @@ class ManageHomeContent extends Page implements HasForms
             'about_snapshot' => $aboutSnapshotContent,
             'admission_steps' => $admissionSteps ? $admissionSteps->content : [],
         ]);
+    }
+
+    /**
+     * Fonts the client can pick for hero slide text. Keys must match the
+     * Google Fonts family names the frontend loads (see Hero.tsx).
+     */
+    public static function heroFontOptions(): array
+    {
+        return [
+            'Manrope' => 'Manrope (Default)',
+            'Merriweather' => 'Merriweather (Serif)',
+            'Poppins' => 'Poppins',
+            'Montserrat' => 'Montserrat',
+            'Playfair Display' => 'Playfair Display (Elegant)',
+            'Roboto Slab' => 'Roboto Slab',
+            'Oswald' => 'Oswald (Tall / Bold)',
+            'Noto Sans Tamil' => 'Noto Sans Tamil (Tamil text)',
+            'Mukta Malar' => 'Mukta Malar (Tamil text)',
+        ];
     }
 
     public function form(Form $form): Form
@@ -159,17 +180,29 @@ class ManageHomeContent extends Page implements HasForms
                                         ->directory('hero')
                                         ->disk('public')
                                         ->required()
-                                        ->columnSpan(1),
+                                        ->columnSpanFull(),
                                     TextInput::make('title')
                                         ->label('Title / Main Line')
-                                        ->placeholder('e.g. Education that fits your life')
-                                        ->columnSpan(1),
+                                        ->placeholder('e.g. Education that fits your life'),
                                     TextInput::make('caption')
                                         ->label('Caption / Subtitle Line')
-                                        ->placeholder('e.g. Study. Grow. Move forward.')
-                                        ->columnSpan(1),
+                                        ->placeholder('e.g. Study. Grow. Move forward.'),
+                                    Select::make('title_font')
+                                        ->label('Title Font')
+                                        ->options(self::heroFontOptions())
+                                        ->placeholder('Default (Manrope)'),
+                                    Select::make('caption_font')
+                                        ->label('Caption Font')
+                                        ->options(self::heroFontOptions())
+                                        ->placeholder('Default (Manrope)'),
+                                    ColorPicker::make('title_color')
+                                        ->label('Title Colour')
+                                        ->helperText('Leave empty for the default white.'),
+                                    ColorPicker::make('caption_color')
+                                        ->label('Caption Colour')
+                                        ->helperText('Leave empty for the default white.'),
                                 ])
-                                ->columns(3)
+                                ->columns(2)
                                 ->maxItems(4)
                                 ->reorderable()
                                 ->collapsible()

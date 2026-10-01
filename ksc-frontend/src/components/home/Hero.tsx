@@ -46,6 +46,47 @@ export interface HeroSlide {
   image: string;
   title?: string;
   caption?: string;
+  titleFont?: string;
+  titleColor?: string;
+  captionFont?: string;
+  captionColor?: string;
+}
+
+/** Google Fonts the admin can pick for slide text (must match ManageHomeContent::heroFontOptions). */
+const HERO_FONTS: Record<string, string> = {
+  "Manrope": "Manrope:wght@400;600;700;800",
+  "Merriweather": "Merriweather:wght@700;900",
+  "Poppins": "Poppins:wght@400;600;700;800",
+  "Montserrat": "Montserrat:wght@400;600;700;800",
+  "Playfair Display": "Playfair+Display:wght@400;600;700;800",
+  "Roboto Slab": "Roboto+Slab:wght@400;600;700;800",
+  "Oswald": "Oswald:wght@400;500;600;700",
+  "Noto Sans Tamil": "Noto+Sans+Tamil:wght@400;600;700;800",
+  "Mukta Malar": "Mukta+Malar:wght@400;600;700;800",
+};
+
+/** Load only the fonts actually chosen in the admin panel. */
+function useHeroFonts(slides: HeroSlide[]) {
+  React.useEffect(() => {
+    const families = Array.from(
+      new Set(slides.flatMap((s) => [s.titleFont, s.captionFont]).filter((f): f is string => Boolean(f && HERO_FONTS[f])))
+    );
+    if (families.length === 0) return;
+    const href = `https://fonts.googleapis.com/css2?${families.map((f) => `family=${HERO_FONTS[f]}`).join("&")}&display=swap`;
+    if (document.head.querySelector(`link[href="${href}"]`)) return;
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = href;
+    document.head.appendChild(link);
+  }, [slides]);
+}
+
+function slideTextStyle(font?: string, color?: string): React.CSSProperties | undefined {
+  if (!font && !color) return undefined;
+  return {
+    ...(font ? { fontFamily: `"${font}", "Noto Sans Tamil", system-ui, sans-serif` } : {}),
+    ...(color ? { color } : {}),
+  };
 }
 
 const DEFAULT_SLIDES: HeroSlide[] = [
@@ -150,6 +191,10 @@ export function Hero() {
           image: typeof s === "string" ? s : (s?.image || s?.image_path || ""),
           title: s?.title ?? "",
           caption: s?.caption ?? "",
+          titleFont: s?.title_font || undefined,
+          titleColor: s?.title_color || undefined,
+          captionFont: s?.caption_font || undefined,
+          captionColor: s?.caption_color || undefined,
         }))
         .filter((s: HeroSlide) => Boolean(s.image));
       if (parsed.length > 0) return parsed;
@@ -166,6 +211,8 @@ export function Hero() {
     }
     return DEFAULT_SLIDES;
   }, [heroData?.slides, heroData?.images]);
+
+  useHeroFonts(heroSlides);
 
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
 
@@ -206,11 +253,23 @@ export function Hero() {
               {heroData.subHeadline}
             </p>
 
-            <h1 className="max-w-2xl text-3xl font-extrabold leading-[1.12] tracking-tight sm:text-5xl lg:text-[3.8rem] sm:leading-[1.08]">
-              <span className="inline-block pb-1 text-gradient-red drop-shadow-sm">
-                {heroData.headline || "Karur Study Centre"}
-              </span>
-            </h1>
+            <div className="xl:flex xl:items-center xl:gap-3">
+              <h1 className="xl:shrink-0 xl:whitespace-nowrap max-w-2xl text-3xl font-extrabold leading-[1.12] tracking-tight sm:text-5xl lg:text-[3.8rem] sm:leading-[1.08]">
+                <span className="inline-block pb-1 text-gradient-red drop-shadow-sm">
+                  {heroData.headline || "Karur Study Centre"}
+                </span>
+              </h1>
+
+              {/* Desktop Academic Badge — between the heading and the banner image */}
+              <div className="hidden xl:flex min-w-0 flex-1 justify-center xl:-mr-12">
+                <div className="rounded-2xl bg-white p-1.5 shadow-[0_12px_30px_rgba(0,0,0,0.15)]">
+                  <div className="flex max-w-[9rem] flex-col items-center justify-center rounded-xl bg-ksc-red px-3 py-2 text-center text-white">
+                    <span className="block text-[9px] font-black uppercase tracking-[.2em] text-white/90">Now open</span>
+                    <span className="font-heading text-sm font-black uppercase leading-tight tracking-tight">{SITE_CONFIG.admissionYear}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
 
             {/* Branch Locations Highlight */}
             <div className="mt-3.5 sm:mt-4 flex flex-wrap items-center gap-1.5 sm:gap-2 animate-fade-in-up" style={{ animationDelay: '150ms' }}>
@@ -260,7 +319,7 @@ export function Hero() {
           </div>
 
           {/* Right Hero Image Card */}
-          <div className="relative mx-auto w-full max-w-xl lg:mx-0 lg:justify-self-end mt-14 sm:mt-20">
+          <div className="relative mx-auto w-full max-w-xl lg:mx-0 lg:justify-self-end mt-14 sm:mt-20 xl:mt-0">
             <div className="absolute -right-2 -top-2 sm:-right-4 sm:-top-4 h-full w-full rounded-2xl sm:rounded-3xl bg-gradient-to-br from-ksc-red to-[#910a11] shadow-xl sm:shadow-2xl" />
             <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl border-2 sm:border-4 border-white/80 bg-ksc-navy shadow-[0_20px_50px_-12px_rgba(7,27,74,0.35)] backdrop-blur-sm transition-transform duration-500 hover:-translate-y-1 sm:hover:-translate-y-2">
               <img
@@ -273,7 +332,7 @@ export function Hero() {
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ksc-navy via-ksc-navy/85 to-transparent px-4 pb-4 pt-12 text-white sm:px-8 sm:pb-8 sm:pt-24">
                 <div key={`caption-${currentSlideIndex}`} className="animate-fade-in pr-16 sm:pr-20">
                   {currentSlide.title && (
-                    <p className="text-lg font-black text-white drop-shadow-md sm:text-2xl leading-tight">
+                    <p className="text-lg font-black text-white drop-shadow-md sm:text-2xl leading-tight" style={slideTextStyle(currentSlide.titleFont, currentSlide.titleColor)}>
                       {currentSlide.title}
                     </p>
                   )}
@@ -281,7 +340,7 @@ export function Hero() {
                     <p className={cn(
                       "font-bold text-white/90 drop-shadow-xs",
                       currentSlide.title ? "mt-0.5 text-xs sm:mt-1.5 sm:text-sm" : "text-base sm:text-xl font-black"
-                    )}>
+                    )} style={slideTextStyle(currentSlide.captionFont, currentSlide.captionColor)}>
                       {currentSlide.caption}
                     </p>
                   )}
@@ -314,8 +373,8 @@ export function Hero() {
               )}
             </div>
 
-            {/* Floating Academic Badge — sits above the card so it never covers the slide image */}
-            <div className="absolute bottom-full left-0 lg:left-1/2 lg:-translate-x-1/2 mb-3 sm:mb-7 whitespace-nowrap rounded-lg sm:rounded-2xl bg-white/95 sm:bg-white p-1 sm:p-2 shadow-lg sm:shadow-[0_12px_30px_rgba(0,0,0,0.15)] backdrop-blur-md transition-all">
+            {/* Floating Academic Badge — sits above the card so it never covers the slide image (on xl+ it moves beside the heading) */}
+            <div className="xl:hidden absolute bottom-full left-0 lg:left-1/2 lg:-translate-x-1/2 mb-3 sm:mb-7 whitespace-nowrap rounded-lg sm:rounded-2xl bg-white/95 sm:bg-white p-1 sm:p-2 shadow-lg sm:shadow-[0_12px_30px_rgba(0,0,0,0.15)] backdrop-blur-md transition-all">
               <div className="flex flex-row items-center justify-center gap-2 sm:gap-3 rounded-md sm:rounded-xl bg-ksc-red px-3 py-1.5 sm:px-4 sm:py-2 text-white">
                 <span className="block text-[8px] sm:text-[10px] font-black uppercase tracking-[.15em] sm:tracking-[.2em] text-white/90">Now open</span>
                 <span className="font-heading text-xs sm:text-lg md:text-xl font-black uppercase tracking-tight">{SITE_CONFIG.admissionYear}</span>

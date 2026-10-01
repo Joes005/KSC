@@ -25,11 +25,11 @@ export function Header() {
     : DEFAULT_NAV_ITEMS;
   const BRANCH_META: Record<string, { city: string; label: string }> = {
     "Karur Study Centre": { city: "Karur", label: "Karur Study Centre" },
-    "Pace Computer": { city: "Kangayam", label: "Pace Computer Center" },
-    "Pace Computer Center": { city: "Kangayam", label: "Pace Computer Center" },
-    "Pace Computer Centre": { city: "Kangayam", label: "Pace Computer Center" },
-    "Pace Computer College": { city: "Kangayam", label: "Pace Computer Center" },
-    "Pace Computers": { city: "Kangayam", label: "Pace Computer Center" },
+    "Pace Computer": { city: "Kangayam", label: "Pace Computer" },
+    "Pace Computer Center": { city: "Kangayam", label: "Pace Computer" },
+    "Pace Computer Centre": { city: "Kangayam", label: "Pace Computer" },
+    "Pace Computer College": { city: "Kangayam", label: "Pace Computer" },
+    "Pace Computers": { city: "Kangayam", label: "Pace Computer" },
     "S.S. Institute": { city: "Dindigul", label: "S.S. Institute" },
   };
   const branchList = (Array.isArray(branches) ? branches : []).map((b: any) => {
@@ -40,7 +40,7 @@ export function Header() {
     const isKangayam = nameLower.includes("pace") || nameLower.includes("kang") || addrLower.includes("kang");
     const isDindigul = nameLower.includes("dindigul") || nameLower.includes("ss") || addrLower.includes("dindigul");
     return {
-      label: isKangayam ? "Pace Computer Center" : (b.name || "Karur Study Centre"),
+      label: isKangayam ? "Pace Computer" : (b.name || "Karur Study Centre"),
       city: isKangayam ? "Kangayam" : isDindigul ? "Dindigul" : (b.location || "Karur"),
     };
   });

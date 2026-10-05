@@ -29,8 +29,9 @@ export const SITE_CONFIG = {
    *   1. drop your file at <logoSource> and
    *   2. set branding.logo.useImage = true                            */
   branding: {
-    // TODO: replace with real logo image path
-    logoSource: "/logo.jpg",
+    // Official KSC emblem (transparent PNG). An image uploaded in the admin
+    // panel ("Site Logo") overrides this.
+    logoSource: "/logo.png",
     useImage: true,
     // TODO: Tamil motto text for the emblem's upper arc (rendered on the
     // SVG when supplied), e.g. "வாழ்க வளமுடன்" — empty until provided

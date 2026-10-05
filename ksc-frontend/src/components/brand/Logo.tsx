@@ -24,12 +24,12 @@ export function Logo({ className = "h-14 w-14" }: LogoProps) {
   if (branding.useImage) {
     return (
       <div
-        className={`flex-shrink-0 flex items-center justify-center overflow-hidden rounded-full bg-white shadow-md ${className}`}
+        className={`flex-shrink-0 flex items-center justify-center overflow-hidden rounded-xl bg-white p-0.5 shadow-md ${className}`}
       >
         <img
           src={branding.logoSource}
           alt={`${SITE_CONFIG.name} logo`}
-          className="h-full w-full object-contain object-center scale-[1.20] translate-x-[2%] -translate-y-[3%]"
+          className="h-full w-full object-contain object-center"
         />
       </div>
     );

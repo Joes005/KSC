@@ -130,12 +130,12 @@ class DatabaseSeeder extends Seeder
     private function seedNewsEvents(): void
     {
         $news = [
-            ['title' => 'Admissions are open for the Academic Year 2026 — Alagappa University, Bharathidasan University, Manonmaniam Sundaranar University, and Tamilnadu Open University.', 'badge' => 'admission', 'link' => '/admissions', 'is_active' => true],
-            ['title' => 'Last date for admission: 31 July 2026', 'badge' => 'deadline', 'link' => '/admissions', 'is_active' => true],
-            ['title' => 'TNOU exam time-table released — collect from Karur Study Centre.', 'badge' => 'exam', 'link' => '/exam-update', 'is_active' => true],
-            ['title' => 'BDU semester examinations — hall tickets available at Karur Study Centre.', 'badge' => 'exam', 'link' => '/exam-update', 'is_active' => true],
-            ['title' => 'Alagappa University (CDOE) — July session admissions open for UG, PG, Diploma & Certificate programmes.', 'badge' => 'admission', 'link' => '/academic#alagappa', 'is_active' => true],
-            ['title' => 'Alagappa University — exam hall tickets & time-tables available at Karur Study Centre.', 'badge' => 'exam', 'link' => '/exam-update', 'is_active' => true],
+            ['title' => 'Admissions are open for the Academic Year 2026 — Alagappa University, Bharathidasan University, Manonmaniam Sundaranar University, and Tamilnadu Open University.', 'badge' => 'admission', 'type' => 'admission', 'link' => '/admissions', 'is_active' => true],
+            ['title' => 'Last date for admission: 31 July 2026', 'badge' => 'deadline', 'type' => 'deadline', 'link' => '/admissions', 'is_active' => true],
+            ['title' => 'TNOU exam time-table released — collect from Karur Study Centre.', 'badge' => 'exam', 'type' => 'exam', 'link' => '/exam-update', 'is_active' => true],
+            ['title' => 'BDU semester examinations — hall tickets available at Karur Study Centre.', 'badge' => 'exam', 'type' => 'exam', 'link' => '/exam-update', 'is_active' => true],
+            ['title' => 'Alagappa University (CDOE) — July session admissions open for UG, PG, Diploma & Certificate programmes.', 'badge' => 'admission', 'type' => 'admission', 'link' => '/academic#alagappa', 'is_active' => true],
+            ['title' => 'Alagappa University — exam hall tickets & time-tables available at Karur Study Centre.', 'badge' => 'exam', 'type' => 'exam', 'link' => '/exam-update', 'is_active' => true],
         ];
 
         foreach ($news as $item) {

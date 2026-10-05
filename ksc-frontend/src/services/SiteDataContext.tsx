@@ -46,7 +46,9 @@ const SiteDataContext = createContext<SiteContextType>({
 });
 
 export function SiteDataProvider({ children }: { children: ReactNode }) {
-  const [data, setData] = useState<SiteDataType>(fallbackData);
+  // News starts empty rather than showing the static notices, which would
+  // flash outdated announcements until the live list arrives.
+  const [data, setData] = useState<SiteDataType>({ ...fallbackData, news_events: [] });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

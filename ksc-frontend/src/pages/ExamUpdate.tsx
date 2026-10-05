@@ -43,7 +43,7 @@ function highlightNoticeText(text: string) {
 }
 
 export function ExamUpdate() {
-  const { data: { news_events: NEWS_EVENTS, settings: SITE_CONFIG, pages } } = useSiteData();
+  const { data: { news_events: NEWS_EVENTS, settings: SITE_CONFIG, pages }, loading } = useSiteData();
   const headerData = (pages?.exam_update?.header || {}) as any;
   const bannerImage = (pages?.exam_update?.banner as any)?.image || "/assets/gallery/ksc-08.jpg";
   const examNotices = NEWS_EVENTS.filter((n) => n.type === "exam");
@@ -69,6 +69,12 @@ export function ExamUpdate() {
             </span>
           </div>
 
+          {!loading && examNotices.length === 0 && (
+            <p className="rounded-2xl border border-slate-200 bg-white p-5 text-sm sm:text-base font-semibold text-slate-600">
+              No exam notices right now. Please check back soon.
+            </p>
+          )}
+
           <ul className="space-y-3.5 sm:space-y-4">
             {examNotices.map((n, idx) => (
               <li
@@ -93,9 +99,12 @@ export function ExamUpdate() {
                 {(n.href || n.pdfUrl) && (
                   <a
                     href={n.href || n.pdfUrl}
-                    {...(n.href
-                      ? { target: "_blank", rel: "noopener noreferrer" }
-                      : { download: true })}
+                    // Pages on this site open in place; external sites and PDFs
+                    // (served from the API domain, so `download` is ignored)
+                    // open in a new tab so visitors don't lose the site.
+                    {...(n.href?.startsWith("/")
+                      ? {}
+                      : { target: "_blank", rel: "noopener noreferrer" })}
                     className="inline-flex shrink-0 items-center justify-center gap-1.5 self-start sm:self-center rounded-xl bg-ksc-navy px-4 py-2 text-xs sm:text-sm font-bold text-white shadow-xs transition-all hover:bg-ksc-red hover:shadow-md ml-[52px] sm:ml-0"
                   >
                     Click here

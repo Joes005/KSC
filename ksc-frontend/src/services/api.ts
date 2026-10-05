@@ -94,15 +94,18 @@ function pageSection<T>(pages: PageMap, pageKey: string, sectionKey: string, fal
 
 function mapNews(list: any[]): NewsEventType[] {
   return (list ?? []).map((n) => {
-    const badge = String(n.badge ?? "").toLowerCase();
     const allowed: NewsEventType["type"][] = ["admission", "deadline", "exam", "event"];
-    const type = allowed.includes(badge as NewsEventType["type"]) ? (badge as NewsEventType["type"]) : "event";
+    // `type` is chosen in the admin panel; older API responses only had the
+    // badge, which used to double as the type.
+    const rawType = String(n.type ?? n.badge ?? "").trim().toLowerCase();
+    const type = allowed.includes(rawType as NewsEventType["type"]) ? (rawType as NewsEventType["type"]) : "event";
+    const badge = String(n.badge ?? "").trim();
     return {
-      text: n.title ?? "",
+      text: String(n.title ?? "").trim(),
       type,
-      href: n.link || undefined,
+      href: String(n.link ?? "").trim() || undefined,
       pdfUrl: n.pdf_path ? toAsset(n.pdf_path) : undefined,
-      date: n.badge || undefined,
+      date: badge || undefined,
     };
   });
 }
@@ -315,7 +318,9 @@ export async function fetchSiteData() {
 
   return {
     settings,
-    news_events: Array.isArray(api.news_events) && api.news_events.length
+    // An empty list from the API means the admin has hidden every notice, so
+    // respect it; the static list is only for when the API is unreachable.
+    news_events: Array.isArray(api.news_events)
       ? mapNews(api.news_events)
       : NEWS_EVENTS,
     facilities: Array.isArray(api.facilities) && api.facilities.length

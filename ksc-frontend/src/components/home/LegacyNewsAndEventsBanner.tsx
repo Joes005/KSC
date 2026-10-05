@@ -60,7 +60,9 @@ export function CtaBand() {
 }
 
 export function NewsAndEventsBanner() {
-  const { data: { news_events: newsEvents } } = useSiteData();
+  const { data: { news_events: newsEvents }, loading } = useSiteData();
+
+  if (!loading && newsEvents.length === 0) return null;
 
   return (
     <section className="relative overflow-hidden border-y border-white/15 bg-gradient-to-r from-ksc-navy via-[#0c245c] to-ksc-navy py-4 sm:py-5 text-white shadow-lg">

@@ -98,6 +98,27 @@ export function NewsAndEventsBanner() {
                     </span>
                   )}
                   <div className="leading-snug text-white font-bold text-sm sm:text-[15px] drop-shadow-sm">{news.text}</div>
+                  {(news.href || news.pdfUrl) && (
+                    // Same rule as the Exam Update page: the link wins over the
+                    // PDF; site pages open in place, everything else in a new tab.
+                    news.href?.startsWith("/") ? (
+                      <Link
+                        to={news.href}
+                        className="mt-1.5 inline-flex items-center gap-1 rounded-md bg-ksc-yellow px-2.5 py-1 text-[11px] font-extrabold text-ksc-navy shadow-sm transition-colors hover:bg-white"
+                      >
+                        Click here <ArrowRight className="h-3 w-3" />
+                      </Link>
+                    ) : (
+                      <a
+                        href={news.href || news.pdfUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-1.5 inline-flex items-center gap-1 rounded-md bg-ksc-yellow px-2.5 py-1 text-[11px] font-extrabold text-ksc-navy shadow-sm transition-colors hover:bg-white"
+                      >
+                        Click here <ArrowRight className="h-3 w-3" />
+                      </a>
+                    )
+                  )}
                 </div>
               </div>
             ))}

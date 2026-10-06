@@ -77,21 +77,67 @@ class ManageHomeContent extends Page implements HasForms
     }
 
     /**
-     * Fonts the client can pick for hero slide text. Keys must match the
-     * Google Fonts family names the frontend loads (see Hero.tsx).
+     * Fonts the client can pick for hero slide text, grouped for the dropdown.
+     * Keys must match the Google Fonts family names the frontend loads
+     * (HERO_FONTS in Hero.tsx).
      */
     public static function heroFontOptions(): array
     {
         return [
-            'Manrope' => 'Manrope (Default)',
-            'Merriweather' => 'Merriweather (Serif)',
-            'Poppins' => 'Poppins',
-            'Montserrat' => 'Montserrat',
-            'Playfair Display' => 'Playfair Display (Elegant)',
-            'Roboto Slab' => 'Roboto Slab',
-            'Oswald' => 'Oswald (Tall / Bold)',
-            'Noto Sans Tamil' => 'Noto Sans Tamil (Tamil text)',
-            'Mukta Malar' => 'Mukta Malar (Tamil text)',
+            'Modern (Sans-serif)' => [
+                'Manrope' => 'Manrope (Default)',
+                'Poppins' => 'Poppins',
+                'Montserrat' => 'Montserrat',
+                'Roboto' => 'Roboto',
+                'Open Sans' => 'Open Sans',
+                'Lato' => 'Lato',
+                'Nunito' => 'Nunito',
+                'Raleway' => 'Raleway',
+                'Ubuntu' => 'Ubuntu',
+                'Josefin Sans' => 'Josefin Sans',
+                'Comfortaa' => 'Comfortaa',
+                'Quicksand' => 'Quicksand',
+            ],
+            'Bold / Headline' => [
+                'Archivo Black' => 'Archivo Black',
+                'Oswald' => 'Oswald',
+                'Bebas Neue' => 'Bebas Neue',
+                'Anton' => 'Anton',
+                'Teko' => 'Teko',
+                'Righteous' => 'Righteous',
+            ],
+            'Classic (Serif)' => [
+                'Merriweather' => 'Merriweather',
+                'Playfair Display' => 'Playfair Display',
+                'Lora' => 'Lora',
+                'Roboto Slab' => 'Roboto Slab',
+                'Bitter' => 'Bitter',
+                'Abril Fatface' => 'Abril Fatface',
+                'Cinzel' => 'Cinzel',
+            ],
+            'Handwriting / Stylish' => [
+                'Lobster' => 'Lobster',
+                'Pacifico' => 'Pacifico',
+                'Dancing Script' => 'Dancing Script',
+                'Great Vibes' => 'Great Vibes',
+                'Kaushan Script' => 'Kaushan Script',
+                'Satisfy' => 'Satisfy',
+                'Caveat' => 'Caveat',
+            ],
+            'Tamil' => [
+                'Noto Sans Tamil' => 'Noto Sans Tamil',
+                'Noto Serif Tamil' => 'Noto Serif Tamil',
+                'Mukta Malar' => 'Mukta Malar',
+                'Catamaran' => 'Catamaran',
+                'Hind Madurai' => 'Hind Madurai',
+                'Arima' => 'Arima',
+                'Baloo Thambi 2' => 'Baloo Thambi 2',
+                'Anek Tamil' => 'Anek Tamil',
+                'Pavanam' => 'Pavanam',
+                'Meera Inimai' => 'Meera Inimai',
+                'Kavivanar' => 'Kavivanar',
+                'Tiro Tamil' => 'Tiro Tamil',
+            ],
         ];
     }
 
@@ -190,11 +236,15 @@ class ManageHomeContent extends Page implements HasForms
                                     Select::make('title_font')
                                         ->label('Title Font')
                                         ->options(self::heroFontOptions())
-                                        ->placeholder('Default (Manrope)'),
+                                        ->searchable()
+                                        ->placeholder('Default (Manrope)')
+                                        ->helperText('Tamil fonts change only Tamil letters — for English text pick a font from the other groups.'),
                                     Select::make('caption_font')
                                         ->label('Caption Font')
                                         ->options(self::heroFontOptions())
-                                        ->placeholder('Default (Manrope)'),
+                                        ->searchable()
+                                        ->placeholder('Default (Manrope)')
+                                        ->helperText('Tamil fonts change only Tamil letters — for English text pick a font from the other groups.'),
                                     ColorPicker::make('title_color')
                                         ->label('Title Colour')
                                         ->helperText('Leave empty for the default white.'),

@@ -55,14 +55,49 @@ export interface HeroSlide {
 /** Google Fonts the admin can pick for slide text (must match ManageHomeContent::heroFontOptions). */
 const HERO_FONTS: Record<string, string> = {
   "Manrope": "Manrope:wght@400;600;700;800",
-  "Merriweather": "Merriweather:wght@700;900",
-  "Poppins": "Poppins:wght@400;600;700;800",
-  "Montserrat": "Montserrat:wght@400;600;700;800",
-  "Playfair Display": "Playfair+Display:wght@400;600;700;800",
-  "Roboto Slab": "Roboto+Slab:wght@400;600;700;800",
+  "Poppins": "Poppins:wght@400;600;700;800;900",
+  "Montserrat": "Montserrat:wght@400;600;700;800;900",
+  "Roboto": "Roboto:wght@400;500;700;900",
+  "Open Sans": "Open+Sans:wght@400;600;700;800",
+  "Lato": "Lato:wght@400;700;900",
+  "Nunito": "Nunito:wght@400;600;700;800;900",
+  "Raleway": "Raleway:wght@400;600;700;800;900",
+  "Ubuntu": "Ubuntu:wght@400;500;700",
+  "Josefin Sans": "Josefin+Sans:wght@400;600;700",
+  "Comfortaa": "Comfortaa:wght@400;600;700",
+  "Quicksand": "Quicksand:wght@400;600;700",
+  "Archivo Black": "Archivo+Black",
   "Oswald": "Oswald:wght@400;500;600;700",
-  "Noto Sans Tamil": "Noto+Sans+Tamil:wght@400;600;700;800",
+  "Bebas Neue": "Bebas+Neue",
+  "Anton": "Anton",
+  "Teko": "Teko:wght@400;500;600;700",
+  "Righteous": "Righteous",
+  "Merriweather": "Merriweather:wght@400;700;900",
+  "Playfair Display": "Playfair+Display:wght@400;600;700;800;900",
+  "Lora": "Lora:wght@400;600;700",
+  "Roboto Slab": "Roboto+Slab:wght@400;600;700;800;900",
+  "Bitter": "Bitter:wght@400;600;700;800;900",
+  "Abril Fatface": "Abril+Fatface",
+  "Cinzel": "Cinzel:wght@400;600;700;800;900",
+  "Lobster": "Lobster",
+  "Pacifico": "Pacifico",
+  "Dancing Script": "Dancing+Script:wght@400;600;700",
+  "Great Vibes": "Great+Vibes",
+  "Kaushan Script": "Kaushan+Script",
+  "Satisfy": "Satisfy",
+  "Caveat": "Caveat:wght@400;600;700",
+  "Noto Sans Tamil": "Noto+Sans+Tamil:wght@400;600;700;800;900",
+  "Noto Serif Tamil": "Noto+Serif+Tamil:wght@400;600;700;800;900",
   "Mukta Malar": "Mukta+Malar:wght@400;600;700;800",
+  "Catamaran": "Catamaran:wght@400;600;700;800;900",
+  "Hind Madurai": "Hind+Madurai:wght@400;600;700",
+  "Arima": "Arima:wght@400;600;700",
+  "Baloo Thambi 2": "Baloo+Thambi+2:wght@400;600;700;800",
+  "Anek Tamil": "Anek+Tamil:wght@400;600;700;800",
+  "Pavanam": "Pavanam",
+  "Meera Inimai": "Meera+Inimai",
+  "Kavivanar": "Kavivanar",
+  "Tiro Tamil": "Tiro+Tamil",
 };
 
 /** Load only the fonts actually chosen in the admin panel. */
@@ -71,13 +106,16 @@ function useHeroFonts(slides: HeroSlide[]) {
     const families = Array.from(
       new Set(slides.flatMap((s) => [s.titleFont, s.captionFont]).filter((f): f is string => Boolean(f && HERO_FONTS[f])))
     );
-    if (families.length === 0) return;
-    const href = `https://fonts.googleapis.com/css2?${families.map((f) => `family=${HERO_FONTS[f]}`).join("&")}&display=swap`;
-    if (document.head.querySelector(`link[href="${href}"]`)) return;
-    const link = document.createElement("link");
-    link.rel = "stylesheet";
-    link.href = href;
-    document.head.appendChild(link);
+    // One stylesheet per font, so a single bad family can't stop the rest
+    // from loading.
+    for (const family of families) {
+      const href = `https://fonts.googleapis.com/css2?family=${HERO_FONTS[family]}&display=swap`;
+      if (document.head.querySelector(`link[href="${href}"]`)) continue;
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = href;
+      document.head.appendChild(link);
+    }
   }, [slides]);
 }
 

@@ -46,7 +46,8 @@ export function ExamUpdate() {
   const { data: { news_events: NEWS_EVENTS, settings: SITE_CONFIG, pages }, loading } = useSiteData();
   const headerData = (pages?.exam_update?.header || {}) as any;
   const bannerImage = (pages?.exam_update?.banner as any)?.image || "/assets/gallery/ksc-08.jpg";
-  const examNotices = NEWS_EVENTS.filter((n) => n.type === "exam");
+  // "View all updates" lists every active notice from the admin panel.
+  const examNotices = NEWS_EVENTS;
 
   return (
     <div className="bg-gradient-to-b from-slate-50 via-amber-50/20 to-slate-50 min-h-screen pb-16">
@@ -71,7 +72,7 @@ export function ExamUpdate() {
 
           {!loading && examNotices.length === 0 && (
             <p className="rounded-2xl border border-slate-200 bg-white p-5 text-sm sm:text-base font-semibold text-slate-600">
-              No exam notices right now. Please check back soon.
+              No updates right now. Please check back soon.
             </p>
           )}
 

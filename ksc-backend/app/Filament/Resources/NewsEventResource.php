@@ -28,12 +28,12 @@ class NewsEventResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('title')
                     ->label('Notice Text')
-                    ->helperText('The announcement shown in the home page ticker (and on the Exam Update page for exam notices).')
+                    ->helperText('The announcement shown in the home page ticker and on the "View all updates" (Exam Update) page.')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\Select::make('type')
                     ->label('Notice Type')
-                    ->helperText('Choose "Exam" for exam results, hall tickets and time-tables — only Exam notices are listed on the Exam Update page.')
+                    ->helperText('What kind of notice this is. Every active notice is shown in the home page ticker and on the "View all updates" page.')
                     ->options(NewsEvent::TYPES)
                     ->default('event')
                     ->required()

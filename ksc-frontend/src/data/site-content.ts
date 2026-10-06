@@ -213,44 +213,8 @@ export interface NewsEvent {
   tag?: string;
 }
 
-export const NEWS_EVENTS: NewsEvent[] = [
-  {
-    text: "Admissions are open for the Academic Year 2026 — Alagappa University, Bharathidasan University, Manonmaniam Sundaranar University, and Tamilnadu Open University.",
-    type: "admission",
-    date: "Admissions Open",
-    href: "/admissions",
-  },
-  {
-    text: "Last date for admission: 31 July 2026",
-    type: "deadline",
-    date: "31 July 2026",
-    href: "/admissions",
-  },
-  {
-    text: "TNOU exam time-table released — collect from Karur Study Centre.",
-    type: "exam",
-    date: "Exam Update",
-    href: "/exam-update",
-  },
-  {
-    text: "BDU semester examinations — hall tickets available at Karur Study Centre.",
-    type: "exam",
-    date: "Exam Update",
-    href: "/exam-update",
-  },
-  {
-    text: "Alagappa University (CDOE) — July session admissions open for UG, PG, Diploma & Certificate programmes.",
-    type: "admission",
-    date: "ALU Admissions Open",
-    href: "/academic#alagappa",
-  },
-  {
-    text: "Alagappa University — exam hall tickets & time-tables available at Karur Study Centre.",
-    type: "exam",
-    date: "Exam Update",
-    href: "/exam-update",
-  },
-];
+// Notices come only from the admin panel (News & Events Ticker).
+export const NEWS_EVENTS: NewsEvent[] = [];
 
 /* =========================================================================== */
 /* MILESTONES (Home — "Empowering Excellence")                                 */

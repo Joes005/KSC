@@ -272,6 +272,12 @@ export async function fetchSiteData() {
   if (reachCentre?.image) reachCentre.image = toAsset(reachCentre.image);
 
   const settings: any = applySettings(SITE_CONFIG, flat);
+  // An empty stats list is what gets saved when Global Settings is saved
+  // without touching the counters, so treat it as "not set" rather than
+  // rendering an empty navy band on the home page.
+  if (!Array.isArray(settings.stats) || settings.stats.length === 0) {
+    settings.stats = SITE_CONFIG.stats;
+  }
   const logoPathRaw = flat["site.branding.logo_source"];
   if (logoPathRaw) {
     settings.branding.logoSource = toAsset(logoPathRaw);

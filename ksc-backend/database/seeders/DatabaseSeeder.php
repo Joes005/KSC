@@ -11,6 +11,7 @@ use App\Models\SiteSetting;
 use App\Models\Branch;
 use App\Models\Facility;
 use App\Models\GalleryImage;
+use App\Filament\Pages\HeaderFooterSettings;
 use App\Models\NewsEvent;
 use App\Models\University;
 use App\Models\ProgrammeCategory;
@@ -68,6 +69,13 @@ class DatabaseSeeder extends Seeder
 
         foreach ($settings as $key => $value) {
             SiteSetting::updateOrCreate(['key' => $key], ['value' => $value, 'type' => 'text']);
+        }
+
+        // Only fill the homepage counters when they are missing or empty, so
+        // numbers edited in the admin panel are never overwritten.
+        $stats = SiteSetting::firstOrNew(['key' => 'site.stats']);
+        if (empty(json_decode((string) $stats->value, true))) {
+            $stats->fill(['value' => json_encode(HeaderFooterSettings::DEFAULT_STATS), 'type' => 'json'])->save();
         }
     }
 

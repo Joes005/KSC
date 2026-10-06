@@ -33,6 +33,16 @@ class HeaderFooterSettings extends Page implements HasForms
         'site.stats',
     ];
 
+    /** Counters the site shows when none are saved — pre-filled into the form
+     *  so saving this page never wipes them by accident. */
+    public const DEFAULT_STATS = [
+        ['value' => 50000, 'suffix' => '+', 'label' => 'Graduates'],
+        ['value' => 26, 'suffix' => '+', 'label' => 'Years of Experience'],
+        ['value' => 100, 'suffix' => '%', 'label' => 'Result Rate'],
+        ['value' => 80, 'suffix' => '+', 'label' => 'Lecturers'],
+        ['value' => 20, 'suffix' => '+', 'label' => 'Office Staff'],
+    ];
+
     public ?array $data = [];
 
     public function mount(): void
@@ -43,6 +53,9 @@ class HeaderFooterSettings extends Page implements HasForms
                 $decoded = json_decode($settings[$listKey], true);
                 $settings[$listKey] = json_last_error() === JSON_ERROR_NONE ? $decoded : [];
             }
+        }
+        if (empty($settings['site.stats'])) {
+            $settings['site.stats'] = self::DEFAULT_STATS;
         }
         // Un-dot the array so the form can read nested keys (e.g., site.name -> site['name'])
         $undotted = [];
@@ -79,6 +92,7 @@ class HeaderFooterSettings extends Page implements HasForms
                             ->columns(3)
                             ->columnSpanFull()
                             ->reorderable()
+                            ->minItems(1)
                             ->addActionLabel('Add stat'),
                     ]),
                 Section::make('Global Settings')

@@ -286,6 +286,8 @@ class DatabaseSeeder extends Seeder
                         'Our services are designed for working professionals, homemakers and students from remote areas who want recognised degrees without relocating or abandoning their commitments.',
                     ],
                     'readMoreLink' => '/about',
+                    'quote' => 'Education is the most powerful weapon you can use to change the world.',
+                    'quoteAuthor' => 'Kamarajar',
                     'body' => [
                         'Karur Study Centre (KSC) is a dedicated distance-education study and admission centre with branches in Karur, Dindigul, and Kangayam. Since our inception we have been bridging the gap between open universities and students — helping you pick the right programme, submit a correct application, and stay supported through exams and results.',
                         'Our services are designed for working professionals, homemakers and students from remote areas who want recognised degrees without relocating or abandoning their commitments. We are affiliated with Alagappa University, Bharathidasan University, Manonmaniam Sundaranar University, and Tamilnadu Open University, and guide learners through every stage of their academic journey.',

@@ -69,8 +69,8 @@ export function AboutSnapshot() {
             </div>
             <div className="relative -mt-8 sm:-mt-14 mx-3 sm:mx-0 sm:ml-12 max-w-sm rounded-2xl bg-ksc-navy p-5 sm:p-6 text-white shadow-xl transition-all duration-700 opacity-0 translate-y-12 [.is-visible_&]:opacity-100 [.is-visible_&]:translate-y-0 delay-300">
               <BookOpen className="mb-3 sm:mb-4 h-7 w-7 sm:h-8 sm:w-8 text-ksc-yellow" aria-hidden="true" />
-              <p className="font-heading text-lg sm:text-2xl font-bold leading-tight">Education is the most powerful weapon you can use to change the world.</p>
-              <p className="mt-3 sm:mt-4 text-[10px] sm:text-xs font-black uppercase tracking-[.2em] text-ksc-yellow">— Kamarajar</p>
+              <p className="font-heading text-lg sm:text-2xl font-bold leading-tight">{ABOUT_SNAPSHOT.quote || "Education is the most powerful weapon you can use to change the world."}</p>
+              <p className="mt-3 sm:mt-4 text-[10px] sm:text-xs font-black uppercase tracking-[.2em] text-ksc-yellow">— {ABOUT_SNAPSHOT.quoteAuthor || "Kamarajar"}</p>
             </div>
           </div>
         </div>

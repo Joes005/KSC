@@ -297,6 +297,14 @@ class ManageHomeContent extends Page implements HasForms
                                 ->directory('home')
                                 ->columnSpanFull(),
                             TextInput::make('about_snapshot.readMoreLink')->label('Read More Link'),
+                            Textarea::make('about_snapshot.quote')
+                                ->label('Quote (blue box below the photo)')
+                                ->placeholder('Education is the most powerful weapon you can use to change the world.')
+                                ->rows(2)
+                                ->columnSpanFull(),
+                            TextInput::make('about_snapshot.quoteAuthor')
+                                ->label('Quote Author (name shown under the quote)')
+                                ->placeholder('Kamarajar'),
                             Repeater::make('about_snapshot.text')
                                 ->label('Summary Paragraphs')
                                 ->schema([

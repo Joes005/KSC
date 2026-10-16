@@ -43,6 +43,7 @@ class ProgrammeResource extends Resource
                     ->label('Syllabus PDF')
                     ->acceptedFileTypes(['application/pdf'])
                     ->directory('syllabuses')
+                    ->disk('public')
                     ->columnSpanFull(),
                 Forms\Components\TextInput::make('book_path')
                     ->label('Book Google Drive Link')
@@ -55,6 +56,7 @@ class ProgrammeResource extends Resource
                     ->label('Assignment PDF')
                     ->acceptedFileTypes(['application/pdf'])
                     ->directory('assignments')
+                    ->disk('public')
                     ->columnSpanFull(),
             ]);
     }

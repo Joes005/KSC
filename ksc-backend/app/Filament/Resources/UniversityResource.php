@@ -40,7 +40,8 @@ class UniversityResource extends Resource
                 Forms\Components\TextInput::make('website'),
                 Forms\Components\FileUpload::make('logo')
                     ->image()
-                    ->directory('logos'),
+                    ->directory('logos')
+                    ->disk('public'),
                 Forms\Components\Textarea::make('exam_note')
                     ->label('Exam Note')
                     ->columnSpanFull(),
@@ -53,6 +54,7 @@ class UniversityResource extends Resource
                     ->helperText('Shown as the download link on both the Admissions and Curriculum pages for this university.')
                     ->acceptedFileTypes(['application/pdf'])
                     ->directory('syllabus')
+                    ->disk('public')
                     ->columnSpanFull(),
             ]);
     }
@@ -73,7 +75,8 @@ class UniversityResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('website')
                     ->searchable(),
-                Tables\Columns\ImageColumn::make('logo'),
+                Tables\Columns\ImageColumn::make('logo')
+                    ->disk('public'),
                 Tables\Columns\TextColumn::make('exam_hall_ticket_url')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('exam_timetable_url')

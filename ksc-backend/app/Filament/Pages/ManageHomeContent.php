@@ -279,6 +279,7 @@ class ManageHomeContent extends Page implements HasForms
                                 ->label('Side Photo')
                                 ->image()
                                 ->directory('home')
+                                ->disk('public')
                                 ->columnSpanFull(),
                             Repeater::make('why_distance')
                                 ->label('Reasons')
@@ -295,6 +296,7 @@ class ManageHomeContent extends Page implements HasForms
                                 ->label('Photo')
                                 ->image()
                                 ->directory('home')
+                                ->disk('public')
                                 ->columnSpanFull(),
                             TextInput::make('about_snapshot.readMoreLink')->label('Read More Link'),
                             Textarea::make('about_snapshot.quote')

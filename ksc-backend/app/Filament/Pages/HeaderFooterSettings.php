@@ -77,6 +77,7 @@ class HeaderFooterSettings extends Page implements HasForms
                             ->label('Site Logo')
                             ->image()
                             ->directory('branding')
+                            ->disk('public')
                             ->imagePreviewHeight('120'),
                     ]),
                 Section::make('Homepage Stats Counters')

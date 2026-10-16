@@ -54,7 +54,7 @@ class ManageContactContent extends Page implements HasForms
                                 ->schema([
                                     TextInput::make('reach_centre.kicker')->label('Kicker (e.g. Get in Touch)'),
                                     TextInput::make('reach_centre.title')->label('Title'),
-                                    FileUpload::make('reach_centre.image')->image()->directory('contact')->columnSpanFull(),
+                                    FileUpload::make('reach_centre.image')->image()->directory('contact')->disk('public')->columnSpanFull(),
                                     TextInput::make('reach_centre.mapEmbedUrl')->label('Google Maps Embed URL')->columnSpanFull(),
                                     Repeater::make('reach_centre.items')
                                         ->label('Contact Info Items')

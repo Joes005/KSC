@@ -63,6 +63,7 @@ class ManagePageBanners extends Page implements HasForms
                     ->label('Banner Photo')
                     ->image()
                     ->directory('page-banners')
+                    ->disk('public')
                     ->imagePreviewHeight('150'),
             ];
 
@@ -71,6 +72,7 @@ class ManagePageBanners extends Page implements HasForms
                     ->label('Eligibility Section Photo')
                     ->image()
                     ->directory('page-banners')
+                    ->disk('public')
                     ->imagePreviewHeight('150');
             }
 
@@ -82,7 +84,8 @@ class ManagePageBanners extends Page implements HasForms
                     ->multiple()
                     ->reorderable()
                     ->appendFiles()
-                    ->directory('page-banners');
+                    ->directory('page-banners')
+                    ->disk('public');
             }
 
             $sections[] = Section::make($label)->schema($fields)->collapsible();

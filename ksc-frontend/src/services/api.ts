@@ -199,7 +199,7 @@ function mapUniversities(list: any[]): University[] {
           eligibility: p.eligibility,
           syllabusUrl: toAsset(p.syllabus_path),
           bookUrl: toDownloadUrl(p.book_path),
-          assignmentUrl: toAsset(p.assignment_path),
+          assignmentUrl: toDownloadUrl(p.assignment_path),
         })),
       })),
       exam: {

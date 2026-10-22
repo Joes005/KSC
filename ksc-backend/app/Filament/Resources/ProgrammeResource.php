@@ -52,11 +52,12 @@ class ProgrammeResource extends Resource
                     ->url()
                     ->maxLength(255)
                     ->columnSpanFull(),
-                Forms\Components\FileUpload::make('assignment_path')
-                    ->label('Assignment PDF')
-                    ->acceptedFileTypes(['application/pdf'])
-                    ->directory('assignments')
-                    ->disk('public')
+                Forms\Components\TextInput::make('assignment_path')
+                    ->label('Assignment Google Drive Link')
+                    ->placeholder('https://drive.google.com/file/d/.../view?usp=sharing')
+                    ->helperText('Upload the assignment PDF to Google Drive, set sharing to "Anyone with the link", then paste the link here. Visitors will get a direct download.')
+                    ->url()
+                    ->maxLength(255)
                     ->columnSpanFull(),
             ]);
     }

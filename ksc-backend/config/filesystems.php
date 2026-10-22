@@ -33,7 +33,10 @@ return [
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app/private'),
-            'serve' => true,
+            // Must stay false: when true, Laravel registers its own signed-URL
+            // GET /storage/{path} route for this private disk, which hijacks the
+            // public-image route in routes/web.php and 403s every upload.
+            'serve' => false,
             'throw' => false,
             'report' => false,
         ],

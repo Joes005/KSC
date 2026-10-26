@@ -206,7 +206,7 @@ function mapUniversities(list: any[]): University[] {
         note: u.exam_note || "",
         hallTicketUrl: u.exam_hall_ticket_url || "",
         timetableUrl: u.exam_timetable_url || "",
-        syllabusUrl: u.exam_syllabus_url ? toAsset(u.exam_syllabus_url) : "",
+        syllabusUrl: toDownloadUrl(u.exam_syllabus_url),
       },
     };
   });

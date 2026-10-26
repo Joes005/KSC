@@ -49,12 +49,11 @@ class UniversityResource extends Resource
                     ->label('Hall Ticket Link (URL)'),
                 Forms\Components\TextInput::make('exam_timetable_url')
                     ->label('Exam Timetable Link (URL)'),
-                Forms\Components\FileUpload::make('exam_syllabus_url')
-                    ->label('Syllabus & Prospectus PDF')
-                    ->helperText('Shown as the download link on both the Admissions and Curriculum pages for this university.')
-                    ->acceptedFileTypes(['application/pdf'])
-                    ->directory('syllabus')
-                    ->disk('public')
+                Forms\Components\TextInput::make('exam_syllabus_url')
+                    ->label('Syllabus & Prospectus Link (URL)')
+                    ->placeholder('https://drive.google.com/file/d/.../view?usp=sharing or URL')
+                    ->helperText('Shown as the download link on both the Admissions and Curriculum pages for this university. You can paste a Google Drive link or direct URL.')
+                    ->maxLength(255)
                     ->columnSpanFull(),
             ]);
     }

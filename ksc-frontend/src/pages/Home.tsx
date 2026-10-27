@@ -18,12 +18,12 @@ export function Home() {
   return (
     <>
       <Hero />
+      <UniversityStrip />
       <NewsAndEventsBanner />
       <AboutSnapshot />
       <WhyDistance />
       <VisionMissionValues />
       <Stats />
-      <UniversityStrip />
       <UniversityCourses />
       <FacilitiesSpotlight />
       <AdmissionSteps />

@@ -44,6 +44,14 @@ class ProgrammeResource extends Resource
                     ->acceptedFileTypes(['application/pdf'])
                     ->directory('syllabuses')
                     ->disk('public')
+                    ->helperText('Upload the syllabus PDF from your device, or paste a link below. If both are set, the link will be used.')
+                    ->columnSpanFull(),
+                Forms\Components\TextInput::make('syllabus_link')
+                    ->label('Syllabus Google Drive Link')
+                    ->placeholder('https://drive.google.com/file/d/.../view?usp=sharing')
+                    ->helperText('Upload the syllabus PDF to Google Drive, set sharing to "Anyone with the link", then paste the link here (or paste any direct URL). Visitors will get a direct download.')
+                    ->url()
+                    ->maxLength(255)
                     ->columnSpanFull(),
                 Forms\Components\TextInput::make('book_path')
                     ->label('Book Google Drive Link')

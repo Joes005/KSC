@@ -100,10 +100,12 @@ function mapNews(list: any[]): NewsEventType[] {
     const rawType = String(n.type ?? n.badge ?? "").trim().toLowerCase();
     const type = allowed.includes(rawType as NewsEventType["type"]) ? (rawType as NewsEventType["type"]) : "event";
     const badge = String(n.badge ?? "").trim();
+    const rawLink = String(n.link ?? "").trim();
+    const href = rawLink.startsWith("/") ? rawLink : (toDownloadUrl(rawLink) || undefined);
     return {
       text: String(n.title ?? "").trim(),
       type,
-      href: String(n.link ?? "").trim() || undefined,
+      href,
       pdfUrl: n.pdf_path ? toAsset(n.pdf_path) : undefined,
       date: badge || undefined,
     };
@@ -197,15 +199,15 @@ function mapUniversities(list: any[]): University[] {
           pattern: p.pattern,
           duration: p.duration,
           eligibility: p.eligibility,
-          syllabusUrl: toAsset(p.syllabus_path),
+          syllabusUrl: toDownloadUrl(p.syllabus_link || p.syllabus_path),
           bookUrl: toDownloadUrl(p.book_path),
           assignmentUrl: toDownloadUrl(p.assignment_path),
         })),
       })),
       exam: {
         note: u.exam_note || "",
-        hallTicketUrl: u.exam_hall_ticket_url || "",
-        timetableUrl: u.exam_timetable_url || "",
+        hallTicketUrl: toDownloadUrl(u.exam_hall_ticket_url),
+        timetableUrl: toDownloadUrl(u.exam_timetable_url),
         syllabusUrl: toDownloadUrl(u.exam_syllabus_url),
       },
     };
